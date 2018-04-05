@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
-import './home.css';
+import './styles/home.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
+import Header from '../components/Header';
+import PricingGuide from '../components/PricingGuide';
 
 class Home extends Component {
 
     render() {
         return (
             <section>
-                <header className="app-header navbar-sticky-top">
-                    <div className="container">
-                        <h1 className="app-name">Soccity</h1>
-                        <nav className="pull-right">
-                            <ul>
-                                <li>
-                                    <Link to={routes.LOGIN_PATH}>Login</Link>
-                                </li>
-                                <li>
-                                    <button className="btn btn-primary">
-                                        <Link to={routes.REGISTER_PATH}>Register</Link>
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </header>
+
+                <Header />
+
                 <div className="container">
                     <div className="hero text-center">
                         <h2>Reliable News. Quality Stories.</h2>
@@ -35,11 +23,15 @@ class Home extends Component {
                     </div>
                 </div>
 
-                <div className="container dashboard-preview">
-                    <Link to={routes.DASHBOARD_PATH}>
-                        {/* <Dashboard /> */}
-                    </Link>
+                <div className="container">
+                    <div className="dashboard-preview">
+                        <Link to={routes.DASHBOARD_PATH}>
+                            {/* <Dashboard /> */}
+                        </Link>
+                    </div>
                 </div>
+
+                <PricingGuide />
 
             </section>
         );

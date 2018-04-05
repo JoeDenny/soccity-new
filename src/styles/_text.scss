@@ -1,6 +1,9 @@
 .text-tiny {
     font-size: .8rem;
 }
+.text-secondary {
+    color: #484848;
+}
 .text-italic {
     font-style: italic;
 }
@@ -27,3 +30,11 @@ text-align: justify !important; }
 .cursor-pointer {
     cursor: pointer;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem; }
+  
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem; }
