@@ -1,0 +1,11 @@
+.news-card {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #fff; }
+  .news-card .description {
+    max-height: 75px;
+    overflow: hidden; }
+
+@media (min-width: 544px) {
+  .news-feed {
+    margin-left: 72px; } }
