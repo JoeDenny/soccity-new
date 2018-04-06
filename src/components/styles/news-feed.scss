@@ -2,12 +2,39 @@
 
 .news-card {
     padding: 1rem;
-    margin: 1rem;
+    margin: .5rem;
     background-color: $white;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 
     .description {
         max-height: 75px;
         overflow: hidden;
+    }
+}
+  
+.like-icon svg {
+    width: 24px;
+    height: 22px;
+    fill: none;
+    stroke: #000;
+    stroke-width: 5px;
+    margin: 2px 10px;
+
+    &.active {
+        svg {
+            fill: $darkGreen;
+        }
+    }
+}
+
+.comment-icon {    
+    svg {
+        vertical-align: middle;
+        width: 22px;
+        height: 22px;
+        stroke-width: 5px;
+        stroke: #000;
     }
 }
 
