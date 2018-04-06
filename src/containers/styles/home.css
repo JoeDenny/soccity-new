@@ -2,6 +2,8 @@
   padding: 2rem; }
   .hero .btn-primary {
     margin: 1rem; }
+  .hero .btn-secondary a {
+    color: #474B4F; }
 
 .dashboard-preview {
   height: 500px;

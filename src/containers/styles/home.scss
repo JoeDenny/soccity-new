@@ -1,8 +1,16 @@
+@import './src/styles/variables.scss';
+
 .hero {
     padding: 2rem;
 
     .btn-primary {
         margin: 1rem;
+    }
+
+    .btn-secondary {
+        a {
+            color: $darkGrey;
+        }
     }
 }
 

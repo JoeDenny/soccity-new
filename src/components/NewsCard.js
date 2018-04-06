@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
+import CommentsContainer from './CommentsContainer';
 
 class NewsCard extends Component {
     render() {
@@ -37,6 +38,8 @@ class NewsCard extends Component {
                         </ul>
                     </footer>
                 </div>
+
+                <CommentsContainer comments={this.props.newsItem.comments}/>
             </li>
         )
     }
