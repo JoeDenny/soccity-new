@@ -1,0 +1,30 @@
+@import './src/styles/variables.scss';
+
+.team-feed,
+.source-feed {
+    height: 320px;
+    overflow-y: scroll;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: $white;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+
+    .team-card,
+    .source-card {
+        cursor: pointer;
+        margin: .5rem 0;
+        background-color: $green;
+    }
+}
+
+@media (min-width: 544px) {
+  
+}
+@media (min-width: 768px) {
+    
+}
+@media (min-width: 1200px) {
+  
+}
+

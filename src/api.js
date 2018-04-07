@@ -12,7 +12,33 @@ class Api {
             password
         });
     }
+
+    register = (formData) => {        
+        return axios.post(`${this.API_URL}/register`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
     
+    getTeams = () => {
+    
+        return axios.get(`${this.API_URL}/teams`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getSources = () => {
+    
+        return axios.get(`${this.API_URL}/sources`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getAllNews = () => {
     
         const params = {

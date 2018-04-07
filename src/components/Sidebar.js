@@ -7,12 +7,12 @@ class DashboardHeader extends Component {
     render() {
         return (
             <div className="dashboard-sidebar">    
-                    <Link to={routes.FILTER_PATH}>
+                    <Link to={routes.ADD_DASHBOARD_PATH}>
                         <button 
                         type="button" 
                         className="open-filter-icon" />
                     </Link>
-                <h4>Create New Dashboard</h4>
+                <h4>Add Dashboard</h4>
             </div>
         )
     }

@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { routes } from './constants';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
+import Register from './containers/Register';
 import Login from './containers/Login';
+import AddDashboard from './containers/AddDashboard';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -21,8 +23,11 @@ export const App = () => (
         <BrowserRouter>
             <Switch>
                 <Route exact={true} path={getPath(routes.HOME_PATH)} component={Home} />
+                <Route exact={true} path={getPath(routes.REGISTER_PATH)} component={Register} />
                 <Route exact={true} path={getPath(routes.LOGIN_PATH)} component={Login} />
                 <Route exact={true} path={getPath(routes.DASHBOARD_PATH)} component={Dashboard} />
+                <Route exact={true} path={getPath(routes.ADD_DASHBOARD_PATH)} component={AddDashboard} />
+                <Route component={Home}/>
             </Switch>
         </BrowserRouter>
     </Provider>
