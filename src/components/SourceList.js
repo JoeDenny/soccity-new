@@ -6,9 +6,7 @@ class SourceList extends Component {
         let sources;
         
         if(this.props.sources) {
-            sources = this.props.sources.map(source => {
-                console.log('srouce', source);
-                
+            sources = this.props.sources.map(source => {                
                 return (
                     <SourceCard key={source.id} source={source} />
                 );
@@ -16,10 +14,12 @@ class SourceList extends Component {
         }    
 
         return (
-            <section className="source-feed col-md-6">
-                <ul>
-                    {sources}
-                </ul>
+            <section className="col-xs-12 col-md-6">
+                <div className="source-feed ">
+                    <ul>
+                        {sources}
+                    </ul>
+                </div>
             </section>
         )
     }

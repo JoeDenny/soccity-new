@@ -5,6 +5,7 @@ import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Register from './containers/Register';
 import Login from './containers/Login';
+import Profile from './components/Profile';
 import AddDashboard from './containers/AddDashboard';
 import './App.css';
 import { Provider } from 'react-redux';
@@ -26,6 +27,7 @@ export const App = () => (
                 <Route exact={true} path={getPath(routes.REGISTER_PATH)} component={Register} />
                 <Route exact={true} path={getPath(routes.LOGIN_PATH)} component={Login} />
                 <Route exact={true} path={getPath(routes.DASHBOARD_PATH)} component={Dashboard} />
+                <Route exact={true} path={getPath(routes.PROFILE_PATH)} component={Profile} />
                 <Route exact={true} path={getPath(routes.ADD_DASHBOARD_PATH)} component={AddDashboard} />
                 <Route component={Home}/>
             </Switch>

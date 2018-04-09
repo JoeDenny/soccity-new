@@ -18,6 +18,27 @@ export const registerSuccess = (token, user) => ({
     }
 });
 
+export const SET_ACTIVE_NEWS = '[News] Set active news';
+export const setActiveNews = (news) => ({
+    type: SET_ACTIVE_NEWS,
+    payload: {
+        news
+    }
+});
+
+export const REMOVE_ACTIVE_NEWS = '[News] Remove active news';
+export const removeActiveNews = () => ({
+    type: REMOVE_ACTIVE_NEWS,
+});
+
+export const COMMENT_NEWS = '[News] Comment news';
+export const commentNewsUpdate = (news) => ({
+    type: COMMENT_NEWS,
+    payload: {
+        news
+    }
+});
+
 export const login = (email, password) => {
     return (dispatch) => {        
         api.login(email, password).then((res) => {
@@ -40,6 +61,14 @@ export const register = (formData) => {
                 res.data.token,
                 res.data.user
             ));
+        });
+    };
+};
+
+export const addComment = (id, comment) => {
+    return (dispatch) => {
+        api.addComment(id, comment).then((res) => {
+            dispatch(commentNewsUpdate(res.data.news));            
         });
     };
 };

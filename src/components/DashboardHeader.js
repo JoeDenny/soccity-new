@@ -8,7 +8,7 @@ class DashboardHeader extends Component {
             <header className="dashboard-header navbar-sticky-top">
 
                 <nav className="pull-right">
-                     <a href='google.com'>Profile</a>
+                     {/* <a href='google.com'>Profile</a> */}
                 </nav>
 
                 <Searchbar />

@@ -10,7 +10,7 @@ class DashboardHeader extends Component {
                     <Link to={routes.ADD_DASHBOARD_PATH}>
                         <button 
                         type="button" 
-                        className="open-filter-icon" />
+                        className="plus-icon" />
                     </Link>
                 <h4>Add Dashboard</h4>
             </div>

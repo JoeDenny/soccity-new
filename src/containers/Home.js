@@ -3,16 +3,17 @@ import './styles/home.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 import Header from '../components/Header';
-// import Dashboard from './Dashboard';
 import PricingGuide from '../components/PricingGuide';
 
 class Home extends Component {
 
     render() {
         return (
-            <section>
+            <section className="app-home">
 
                 <Header />
+
+                <div className="background-color-block"></div>
 
                 <div className="container">
                     <div className="hero text-center">
@@ -28,11 +29,9 @@ class Home extends Component {
                 </div>
 
                 <div className="container">
-                    <div className="dashboard-preview">
-                        <Link to={routes.DASHBOARD_PATH}>
-                            {/* <Dashboard /> */}
-                        </Link>
-                    </div>
+                    <Link to={routes.DASHBOARD_PATH}>
+                        <div className="dashboard-preview card"></div>
+                    </Link>
                 </div>
 
                 <PricingGuide />

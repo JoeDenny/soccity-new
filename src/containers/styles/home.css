@@ -1,27 +1,46 @@
+.background-color-block {
+  position: absolute;
+  height: 660px;
+  width: 100%;
+  background-color: #ececec;
+  z-index: -1; }
+
 .hero {
-  padding: 2rem; }
+  padding: 3rem 1rem; }
+  .hero h4 {
+    margin: 1rem 0; }
   .hero .btn-primary {
     margin: 1rem; }
   .hero .btn-secondary a {
     color: #474B4F; }
 
+.card {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: .28571429rem;
+  box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35); }
+
 .dashboard-preview {
   height: 500px;
+  padding: 0;
+  position: relative;
   cursor: pointer;
   max-width: 720px;
   margin: auto;
   overflow: hidden;
+  background-image: url("./dashboard-temp.png");
+  background-size: cover;
   box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35); }
 
 @media (min-width: 544px) {
   .hero {
-    padding: 3rem; } }
+    padding: 5rem 3rem; } }
 
 @media (min-width: 768px) {
   .app-header {
     padding: 1rem 2rem; }
   .hero {
-    padding: 4rem 6rem; }
+    padding: 6rem; }
     .hero h2 {
       font-size: 2rem; } }
 

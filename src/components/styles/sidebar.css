@@ -3,13 +3,14 @@
   bottom: 0;
   width: 100%;
   position: fixed;
+  z-index: 99;
   color: #fff;
   padding: .5rem 1rem; }
   .dashboard-sidebar h4 {
     float: left;
     margin: 1.15rem; }
 
-.open-filter-icon {
+.plus-icon {
   position: relative;
   float: left;
   width: 40px;
@@ -22,10 +23,10 @@
   transition: box-shadow .25s;
   margin-top: 10px; }
 
-.open-filter-icon:hover {
+.plus-icon:hover {
   box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.6); }
 
-.open-filter-icon:after, .open-filter-icon:before {
+.plus-icon:after, .plus-icon:before {
   position: absolute;
   display: block;
   content: '';
@@ -36,10 +37,10 @@
   background-color: #fff;
   border-radius: 3px; }
 
-.open-filter-icon:after {
+.plus-icon:after {
   transform: translate(-50%, -50%) rotate(0deg); }
 
-.open-filter-icon:before {
+.plus-icon:before {
   transform: translate(-50%, -50%) rotate(90deg); }
 
 @media (min-width: 544px) {
@@ -49,5 +50,5 @@
     padding: 1rem; }
     .dashboard-sidebar h4 {
       display: none; }
-  .open-filter-icon {
+  .plus-icon {
     border-color: #222629; } }

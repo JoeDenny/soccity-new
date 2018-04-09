@@ -52,6 +52,27 @@ class Api {
         });
     }
 
+    getUserHistory = () => {
+
+        return axios.get(`${this.API_URL}/user/activity`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    addComment = (id, comment) => {
+
+        console.log('comment', comment);
+        
+
+        return axios.post(`${this.API_URL}/news/${id}/comments`, { comment }, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     saveToken(token) {    
         
         this.token = token;

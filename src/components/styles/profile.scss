@@ -1,0 +1,14 @@
+.profile-page {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+    // min-height: 100vh;
+
+    .profile-card {
+        background: #fff;
+        padding: 1rem;
+        border-radius: .28571429rem;
+        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    }
+}

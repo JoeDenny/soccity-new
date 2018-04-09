@@ -3,6 +3,16 @@ import './styles/news-feed.css';
 import NewsCard from './NewsCard';
 
 class NewsFeed extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onOpenComments = this.onOpenComments.bind(this);
+    }
+
+    onOpenComments() {
+        this.props.onOpenComments();
+    }
+
     render() {
         let newsItems;
         
@@ -10,7 +20,7 @@ class NewsFeed extends Component {
             newsItems = this.props.allNews.map(newsItem => {
 
                 return (
-                    <NewsCard key={newsItem.id} newsItem={newsItem} />
+                    <NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>
                 );
             });
         }    

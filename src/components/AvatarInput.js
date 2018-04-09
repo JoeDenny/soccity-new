@@ -8,13 +8,13 @@ class AvatarInput extends Component {
         if (target && target.files && target.files.length > 0) {
             const file = target.files[0];
 
-            this.props.onChange(file);
+            // this.props.onChange(file);
             this.updateImg(file);
         }
     }
     updateImg = (file) => {
         const fr = new FileReader(),
-            img = document.querySelector('.file-input__placeholder-img');
+            img = document.querySelector('.avatar-icon');
 
         fr.onload = () => {
             if (img) {
@@ -27,9 +27,9 @@ class AvatarInput extends Component {
         const { name } = this.props;
         return (
             <div className="file-input">
-                <div className="file-input__placeholder">
+                <div className="avatar-container">
                     <img
-                        className="file-input__placeholder-img"
+                        className="avatar-icon"
                         alt="avatar"
                     />
                 </div>

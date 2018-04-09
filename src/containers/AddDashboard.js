@@ -4,6 +4,7 @@ import Search from '../components/Search';
 import FilterResults from '../components/FilterResults';
 import TeamList from '../components/TeamList';
 import SourceList from '../components/SourceList';
+import TwitterFilter from '../components/TwitterFilter';
 import api from '../api.js';
 
 class AddDashboard extends Component {
@@ -12,8 +13,11 @@ class AddDashboard extends Component {
 
         this.state = {
             teams: [],
-            sources: []
+            sources: [],
+            filterResults: []
         }
+
+        this.addTeamToFilter = this.addTeamToFilter.bind(this);
     }
 
     componentWillMount() {
@@ -30,25 +34,37 @@ class AddDashboard extends Component {
         });
     }
 
+    addTeamToFilter(team) {
+        this.setState({
+            filterResults: [...this.state.filterResults, team]
+        });
+    }
+
     render() {
         return (
             <section className="add-dashboard container">
                 <header>
-                    <FilterResults />
+                    <FilterResults results={this.state.filterResults}/>
                 </header>
-
+                
                 <Search />
 
                 <h3>Or...</h3>
-                
-                <TeamList teams={this.state.teams}/>
+
+                <div className="row">
+                    <TeamList teams={this.state.teams} addTeamToFilter={this.addTeamToFilter}/>
+                </div>
 
                 <h3>Then...</h3>
 
-                <SourceList sources={this.state.sources}/>
+                <div className="row">
 
-                {/* <TwitterFilter /> */}
+                    <SourceList sources={this.state.sources}/>
 
+                    <TwitterFilter />
+                </div>
+
+                <button className="btn btn-primary">Done</button>
             </section>
         )
     }
