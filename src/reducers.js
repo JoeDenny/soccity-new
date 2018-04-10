@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS } from './actions';
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY } from './actions';
 
 const initialState = {
     token: '',
@@ -44,6 +44,11 @@ const rootReducer = (state = initialState, action) => {
                     
                     return news;
                 })
+            };
+        case SAVE_ACTIVITY:
+            return {
+                ...state,
+                activity: action.payload.activity.data
             };
         default:
             return state;

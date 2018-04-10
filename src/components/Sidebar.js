@@ -12,7 +12,7 @@ class DashboardHeader extends Component {
                         type="button" 
                         className="plus-icon" />
                     </Link>
-                <h4>Add Dashboard</h4>
+                <h4 className="soccity">Soccity</h4>
             </div>
         )
     }

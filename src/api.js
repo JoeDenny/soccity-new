@@ -52,7 +52,7 @@ class Api {
         });
     }
 
-    getUserHistory = () => {
+    getUserActivity = () => {
 
         return axios.get(`${this.API_URL}/user/activity`, {
             headers: {

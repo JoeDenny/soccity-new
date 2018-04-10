@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import AvatarInput from './AvatarInput';
 import './styles/profile.css';
-import store from '../store';
-import UserHistory from '../components/UserHistory';
-import UserPhoto from './UserPhoto';
+import { connect } from 'react-redux';
+import UserActivity from '../components/UserActivity';
+import UserPhoto from '../components/UserPhoto';
+import { getUserActivity } from '../actions';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import api from '../api.js';
 
 class Profile extends Component {
     constructor() {
@@ -14,26 +14,28 @@ class Profile extends Component {
 
         this.state = {
             user: {},
-            history: undefined
+            activity: undefined
         }
     }
 
     componentWillMount() {
-        const user = store.getState().user;
+        this.props.getUserActivity();
+
+        // api.getUserActivity().then(res => {
+            
+        //     const activity = res.data.activity.data;
+
+        //     this.setState({
+        //         ...this.state,
+        //         activity
+        //     });                                     
+        // })     
         
-        this.setState({ user });    
         
-        api.getUserHistory().then(res => {
-            const history = res.data.allNews.data;
-            this.setState({
-                ...this.state,
-                history
-            });                                     
-        })     
     }
 
     render() {
-        const user = this.state.user;
+        const { user, activity } = this.props;
         
         return (
             <section className="profile-page">
@@ -50,10 +52,20 @@ class Profile extends Component {
                     </div>
                 </div>
 
-                <UserHistory history={this.state.history}/>
+                <UserActivity activity={activity}/>
+
             </section>
         )
     }
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+    user: state.user,
+    activity: state.activity
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    getUserActivity: () => dispatch(getUserActivity())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

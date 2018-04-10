@@ -37,9 +37,9 @@ class AddComment extends Component {
     }
 
     render() {
-        const { avatar_path } = this.props.user || {
-            avatar_path: undefined
-        };
+        // const { avatar_path } = this.props.user || {
+        //     avatar_path: undefined
+        // };
         
         const placeholder = 'Reply...';
 

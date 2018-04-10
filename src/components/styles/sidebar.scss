@@ -9,9 +9,11 @@
     color: $white;
     padding: .5rem 1rem;
     
-    h4 {
-        float: left;
-        margin: 1.15rem;
+    .soccity {
+        position: absolute;
+        font-size: 1.5rem;
+        right: 20px;
+        top: 15px;
     }
 }
 .plus-icon {
@@ -49,8 +51,11 @@
         width: 72px;
         padding: 1rem;
 
-        h4 {
-            display: none;
+        .soccity { 
+            font-size: 1.2rem;
+            bottom: 0px;
+            left: 6px;
+            top: auto;
         }
     }
     .plus-icon {

@@ -18,13 +18,6 @@ class DashboardHeader extends Component {
 
                 <Searchbar />
                 
-                {/* <DashboardFilterList>
-                    <FilterItem />
-                </DashboardFilterList>
-
-                <DashboardTemplateList>
-                    <ChangeTemplate />
-                </DashboardTemplateList> */}
             </header>
         )
     }

@@ -5,7 +5,7 @@ import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Register from './containers/Register';
 import Login from './containers/Login';
-import Profile from './components/Profile';
+import Profile from './containers/Profile';
 import AddDashboard from './containers/AddDashboard';
 import './App.css';
 import { Provider } from 'react-redux';

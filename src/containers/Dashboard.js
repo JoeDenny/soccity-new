@@ -3,6 +3,7 @@ import DashboardHeader from '../components/DashboardHeader';
 import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
 import CommentsContainer from '../components/CommentsContainer';
+import DashboardSettings from '../components/DashboardSettings';
 import api from '../api.js';
 import './styles/dashboard.css';
 
@@ -50,6 +51,8 @@ class Dashboard extends Component {
 
                 <DashboardHeader />
                 
+                <DashboardSettings />
+
                 <Sidebar />
 
                 <NewsFeed

@@ -39,6 +39,14 @@ export const commentNewsUpdate = (news) => ({
     }
 });
 
+export const SAVE_ACTIVITY = '[News] Save received activity';
+export const saveActivity = (activity) => ({
+    type: SAVE_ACTIVITY,
+    payload: {
+        activity
+    }
+});
+
 export const login = (email, password) => {
     return (dispatch) => {        
         api.login(email, password).then((res) => {
@@ -69,6 +77,14 @@ export const addComment = (id, comment) => {
     return (dispatch) => {
         api.addComment(id, comment).then((res) => {
             dispatch(commentNewsUpdate(res.data.news));            
+        });
+    };
+};
+
+export const getUserActivity = () => {
+    return (dispatch) => {
+        api.getUserActivity().then((res) => {
+            dispatch(saveActivity(res.data.activity));            
         });
     };
 };

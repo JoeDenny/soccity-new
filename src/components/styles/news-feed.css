@@ -1,3 +1,6 @@
+.news-feed {
+  position: relative; }
+
 .news-card {
   padding: 1rem;
   padding-bottom: 2rem;
@@ -39,6 +42,12 @@
 @media (min-width: 544px) {
   .news-feed {
     margin: 5px 20px 10px 90px; }
+    .news-feed.template2 .col-md-6,
+    .news-feed.template2 .col-lg-4,
+    .news-feed.template2 .col-xl-3 {
+      flex: none;
+      width: 100%;
+      max-width: none; }
   .news-card footer {
     left: 20px;
     right: 20px; }

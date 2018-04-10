@@ -1,9 +1,11 @@
 .pricing-guide {
   padding: 2rem;
   background-color: white;
-  max-width: 750px;
+  max-width: 670px;
   margin: 3rem auto; }
-  .pricing-guide h2 {
-    margin-bottom: 2rem; }
+  .pricing-guide .card {
+    margin-top: 1rem; }
+  .pricing-guide .premium {
+    color: #6bac0f; }
   .pricing-guide .footnote {
     margin: 2rem 0 0; }

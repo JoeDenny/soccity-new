@@ -25,7 +25,7 @@ class PricingGuide extends Component {
                         </div>
                         <div className="col-xs-12 col-md-6">
                             <div className="card">
-                                <h4 className="text-center">PREMIUM subscription</h4>
+                                <h4 className="text-center premium">PREMIUM subscription</h4>
                                 <ul>
                                     <li>Unlimited miles</li>
                                     <li>Custom keywords filters</li>

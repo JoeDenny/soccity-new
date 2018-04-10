@@ -3,22 +3,19 @@
 .dashboard-chat {
     position: fixed;
     right: 0;
-    top: 115px;
-    height: 100%;
+    top: 82px;
+    bottom: 66px;
     width: 100%;
     max-width: 400px;
     background-color: #fff;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     transform: translateX(400px);
     z-index: 99;
     transition: transform .2s;
 
     &.open {
         transform: none; 
-    }
-
-    .user-photo {
-        float: left;
-        margin-right: 10px;
     }
 }
 
@@ -54,12 +51,18 @@
     p {
         margin: 1rem 0 0 0;
     }
+
+    .user-photo {
+        float: left;
+        margin-right: 10px;
+    }
 }
 
 .add-comment {
     display: flex;
-    padding: 20px;
     text-align: right;
+    margin-top: 2rem;
+    
     &__input {
         flex-grow: 1;
         margin-left: 10px;
@@ -82,4 +85,11 @@
         margin-left: auto;
         text-transform: uppercase;
     }
+}
+
+@media (min-width: 544px) {
+    .dashboard-chat {
+        bottom: 0;
+    }
+    
 }
