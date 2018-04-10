@@ -56,18 +56,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 activity: action.payload.activity.data
             };
-        case FAVOURITE_ARTICLE:
-        console.log('favourite');
-        
+        case FAVOURITE_ARTICLE:        
             const { favorites_count, is_favorited } = action.payload.news;
             return {
                 ...state,
                 news: state.news && state.news.map((news) => {
-                    console.log('else');
-                    
-                    if (news.id === action.payload.news.id) {
-                        console.log('match');
-                        
+
+                    if (news.id === action.payload.news.id) {                        
                         return {
                             ...news,
                             favorites_count,

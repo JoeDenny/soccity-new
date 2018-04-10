@@ -1,5 +1,5 @@
 .template-tab {
-  display: none;
+  display: none !important;
   padding-top: 10px;
   text-align: right; }
 

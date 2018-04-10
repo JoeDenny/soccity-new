@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.settings-button {
+    svg {
+        width: 22px;
+        transition: fill .25s ease-in-out; 
+        &:hover {
+            fill: $darkGreen;
+        }
+    }
+    &.active {
+        svg {
+            fill: $darkGreen;
+        }
+    }
+}

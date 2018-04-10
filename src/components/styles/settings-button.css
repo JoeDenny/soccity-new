@@ -1,0 +1,8 @@
+.settings-button svg {
+  width: 22px;
+  transition: fill .25s ease-in-out; }
+  .settings-button svg:hover {
+    fill: #6bac0f; }
+
+.settings-button.active svg {
+  fill: #6bac0f; }
