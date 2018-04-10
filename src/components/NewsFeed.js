@@ -42,8 +42,8 @@ class NewsFeed extends Component {
 
         let className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`;        
         
-        if(this.props.allNews) {
-            newsItems = this.props.allNews.map(newsItem => {
+        if(this.props.news) {
+            newsItems = this.props.news.map(newsItem => {
 
                 return (
                     <NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>

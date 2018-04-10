@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setActiveNews } from '../actions';
 import './styles/news-feed.css';
+import FavouriteIcon from './FavouriteIcon';
 
 
 class NewsCard extends Component {
@@ -16,9 +17,7 @@ class NewsCard extends Component {
         this.props.onOpenComments();
     }
 
-    render() {
-        const likeIconClass = `like-icon ${this.props.newsItem.is_favorited ? 'active' : ''}`;
-        
+    render() {        
         // const newsCardClass = `news-card ${this.props.newsItem.thumbnail !== 'http://localhost/images/news/thumbnail_generic.jpg' ? 'with-thumbnail' : ''}`;
 
         let headerStyle = {
@@ -39,12 +38,11 @@ class NewsCard extends Component {
                         <span className="text-tiny">{this.props.newsItem.posted_date_formated}</span>
                         <ul className="pull-right">
                             <li className="pull-left">
-                                <button 
-                                    type="button" 
-                                    className={likeIconClass}>
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.997 51.997"><path d="M51.911 16.242c-.759-8.354-6.672-14.415-14.072-14.415-4.93 0-9.444 2.653-11.984 6.905-2.517-4.307-6.846-6.906-11.697-6.906C6.759 1.826.845 7.887.087 16.241c-.06.369-.306 2.311.442 5.478 1.078 4.568 3.568 8.723 7.199 12.013l18.115 16.439 18.426-16.438c3.631-3.291 6.121-7.445 7.199-12.014.748-3.166.502-5.108.443-5.477z"/></svg>
-                                </button>
+                                <FavouriteIcon 
+                                    id={this.props.newsItem.id}
+                                    isFavorited={this.props.newsItem.is_favorited}
+                                    likes={this.props.newsItem.favorites_count} />
                             </li>
                             <li className="pull-left">
                                 <button type="button" className="comment-icon" onClick={this.onOpenComments}>

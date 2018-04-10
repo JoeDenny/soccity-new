@@ -1,6 +1,4 @@
 import axios from 'axios';
-import * as moment from 'moment';
-
 
 class Api {
     token = undefined;
@@ -39,11 +37,7 @@ class Api {
         });
     }
 
-    getAllNews = () => {
-    
-        const params = {
-            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss')
-        }; 
+    getNews = (params) => {
 
         return axios.get(`${this.API_URL}/news?time=${params.time}`, {
             headers: {
@@ -62,11 +56,15 @@ class Api {
     }
 
     addComment = (id, comment) => {
-
-        console.log('comment', comment);
-        
-
         return axios.post(`${this.API_URL}/news/${id}/comments`, { comment }, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    favouriteArticle = (id) => {
+        return axios.post(`${this.API_URL}/news/${id}/toggle_favorite`, null, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

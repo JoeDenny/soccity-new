@@ -18,6 +18,14 @@ export const registerSuccess = (token, user) => ({
     }
 });
 
+export const SAVE_NEWS = '[News] Save received news';
+export const saveNews = (news) => ({
+    type: SAVE_NEWS,
+    payload: {
+        news
+    }
+});
+
 export const SET_ACTIVE_NEWS = '[News] Set active news';
 export const setActiveNews = (news) => ({
     type: SET_ACTIVE_NEWS,
@@ -34,6 +42,14 @@ export const removeActiveNews = () => ({
 export const COMMENT_NEWS = '[News] Comment news';
 export const commentNewsUpdate = (news) => ({
     type: COMMENT_NEWS,
+    payload: {
+        news
+    }
+});
+
+export const FAVOURITE_ARTICLE = '[News] Like news';
+export const favouriteArticleUpdate = (news) => ({
+    type: FAVOURITE_ARTICLE,
     payload: {
         news
     }
@@ -73,6 +89,14 @@ export const register = (formData) => {
     };
 };
 
+export const getNews = (params) => {
+    return (dispatch) => {
+        api.getNews(params).then((res) => {
+            dispatch(saveNews(res.data.allNews.data));
+        });
+    };
+};
+
 export const addComment = (id, comment) => {
     return (dispatch) => {
         api.addComment(id, comment).then((res) => {
@@ -86,5 +110,14 @@ export const getUserActivity = () => {
         api.getUserActivity().then((res) => {
             dispatch(saveActivity(res.data.activity));            
         });
+    };
+};
+
+export const favouriteArticle = (id) => {
+    return (dispatch) => {
+        api.favouriteArticle(id)
+            .then((res) => {
+                dispatch(favouriteArticleUpdate(res.data.news));
+            });
     };
 };

@@ -1,10 +1,11 @@
 import api from './api';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY } from './actions';
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE } from './actions';
 
 const initialState = {
     token: '',
     user: {},
-    activeNews: {}
+    activeNews: {},
+    news: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 token: action.payload.token,
                 user: action.payload.user
+            };
+        case SAVE_NEWS:
+            return {
+                ...state,
+                news: action.payload.news
             };
         case SET_ACTIVE_NEWS:        
             return {
@@ -49,6 +55,27 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activity: action.payload.activity.data
+            };
+        case FAVOURITE_ARTICLE:
+        console.log('favourite');
+        
+            const { favorites_count, is_favorited } = action.payload.news;
+            return {
+                ...state,
+                news: state.news && state.news.map((news) => {
+                    console.log('else');
+                    
+                    if (news.id === action.payload.news.id) {
+                        console.log('match');
+                        
+                        return {
+                            ...news,
+                            favorites_count,
+                            is_favorited
+                        };
+                    }
+                    return news;
+                })
             };
         default:
             return state;
