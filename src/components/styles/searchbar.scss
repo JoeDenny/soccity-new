@@ -12,9 +12,9 @@
     input {
         position: absolute;
         width: 360px;
-        left: 40px;
+        left: 30px;
         cursor: text;
-        font-size: .7rem;
+        font-size: .5rem;
         margin-top: 5px;
     }
 }
@@ -24,14 +24,24 @@
     top: 50%;
     transform: translateY(-50%);
     fill: rgba(107, 110, 112, 0.8);
-    width: 24px;
-    height: 24px;
-    left: 15px;
+    width: 20px;
+    height: 20px;
+    left: 10px;
     z-index: 1;
 }
 
 @media (min-width: 544px) {
     .searchbar {
         width: 420px;
+
+        input {
+            left: 40px;
+            font-size: .7rem;
+        }
+    }
+    .search-icon {
+        width: 24px;
+        height: 24px;
+        left: 15px;
     }
 }

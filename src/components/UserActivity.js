@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
+import ActivityItem from './ActivityItem';
 
 class UserActivity extends Component {
     render() {
         let allActivity;   
 
-            
-        if(this.props.activity) {
-            // console.log(this.props.activity);
-            
-            // const keys = Object.keys(this.props.activity);
-            
-            // console.log('keys', keys);
-            
-            // this.props.activity.map((item) => {
-            //     console.log('item', item);
-                
-            //     return true;
-            // })
-            
-            // allActivity = this.props.activity.map(item => {
-            //     console.log('item', item);
-                
-            //     return (
-            //        <li>joe</li>
-            //     );
-            // });
+        if(this.props.activity) {            
+            const keys = Object.keys(this.props.activity);
+
+            allActivity = keys.map(day => {                
+                return (
+                   <div key={day}>
+                       <h2>{day}</h2>
+                       
+                       {
+                           this.props.activity[day].map(action => {
+
+                            return <ActivityItem key={action.id} activity={action}/>;
+                           })
+                        }
+                   </div>
+                );
+            });
+           
         }    
        return(
-           <div>{allActivity}</div>
+           <div className="container text-center">{allActivity}</div>
        )
     }
 }

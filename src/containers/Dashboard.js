@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DashboardHeader from '../components/DashboardHeader';
+import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
 import CommentsContainer from '../components/CommentsContainer';
@@ -47,26 +48,28 @@ class Dashboard extends Component {
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
         
         return (
-            <section className="app-dashboard">
+            <AuthWrapper>
+                <section className="app-dashboard">
 
-                <DashboardHeader />
-                
-                <DashboardSettings />
+                    <DashboardHeader />
+                    
+                    <DashboardSettings />
 
-                <Sidebar />
+                    <Sidebar />
 
-                <NewsFeed
-                    allNews={this.state.allNews}
-                    onOpenComments={this.openComments}/>
+                    <NewsFeed
+                        allNews={this.state.allNews}
+                        onOpenComments={this.openComments}/>
 
-                <CommentsContainer
-                    isVisible={this.state.isChatVisible}
-                    onCloseComments={this.closeComments} />
+                    <CommentsContainer
+                        isVisible={this.state.isChatVisible}
+                        onCloseComments={this.closeComments} />
 
 
-                <div className={overlayClassName}
-                    onClick={this.closeComments}></div>
-            </section>
+                    <div className={overlayClassName}
+                        onClick={this.closeComments}></div>
+                </section>
+            </AuthWrapper>
         )
     }
 }
