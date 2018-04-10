@@ -45,8 +45,10 @@ class Dashboard extends Component {
 
     render() {
 
+        const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
-        
+
+    
         return (
             <AuthWrapper>
                 <section className="app-dashboard">
@@ -57,13 +59,16 @@ class Dashboard extends Component {
 
                     <Sidebar />
 
-                    <NewsFeed
-                        allNews={this.state.allNews}
-                        onOpenComments={this.openComments}/>
+                    <div className={chatOpenClass}>
 
-                    <CommentsContainer
-                        isVisible={this.state.isChatVisible}
-                        onCloseComments={this.closeComments} />
+                        <NewsFeed
+                            allNews={this.state.allNews}
+                            onOpenComments={this.openComments}/>
+
+                        <CommentsContainer
+                            isVisible={this.state.isChatVisible}
+                            onCloseComments={this.closeComments} />
+                    </div>
 
 
                     <div className={overlayClassName}

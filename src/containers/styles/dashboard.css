@@ -1,6 +1,11 @@
 .app-dashboard {
   background-color: rgba(242, 242, 242, 0.5); }
 
+.chat-open {
+  overflow: hidden;
+  display: flex;
+  flex: 1; }
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.2);
   bottom: 0;
@@ -14,3 +19,7 @@
   display: none; }
   .overlay.open {
     display: block; }
+
+@media (min-width: 768px) {
+  .overlay.open {
+    display: none; } }

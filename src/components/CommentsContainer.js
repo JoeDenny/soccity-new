@@ -19,18 +19,23 @@ class ComentsContainer extends Component {
 
     onSendComment = (comment) => {
         const { activeNews } = this.props;
-
+        
         if (activeNews) {
             this.props.addComment(activeNews.id, comment);
         }
     }
 
     render() {
-        const activeNews = this.props.activeNews || {};
         
-        let comments;
+        const activeNews = this.props.activeNews || [];
+        
+        let comments,
+            hideMessageClass = '';
                 
         if(activeNews.comments) {
+            
+            hideMessageClass = activeNews.comments.length ? 'hide-message' : '';
+
             comments = this.props.activeNews.comments.map(comment => {
                 
                 return (
@@ -40,7 +45,6 @@ class ComentsContainer extends Component {
         }    
 
         const className = `dashboard-chat card ${this.props.isVisible ? 'open' : ''}`;
-        const hideMessage = activeNews.comments ? 'hide-message' : '';
         
         return (
             <div className={className}>  
@@ -55,7 +59,7 @@ class ComentsContainer extends Component {
                     <ul>
                         {comments}
                     </ul>
-                    <p className={hideMessage}>No comments yet!</p>
+                    <p className={hideMessageClass}>No comments yet!</p>
                 </div>
 
                 <AddComment

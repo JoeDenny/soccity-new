@@ -1,18 +1,17 @@
 .searchbar {
   background-color: #fff;
-  height: 50px;
+  height: 70px;
   position: relative;
-  border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
   overflow: hidden;
   margin-right: 80px; }
   .searchbar input {
     position: absolute;
-    width: 360px;
-    left: 30px;
+    left: 20px;
+    padding: 28px;
+    width: 100%;
     cursor: text;
-    font-size: .5rem;
-    margin-top: 5px; }
+    font-size: .7rem; }
 
 .search-icon {
   position: absolute;
@@ -24,12 +23,11 @@
   left: 10px;
   z-index: 1; }
 
-@media (min-width: 544px) {
-  .searchbar {
-    width: 420px; }
-    .searchbar input {
-      left: 40px;
-      font-size: .7rem; }
+@media (min-width: 768px) {
+  .searchbar input {
+    left: 30px;
+    font-size: 1rem;
+    padding: 25px; }
   .search-icon {
     width: 24px;
     height: 24px;

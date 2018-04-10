@@ -1,18 +1,16 @@
 .dashboard-chat {
   position: fixed;
-  right: 0;
-  top: 82px;
-  bottom: 66px;
-  width: 100%;
   max-width: 400px;
   background-color: #fff;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   transform: translateX(400px);
+  right: 0;
+  bottom: 67px;
+  top: 72px;
   z-index: 99;
-  transition: transform .2s; }
-  .dashboard-chat.open {
-    transform: none; }
+  transition: transform .2s ease; }
+
+.chat-open .dashboard-chat {
+  transform: none; }
 
 .hide-message {
   display: none; }
@@ -26,7 +24,11 @@
   top: 10px; }
   .close-icon svg {
     width: 20px;
-    height: 20px; }
+    height: 20px;
+    fill: #484848; }
+
+header h3 {
+  padding-right: 2rem; }
 
 .comment-list .comment {
   margin: .5rem 0; }
@@ -69,7 +71,18 @@
     border-radius: 4px;
     margin-left: auto;
     text-transform: uppercase; }
+  .add-comment .user-photo {
+    margin-top: 5px; }
 
-@media (min-width: 544px) {
+@media (min-width: 768px) {
   .dashboard-chat {
-    bottom: 0; } }
+    bottom: 0;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    display: none;
+    position: static; }
+  .chat-open .dashboard-chat {
+    display: flex; }
+  .close-icon {
+    top: 80px; } }

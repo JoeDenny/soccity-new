@@ -2,20 +2,19 @@
 
 .dashboard-chat {
     position: fixed;
-    right: 0;
-    top: 82px;
-    bottom: 66px;
-    width: 100%;
     max-width: 400px;
     background-color: #fff;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     transform: translateX(400px);
+    right: 0;
+    bottom: 67px;
+    top: 72px;
     z-index: 99;
-    transition: transform .2s;
+    transition: transform .2s ease;
+}
 
-    &.open {
-        transform: none; 
+.chat-open {
+    .dashboard-chat {
+        transform: none;
     }
 }
 
@@ -33,6 +32,13 @@
     svg {
         width: 20px;
         height: 20px;
+        fill: #484848;
+    }
+}
+
+header {
+    h3 {
+        padding-right: 2rem;
     }
 }
 
@@ -85,11 +91,27 @@
         margin-left: auto;
         text-transform: uppercase;
     }
+
+    .user-photo {
+        margin-top: 5px;
+    }
 }
 
-@media (min-width: 544px) {
+@media (min-width: 768px) {
     .dashboard-chat {
         bottom: 0;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        display: none;
+        position: static;
     }
-    
+    .chat-open {
+        .dashboard-chat {
+            display: flex;
+        }
+    }
+    .close-icon {
+        top: 80px;
+    }
 }
