@@ -12,9 +12,14 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 store.subscribe(() => {
-    const state = store.getState();   
+    const state = store.getState();
+
+    const storageItem = {
+        token: state.token,
+        user: state.user
+    }
     
-    localStorage.setItem('store', JSON.stringify(state));
+    localStorage.setItem('store', JSON.stringify(storageItem));
 });
 
 const getPath = (url) => `/${url}`;

@@ -40,13 +40,14 @@ class AddComment extends Component {
         const { avatar_path } = this.props.user || {
             avatar_path: undefined
         };
+        
         const placeholder = 'Reply...';
 
         return (
             <form className="add-comment" onSubmit={this.onSubmit}>
                 <div className="add-comment__photo">
                     <UserPhoto
-                        link={avatar_path}
+                        link="http://35.176.191.198/images/default_avatars/profile1.png"
                     />
                 </div>
                 <div className="add-comment__input">
