@@ -11,23 +11,12 @@
   transition: transform .2s; }
   .dashboard-chat.open {
     transform: none; }
+  .dashboard-chat .user-photo {
+    float: left;
+    margin-right: 10px; }
 
 .hide-message {
   display: none; }
-
-.user-photo {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  float: left;
-  margin-right: 10px; }
-  .user-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center; }
 
 .close-icon {
   position: absolute;

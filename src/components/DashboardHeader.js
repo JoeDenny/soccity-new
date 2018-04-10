@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import './styles/header.css';
+import UserPhoto from './UserPhoto';
 import Searchbar from './Search';
+import { Link } from 'react-router-dom';
+import { routes } from '../constants';
+import './styles/header.css';
 
 class DashboardHeader extends Component {
     render() {
@@ -8,7 +11,9 @@ class DashboardHeader extends Component {
             <header className="dashboard-header navbar-sticky-top">
 
                 <nav className="pull-right">
-                     {/* <a href='google.com'>Profile</a> */}
+                    <Link to={routes.PROFILE_PATH}>
+                        <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png" size={60}/>
+                    </Link>
                 </nav>
 
                 <Searchbar />

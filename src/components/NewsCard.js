@@ -20,13 +20,13 @@ class NewsCard extends Component {
         const className = `like-icon ${this.props.newsItem.is_favorited ? 'active' : ''}`;
 
         return (
-            <li>   
+            <li className="col-xs-12 col-md-6 col-lg-4 col-xl-3">   
                 <div className="news-card">
                     <header>
-                        <h5>{this.props.newsItem.source.title}</h5>
+                        <h5 className="source">{this.props.newsItem.source.title}</h5>
                     </header>
-                    <h2>{this.props.newsItem.title}</h2>
-                    <p className="description">{this.props.newsItem.description}</p>
+                    <h2 className="title">{this.props.newsItem.title}</h2>
+                    <p className="description text-secondary">{this.props.newsItem.description}</p>
 
 
                     <footer>

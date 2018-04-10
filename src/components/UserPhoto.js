@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/comments.css';
+import './styles/user-photo.css';
 
 const UserPhoto = (props) => {
     const { size, link } = props;
@@ -8,8 +8,6 @@ const UserPhoto = (props) => {
         height: `${size}px`
     };
 
-    console.log('props', props);
-    
     return (
         <div 
             className="user-photo"

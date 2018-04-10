@@ -27,9 +27,9 @@ class NewsFeed extends Component {
 
         return (
             <section className="news-feed">
-                <ul>
-                    {newsItems}
-                </ul>
+                    <ul className="row">
+                        {newsItems}
+                    </ul>
             </section>
         )
     }

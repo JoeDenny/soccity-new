@@ -1,12 +1,23 @@
 .news-card {
   padding: 1rem;
-  margin: .5rem;
+  padding-bottom: 2rem;
+  margin: .5rem 0;
   background-color: #fff;
   border-radius: .28571429rem;
-  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  height: 98%; }
+  .news-card .source {
+    color: #6bac0f; }
+  .news-card .title {
+    line-height: 30px; }
   .news-card .description {
     max-height: 75px;
     overflow: hidden; }
+  .news-card footer {
+    position: absolute;
+    bottom: 5px;
+    left: 30px;
+    right: 40px; }
 
 .like-icon svg {
   width: 24px;
@@ -27,4 +38,12 @@
 
 @media (min-width: 544px) {
   .news-feed {
-    margin-left: 72px; } }
+    margin: 5px 20px 10px 90px; }
+  .news-card footer {
+    left: 20px;
+    right: 20px; }
+  .col-md-6,
+  .col-lg-4,
+  .col-xl-3 {
+    padding-left: 4px !important;
+    padding-right: 4px !important; } }

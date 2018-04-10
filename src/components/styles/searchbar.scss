@@ -7,13 +7,15 @@
     border-radius: .28571429rem;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
     overflow: hidden;
+    margin-right: 80px;
 
     input {
         position: absolute;
         width: 360px;
         left: 40px;
         cursor: text;
-        font-size: 1rem;
+        font-size: .7rem;
+        margin-top: 5px;
     }
 }
 
@@ -30,6 +32,6 @@
 
 @media (min-width: 544px) {
     .searchbar {
-        width: 400px;
+        width: 420px;
     }
 }
