@@ -1,11 +1,11 @@
 import api from './api';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE } from './actions';
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
     user: {},
     activeNews: {},
-    news: {}
+    news: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,10 +19,12 @@ const rootReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 user: action.payload.user
             };
-        case SAVE_NEWS:
+        case SAVE_NEWS:            
             return {
                 ...state,
-                news: action.payload.news
+                news: action.payload.news.data,
+                current_page: action.payload.news.current_page,
+                last_page: action.payload.news.last_page
             };
         case SET_ACTIVE_NEWS:        
             return {
@@ -71,6 +73,14 @@ const rootReducer = (state = initialState, action) => {
                     }
                     return news;
                 })
+            };
+        case SEARCH:
+            const {value} = action.payload.searchValue;
+            const works = state.news.filter((val) => val.includes(value));
+            console.log('search works', works);
+            
+            return {
+                ...state
             };
         default:
             return state;

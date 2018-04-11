@@ -7,8 +7,6 @@ class NewsFeed extends Component {
     constructor(props) {
         super(props);
 
-        this.onOpenComments = this.onOpenComments.bind(this);
-        this.changeTemplate = this.changeTemplate.bind(this);
         this.state = {
             template: 1
         }
@@ -20,11 +18,11 @@ class NewsFeed extends Component {
         })
     }
 
-    onOpenComments() {
+    onOpenComments = () => {
         this.props.onOpenComments();
     }
 
-    changeTemplate(toggleOn) {
+    changeTemplate = (toggleOn) => {
         
         if(toggleOn) {
             this.setState({
@@ -37,10 +35,16 @@ class NewsFeed extends Component {
         }
     }
 
+    loadNextPage = () => {
+        this.props.loadNextPage();
+    }
+
     render() {
         let newsItems;
 
-        let className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`;        
+        let className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`;
+
+        let loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`;
         
         if(this.props.news) {
             newsItems = this.props.news.map(newsItem => {
@@ -59,6 +63,9 @@ class NewsFeed extends Component {
                     <ul className="row">
                         {newsItems}
                     </ul>
+
+                    <button
+                        className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</button>
             </section>
         )
     }

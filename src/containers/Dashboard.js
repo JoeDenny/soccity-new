@@ -22,10 +22,15 @@ class Dashboard extends Component {
 
     componentWillMount() {
 
-        const params = {
-            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss')
-        }; 
+        this.getNews();
+    }
 
+    getNews = (pageNumber) => {
+        const params = {
+            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            page: pageNumber || 1
+        }; 
+        
         this.props.getNews(params);
     }
 
@@ -36,6 +41,12 @@ class Dashboard extends Component {
         });        
     }
 
+    loadNextPage = () => {
+        const pageNumber = this.props.current_page + 1;        
+
+        this.getNews(pageNumber);
+    }
+
     closeComments = () => {
         this.setState({
             ...this.state,
@@ -44,10 +55,28 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { news } = this.props;
+        const { news, current_page, last_page } = this.props;        
 
         const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
+
+        // if(this.props.news) {
+
+            
+        //     let filteredNews = this.props.news.filter((news) => {
+                                
+        //         return news.title.toLowerCase().includes('arsenal');
+        //     });
+        //     // let filteredNews = this.props.news.filter((news) => {                
+                
+        //     //     return news.title.indexOf('productos') !== -1;
+        //     //   }
+        //     // );
+            
+        //     console.log('filtered', filteredNews);
+        // }
+        
+      
     
         return (
             <AuthWrapper>
@@ -63,7 +92,10 @@ class Dashboard extends Component {
 
                         <NewsFeed
                             news={news}
-                            onOpenComments={this.openComments}/>
+                            current_page={current_page}
+                            last_page={last_page}
+                            onOpenComments={this.openComments}
+                            loadNextPage={this.loadNextPage} />
 
                         <CommentsContainer
                             isVisible={this.state.isChatVisible}
@@ -80,7 +112,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    news: state.news
+    news: state.news,
+    current_page: state.current_page,
+    last_page: state.last_page
 });
 
 const mapDispatchToProps = (dispatch) => ({

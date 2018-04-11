@@ -63,6 +63,14 @@ export const saveActivity = (activity) => ({
     }
 });
 
+export const SEARCH = 'SEARCH';
+export const search = (searchValue) => ({
+    type: SEARCH,
+    payload: {
+        searchValue
+    }
+});
+
 export const login = (email, password) => {
     return (dispatch) => {        
         api.login(email, password).then((res) => {
@@ -92,7 +100,7 @@ export const register = (formData) => {
 export const getNews = (params) => {
     return (dispatch) => {
         api.getNews(params).then((res) => {
-            dispatch(saveNews(res.data.allNews.data));
+            dispatch(saveNews(res.data.allNews));
         });
     };
 };

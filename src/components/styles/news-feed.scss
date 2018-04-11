@@ -59,6 +59,14 @@
     }
 }
 
+.load-more-btn {
+    color: red;
+
+    &.hide {
+        display: none;
+    }
+}
+
 @media (min-width: 768px) {
     .news-feed {
         margin: 5px 20px 10px 90px;

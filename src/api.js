@@ -39,7 +39,7 @@ class Api {
 
     getNews = (params) => {
 
-        return axios.get(`${this.API_URL}/news?time=${params.time}`, {
+        return axios.get(`${this.API_URL}/news?time=${params.time}&page=${params.page}`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

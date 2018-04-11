@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Logo from './logo.png';
 import './styles/header.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
@@ -8,7 +9,8 @@ class Header extends Component {
         return (
             <header className="app-header navbar-sticky-top">
                 <div className="container">
-                    <h1 className="app-name">soccity</h1>
+                    {/* <h1 className="app-name">soccity</h1> */}
+                    <img src={Logo} alt="soccity" />
                     <nav className="pull-right">
                         <ul>
                             <li>
