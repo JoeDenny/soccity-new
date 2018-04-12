@@ -2,7 +2,13 @@
     height: 70px;
     padding: 1rem 2rem;
     background-color: white;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    border-bottom: 1px solid #ebebeb;
+    transition: box-shadow .2s;
+    
+    &.fixed-header {
+        border: none;
+        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    }
 }
 .app-logo {
     width: 70px;

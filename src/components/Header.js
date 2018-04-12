@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 
 class Header extends Component {
+    
     render() {
+        const className = `app-header navbar-sticky-top ${this.props.fixedHeader ? 'fixed-header' : ''}`
+        
         return (
-            <header className="app-header navbar-sticky-top">
+            <header className={className}>
                 <div className="container">
                     <img
                         className="app-logo"

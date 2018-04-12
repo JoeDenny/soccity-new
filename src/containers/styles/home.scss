@@ -4,22 +4,45 @@
     position: absolute;
     height: 660px;
     width: 100%;
-    background-color: rgb(236, 236, 236);
+    top: 650px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
     z-index: -1;
+
+    &.two {
+        top: 1000px;
+        display: none;
+    }
 }
 
 .hero {
     padding: 3rem 1rem;
+    max-width: 800px;
+    margin: auto;
+
+    h2 {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
 
     h4 {
         margin: 1rem 0;
+        color: rgb(50, 54, 72);
+        font-weight: 300;
+    }
+
+    .btn-container {
+        margin-top: 2rem;
     }
 
     .btn-primary {
-        margin: 1rem;
+        padding: 1rem;
     }
 
     .btn-secondary {
+        padding: 1rem;
+        margin-left: 1rem;
         a {
             color: $darkGrey;
         }
@@ -57,10 +80,21 @@
     }
     .hero {
         padding: 6rem;
+        text-align: center;
 
         h2 {
-            font-size: 2rem;
+            font-size: 2.75rem;
         }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
+}
+@media (min-width: 992px) {
+    .dashboard-preview {
+        height: 580px;
+        max-width: 900px;
     }
 }
 @media (min-width: 1200px) {

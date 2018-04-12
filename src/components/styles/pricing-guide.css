@@ -1,11 +1,24 @@
 .pricing-guide {
-  padding: 2rem;
-  background-color: white;
-  max-width: 670px;
-  margin: 3rem auto; }
+  max-width: 750px;
+  margin: 5rem auto; }
+  .pricing-guide .title {
+    color: #323648; }
+  .pricing-guide .card-title {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1); }
+  .pricing-guide .ion-checkmark {
+    color: #86C232;
+    margin-right: 5px;
+    font-size: .7rem; }
+  .pricing-guide li {
+    margin-bottom: 7.5px; }
   .pricing-guide .card {
     margin-top: 1rem; }
   .pricing-guide .premium {
     color: #6bac0f; }
   .pricing-guide .footnote {
     margin: 2rem 0 0; }
+  @media (min-width: 768px) {
+    .pricing-guide .title {
+      font-size: 2rem; } }

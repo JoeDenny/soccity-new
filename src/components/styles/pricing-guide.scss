@@ -1,10 +1,28 @@
 @import './src/styles/variables.scss';
 
 .pricing-guide {
-    padding: 2rem;
-    background-color: white;
-    max-width: 670px;
-    margin: 3rem auto;
+    max-width: 750px;
+    margin: 5rem auto;
+
+    .title {
+        color: $navy;
+    }
+
+    .card-title {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px dashed rgba(0,0,0,.1);
+    }
+
+    .ion-checkmark {
+        color: $green;
+        margin-right: 5px;
+        font-size: .7rem;
+    }
+
+    li {
+        margin-bottom: 7.5px;
+    }
 
     .card {
         margin-top: 1rem;
@@ -17,4 +35,12 @@
     .footnote {
         margin: 2rem 0 0;
     }
+
+    @media (min-width: 768px) {
+        
+        .title {
+            font-size: 2rem;
+        }
+    }
+
 }

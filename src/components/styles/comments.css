@@ -1,6 +1,7 @@
 .dashboard-chat {
   position: fixed;
   max-width: 400px;
+  padding: 1rem;
   background-color: #fff;
   transform: translateX(400px);
   right: 0;
