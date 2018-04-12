@@ -30,7 +30,7 @@ class AvatarInput extends Component {
                 <div className="avatar-container">
                     <img
                         className="avatar-icon"
-                        alt="avatar"
+                        alt=""
                     />
                 </div>
                 <label>

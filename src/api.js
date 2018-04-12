@@ -18,6 +18,22 @@ class Api {
             }
         });
     }
+
+    getNews = (params) => {
+        return axios.get(`${this.API_URL}/news?time=${params.time}&page=${params.page}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getCompetitions = () => {
+        return axios.get(`${this.API_URL}/competitions`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
     
     getTeams = () => {
     
@@ -28,18 +44,16 @@ class Api {
         });
     }
 
-    getSources = () => {
-    
-        return axios.get(`${this.API_URL}/sources`, {
+    getPlayers = () => {
+        return axios.get(`${this.API_URL}/players`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }
         });
     }
 
-    getNews = (params) => {
-
-        return axios.get(`${this.API_URL}/news?time=${params.time}&page=${params.page}`, {
+    getSources = () => {
+        return axios.get(`${this.API_URL}/sources`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

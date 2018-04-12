@@ -15,7 +15,6 @@ class Dashboard extends Component {
         super();
 
         this.state = {
-            news: [],
             isChatVisible: false
         }
     }

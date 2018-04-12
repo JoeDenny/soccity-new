@@ -1,0 +1,30 @@
+.filter-card {
+  cursor: pointer;
+  height: 40px;
+  padding: 0 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: .8rem; }
+  .filter-card:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  .filter-card:last-child {
+    border-bottom: none; }
+  .filter-card.selected {
+    background-color: #86C232; }
+  .filter-card .logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 5px;
+    float: left; }
+  .filter-card .name {
+    float: left;
+    margin: 10px;
+    margin-left: 10px; }
+  .filter-card input {
+    float: right;
+    margin: 11px;
+    margin: 13px 5px; }
+
+.competition-feed .filter-card .logo {
+  display: none; }

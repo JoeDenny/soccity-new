@@ -1,11 +1,14 @@
 import api from './api';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
     user: {},
     activeNews: {},
-    news: []
+    news: [],
+    competitions: [],
+    teams: [],
+    players: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,6 +28,26 @@ const rootReducer = (state = initialState, action) => {
                 news: action.payload.news.data,
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page
+            };
+        case SAVE_COMPETITIONS:
+            return {
+                ...state,
+                competitions: action.payload.competitions
+            };
+        case SAVE_TEAMS:
+            return {
+                ...state,
+                teams: action.payload.teams
+            };
+        case SAVE_PLAYERS:
+            return {
+                ...state,
+                players: action.payload.players
+            };
+        case SAVE_SOURCES:
+            return {
+                ...state,
+                sources: action.payload.sources
             };
         case SET_ACTIVE_NEWS:        
             return {

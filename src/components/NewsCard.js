@@ -20,20 +20,25 @@ class NewsCard extends Component {
     render() {        
         // const newsCardClass = `news-card ${this.props.newsItem.thumbnail !== 'http://localhost/images/news/thumbnail_generic.jpg' ? 'with-thumbnail' : ''}`;
 
-        let headerStyle = {
-            backgroundImage: 'url(' + this.props.newsItem.thumbnail + ')',
-          };
+        // let headerStyle = {
+        //     backgroundImage: 'url(' + this.props.newsItem.thumbnail + ')',
+        //   };
+
+        // let thumbnail = this.props.newsItem.thumbnail.includes("thumbnail_generic") ? this.props.newsItem.sources.logo_path : this.props.newsItem.thumbnail;
+
+        // console.log('thmb', thumbnail);
+        
 
         return (
             <li className="col-xs-12 col-md-6 col-lg-4 col-xl-3">   
                 <div className="news-card">
-                    <header style={headerStyle}>
+                    <header>
                         <h5 className="source">{this.props.newsItem.source.title}</h5>
                         <h2 className="title">{this.props.newsItem.title}</h2>
                     </header>
                     
-                    <p className="description text-secondary">{this.props.newsItem.description}</p>
-
+                    {/* <p className="description text-secondary">{this.props.newsItem.description}</p> */}
+                    <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>
                     <footer>
                         <span className="text-tiny">{this.props.newsItem.posted_date_formated}</span>
                         <ul className="pull-right">

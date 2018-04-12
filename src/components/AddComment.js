@@ -14,6 +14,16 @@ class AddComment extends Component {
         };
     }
     
+    onCommentChange = (event) => {
+        const commentLength = event.currentTarget.value.length;
+        
+        this.setState({
+            comment: event.currentTarget.value,
+            commentLength: commentLength,
+            textareaHeight: commentLength >= 40 ? 95 : 27
+        });
+    }
+
     onSubmit = (event) => {
         event.preventDefault();
 
@@ -23,16 +33,6 @@ class AddComment extends Component {
             comment: '',
             commentLength: 0,
             textareaHeight: 27
-        });
-    }
-
-    onCommentChange = (event) => {
-        const commentLength = event.currentTarget.value.length;
-
-        this.setState({
-            comment: event.currentTarget.value,
-            commentLength: commentLength,
-            textareaHeight: commentLength >= 40 ? 95 : 27
         });
     }
 

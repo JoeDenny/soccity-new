@@ -26,6 +26,38 @@ export const saveNews = (news) => ({
     }
 });
 
+export const SAVE_COMPETITIONS = '[News] Save competitions';
+export const saveCompetitions = (competitions) => ({
+    type: SAVE_COMPETITIONS,
+    payload: {
+        competitions
+    }
+});
+
+export const SAVE_TEAMS = '[News] Save teams';
+export const saveTeams = (teams) => ({
+    type: SAVE_TEAMS,
+    payload: {
+        teams
+    }
+});
+
+export const SAVE_PLAYERS = '[News] Save players';
+export const savePlayers = (players) => ({
+    type: SAVE_PLAYERS,
+    payload: {
+        players
+    }
+});
+
+export const SAVE_SOURCES = '[News] Save sources';
+export const saveSources = (sources) => ({
+    type: SAVE_SOURCES,
+    payload: {
+        sources
+    }
+});
+
 export const SET_ACTIVE_NEWS = '[News] Set active news';
 export const setActiveNews = (news) => ({
     type: SET_ACTIVE_NEWS,
@@ -101,6 +133,38 @@ export const getNews = (params) => {
     return (dispatch) => {
         api.getNews(params).then((res) => {
             dispatch(saveNews(res.data.allNews));
+        });
+    };
+};
+
+export const getCompetitions = () => {
+    return (dispatch) => {
+        api.getCompetitions().then((res) => {            
+            dispatch(saveCompetitions(res.data.data));
+        });
+    };
+};
+
+export const getTeams = () => {
+    return (dispatch) => {
+        api.getTeams().then((res) => {            
+            dispatch(saveTeams(res.data.data));
+        });
+    };
+};
+
+export const getPlayers = () => {
+    return (dispatch) => {
+        api.getPlayers().then((res) => {         
+            dispatch(savePlayers(res.data.data));
+        });
+    };
+};
+
+export const getSources = () => {    
+    return (dispatch) => {
+        api.getSources().then((res) => {                 
+            dispatch(saveSources(res.data.data));
         });
     };
 };

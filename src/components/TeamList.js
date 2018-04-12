@@ -1,38 +1,40 @@
 import React, { Component } from 'react';
-import TeamCard from './TeamCard';
+import FilterCard from './FilterCard';
 import '../containers/styles/add-dashboard.css';
 
 class TeamList extends Component {
-    constructor() {
-        super();
 
-        this.addTeam = this.addTeam.bind(this);
-    }
+    addTeam = (team) => {
 
-    addTeam(team) {
-        this.props.addTeamToFilter(team);        
+        this.props.addToFilter(team);        
     }
 
     render() {
-        let teams;
+        let teams,
+            isInFilterResults;
         
         if(this.props.teams) {
             teams = this.props.teams.map(team => {
 
+                isInFilterResults = this.props.filterResults.includes(team) ? true : false;
+                
                 return (
-                    <TeamCard key={team.id} team={team} addTeam={this.addTeam}/>
+                    <FilterCard
+                        key={team.id}
+                        data={team}
+                        addToFilter={this.addTeam}
+                        isInFilterResults={isInFilterResults} />
                 );
             });
         }    
 
         return (
-            <section className="col-xs-12 col-md-6">
-                <div className="team-feed">
-                    <ul>
-                        {teams}
-                    </ul>
-                </div>
-            </section>
+            <div className="list team-feed">
+                <h4 className="list-title">Add teams</h4>            
+                <ul>
+                    {teams}
+                </ul>
+            </div>
         )
     }
 }

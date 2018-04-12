@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ResultCard from './ResultCard';
-import './styles/header.css';
+import './styles/filter-results.css';
 
 class FilterResults extends Component {
     constructor() {
@@ -12,20 +12,19 @@ class FilterResults extends Component {
         this.results = nextProps.results;   
     }
     render() {
-        let results;        
+        let results;  
         
         if(this.results.length) {
             results = this.results.map(result => {                
                 return (
-                    <ResultCard key={result.id} result={result} />
+                    <ResultCard key={result.name} result={result} />
                 );
             });
         }    
         return (
-            <div>
-                <ul>
-                    {results}
-                </ul>
+            <div className="results-tab clearfix">
+                <h5>Your keyword filters:</h5>
+                {results}
             </div>
         )
     }

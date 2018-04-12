@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import './styles/filter-results.css';
 
 class ResultCard extends Component {
     render() {
-        return (
-            <li>   
-                <div className="team-card">
-                    <img src={this.props.result.logo_path} alt="team logo" />
-                    {this.props.result.name}
-                </div>
+        
+        // const logo = this.props.result.logo_path ? this.props.result.logo_path : this.props.result.image_path;
 
-            </li>
+        return ( 
+            <div className="result-card card">
+                {/* <div className="logo" >
+                    <img src={logo} alt="" />
+                </div> */}
+                <span>{this.props.result.name}</span>
+            </div>
         )
     }
 }

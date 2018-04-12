@@ -203,6 +203,11 @@ nav li {
   background-color: #5bc0de;
   border-color: #5bc0de; }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 .text-tiny {
   font-size: .8rem; }
 

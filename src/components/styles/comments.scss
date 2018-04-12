@@ -105,13 +105,14 @@ header {
         overflow: hidden;
         display: none;
         position: static;
+
+        .close-icon {
+            top: 80px;
+        }
     }
     .chat-open {
         .dashboard-chat {
             display: flex;
         }
-    }
-    .close-icon {
-        top: 80px;
     }
 }

@@ -10,35 +10,37 @@
 }
 
 .news-card {
+    padding: 1rem;
+    padding-bottom: 2rem;
     margin: .5rem 0;
-    background-color: $white;
+    background-color: #fff;
     border-radius: .28571429rem;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
     height: 98%;
 
-    header {
-        padding: 3rem 1rem .5rem;
-        border-top-left-radius: .28571429rem;
-        border-top-right-radius: .28571429rem;
-        background-position: center;
-        background-size: cover;
-        color: $white;
-    }
+    // header {
+    //     padding: 3rem 1rem .5rem;
+    //     border-top-left-radius: .28571429rem;
+    //     border-top-right-radius: .28571429rem;
+    //     background-position: center;
+    //     background-size: cover;
+    //     color: $white;
+    // }
 
     .source {
         color: $darkGreen;
     }
 
     .title {
-        line-height: 30px;
-        margin: 0;
+        line-height: 32px;
     }
 
     .description {
-        height: 140px;
+        height: 245px;
         overflow: hidden;
-        padding: 1rem;
-        margin-bottom: 3rem;
+        // overflow: hidden;
+        // padding: 1rem;
+        // margin-bottom: 3rem;
     }
 
     footer {
