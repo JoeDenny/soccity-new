@@ -3,7 +3,8 @@
   width: 100%;
   background-color: #6B6E70;
   position: fixed;
-  top: 60px; }
+  top: 60px;
+  z-index: 100; }
 
 .settings-buttons {
   display: flex;

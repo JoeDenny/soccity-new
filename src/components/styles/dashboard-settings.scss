@@ -6,6 +6,7 @@
     background-color: $grey;
     position: fixed;
     top: 60px;
+    z-index: 100;
 }
 .settings-buttons {
     display: flex;

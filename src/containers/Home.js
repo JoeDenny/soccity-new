@@ -3,6 +3,7 @@ import './styles/home.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 import Header from '../components/Header';
+import Faqs from '../components/Faqs';
 import Footer from '../components/Footer';
 import FeaturesGuide from '../components/FeaturesGuide';
 import PricingGuide from '../components/PricingGuide';
@@ -73,6 +74,8 @@ class Home extends Component {
                 <FeaturesGuide />
                 
                 <PricingGuide />
+
+                <Faqs />
                 
                 <Footer />
 

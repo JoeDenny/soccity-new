@@ -62,7 +62,7 @@ class AddDashboard extends Component {
                 <header>
 
                     <div className="container">
-                        <h1>Add Dashboard</h1>
+                        <h1 className="title text-center">Add Dashboard</h1>
                         <FilterResults results={this.state.filterResults}/>
                     </div>
 
@@ -75,7 +75,7 @@ class AddDashboard extends Component {
                 </header>
 
                 <section className="container">
-                    <h5>Create your own custom filters: </h5>
+                    <h4>Create your own custom filters: </h4>
                     <div className="row">            
                         <CustomFilters addCustomFilter={this.addCustomFilter} />
                     </div>
@@ -83,7 +83,7 @@ class AddDashboard extends Component {
 
                 <section className="container">
 
-                    <h5>Or choose from this list:</h5>
+                    <h4>Or choose from this list:</h4>
 
                     <div className="row">
                         <div className="col-xs-12 col-md-4">
@@ -109,17 +109,20 @@ class AddDashboard extends Component {
                     </div>
                     
                     <div className="row">
-                        <div className="col-xs-12 col-md-4">
+                        <div className="col-xs-12 col-md-6">
                             <SourceList sources={sources}/>
+                        </div>
+                        <div className="col-xs-12 col-md-6">
+                            <TwitterFilter sources={sources}/>
                         </div>
                     </div>
 
-                    <TwitterFilter />
+                    <div className="text-center">
+                        <button className="btn btn-primary">Save Dashboard</button>
+                    </div>
+
                 </section>
 
-
-
-                <button className="btn btn-primary">Done</button>
             </section>
         )
     }

@@ -3,7 +3,7 @@
   bottom: 0;
   width: 100%;
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   color: #fff;
   padding: .5rem 1rem; }
   .dashboard-sidebar .app-logo {

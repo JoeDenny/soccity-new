@@ -3,22 +3,24 @@ import React, { Component } from 'react';
 class TwitterFilter extends Component {
     render() {
         return (
-            <section className="col-xs-12 col-md-6">
-                <div className="source-feed">
-                    <div>
+            <div className="source-feed list">
+                <h4 className="list-title">Choose which publication tiers you would like: </h4>                        
+                <ul>
+                    <li className="filter-card text-secondary">
+                        <p className="name">Include Tweets</p>
                         <input type="checkbox" />
-                        <label>Include Tweets</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li className="filter-card text-secondary">
+                        <p className="name">Include Image Tweets</p>
                         <input type="checkbox" />
-                        <label>Include Image Tweets</label>
-                    </div>
-                    <div>
+                    </li>
+                    <li className="filter-card text-secondary">
+                        <p className="name">Include Video Tweets</p>
                         <input type="checkbox" />
-                        <label>Include Video Tweets</label>
-                    </div>
-                </div>
-            </section>
+                    </li>
+
+                </ul>
+            </div>
         )
     }
 }
