@@ -54,7 +54,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { news, current_page, last_page } = this.props;        
+        const { user, news, current_page, last_page } = this.props;        
 
         const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
@@ -81,7 +81,7 @@ class Dashboard extends Component {
             <AuthWrapper>
                 <section className="app-dashboard">
 
-                    <DashboardHeader />
+                    <DashboardHeader user={user}/>
                     
                     <DashboardSettings />
 
@@ -111,6 +111,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.user,
     news: state.news,
     current_page: state.current_page,
     last_page: state.last_page

@@ -14,36 +14,38 @@ class DashboardSettings extends Component {
     }
     render() {
         return (
-            <ul className="dashboard-settings-buttons">
-                <li className="dashboard-filter-buttons__item">
-                    <AutoRefreshButton />
-                </li>
-                <li className="dashboard-filter-buttons__item">
-                    <RecentlyViewedButton
-                        onClick={this.setActiveButton('recentlyButtonActive')}
-                        isActive={this.props.recentlyButtonActive}
-                    />
-                </li>
-                <li className="dashboard-filter-buttons__item">
-                    <BookmarkButton
-                        onClick={this.setActiveButton('bookmarkButtonActive')}
-                        isActive={this.props.bookmarkButtonActive}
-                        
-                    />
-                </li>
-                <li className="dashboard-filter-buttons__item">
-                    <CommentsButton
-                        onClick={this.setActiveButton('isChatVisible')}
-                        isActive={this.props.commentsButtonActive}
-                    />
-                </li>
-                <li className="dashboard-filter-buttons__item">
-                    <FilterSidebarButton
-                        onClick={this.setActiveButton('filterButtonActive')}
-                        isActive={this.props.filterButtonActive}
-                    />
-                </li>
-            </ul>
+            <div className="dashboard-settings-container">
+                <ul className="settings-buttons">
+                    <li className="item">
+                        <AutoRefreshButton />
+                    </li>
+                    <li className="item">
+                        <RecentlyViewedButton
+                            onClick={this.setActiveButton('recentlyButtonActive')}
+                            isActive={this.props.recentlyButtonActive}
+                        />
+                    </li>
+                    <li className="item">
+                        <BookmarkButton
+                            onClick={this.setActiveButton('bookmarkButtonActive')}
+                            isActive={this.props.bookmarkButtonActive}
+                            
+                        />
+                    </li>
+                    <li className="item">
+                        <CommentsButton
+                            onClick={this.setActiveButton('isChatVisible')}
+                            isActive={this.props.commentsButtonActive}
+                        />
+                    </li>
+                    <li className="item">
+                        <FilterSidebarButton
+                            onClick={this.setActiveButton('filterButtonActive')}
+                            isActive={this.props.filterButtonActive}
+                        />
+                    </li>
+                </ul>
+            </div>
         )
     }
 }

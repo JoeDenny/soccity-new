@@ -2,16 +2,14 @@
 
 .searchbar {
     background-color: $white;
-    height: 70px;
+    height: 60px;
     position: relative;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
     overflow: hidden;
-    margin-right: 80px;
 
     input {
         position: absolute;
         left: 20px;
-        padding: 28px;
+        padding: 21px;
         width: 100%;
         cursor: text;
         font-size: .7rem;
@@ -34,7 +32,7 @@
         input {
             left: 30px;
             font-size: 1rem;
-            padding: 25px;
+            padding: 21px;
         }
     }
     .search-icon {

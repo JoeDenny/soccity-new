@@ -1,7 +1,9 @@
+@import '../../styles/_variables.scss';
+
 .app-header {
     height: 70px;
     padding: 1rem 2rem;
-    background-color: white;
+    background-color: $white;
     border-bottom: 1px solid #ebebeb;
     transition: box-shadow .2s;
     
@@ -20,22 +22,37 @@
 .navbar-sticky-top {
     position: sticky;
     top: 0;
-    z-index: 99;
+    z-index: 100;
     width: 100%;
 }
 
 .dashboard-header {
     background-color: #f2f2f2;
-    box-shadow: 0 1px 6px rgba(57,73,76,.35);
+    border-bottom: 1px solid #ebebeb;    
+    // box-shadow: 0 1px 6px rgba(57,73,76,.35);
     
-    .user-photo {
-        margin: 5px 10px;
+    .user-details {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: $white;
+        border-left: 1px solid $borderGrey;
+
+        .username {
+            margin: 20px 15px;
+        }
+
+        a {
+            padding: 5px 10px;
+            padding-left: 0;
+            float: right;
+        }
     }
 }
 
 @media (min-width: 768px) {
     .dashboard-header {
-        margin-left: 72px;
-        width: calc(100% - 72px);
+        margin-left: 60px;
+        width: calc(100% - 60px);
     }
 }

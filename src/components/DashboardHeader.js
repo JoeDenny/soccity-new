@@ -6,17 +6,18 @@ import { routes } from '../constants';
 import './styles/header.css';
 
 class DashboardHeader extends Component {
-    render() {
+    render() {        
         return (
             <header className="dashboard-header navbar-sticky-top">
 
-                <nav className="pull-right">
+                <Searchbar />
+
+                <nav className="user-details">
+                    <h5 className="username pull-left">{this.props.user.name}</h5>
                     <Link to={routes.PROFILE_PATH}>
-                        <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png" size={60}/>
+                        <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png" size={50}/>
                     </Link>
                 </nav>
-
-                <Searchbar />
                 
             </header>
         )

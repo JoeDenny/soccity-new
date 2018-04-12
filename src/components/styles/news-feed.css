@@ -4,7 +4,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-width: 1px; }
+  min-width: 1px;
+  top: 45px; }
 
 .news-card {
   padding: 1rem;
@@ -13,7 +14,7 @@
   background-color: #fff;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-  height: 98%; }
+  height: 97.3%; }
   .news-card .source {
     color: #6bac0f; }
   .news-card .title {
@@ -41,7 +42,7 @@
 
 @media (min-width: 768px) {
   .news-feed {
-    margin: 5px 20px 10px 90px; }
+    margin: 5px 20px 10px 80px; }
   .chat-open .template1 .col-md-6,
   .chat-open .template1 .col-lg-4,
   .chat-open .template1 .col-xl-3,
@@ -63,5 +64,5 @@
   .col-md-6,
   .col-lg-4,
   .col-xl-3 {
-    padding-left: 4px !important;
-    padding-right: 4px !important; } }
+    padding-left: 7px !important;
+    padding-right: 7px !important; } }

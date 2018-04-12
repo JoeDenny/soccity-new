@@ -3,6 +3,8 @@ import './styles/home.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import FeaturesGuide from '../components/FeaturesGuide';
 import PricingGuide from '../components/PricingGuide';
 
 class Home extends Component {
@@ -13,6 +15,7 @@ class Home extends Component {
             headerIsFixed: false
         }
     }
+
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
@@ -67,9 +70,11 @@ class Home extends Component {
 
                 <div className="background-color-block two"></div>
                 
+                <FeaturesGuide />
+                
                 <PricingGuide />
-
-
+                
+                <Footer />
 
             </section>
         );

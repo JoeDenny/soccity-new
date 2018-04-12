@@ -7,7 +7,7 @@ class Comment extends Component {
         const comment = this.props.comment;
 
         return (
-            <li className="comment">
+            <li className="comment card">
                 <header>
                     <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png"/>
                     {/* <img className="user-icon" src="http://35.176.191.198/images/default_avatars/profile1.png" alt="user icon" /> */}

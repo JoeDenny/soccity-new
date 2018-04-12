@@ -6,7 +6,7 @@ class PricingGuide extends Component {
         return (
             <section className="container">
                 <div className="pricing-guide">
-                    <h2 className="title text-center">Features & Pricing</h2>
+                    <h2 className="title text-center">Pricing</h2>
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
                             <div className="card">

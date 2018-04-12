@@ -4,11 +4,12 @@
     position: fixed;
     max-width: 400px;
     padding: 1rem;
+    border-left: 1px solid $borderGrey;
     background-color: $white;
     transform: translateX(400px);
     right: 0;
     bottom: 67px;
-    top: 72px;
+    top: 105px;
     z-index: 99;
     transition: transform .2s ease;
 }
@@ -24,12 +25,8 @@
 }
 
 .close-icon {
-    position: absolute;
     width: 40px;
     height: 40px;
-    z-index: 1;
-    right: 10px;
-    top: 10px;
     svg {
         width: 20px;
         height: 20px;
@@ -106,9 +103,12 @@ header {
         overflow: hidden;
         display: none;
         position: static;
+        transition: none;
 
-        .close-icon {
-            top: 80px;
+        .fixed-content {
+            position: fixed;
+            margin-right: 15px;
+            margin-top: 45px;
         }
     }
     .chat-open {

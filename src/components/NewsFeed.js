@@ -58,14 +58,14 @@ class NewsFeed extends Component {
         return (
             <section className={className}>
 
-                    <TemplateTab onChangeTemplate={this.changeTemplate}/>
+                <TemplateTab onChangeTemplate={this.changeTemplate}/>
 
-                    <ul className="row">
-                        {newsItems}
-                    </ul>
+                <ul className="row">
+                    {newsItems}
+                </ul>
 
-                    <button
-                        className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</button>
+                <button
+                    className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</button>
             </section>
         )
     }
