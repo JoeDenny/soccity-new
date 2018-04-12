@@ -1,11 +1,14 @@
 .app-header {
-    padding: 1rem 0;
+    height: 70px;
+    padding: 1rem 2rem;
     background-color: white;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
-.app-name {
-    display: inline-block;
-    margin: 0;
+.app-logo {
+    width: 70px;
+    position: relative;
+    float: left;
+    top: -25px;
 }
 
 .navbar-sticky-top {
@@ -25,9 +28,6 @@
 }
 
 @media (min-width: 768px) {
-    .app-header {
-        padding: 1rem 2rem;
-    }
     .dashboard-header {
         margin-left: 72px;
         width: calc(100% - 72px);

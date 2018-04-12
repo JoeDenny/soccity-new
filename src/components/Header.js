@@ -9,8 +9,10 @@ class Header extends Component {
         return (
             <header className="app-header navbar-sticky-top">
                 <div className="container">
-                    {/* <h1 className="app-name">soccity</h1> */}
-                    <img src={Logo} alt="soccity" />
+                    <img
+                        className="app-logo"
+                        src={Logo}
+                        alt="soccity" />
                     <nav className="pull-right">
                         <ul>
                             <li>
