@@ -5,6 +5,9 @@
     position: absolute;
     top: 25px;
     right: 25px; }
+    .add-dashboard .close-icon svg {
+      width: 20px;
+      height: 20px; }
   .add-dashboard .searchbar {
     margin-right: 0;
     border: 1px solid #ebebeb; }

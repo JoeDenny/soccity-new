@@ -90,6 +90,12 @@ class Api {
         this.token = token;
     }
 
+    destroyToken() {
+        localStorage.removeItem('store');
+        this.token = undefined;
+        window.location.reload(true);
+    }
+
     getToken() {
         return this.token;
     }

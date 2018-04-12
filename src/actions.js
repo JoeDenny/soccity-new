@@ -131,9 +131,13 @@ export const register = (formData) => {
 
 export const getNews = (params) => {
     return (dispatch) => {
-        api.getNews(params).then((res) => {
-            dispatch(saveNews(res.data.allNews));
-        });
+        api.getNews(params).then(
+            (res) => {            
+                dispatch(saveNews(res.data.allNews));
+            },
+            (err) => {
+                api.destroyToken();                       
+            });
     };
 };
 
@@ -163,7 +167,7 @@ export const getPlayers = () => {
 
 export const getSources = () => {    
     return (dispatch) => {
-        api.getSources().then((res) => {                 
+        api.getSources().then((res) => {                             
             dispatch(saveSources(res.data.data));
         });
     };
