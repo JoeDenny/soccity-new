@@ -33,10 +33,10 @@ class Dashboard extends Component {
         this.props.getNews(params);
     }
 
-    openComments = () => {
+    openComments = () => {        
         this.setState({
             ...this.state,
-            isChatVisible: !this.state.isChatVisible
+            isChatVisible: true
         });        
     }
 

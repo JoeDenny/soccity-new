@@ -6,12 +6,6 @@ import { connect } from 'react-redux';
 import { removeActiveNews, addComment } from '../actions';
 
 class ComentsContainer extends Component {
-    constructor() {
-        super();
-
-        this.onCloseComments = this.onCloseComments.bind(this);
-    }
-
     onCloseComments = () => {
         this.props.removeActiveNews();
         this.props.onCloseComments();
@@ -68,7 +62,7 @@ class ComentsContainer extends Component {
                                 src={thumbnail} />
                         </div> */}
 
-                        <h3>{activeNews.title}</h3>
+                        <h3 dangerouslySetInnerHTML={{__html: activeNews.title}}></h3>
                     </header>
                     <div className="comment-list">
                         <ul>

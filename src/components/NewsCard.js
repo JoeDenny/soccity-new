@@ -6,34 +6,22 @@ import FavouriteIcon from './FavouriteIcon';
 
 
 class NewsCard extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onOpenComments = this.onOpenComments.bind(this);
-    }
-
-    onOpenComments() {
+    onOpenComments = () => {
         this.props.setActiveNews(this.props.newsItem);
-        this.props.onOpenComments();
+        this.props.onOpenComments();        
     }
 
-    render() {        
-        // const newsCardClass = `news-card ${this.props.newsItem.thumbnail !== 'http://localhost/images/news/thumbnail_generic.jpg' ? 'with-thumbnail' : ''}`;
-
-        // let headerStyle = {
-        //     backgroundImage: 'url(' + this.props.newsItem.thumbnail + ')',
-        //   };
+    render() {
 
         let thumbnail;
-
+        
         if(this.props.newsItem) {
 
             thumbnail = this.props.newsItem.thumbnail.includes("thumbnail_generic") ? this.props.newsItem.source.logo_path : this.props.newsItem.thumbnail;
         }
         
-
         return (
-            <li className="col-xs-12 col-md-6 col-lg-4 col-xl-3">   
+            <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">   
                 <div className="news-card">
                     <div className="thumbnail"> 
                         <img
@@ -72,8 +60,13 @@ class NewsCard extends Component {
     }
 }
 
+
+const mapStateToProps = (state) => ({
+    activeNews: state.activeNews
+});
+
 const mapDispatchToProps = (dispatch) => ({
     setActiveNews: (news) => dispatch(setActiveNews(news))
 });
 
-export default connect(null, mapDispatchToProps)(NewsCard);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCard);

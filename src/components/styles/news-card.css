@@ -8,7 +8,7 @@
   .news-card .thumbnail {
     border-top-left-radius: .28571429rem;
     border-top-right-radius: .28571429rem;
-    height: 220px;
+    height: 210px;
     border-bottom: 1px solid #ebebeb;
     overflow: hidden; }
     .news-card .thumbnail img {
@@ -16,17 +16,21 @@
       height: 100%;
       object-fit: cover; }
   .news-card header {
-    padding: 1rem;
+    padding: .5rem;
     padding-bottom: 0; }
   .news-card .source {
-    color: #6bac0f; }
+    color: #6bac0f;
+    margin: .5rem 0; }
   .news-card .title {
-    line-height: 32px; }
+    line-height: 24px;
+    margin-bottom: 0;
+    font-size: 1.2rem; }
   .news-card .description {
-    padding: 1rem;
-    height: 85px;
+    padding: .7rem;
+    height: 72px;
     overflow: hidden;
-    word-break: break-word; }
+    word-break: break-word;
+    font-size: .9rem; }
     .news-card .description img {
       display: none; }
   .news-card footer {
@@ -41,6 +45,10 @@
   height: 22px;
   stroke-width: 5px;
   stroke: #000; }
+
+@media (min-width: 544px) {
+  .news-card .thumbnail {
+    height: 150px; } }
 
 @media (min-width: 768px) {
   .news-card footer {
