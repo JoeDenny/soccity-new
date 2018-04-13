@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -8,7 +8,9 @@ const initialState = {
     news: [],
     competitions: [],
     teams: [],
-    players: []
+    players: [],
+    loginErrors: [],
+    registerErrors: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +24,20 @@ const rootReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 user: action.payload.user
             };
+        case REGISTER_FAILURE:
+            return {
+                ...state,
+                registerErrors: action.payload.errors
+            }            
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                loginErrors: action.payload.errors
+            }            
+        case LOGOUT:
+            return {
+                state: undefined
+            }
         case SAVE_NEWS:            
             return {
                 ...state,

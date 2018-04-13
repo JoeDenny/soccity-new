@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/auth.css';
+import ErrorMessages from '../components/ErrorMessages';
 import { login } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -44,6 +45,11 @@ class Login extends Component {
     render() {
         return (
             <div className="auth-layout">
+                
+                <h1>Login</h1>
+
+                <ErrorMessages errors={this.props.errors}/>                
+                
                 <form onSubmit={this.handleSubmit}>
 
                     <div className="input-wrapper">
@@ -67,7 +73,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    token: state.token
+    token: state.token,
+    errors: state.loginErrors    
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,0 +1,8 @@
+.errors-container {
+  margin-bottom: 1rem; }
+  .errors-container li {
+    color: #d72b3f;
+    list-style-type: initial;
+    padding-top: 2px; }
+    .errors-container li span {
+      color: #fff; }

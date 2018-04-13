@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import './styles/auth.css';
+import ErrorMessages from '../components/ErrorMessages';
 import { register } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import AvatarInput from '../components/AvatarInput';
 
 class Register extends Component {
     constructor(props) {
-        super(props);
-        // this.form = undefined;        
+        super(props);   
         this.state = {
-            avatar: '',
-            username: '',
+            default_avatar: 'http://35.176.191.198/images/default_avatars/profile1.png',
+            name: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            password_confirmation: ''
         };
-
-        // this.handleImageUpload = this.handleImageUpload.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -30,16 +25,7 @@ class Register extends Component {
         }
     }
 
-    // handleImageUpload = (title) => {
-    //     return (value) => {
-    //         this.setState({
-    //             ...this.state,
-    //             [title]: value
-    //         });  
-    //     };
-    // }
-
-    handleChange(event) {
+    handleChange = (event) => {
         const name = event.target.name;
         
         this.setState({
@@ -48,34 +34,26 @@ class Register extends Component {
           });        
     }
     
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         
-        // const formData = new FormData(this.form);
         const formData = this.state;
-
-        console.log('formdata', formData);
         
-        
-        // this.props.register(formData);
-    }
-
-    onRef = (el) => {
-        
-        this.form = el;
+        this.props.register(formData);
     }
 
     render() {
         return (
             <div className="auth-layout">
-                <form onSubmit={this.handleSubmit} ref={this.onRef}>
+                
+                <h1>Create Account</h1>
+
+                <ErrorMessages errors={this.props.errors}/>                
+
+                <form onSubmit={this.handleSubmit}>
 
                     <div className="input-wrapper">
-                        <AvatarInput onChange={this.handleImageUpload}/>
-                    </div>
-
-                    <div className="input-wrapper">
-                        <input className="text-input" placeholder="Username" type="text" value={this.state.username} name="username" onChange={this.handleChange} />
+                        <input className="text-input" placeholder="Name" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
                     </div>
 
                     <div className="input-wrapper">
@@ -87,7 +65,7 @@ class Register extends Component {
                     </div>
 
                     <div className="input-wrapper">
-                        <input className="text-input" placeholder="Confirm password" type="password" value={this.state.confirmPassword} name="confirmPassword" onChange={this.handleChange} />
+                        <input className="text-input" placeholder="Confirm password" type="password" value={this.state.password_confirmation} name="password_confirmation" onChange={this.handleChange} />
                     </div>
 
                     <input className="auth-form-button" type="submit" value="Submit" />
@@ -103,7 +81,8 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    token: state.token
+    token: state.token,
+    errors: state.registerErrors
 });
 
 const mapDispatchToProps = (dispatch) => ({

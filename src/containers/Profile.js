@@ -4,7 +4,8 @@ import './styles/profile.css';
 import { connect } from 'react-redux';
 import UserActivity from '../components/UserActivity';
 import UserPhoto from '../components/UserPhoto';
-import { getUserActivity } from '../actions';
+import AuthWrapper from '../components/AuthWrapper';
+import { getUserActivity, logout } from '../actions';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 
@@ -19,42 +20,42 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        this.props.getUserActivity();
+        this.props.getUserActivity();        
+    }
 
-        // api.getUserActivity().then(res => {
-            
-        //     const activity = res.data.activity.data;
-
-        //     this.setState({
-        //         ...this.state,
-        //         activity
-        //     });                                     
-        // })     
-        
-        
+    logout = () => {
+        this.props.logout();
+        this.props.history.push('/');
+        localStorage.removeItem('store');        
     }
 
     render() {
         const { user, activity } = this.props;
         
         return (
-            <section className="profile-page">
-                <div className="profile-card">
+            <AuthWrapper>
+                <section className="profile-page">
+                    <div className="profile-card">
 
-                    <p>
-                        <Link className="text-secondary" to={routes.DASHBOARD_PATH}><span>&lt;</span> Back to your dashboard.</Link>                
-                    </p>
-                    <div className="details text-center">
-                        <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />
+                        <p  className="pull-right"
+                            onClick={this.logout}>
+                            <a className="text-secondary">Logout</a>             
+                        </p>
+                        <p>
+                            <Link className="text-secondary" to={routes.DASHBOARD_PATH}><span>&lt;</span> Back to your dashboard.</Link>                
+                        </p>
+                        <div className="details text-center">
+                            <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />
 
-                        <h2>{user.name}</h2>
-                        <h2>{user.email}</h2>
+                            <h2>{user.name}</h2>
+                            <h2>{user.email}</h2>
+                        </div>
                     </div>
-                </div>
 
-                <UserActivity activity={activity}/>
+                    <UserActivity activity={activity}/>
 
-            </section>
+                </section>
+            </AuthWrapper>
         )
     }
 }
@@ -65,7 +66,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getUserActivity: () => dispatch(getUserActivity())
+    getUserActivity: () => dispatch(getUserActivity()),
+    logout: () => dispatch(logout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

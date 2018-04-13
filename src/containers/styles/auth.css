@@ -5,6 +5,8 @@
   flex-direction: column;
   background-color: #474b4f;
   min-height: 100vh; }
+  .auth-layout h1 {
+    color: #fff; }
   .auth-layout .input-wrapper {
     margin-bottom: 10px; }
   .auth-layout .text-input {

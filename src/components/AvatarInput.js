@@ -8,7 +8,7 @@ class AvatarInput extends Component {
         if (target && target.files && target.files.length > 0) {
             const file = target.files[0];
 
-            // this.props.onChange(file);
+            this.props.handleImageUpload(file);
             this.updateImg(file);
         }
     }

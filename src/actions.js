@@ -9,12 +9,33 @@ export const loginSuccess = (token, user) => ({
     }
 });
 
+export const LOGOUT = 'logout';
+export const logout = () => ({
+    type: LOGOUT
+});
+
 export const REGISTER_SUCCESS = 'register success';
 export const registerSuccess = (token, user) => ({
     type: REGISTER_SUCCESS,
     payload: {
         token,
         user
+    }
+});
+
+export const REGISTER_FAILURE = 'register failure';
+export const registerFailure = (errors) => ({
+    type: REGISTER_FAILURE,
+    payload: {
+        errors
+    }
+});
+
+export const LOGIN_FAILURE = 'login failure';
+export const loginFailure = (errors) => ({
+    type: LOGIN_FAILURE,
+    payload: {
+        errors
     }
 });
 
@@ -110,22 +131,31 @@ export const login = (email, password) => {
                 res.data.token,
                 res.data.user          
             ));
+        }).catch(error => {
+            if (error.response) {   
+                let error = {
+                    login: ['Incorrect email address or password.']
+                }                
+                dispatch(loginFailure(error));
+            }
         });
     };
 };
 
 export const register = (formData) => {
     return (dispatch) => {
-        api.register(formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then((res) => {
-            dispatch(registerSuccess(
-                res.data.token,
-                res.data.user
-            ));
-        });
+        api.register(formData).then(
+            (res) => {
+                dispatch(registerSuccess(
+                    res.data.token,
+                    res.data.user
+                ));
+            })
+            .catch(error => {
+                if (error.response) {                                        
+                    dispatch(registerFailure(error.response.data.errors));
+                }
+            });
     };
 };
 

@@ -12,11 +12,7 @@ class Api {
     }
 
     register = (formData) => {        
-        return axios.post(`${this.API_URL}/register`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+        return axios.post(`${this.API_URL}/register`, formData);
     }
 
     getNews = (params) => {
