@@ -5,7 +5,14 @@
   flex: 1;
   flex-direction: column;
   min-width: 1px;
-  top: 45px; }
+  top: 45px;
+  min-height: 1; }
+
+.dashboard-message {
+  padding: 5rem;
+  opacity: 0; }
+  .dashboard-message.no-search-results {
+    opacity: 1; }
 
 .load-more-btn.hide {
   display: none; }
@@ -42,3 +49,12 @@
   .chat-open .template2 .col-lg-4,
   .chat-open .template2 .col-xl-3 {
     max-width: 50%; } }
+
+@media (min-width: 1200px) {
+  .chat-open .template1 .col-md-6,
+  .chat-open .template1 .col-lg-4,
+  .chat-open .template1 .col-xl-3,
+  .chat-open .template2 .col-md-6,
+  .chat-open .template2 .col-lg-4,
+  .chat-open .template2 .col-xl-3 {
+    max-width: calc(100% / 3); } }

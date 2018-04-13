@@ -24,8 +24,9 @@
     line-height: 32px; }
   .news-card .description {
     padding: 1rem;
-    height: 133px;
-    overflow: hidden; }
+    height: 85px;
+    overflow: hidden;
+    word-break: break-word; }
     .news-card .description img {
       display: none; }
   .news-card footer {

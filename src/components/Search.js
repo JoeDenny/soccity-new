@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import './styles/searchbar.css';
-// import {connect} from 'react-redux';
-// import {search} from '../actions';
 
 class Searchbar extends Component {
+
     onChange = (event) => {
-        this.setState({ filterTerm: event.target.value });
-    }
-
-    onSubmit = (event) => {
-        // event.preventDefault();
-
-        this.props.handleSubmit(this.state.filterTerm);
+        
+        this.props.setSearchTerm(event.target.value);
     }
 
     render() {
@@ -25,8 +19,6 @@ class Searchbar extends Component {
                     type="text"
                     placeholder="Search for competitions, teams, players, or publication sources..."
                     onChange={this.onChange} />
-
-                {/* <button onClick={this.onSubmit}>click me</button> */}
             </div>
         )
     }

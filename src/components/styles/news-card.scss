@@ -37,8 +37,9 @@
 
     .description {
         padding: 1rem;
-        height: 133px;
+        height: 85px;
         overflow: hidden;
+        word-break: break-word;
 
         img {
             display: none;

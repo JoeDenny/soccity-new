@@ -40,19 +40,24 @@ class NewsFeed extends Component {
     }
 
     render() {
-        let newsItems;
-
-        let className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`;
-
-        let loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`;
+        let newsItems,
+            searchTerm = this.props.searchTerm,
+            className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`,
+            loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`,
+            noResultsClass;
         
         if(this.props.news) {
-            newsItems = this.props.news.map(newsItem => {
+            newsItems = this.props.news.reduce((result, newsItem) => {
 
-                return (
-                    <NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>
-                );
-            });
+                if(newsItem.title.toLowerCase().includes(searchTerm)) {
+
+                    result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>);
+                     
+                }
+                return result;           
+            }, []);            
+
+            noResultsClass = `dashboard-message text-center ${newsItems.length === 0 ? 'no-search-results' : '' }`
         }    
 
         return (
@@ -63,7 +68,7 @@ class NewsFeed extends Component {
                 <ul className="row">
                     {newsItems}
                 </ul>
-
+                <p className={noResultsClass}>No results found</p>
                 <button
                     className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</button>
             </section>

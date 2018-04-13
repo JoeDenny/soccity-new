@@ -11,17 +11,16 @@ import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
 class Dashboard extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             isChatVisible: false,
             searchTerm: ''
-        }
+        }        
     }
 
     componentWillMount() {
-
         this.getNews();
     }
 
@@ -54,35 +53,21 @@ class Dashboard extends Component {
         });
     }
 
-    filterArticles = (searchTerm) => {
-        this.setState({
-            searchTerm
-        });
+    setSearchTerm = (searchTerm) => {
+
+        this.setState(
+            {
+                ...this.state,
+                searchTerm: searchTerm
+            }
+        )
     }
 
     render() {
-        const { user, current_page, last_page } = this.props;        
-
-        let news = this.props.news;
+        const { user, news, current_page, last_page } = this.props;
 
         const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
-
-        let filteredNews;
-
-        if(news) {
-            
-            filteredNews = this.props.news.filter((news) => {
-                                
-                return news.title.toLowerCase().includes(this.state.searchTerm);
-            });
-        }
-
-        // if(filteredNews && filteredNews.length) {
-        //     news = filteredNews;
-        // } else {
-        //     news = this.props.news;
-        // }
     
         return (
             <AuthWrapper>
@@ -90,7 +75,7 @@ class Dashboard extends Component {
 
                     <DashboardHeader
                         user={user}
-                        filterArticles={this.filterArticles}/>
+                        setSearchTerm={this.setSearchTerm}/>
                     
                     <DashboardSettings />
 
@@ -99,11 +84,12 @@ class Dashboard extends Component {
                     <div className={chatOpenClass}>
 
                         <NewsFeed
-                            news={filteredNews}
+                            news={news}
                             current_page={current_page}
                             last_page={last_page}
                             onOpenComments={this.openComments}
-                            loadNextPage={this.loadNextPage} />
+                            loadNextPage={this.loadNextPage}
+                            searchTerm={this.state.searchTerm} />
 
                         <CommentsContainer
                             isVisible={this.state.isChatVisible}
