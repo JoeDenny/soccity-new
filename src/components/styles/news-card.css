@@ -1,5 +1,5 @@
 .news-card {
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
   margin: .5rem 0;
   background-color: #fff;
   border-radius: .28571429rem;
@@ -24,7 +24,7 @@
     line-height: 32px; }
   .news-card .description {
     padding: 1rem;
-    height: 130px;
+    height: 133px;
     overflow: hidden; }
     .news-card .description img {
       display: none; }

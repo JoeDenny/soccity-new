@@ -1,5 +1,7 @@
+@import '../../styles/_variables.scss';
+
 .app-dashboard {
-    background-color: rgba(242, 242, 242, .5);
+    background-color: $lightGrey;
 }
 
 .chat-open {

@@ -15,7 +15,8 @@ class Dashboard extends Component {
         super();
 
         this.state = {
-            isChatVisible: false
+            isChatVisible: false,
+            searchTerm: ''
         }
     }
 
@@ -53,35 +54,43 @@ class Dashboard extends Component {
         });
     }
 
+    filterArticles = (searchTerm) => {
+        this.setState({
+            searchTerm
+        });
+    }
+
     render() {
-        const { user, news, current_page, last_page } = this.props;        
+        const { user, current_page, last_page } = this.props;        
+
+        let news = this.props.news;
 
         const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
         const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
 
-        // if(this.props.news) {
+        let filteredNews;
 
+        if(news) {
             
-        //     let filteredNews = this.props.news.filter((news) => {
+            filteredNews = this.props.news.filter((news) => {
                                 
-        //         return news.title.toLowerCase().includes('arsenal');
-        //     });
-        //     // let filteredNews = this.props.news.filter((news) => {                
-                
-        //     //     return news.title.indexOf('productos') !== -1;
-        //     //   }
-        //     // );
-            
-        //     console.log('filtered', filteredNews);
+                return news.title.toLowerCase().includes(this.state.searchTerm);
+            });
+        }
+
+        // if(filteredNews && filteredNews.length) {
+        //     news = filteredNews;
+        // } else {
+        //     news = this.props.news;
         // }
-        
-      
     
         return (
             <AuthWrapper>
                 <section className="app-dashboard">
 
-                    <DashboardHeader user={user}/>
+                    <DashboardHeader
+                        user={user}
+                        filterArticles={this.filterArticles}/>
                     
                     <DashboardSettings />
 
@@ -90,7 +99,7 @@ class Dashboard extends Component {
                     <div className={chatOpenClass}>
 
                         <NewsFeed
-                            news={news}
+                            news={filteredNews}
                             current_page={current_page}
                             last_page={last_page}
                             onOpenComments={this.openComments}

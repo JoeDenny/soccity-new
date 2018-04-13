@@ -10,6 +10,15 @@
   top: 105px;
   z-index: 99;
   transition: transform .2s ease; }
+  .dashboard-chat .thumbnail {
+    width: 30px;
+    height: 30px;
+    float: left;
+    border-radius: 50%; }
+    .dashboard-chat .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; }
 
 .chat-open .dashboard-chat {
   transform: none; }

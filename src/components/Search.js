@@ -5,8 +5,15 @@ import './styles/searchbar.css';
 
 class Searchbar extends Component {
     onChange = (event) => {
-        console.log(event.currentTarget.value);
+        this.setState({ filterTerm: event.target.value });
     }
+
+    onSubmit = (event) => {
+        // event.preventDefault();
+
+        this.props.handleSubmit(this.state.filterTerm);
+    }
+
     render() {
         return (
             <div className="searchbar">
@@ -18,6 +25,8 @@ class Searchbar extends Component {
                     type="text"
                     placeholder="Search for competitions, teams, players, or publication sources..."
                     onChange={this.onChange} />
+
+                {/* <button onClick={this.onSubmit}>click me</button> */}
             </div>
         )
     }

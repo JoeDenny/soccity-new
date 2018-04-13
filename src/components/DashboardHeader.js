@@ -6,11 +6,16 @@ import { routes } from '../constants';
 import './styles/header.css';
 
 class DashboardHeader extends Component {
+    handleSubmit = (filterTerm) => {
+        console.log('prpos', filterTerm);
+        this.props.filterArticles(filterTerm);
+    }
+
     render() {        
         return (
             <header className="dashboard-header navbar-sticky-top">
 
-                <Searchbar />
+                <Searchbar handleSubmit={this.handleSubmit}/>
 
                 <nav className="user-details">
                     <h5 className="username pull-left">{this.props.user.name}</h5>

@@ -7,14 +7,12 @@
   min-width: 1px;
   top: 45px; }
 
-.load-more-btn {
-  color: red; }
-  .load-more-btn.hide {
-    display: none; }
+.load-more-btn.hide {
+  display: none; }
 
 @media (min-width: 768px) {
   .news-feed {
-    margin: 5px 20px 10px 80px; }
+    margin: 0 20px 10px 80px; }
   .chat-open .template1 .col-md-6,
   .chat-open .template1 .col-lg-4,
   .chat-open .template1 .col-xl-3,

@@ -12,6 +12,19 @@
     top: 105px;
     z-index: 99;
     transition: transform .2s ease;
+
+    .thumbnail {
+        width: 30px;
+        height: 30px;
+        float: left;
+        border-radius: 50%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
 }
 
 .chat-open {

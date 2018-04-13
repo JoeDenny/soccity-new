@@ -2,8 +2,10 @@
 
 .dashboard-settings-container {
     padding: .5rem;
+    padding-bottom: 0;
     width: 100%;
-    background-color: $grey;
+    border: 1px solid $borderGrey;
+    background-color: $lightGrey;
     position: fixed;
     top: 60px;
     z-index: 100;
