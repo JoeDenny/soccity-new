@@ -10,7 +10,8 @@ html {
     -ms-overflow-style: scrollbar;
 }
 body {
-    font-family: 'Quattrocento Sans', sans-serif; 
+    // font-family: 'Quattrocento Sans', sans-serif; 
+    font-family: 'Encode Sans', sans-serif;
     color: $black;
     margin:0;
     padding: 0;
@@ -70,6 +71,7 @@ nav li {
 }
 
 .btn {
+    font-family: 'Open Sans', sans-serif;
     display: inline-block;
     font-weight: normal;
     line-height: 1.25;
@@ -85,6 +87,7 @@ nav li {
 
     a {
         color: #fff;
+        font-family: 'Open Sans', sans-serif;
     }
 }
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {

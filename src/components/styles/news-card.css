@@ -4,7 +4,7 @@
   background-color: #fff;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-  height: 97.3%; }
+  height: 95%; }
   .news-card .thumbnail {
     border-top-left-radius: .28571429rem;
     border-top-right-radius: .28571429rem;
@@ -25,7 +25,8 @@
     line-height: 24px;
     margin-bottom: 0;
     font-size: 1.2rem;
-    word-break: break-word; }
+    word-break: break-word;
+    font-family: 'Spectral', serif; }
   .news-card .description {
     padding: .7rem;
     height: 72px;
@@ -36,9 +37,9 @@
       display: none; }
   .news-card footer {
     position: absolute;
-    bottom: 15px;
-    left: 30px;
-    right: 40px; }
+    bottom: 20px;
+    left: 25px;
+    right: 25px; }
 
 .comment-icon svg {
   vertical-align: middle;
@@ -49,9 +50,4 @@
 
 @media (min-width: 544px) {
   .news-card .thumbnail {
-    height: 150px; } }
-
-@media (min-width: 768px) {
-  .news-card footer {
-    left: 20px;
-    right: 20px; } }
+    height: 175px; } }

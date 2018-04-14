@@ -6,7 +6,7 @@
     background-color: $white;
     border-radius: .28571429rem;
     box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
-    height: 97.3%;
+    height: 95%;
 
     .thumbnail {
         border-top-left-radius: .28571429rem;
@@ -37,6 +37,7 @@
         margin-bottom: 0;
         font-size: 1.2rem;
         word-break: break-word;
+        font-family: 'Spectral', serif;
     }
 
     .description {
@@ -53,9 +54,9 @@
 
     footer {
         position: absolute;
-        bottom: 15px;
-        left: 30px;
-        right: 40px;
+        bottom: 20px;
+        left: 25px;
+        right: 25px;
     }
 }
 
@@ -72,17 +73,7 @@
 @media (min-width: 544px) {
     .news-card {
         .thumbnail {
-            height: 150px;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-
-    .news-card {
-        footer {
-            left: 20px;
-            right: 20px;
+            height: 175px;
         }
     }
 }

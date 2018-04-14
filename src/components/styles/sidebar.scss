@@ -7,14 +7,16 @@
     position: fixed;
     z-index: 100;
     color: $white;
-    padding: .5rem 1rem;
+    padding: 5px 10px;
+    height: 50px;
 
     .app-logo {
+        top: -23px;
         left: -15px;
-        top: -15px;
     }
 }
 .plus-icon {
+    float: right;
     position: relative;
     float: left;
     width: 40px;
@@ -53,6 +55,10 @@
         height: 100%;
         width: 60px;
         padding: 10px;
+
+        .app-logo {
+            top: -15px;
+        }
     }
     .plus-icon {
         border-color: $black;

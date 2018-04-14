@@ -53,12 +53,12 @@ class Home extends Component {
                         <h4>Soccity is an ad-free publication featuring quality soccer stories and reliable soccer news.</h4>
 
                         <div className="btn-container">
-                            <button className="btn btn-primary">
-                                <Link to={routes.DASHBOARD_PATH}>Get Started For Free</Link>
-                            </button>
-                            <button className="btn btn-secondary">
-                                <Link to={routes.REGISTER_PATH}>Register</Link>
-                            </button>
+                            <Link to={routes.DASHBOARD_PATH}>
+                                <button className="btn btn-primary">Get Started For Free</button>
+                            </Link>
+                            <Link to={routes.REGISTER_PATH}>
+                                <button className="btn btn-secondary">Register</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

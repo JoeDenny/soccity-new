@@ -21,7 +21,7 @@ class NewsCard extends Component {
         }
         
         return (
-            <li className="col-xs-12 col-sm-6 col-md-4 col-lg-3">   
+            <li className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">   
                 <div className="news-card">
                     <div className="thumbnail"> 
                         <img

@@ -11,8 +11,8 @@
   .news-feed .col-md-4,
   .news-feed .col-lg-3,
   .news-feed .col-xl-2 {
-    padding-left: 7px !important;
-    padding-right: 7px !important; }
+    padding-left: 10px !important;
+    padding-right: 10px !important; }
 
 .dashboard-message {
   padding: 5rem;
@@ -33,13 +33,9 @@
     margin: 0 20px 10px 80px;
     padding: 0; }
   .sidebar-open .template1 .col-md-4,
-  .sidebar-open .template1 .col-lg-3,
-  .sidebar-open .template1 .col-xl-2,
-  .sidebar-open .template2 .col-md-4,
-  .sidebar-open .template2 .col-lg-3,
-  .sidebar-open .template2 .col-xl-2 {
+  .sidebar-open .template2 .col-md-4 {
     flex: none;
-    width: 50%;
+    width: 100%;
     max-width: none; }
   .sidebar-closed .template2 .col-md-6,
   .sidebar-closed .template2 .col-lg-4,
@@ -49,19 +45,11 @@
     max-width: none; } }
 
 @media (min-width: 992px) {
-  .sidebar-open .template1 .col-md-4,
-  .sidebar-open .template1 .col-lg-3,
-  .sidebar-open .template1 .col-xl-2,
-  .sidebar-open .template2 .col-md-4,
-  .sidebar-open .template2 .col-lg-3,
-  .sidebar-open .template2 .col-xl-2 {
-    max-width: calc(100% / 3); } }
+  .sidebar-open .template1 .col-lg-4,
+  .sidebar-open .template2 .col-lg-4 {
+    max-width: 50%; } }
 
 @media (min-width: 1200px) {
-  .sidebar-open .template1 .col-md-4,
-  .sidebar-open .template1 .col-lg-3,
-  .sidebar-open .template1 .col-xl-2,
-  .sidebar-open .template2 .col-md-4,
-  .sidebar-open .template2 .col-lg-3,
-  .sidebar-open .template2 .col-xl-2 {
-    max-width: 25%; } }
+  .sidebar-open .template1 .col-xl-3,
+  .sidebar-open .template2 .col-xl-3 {
+    max-width: calc(100% / 3); } }

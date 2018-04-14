@@ -8,7 +8,7 @@ html {
   -ms-overflow-style: scrollbar; }
 
 body {
-  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: 'Encode Sans', sans-serif;
   color: #222629;
   margin: 0;
   padding: 0;
@@ -55,6 +55,7 @@ nav li {
   margin-left: 1.5rem; }
 
 .btn {
+  font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -68,7 +69,8 @@ nav li {
   font-size: 1rem;
   border-radius: 0.25rem; }
   .btn a {
-    color: #fff; }
+    color: #fff;
+    font-family: 'Open Sans', sans-serif; }
 
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
   outline: thin dotted;
