@@ -7,34 +7,38 @@ import AutoRefreshButton from './AutoRefreshButton';
 import CommentsButton from './CommentsButton';
 
 class DashboardSettings extends Component {
-    setActiveButton = (title) => {
-        return () => {
-            this.props.onClick(title);
-        };
+    setActiveButton = () => {
+        // if(title === 'filterButtonActive') {
+            
+        // }
     }
+
+    refreshNews = () => {
+        
+        this.props.refreshNews();
+    }
+
     render() {
         return (
             <div className="dashboard-settings-container">
                 <ul className="settings-buttons">
                     <li className="item">
-                        <AutoRefreshButton />
+                        <AutoRefreshButton refreshNews={this.refreshNews}/>
                     </li>
                     <li className="item">
                         <RecentlyViewedButton
-                            onClick={this.setActiveButton('recentlyButtonActive')}
                             isActive={this.props.recentlyButtonActive}
                         />
                     </li>
                     <li className="item">
                         <BookmarkButton
-                            onClick={this.setActiveButton('bookmarkButtonActive')}
+
                             isActive={this.props.bookmarkButtonActive}
                             
                         />
                     </li>
                     <li className="item">
                         <CommentsButton
-                            onClick={this.setActiveButton('isChatVisible')}
                             isActive={this.props.commentsButtonActive}
                         />
                     </li>

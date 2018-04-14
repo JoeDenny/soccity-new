@@ -8,7 +8,8 @@ class AutoRefreshButton extends Component {
 
         this.state = {
             listWidth: null,
-            isSettingsVisible: false
+            isSettingsVisible: false,
+            animate: false
         };
     }
     componentDidMount() {
@@ -21,13 +22,27 @@ class AutoRefreshButton extends Component {
             });
         }
     }
+    
     toggleSettings = () => {
+
+
         this.setState({
-            isSettingsVisible: !this.state.isSettingsVisible
+            isSettingsVisible: !this.state.isSettingsVisible,
+            animate: true
         });
+
+        setTimeout(() => {
+            this.setState({
+                ...this.state,
+                animate: false
+            })
+        }, 3000);
+
+        this.props.refreshNews();
     }
+
     render() {
-        const className = `auto-refresh-button ${this.state.isSettingsVisible ? '_list-visible' : ''}`;
+        const className = `auto-refresh-button ${this.state.animate ? 'spin' : ''}`;
         return (
             <SettingsButton>
                 <div 

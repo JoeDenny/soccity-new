@@ -11,11 +11,12 @@ import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
-            isChatVisible: false,
+            isCommentsOpen: false,
+            isFilterOpen: false,
             searchTerm: ''
         }        
     }
@@ -31,13 +32,23 @@ class Dashboard extends Component {
         }; 
         
         this.props.getNews(params);
+
+        console.log('getnews');
+        
     }
 
     openComments = () => {        
         this.setState({
             ...this.state,
-            isChatVisible: true
+            isCommentsOpen: true
         });        
+    }
+
+    closeComments = () => {
+        this.setState({
+            ...this.state,
+            isCommentsOpen: false
+        });
     }
 
     loadNextPage = () => {
@@ -46,28 +57,19 @@ class Dashboard extends Component {
         this.getNews(pageNumber);
     }
 
-    closeComments = () => {
-        this.setState({
-            ...this.state,
-            isChatVisible: false
-        });
-    }
-
     setSearchTerm = (searchTerm) => {
 
-        this.setState(
-            {
-                ...this.state,
-                searchTerm: searchTerm
-            }
-        )
+        this.setState({
+            ...this.state,
+            searchTerm: searchTerm
+        })
     }
 
     render() {
         const { user, news, current_page, last_page } = this.props;
 
-        const chatOpenClass = this.state.isChatVisible ? 'chat-open' : 'chat-closed';
-        const overlayClassName = `overlay ${this.state.isChatVisible ? 'open' : ''}`;
+        const commentsOpenClass = this.state.isCommentsOpen ? 'sidebar-open' : 'sidebar-closed';
+        const overlayClassName = `overlay ${this.state.isCommentsOpen ? 'open' : ''}`;
     
         return (
             <AuthWrapper>
@@ -77,11 +79,11 @@ class Dashboard extends Component {
                         user={user}
                         setSearchTerm={this.setSearchTerm}/>
                     
-                    <DashboardSettings />
+                    <DashboardSettings refreshNews={this.getNews}/>
 
                     <Sidebar />
 
-                    <div className={chatOpenClass}>
+                    <div className={commentsOpenClass}>
 
                         <NewsFeed
                             news={news}
@@ -92,7 +94,7 @@ class Dashboard extends Component {
                             searchTerm={this.state.searchTerm} />
 
                         <CommentsContainer
-                            isVisible={this.state.isChatVisible}
+                            isVisible={this.state.isCommentsOpen}
                             onCloseComments={this.closeComments} />
                     </div>
 

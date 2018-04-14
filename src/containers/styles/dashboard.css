@@ -2,7 +2,7 @@
   background-color: #f7f7f7;
   min-height: 100vh; }
 
-.chat-open {
+.sidebar-open {
   overflow: hidden;
   display: flex;
   flex: 1; }

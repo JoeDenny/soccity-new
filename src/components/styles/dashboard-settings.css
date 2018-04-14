@@ -1,3 +1,10 @@
+/* mixin for multiline */
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
 .dashboard-settings-container {
   padding: .5rem;
   padding-bottom: 0;
@@ -20,6 +27,9 @@
   position: relative;
   display: flex;
   align-items: center; }
+  .auto-refresh-button.spin {
+    pointer-events: none;
+    animation: spin 3s; }
   .auto-refresh-button._list-visible .auto-refresh-button__list {
     opacity: 1;
     pointer-events: auto;

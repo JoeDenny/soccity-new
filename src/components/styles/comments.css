@@ -20,7 +20,7 @@
       height: 100%;
       object-fit: contain; }
 
-.chat-open .dashboard-chat {
+.sidebar-open .dashboard-chat {
   transform: none; }
 
 .hide-message {
@@ -94,5 +94,5 @@ header h3 {
       position: fixed;
       margin-right: 15px;
       margin-top: 45px; }
-  .chat-open .dashboard-chat {
+  .sidebar-open .dashboard-chat {
     display: flex; } }

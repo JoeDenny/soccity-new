@@ -4,13 +4,25 @@ import './styles/activity.css';
 class ActivityItem extends Component {
 
     render() {
+
+        let action;
+
+        switch(this.props.activity.type) {
+            case 'created_comment':
+                action = 'You commented';
+                break
+            case 'created_favorite':
+                action = 'Liked an article';
+                break
+            default:
+                action = this.props.activity.type;
+        }
         return (
             <div className="activity-item">
                 
                 <span>{this.props.activity.subject.created_at_formated}</span>|
-                {/* <span className="comment">{this.props.activity.subject.comment}</span> */}
                 <span>{this.props.activity.user.name}</span>|
-                <span>{this.props.activity.type}</span>
+                <span>{action}</span>
 
             </div>
         )

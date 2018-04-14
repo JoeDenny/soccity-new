@@ -1,3 +1,16 @@
+.activity .title {
+  margin: 1rem;
+  font-size: 2rem; }
+
+.activity .date {
+  margin: 0; }
+
+.activity .no-activity {
+  display: none;
+  padding: 7rem 3rem; }
+  .activity .no-activity.show {
+    display: block; }
+
 .activity-item .comment {
   max-width: 300px;
   text-overflow: ellipsis;
