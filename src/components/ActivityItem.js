@@ -12,19 +12,17 @@ class ActivityItem extends Component {
                 action = 'You commented';
                 break
             case 'created_favorite':
-                action = 'Liked an article';
+                action = 'You liked an article';
                 break
             default:
                 action = this.props.activity.type;
         }
         return (
-            <div className="activity-item">
-                
-                <span>{this.props.activity.subject.created_at_formated}</span>|
-                <span>{this.props.activity.user.name}</span>|
-                <span>{action}</span>
-
-            </div>
+            <tr>
+                <td>{this.props.activity.subject.created_at_formated}</td>
+                <td>{this.props.activity.user.name}</td>
+                <td>{action}</td>
+            </tr>
         )
     }
 }

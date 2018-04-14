@@ -37,7 +37,7 @@ class Profile extends Component {
                 <section className="profile-page">
                     <div className="profile-card">
 
-                        <p  className="pull-right"
+                        <p className="pull-right"
                             onClick={this.logout}>
                             <a className="text-secondary">Logout</a>             
                         </p>

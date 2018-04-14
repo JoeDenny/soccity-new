@@ -1,8 +1,14 @@
 .activity {
     .title {
-        margin: 1rem;
+        margin: 2rem 0;
         font-size: 2rem;
     }
+
+    .table {
+        max-width: 650px;
+        margin: auto;
+    }
+    
     .date {
         margin: 0;
     }
@@ -22,9 +28,5 @@
         overflow: hidden;
         white-space: nowrap;
         display: inline-block;
-    }
-
-    span {
-        padding: 0 2rem;
     }
 }

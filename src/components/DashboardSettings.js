@@ -13,6 +13,10 @@ class DashboardSettings extends Component {
         // }
     }
 
+    openFilter = () => {
+        this.props.openFilter();        
+    }
+
     refreshNews = () => {
         
         this.props.refreshNews();
@@ -44,7 +48,7 @@ class DashboardSettings extends Component {
                     </li>
                     <li className="item">
                         <FilterSidebarButton
-                            onClick={this.setActiveButton('filterButtonActive')}
+                            onClick={this.openFilter}
                             isActive={this.props.filterButtonActive}
                         />
                     </li>

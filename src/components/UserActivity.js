@@ -11,16 +11,19 @@ class UserActivity extends Component {
 
             allActivity = keys.map(day => {                
                 return (
-                   <div key={day}>
-                       <h4 className="date">{day}</h4>
-                       
-                       {
-                           this.props.activity[day].map(action => {
-
-                            return <ActivityItem key={action.id} activity={action}/>;
-                           })
-                        }
-                   </div>
+                    <table className="table text-center" key={day}>
+                        <thead>
+                            <tr>
+                                <th colSpan="3" className="date">{day}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.activity[day].map(action => {
+                                    return <ActivityItem key={action.id} activity={action}/>;
+                                })
+                            }
+                        </tbody>
+                    </table>                       
                 );
             });
 
@@ -28,9 +31,12 @@ class UserActivity extends Component {
            
         }    
        return(
-           <div className="activity container text-center">
-                <h2 className="title">Your Activity</h2>
-                <p className={messageClass}>You haven't done anything yet!</p>
+           <div className="activity container">
+                <div className="text-center">
+                    <h2 className="title">Your Activity</h2>
+                    <p className={messageClass}>You haven't done anything yet!</p>
+                </div>
+
                 {allActivity}
            </div>
        )

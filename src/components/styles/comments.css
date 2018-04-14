@@ -1,4 +1,5 @@
-.dashboard-chat {
+.dashboard-chat,
+.dashboard-filter {
   position: fixed;
   max-width: 400px;
   padding: 1rem;
@@ -6,36 +7,48 @@
   background-color: #fff;
   transform: translateX(400px);
   right: 0;
-  bottom: 67px;
-  top: 105px;
+  bottom: 50px;
+  top: 95px;
   z-index: 99;
   transition: transform .2s ease; }
-  .dashboard-chat .thumbnail {
+  .dashboard-chat .close-icon,
+  .dashboard-filter .close-icon {
+    width: 30px;
+    height: 30px; }
+    .dashboard-chat .close-icon svg,
+    .dashboard-filter .close-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: #484848; }
+  .dashboard-chat header h3,
+  .dashboard-filter header h3 {
+    padding-right: 2rem; }
+  .dashboard-chat .thumbnail,
+  .dashboard-filter .thumbnail {
     width: 30px;
     height: 30px;
     float: left;
     border-radius: 50%; }
-    .dashboard-chat .thumbnail img {
+    .dashboard-chat .thumbnail img,
+    .dashboard-filter .thumbnail img {
       width: 100%;
       height: 100%;
       object-fit: contain; }
+  .dashboard-chat .fixed-content,
+  .dashboard-filter .fixed-content {
+    display: none; }
+  .dashboard-chat.open,
+  .dashboard-filter.open {
+    transform: none; }
+    .dashboard-chat.open .fixed-content,
+    .dashboard-filter.open .fixed-content {
+      display: block; }
 
-.sidebar-open .dashboard-chat {
-  transform: none; }
-
-.hide-message {
-  display: none; }
-
-.close-icon {
-  width: 30px;
-  height: 30px; }
-  .close-icon svg {
-    width: 15px;
-    height: 15px;
-    fill: #484848; }
-
-header h3 {
-  padding-right: 2rem; }
+.no-comments {
+  padding: 1rem 0;
+  font-style: italic; }
+  .no-comments.hide-message {
+    display: none; }
 
 .comment-list .comment {
   margin: .5rem 0; }
@@ -82,7 +95,8 @@ header h3 {
     margin-top: 5px; }
 
 @media (min-width: 768px) {
-  .dashboard-chat {
+  .dashboard-chat,
+  .dashboard-filter {
     bottom: 0;
     flex-direction: column;
     flex: 1;
@@ -90,10 +104,16 @@ header h3 {
     display: none;
     position: static;
     transition: none; }
-    .dashboard-chat .fixed-content {
+    .dashboard-chat .fixed-content,
+    .dashboard-filter .fixed-content {
       position: fixed;
       margin-right: 15px;
       margin-top: 45px;
       min-width: 335px; }
-  .sidebar-open .dashboard-chat {
-    display: flex; } }
+    .dashboard-chat.open,
+    .dashboard-filter.open {
+      display: flex; }
+  .comment-list {
+    overflow-y: auto;
+    max-height: 67vh;
+    padding: 1px; } }

@@ -37,11 +37,8 @@ class AddComment extends Component {
     }
 
     render() {
-        // const { avatar_path } = this.props.user || {
-        //     avatar_path: undefined
-        // };
         
-        const placeholder = 'Reply...';
+        const placeholder = 'Write a response...';
 
         return (
             <form className="add-comment" onSubmit={this.onSubmit}>

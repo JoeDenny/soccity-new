@@ -208,3 +208,35 @@ border-color: #5bc0de; }
     display: table;
     clear: both;
 }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td,
+th {
+    padding: 0;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+}
+.table th,
+.table td {
+    padding: 0.5rem;
+    border-top: 1px solid #eceeef;
+}
+.table tr:first-child {
+    td {
+        border-top-color: transparent;
+    }
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #eceeef;
+}
+.table tbody + tbody {
+    border-top: 2px solid #eceeef;
+}
+.table .table {
+    background-color: #fff;
+}

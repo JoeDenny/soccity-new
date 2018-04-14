@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
 import { getNews } from '../actions';
 import CommentsContainer from '../components/CommentsContainer';
+import FilterContainer from '../components/FilterContainer';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -31,16 +32,14 @@ class Dashboard extends Component {
             page: pageNumber || 1
         }; 
         
-        this.props.getNews(params);
-
-        console.log('getnews');
-        
+        this.props.getNews(params);        
     }
 
     openComments = () => {        
         this.setState({
             ...this.state,
-            isCommentsOpen: true
+            isCommentsOpen: true,
+            isFilterOpen: false
         });        
     }
 
@@ -48,6 +47,21 @@ class Dashboard extends Component {
         this.setState({
             ...this.state,
             isCommentsOpen: false
+        });
+    }
+
+    openFilter = () => {
+        this.setState({
+            ...this.state,
+            isCommentsOpen: false,            
+            isFilterOpen: true
+        })
+    }
+
+    closeFilter = () => {
+        this.setState({
+            ...this.state,
+            isFilterOpen: false
         });
     }
 
@@ -70,7 +84,8 @@ class Dashboard extends Component {
     render() {
         const { user, news, current_page, last_page } = this.props;
 
-        const commentsOpenClass = this.state.isCommentsOpen ? 'sidebar-open' : 'sidebar-closed';
+        const sidebarOpenClass = this.state.isCommentsOpen || this.state.isFilterOpen ? 'sidebar-open' : 'sidebar-closed';
+
         const overlayClassName = `overlay ${this.state.isCommentsOpen ? 'open' : ''}`;
     
         return (
@@ -81,13 +96,16 @@ class Dashboard extends Component {
                         user={user}
                         setSearchTerm={this.setSearchTerm}/>
                     
-                    <DashboardSettings refreshNews={this.getNews}/>
+                    <DashboardSettings
+                        refreshNews={this.getNews}
+                        openFilter={this.openFilter}/>
 
                     <Sidebar />
 
-                    <div className={commentsOpenClass}>
+                    <div className={sidebarOpenClass}>
 
                         <NewsFeed
+                            className={sidebarOpenClass}
                             news={news}
                             current_page={current_page}
                             last_page={last_page}
@@ -98,6 +116,10 @@ class Dashboard extends Component {
                         <CommentsContainer
                             isVisible={this.state.isCommentsOpen}
                             onCloseComments={this.closeComments} />
+                        
+                        <FilterContainer                      
+                            isVisible={this.state.isFilterOpen}
+                            onCloseFilter={this.closeFilter} />
                     </div>
 
 

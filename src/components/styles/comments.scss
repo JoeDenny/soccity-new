@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
-.dashboard-chat {
+.dashboard-chat,
+.dashboard-filter {
     position: fixed;
     max-width: 400px;
     padding: 1rem;
@@ -8,10 +9,27 @@
     background-color: $white;
     transform: translateX(400px);
     right: 0;
-    bottom: 67px;
-    top: 105px;
+    bottom: 50px;
+    top: 95px;
     z-index: 99;
     transition: transform .2s ease;
+
+
+    .close-icon {
+        width: 30px;
+        height: 30px;
+        svg {
+            width: 15px;
+            height: 15px;
+            fill: $textSecondary;
+        }
+    }
+
+    header {
+        h3 {
+            padding-right: 2rem;
+        }
+    }
 
     .thumbnail {
         width: 30px;
@@ -25,35 +43,29 @@
             object-fit: contain;
         }
     }
-}
-
-.sidebar-open {
-    .dashboard-chat {
+    .fixed-content {
+        display: none;
+    }
+    
+    &.open {
         transform: none;
+        .fixed-content {
+            display: block;
+        }
     }
 }
 
-.hide-message {
-    display: none;
-}
+.no-comments {
+    padding: 1rem 0;
+    font-style: italic;
 
-.close-icon {
-    width: 30px;
-    height: 30px;
-    svg {
-        width: 15px;
-        height: 15px;
-        fill: $textSecondary;
-    }
-}
-
-header {
-    h3 {
-        padding-right: 2rem;
+    &.hide-message {
+        display: none;
     }
 }
 
 .comment-list {
+
     .comment {
         margin: .5rem 0;
     }
@@ -109,7 +121,8 @@ header {
 }
 
 @media (min-width: 768px) {
-    .dashboard-chat {
+    .dashboard-chat,
+    .dashboard-filter {
         bottom: 0;
         flex-direction: column;
         flex: 1;
@@ -124,10 +137,15 @@ header {
             margin-top: 45px;
             min-width: 335px;
         }
-    }
-    .sidebar-open {
-        .dashboard-chat {
-            display: flex;
+
+        &.open {
+            display: flex;        
         }
+    }
+
+    .comment-list {
+        overflow-y: auto;
+        max-height: 67vh;
+        padding: 1px;
     }
 }
