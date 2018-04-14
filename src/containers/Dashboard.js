@@ -55,6 +55,8 @@ class Dashboard extends Component {
         const pageNumber = this.props.current_page + 1;        
 
         this.getNews(pageNumber);
+
+        window.scrollTo(0,0);
     }
 
     setSearchTerm = (searchTerm) => {
