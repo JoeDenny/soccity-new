@@ -3,9 +3,9 @@
 .news-card {
     padding-bottom: 3rem;
     margin: .5rem 0;
-    background-color: #fff;
+    background-color: $white;
     border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
     height: 97.3%;
 
     .thumbnail {
@@ -28,7 +28,7 @@
     }
 
     .source {
-        color: $darkGreen;
+        color: $secondary;
         margin: .5rem 0;
     }
 
@@ -36,6 +36,7 @@
         line-height: 24px;
         margin-bottom: 0;
         font-size: 1.2rem;
+        word-break: break-word;
     }
 
     .description {

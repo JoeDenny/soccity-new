@@ -4,12 +4,12 @@
     height: 70px;
     padding: 1rem 0;
     background-color: $white;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid $borderGrey;
     transition: box-shadow .2s;
     
     &.fixed-header {
         border: none;
-        box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+        box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
     }
 }
 .app-logo {
@@ -27,8 +27,8 @@
 }
 
 .dashboard-header {
-    background-color: #f2f2f2;
-    border-bottom: 1px solid #ebebeb;    
+    background-color: $lightGrey;
+    border-bottom: 1px solid $borderGrey;    
     // box-shadow: 0 1px 6px rgba(57,73,76,.35);
     
     .user-details {

@@ -93,6 +93,7 @@ header h3 {
     .dashboard-chat .fixed-content {
       position: fixed;
       margin-right: 15px;
-      margin-top: 45px; }
+      margin-top: 45px;
+      min-width: 365px; }
   .sidebar-open .dashboard-chat {
     display: flex; } }

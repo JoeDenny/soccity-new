@@ -24,7 +24,8 @@
   .news-card .title {
     line-height: 24px;
     margin-bottom: 0;
-    font-size: 1.2rem; }
+    font-size: 1.2rem;
+    word-break: break-word; }
   .news-card .description {
     padding: .7rem;
     height: 72px;

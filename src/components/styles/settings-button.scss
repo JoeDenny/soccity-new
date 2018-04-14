@@ -5,12 +5,12 @@
         width: 22px;
         transition: fill .25s ease-in-out; 
         &:hover {
-            fill: $darkGreen;
+            fill: $secondary;
         }
     }
     &.active {
         svg {
-            fill: $darkGreen;
+            fill: $secondary;
         }
     }
 }
