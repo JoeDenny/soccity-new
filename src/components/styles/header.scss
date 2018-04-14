@@ -2,7 +2,7 @@
 
 .app-header {
     height: 70px;
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     background-color: $white;
     border-bottom: 1px solid #ebebeb;
     transition: box-shadow .2s;
@@ -50,7 +50,13 @@
     }
 }
 
+@media (min-width: 544px) {
+    .app-header {
+        padding: 1rem 2rem;
+    }
+}
 @media (min-width: 768px) {
+    
     .dashboard-header {
         margin-left: 60px;
         width: calc(100% - 60px);
