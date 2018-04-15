@@ -1,0 +1,60 @@
+@import '../../styles/_variables.scss';
+
+.preferences-page {
+    .user-photo {
+        margin: auto;
+    }
+    .auth-layout {
+        display: initial;
+
+        .text-input {
+            background-color: $lightGrey;
+            border: 1px solid $grey;
+            color: $black;
+        }
+    }
+
+    .profile-section,
+    .notifications-section,
+    .billing-section,
+    .dashboards-section {
+        background: #fff;
+        padding: 2rem 1rem;
+        border-bottom: 1px solid $borderGrey;        
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    .details {
+        padding: 2rem;
+    }
+
+    .box {
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: .28571429rem;  
+
+        .filter-card:first-child {
+            border-top: none;
+        }
+    }
+
+    .billing-section {
+        .box {
+            padding: 1rem;
+            list-style-type: none;
+
+            span {
+                margin: 10px;
+                color: $secondary;
+            }
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .title {
+            font-size: 2.5rem;
+        }
+    }
+}

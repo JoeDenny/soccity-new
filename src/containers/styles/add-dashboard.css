@@ -1,13 +1,5 @@
 .add-dashboard {
-  background-color: #f9f9f9;
-  padding: 3rem 0; }
-  .add-dashboard .close-icon {
-    position: absolute;
-    top: 25px;
-    right: 25px; }
-    .add-dashboard .close-icon svg {
-      width: 20px;
-      height: 20px; }
+  background-color: #f9f9f9; }
   .add-dashboard .searchbar {
     margin-right: 0;
     border: 1px solid #ebebeb; }

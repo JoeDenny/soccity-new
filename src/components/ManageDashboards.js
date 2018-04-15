@@ -1,0 +1,27 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { routes } from '../constants';
+
+class ManageDashboards extends Component {
+
+    render() {
+    
+        return (
+            <div className="dashboards-section">
+                <div className="row">
+                    <div className="col-xs-12 col-md-4">
+                        <h3>Manage Your Dashboards</h3>
+                    </div>
+                    <div className="col-xs-12 col-md-8">
+                    
+                       <p>You haven't created any dashboards yet!</p>
+
+                        <Link to={routes.ADD_DASHBOARD_PATH}>Create a dashboard.</Link>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default ManageDashboards;

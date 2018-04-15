@@ -1,19 +1,7 @@
 @import './src/styles/variables.scss';
 .add-dashboard {
     background-color: #f9f9f9;
-    padding: 3rem 0;
-
-    .close-icon {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-
-        svg {
-            width: 20px;
-            height: 20px;
-        }
-    }
-
+    
     .searchbar {
         margin-right: 0;
         border: 1px solid $borderGrey;

@@ -1,0 +1,42 @@
+.preferences-page .user-photo {
+  margin: auto; }
+
+.preferences-page .auth-layout {
+  display: initial; }
+  .preferences-page .auth-layout .text-input {
+    background-color: #f7f7f7;
+    border: 1px solid #6B6E70;
+    color: #222629; }
+
+.preferences-page .profile-section,
+.preferences-page .notifications-section,
+.preferences-page .billing-section,
+.preferences-page .dashboards-section {
+  background: #fff;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #ebebeb; }
+  .preferences-page .profile-section a,
+  .preferences-page .notifications-section a,
+  .preferences-page .billing-section a,
+  .preferences-page .dashboards-section a {
+    text-decoration: underline; }
+
+.preferences-page .details {
+  padding: 2rem; }
+
+.preferences-page .box {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .28571429rem; }
+  .preferences-page .box .filter-card:first-child {
+    border-top: none; }
+
+.preferences-page .billing-section .box {
+  padding: 1rem;
+  list-style-type: none; }
+  .preferences-page .billing-section .box span {
+    margin: 10px;
+    color: #6bac0f; }
+
+@media (min-width: 768px) {
+  .preferences-page .title {
+    font-size: 2.5rem; } }

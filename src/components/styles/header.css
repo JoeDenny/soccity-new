@@ -4,6 +4,12 @@
   background-color: #fff;
   border-bottom: 1px solid #ebebeb;
   transition: box-shadow .2s; }
+  .app-header .close-icon {
+    top: 25px;
+    right: 25px; }
+    .app-header .close-icon svg {
+      width: 20px;
+      height: 20px; }
   .app-header.fixed-header {
     border: none;
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
@@ -47,6 +53,14 @@
     padding: 1rem 2rem; } }
 
 @media (min-width: 768px) {
+  .app-header {
+    height: 100px; }
+    .app-header .close-icon {
+      height: 40px;
+      width: 40px; }
+      .app-header .close-icon svg {
+        width: 25px;
+        height: 25px; }
   .dashboard-header {
     margin-left: 60px;
     width: calc(100% - 60px); } }

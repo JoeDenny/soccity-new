@@ -6,6 +6,16 @@
     background-color: $white;
     border-bottom: 1px solid $borderGrey;
     transition: box-shadow .2s;
+
+    .close-icon {
+        top: 25px;
+        right: 25px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
     
     &.fixed-header {
         border: none;
@@ -68,7 +78,19 @@
     }
 }
 @media (min-width: 768px) {
-    
+    .app-header {
+        height: 100px;
+
+        .close-icon {
+            height: 40px;
+            width: 40px;
+
+            svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
     .dashboard-header {
         margin-left: 60px;
         width: calc(100% - 60px);

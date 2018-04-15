@@ -6,6 +6,7 @@ import Dashboard from './containers/Dashboard';
 import Register from './containers/Register';
 import Login from './containers/Login';
 import Profile from './containers/Profile';
+import Preferences from './containers/Preferences';
 import AddDashboard from './containers/AddDashboard';
 import './App.css';
 import { Provider } from 'react-redux';
@@ -33,6 +34,7 @@ export const App = () => (
                 <Route exact={true} path={getPath(routes.LOGIN_PATH)} component={Login} />
                 <Route exact={true} path={getPath(routes.DASHBOARD_PATH)} component={Dashboard} />
                 <Route exact={true} path={getPath(routes.PROFILE_PATH)} component={Profile} />
+                <Route exact={true} path={getPath(routes.PREFERENCES_PATH)} component={Preferences} />
                 <Route exact={true} path={getPath(routes.ADD_DASHBOARD_PATH)} component={AddDashboard} />
                 <Route component={Home}/>
             </Switch>

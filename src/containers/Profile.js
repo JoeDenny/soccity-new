@@ -43,7 +43,7 @@ class Profile extends Component {
                             <a className="text-secondary">Logout</a>             
                         </p>
                         <p>
-                            <Link className="text-secondary" to={routes.DASHBOARD_PATH}><span>&lt;</span> Back to your dashboard.</Link>                
+                            <Link className="text-secondary" to={routes.PREFERENCES_PATH}><span>&lt;</span> Back to preferences.</Link>                
                         </p>
                         <div className="details text-center">
                             <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />

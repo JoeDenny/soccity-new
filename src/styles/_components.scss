@@ -1,0 +1,15 @@
+@import './src/styles/variables.scss';
+
+.close-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 15px;
+    right: 15px;
+    
+    svg {
+        width: 15px;
+        height: 15px;
+        fill: $textSecondary;
+    }
+}
