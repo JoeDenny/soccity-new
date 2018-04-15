@@ -37,6 +37,13 @@
     margin: 10px;
     color: #6bac0f; }
 
+.preferences-page .logout-btn {
+  margin: 2rem 0 3rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: #d72b3f;
+  text-decoration: underline; }
+
 @media (min-width: 768px) {
   .preferences-page .title {
     font-size: 2.5rem; } }

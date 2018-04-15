@@ -51,6 +51,14 @@
             }
         }
     }
+
+    .logout-btn {
+        margin: 2rem 0 3rem;
+        cursor: pointer;
+        font-weight: 600;
+        color: $error;
+        text-decoration: underline;
+    }
     
     @media (min-width: 768px) {
         .title {

@@ -8,7 +8,6 @@ import AuthWrapper from '../components/AuthWrapper';
 import { getUserActivity, logout } from '../actions';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import api from '../api';
 
 class Profile extends Component {
     constructor() {
@@ -24,12 +23,6 @@ class Profile extends Component {
         this.props.getUserActivity();        
     }
 
-    logout = () => {
-        this.props.logout();
-        api.destroyToken();                                      
-        this.props.history.push('/');
-    }
-
     render() {
         const { user, activity } = this.props;
         
@@ -37,11 +30,6 @@ class Profile extends Component {
             <AuthWrapper>
                 <section className="profile-page">
                     <div className="profile-card">
-
-                        <p className="pull-right"
-                            onClick={this.logout}>
-                            <a className="text-secondary">Logout</a>             
-                        </p>
                         <p>
                             <Link className="text-secondary" to={routes.PREFERENCES_PATH}><span>&lt;</span> Back to preferences.</Link>                
                         </p>

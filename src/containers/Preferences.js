@@ -8,6 +8,8 @@ import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
+import { logout } from '../actions';
+import api from '../api';
 import './styles/preferences.css';
 
 class Preferences extends Component {
@@ -49,6 +51,12 @@ class Preferences extends Component {
         // this.props.register(formData);
     }
 
+    logout = () => {
+        this.props.logout();
+        api.destroyToken();                                      
+        this.props.history.push('/');
+    }
+
     render() {
         
         return (
@@ -56,11 +64,6 @@ class Preferences extends Component {
                  <section className="preferences-page">
                     <header className="app-header">
                         <h1 className="title text-center">Account Preferences</h1>
-
-                        {/* <p className="pull-right"
-                                onClick={this.logout}>
-                                <a className="text-secondary">Logout</a>             
-                            </p> */}
 
                         <Link to={routes.DASHBOARD_PATH}>
                             <button type="button" className="close-icon">
@@ -119,6 +122,12 @@ class Preferences extends Component {
                         <ManageDashboards />
                     </div>
 
+                    <div className="container">
+                        <p className="logout-btn pull-right"
+                            onClick={this.logout}>
+                            Logout
+                        </p>
+                    </div>
                 </section>
             </AuthWrapper>
         )
@@ -130,7 +139,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    // getNews: (params) => dispatch(getNews(params))
+    logout: () => dispatch(logout())    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);
