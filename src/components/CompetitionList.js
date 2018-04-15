@@ -9,6 +9,11 @@ class CompetitionList extends Component {
         this.props.addToFilter(competition);        
     }
 
+    removeCompetition = (competition) => {
+
+        this.props.removeFromFilter(competition);        
+    }
+
     render() {
         let competitions,
             isInFilterResults;
@@ -23,6 +28,7 @@ class CompetitionList extends Component {
                             key={competition.id}
                             data={competition}
                             addToFilter={this.addCompetition}
+                            removeFromFilter={this.removeCompetition}
                             isInFilterResults={isInFilterResults} />
                 )   
             });

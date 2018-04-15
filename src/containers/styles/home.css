@@ -1,3 +1,6 @@
+.app-home {
+  padding-bottom: 8rem; }
+
 .background-color-block {
   position: absolute;
   height: 660px;
@@ -8,8 +11,7 @@
   border-bottom: 1px solid #ebebeb;
   z-index: -1; }
   .background-color-block.two {
-    top: 1000px;
-    display: none; }
+    top: 1590px; }
 
 .hero {
   padding: 3rem 1rem;

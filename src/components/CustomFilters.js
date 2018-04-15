@@ -19,11 +19,14 @@ class CustomFilters extends Component {
     onSubmit = (event) => {        
         event.preventDefault();
 
-        this.props.addCustomFilter(this.state.keyword);
-
-        this.setState({
-            keyword: ''
-        });
+        if(this.state.keyword.length > 0) {
+            
+            this.props.addCustomFilter(this.state.keyword);
+    
+            this.setState({
+                keyword: ''
+            });
+        }
     }
 
 

@@ -26,6 +26,18 @@
     width: 100%;
 }
 
+.logged-out {
+    .dashboard-btn {
+        display: none;
+    }
+}
+
+.logged-in {
+    .auth-btns {
+        display: none;
+    }
+}
+
 .dashboard-header {
     background-color: $lightGrey;
     border-bottom: 1px solid $borderGrey;    

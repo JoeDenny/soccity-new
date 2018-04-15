@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import './styles/filter-card.css';
 
 class FilterCard extends Component {
-    handleClick = () => {
-        this.props.addToFilter(this.props.data);
+    handleChange = (event) => {
+         if(event.target.checked) {
+             this.props.addToFilter(this.props.data);
+         } else {
+             this.props.removeFromFilter(this.props.data);
+         }
     }
 
     render() {
@@ -12,14 +16,13 @@ class FilterCard extends Component {
               className = `filter-card text-secondary ${this.props.isInFilterResults ? 'selected' : ''}`
               
         return (
-            <li className={className}
-                onClick={this.handleClick}>   
+            <li className={className}>   
                     <img
                         className="logo"
                         src={logo}
                         alt="" />
                     <p className="name">{this.props.data.name}</p>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={this.handleChange} />
             </li>
         )
     }

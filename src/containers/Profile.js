@@ -8,6 +8,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import { getUserActivity, logout } from '../actions';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
+import api from '../api';
 
 class Profile extends Component {
     constructor() {
@@ -25,8 +26,8 @@ class Profile extends Component {
 
     logout = () => {
         this.props.logout();
+        api.destroyToken();                                      
         this.props.history.push('/');
-        localStorage.removeItem('store');        
     }
 
     render() {

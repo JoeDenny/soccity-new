@@ -9,6 +9,11 @@ class TeamList extends Component {
         this.props.addToFilter(team);        
     }
 
+    removeTeam = (team) => {
+
+        this.props.removeFromFilter(team);        
+    }
+
     render() {
         let teams,
             isInFilterResults;

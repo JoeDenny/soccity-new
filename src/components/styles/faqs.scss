@@ -1,0 +1,13 @@
+.faqs {
+    .title {
+        margin-bottom: 2rem;
+    }
+    .card {
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(57, 73, 76, 0.35);
+        }
+    }
+}

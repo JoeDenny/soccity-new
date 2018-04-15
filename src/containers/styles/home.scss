@@ -1,4 +1,7 @@
 @import './src/styles/variables.scss';
+.app-home {
+    padding-bottom: 8rem;
+}
 
 .background-color-block {
     position: absolute;
@@ -11,8 +14,7 @@
     z-index: -1;
 
     &.two {
-        top: 1000px;
-        display: none;
+        top: 1590px;
     }
 }
 

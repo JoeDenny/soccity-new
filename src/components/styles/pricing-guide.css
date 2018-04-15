@@ -10,9 +10,12 @@
   .pricing-guide .ion-checkmark {
     color: #86C232;
     margin-right: 5px;
-    font-size: .7rem; }
+    font-size: .7rem;
+    position: relative;
+    top: -2px; }
   .pricing-guide li {
-    margin-bottom: 7.5px; }
+    margin-bottom: 7.5px;
+    font-size: .92rem; }
   .pricing-guide .card {
     margin-top: 1rem; }
   .pricing-guide .premium {

@@ -18,10 +18,13 @@
         color: $primary;
         margin-right: 5px;
         font-size: .7rem;
+        position: relative;
+        top: -2px;
     }
 
     li {
         margin-bottom: 7.5px;
+        font-size: .92rem;
     }
 
     .card {

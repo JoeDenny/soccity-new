@@ -7,6 +7,7 @@ import Faqs from '../components/Faqs';
 import Footer from '../components/Footer';
 import FeaturesGuide from '../components/FeaturesGuide';
 import PricingGuide from '../components/PricingGuide';
+import api from '../api';
 
 class Home extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class Home extends Component {
 
         this.state = {
             headerIsFixed: false
-        }
+        }        
     }
 
 
@@ -40,8 +41,11 @@ class Home extends Component {
     }
 
     render() {
+
+        const className = `app-home ${api.getToken() ? 'logged-in' : 'logged-out' }`
+        
         return (
-            <section className="app-home">
+            <section className={className}>
 
                 <Header fixedHeader={this.state.fixedHeader}/>
 
@@ -51,14 +55,21 @@ class Home extends Component {
                     <div className="hero">
                         <h2>Reliable News. Quality Stories.</h2>
                         <h4>Soccity is an ad-free publication featuring quality soccer stories and reliable soccer news.</h4>
-
+                        
                         <div className="btn-container">
-                            <Link to={routes.DASHBOARD_PATH}>
-                                <button className="btn btn-primary">Get Started For Free</button>
-                            </Link>
-                            <Link to={routes.REGISTER_PATH}>
-                                <button className="btn btn-secondary">Register</button>
-                            </Link>
+                            <div className="auth-btns">
+                                <Link to={routes.DASHBOARD_PATH}>
+                                    <button className="btn btn-primary">Get Started For Free</button>
+                                </Link>
+                                <Link to={routes.REGISTER_PATH}>
+                                    <button className="btn btn-secondary">Register</button>
+                                </Link>
+                            </div>
+                            <div className="dashboard-btn">
+                                <Link to={routes.DASHBOARD_PATH}>
+                                    <button className="btn btn-primary">Go to dashboard</button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

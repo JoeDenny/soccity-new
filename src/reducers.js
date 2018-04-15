@@ -115,9 +115,8 @@ const rootReducer = (state = initialState, action) => {
             };
         case SEARCH:
             const {value} = action.payload.searchValue;
-            const works = state.news.filter((val) => val.includes(value));
+            const works = state.news.filter((val) => val.includes(value));            
             console.log('search works', works);
-            
             return {
                 ...state
             };

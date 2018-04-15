@@ -8,6 +8,11 @@ class PlayerList extends Component {
         this.props.addToFilter(team);        
     }
 
+    removePlayer = (player) => {
+
+        this.props.removeFromFilter(player);        
+    }
+
     render() {
         let players,
             isInFilterResults;
