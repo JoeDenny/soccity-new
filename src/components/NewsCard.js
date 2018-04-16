@@ -4,6 +4,7 @@ import { setActiveNews } from '../actions';
 import './styles/news-card.css';
 import FavouriteIcon from './FavouriteIcon';
 import BookmarkIcon from './BookmarkIcon';
+import TierIcon from './TierIcon';
 
 
 class NewsCard extends Component {
@@ -37,6 +38,8 @@ class NewsCard extends Component {
                         
                         <h2 className="title"
                             dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
+
+                        <TierIcon tier={this.props.newsItem.source.group_id} />
                     </header>
                     
                     <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>
