@@ -14,13 +14,24 @@
     padding-left: 10px !important;
     padding-right: 10px !important; }
 
+.main-view .all-articles {
+  display: none; }
+
+.bookmark-view .all-articles {
+  position: fixed;
+  top: 67px;
+  z-index: 101;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600; }
+
 .dashboard-message {
   padding: 5rem;
   opacity: 0; }
   .dashboard-message.no-search-results {
     opacity: 1; }
 
-.load-more-btn.hide {
+.load-more-btn {
   display: none; }
 
 @media (min-width: 544px) {

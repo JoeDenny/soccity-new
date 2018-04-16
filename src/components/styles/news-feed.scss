@@ -19,6 +19,23 @@
     }
 }
 
+.main-view {
+    .all-articles {
+        display: none;
+    }
+}
+
+.bookmark-view {
+    .all-articles {
+        position: fixed;
+        top: 67px;
+        z-index: 101;
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: 600;
+    }
+}
+
 
 .dashboard-message {
     padding: 5rem;
@@ -31,8 +48,8 @@
 
 .load-more-btn {
 
+    display: none;
     &.hide {
-        display: none;
     }
 }
 

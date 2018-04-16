@@ -7,18 +7,30 @@ import AutoRefreshButton from './AutoRefreshButton';
 import CommentsButton from './CommentsButton';
 
 class DashboardSettings extends Component {
-    setActiveButton = () => {
-        // if(title === 'filterButtonActive') {
-            
-        // }
+    constructor() {
+        super();
+
+        this.state = {
+            recentlyButtonActive: false,
+            bookmarkButtonActive: false,
+            commentsButtonActive: false,
+            filterButtonActive: false
+        }
     }
 
-    showBookmarkedArticles = () => {
-        
+    setActiveButton = (title) => {
+        this.setState({
+            [title]: !this.state[title]
+        });
+    }
+
+    showBookmarkedArticles = (title) => {    
+        this.setActiveButton(title)    
         this.props.showBookmarkedArticles();
     }
 
-    openFilter = () => {
+    openFilter = (title) => {
+        this.setActiveButton(title)    
         this.props.openFilter();        
     }
 
@@ -36,25 +48,25 @@ class DashboardSettings extends Component {
                     </li>
                     <li className="item">
                         <RecentlyViewedButton
-                            isActive={this.props.recentlyButtonActive}
+                            isActive={this.state.recentlyButtonActive}
                         />
                     </li>
                     <li className="item">
                         <BookmarkButton
-                            onClick={this.showBookmarkedArticles}
-                            isActive={this.props.bookmarkButtonActive}
+                            onClick={() => this.showBookmarkedArticles('bookmarkButtonActive')}
+                            isActive={this.state.bookmarkButtonActive}
                             
                         />
                     </li>
                     <li className="item">
                         <CommentsButton
-                            isActive={this.props.commentsButtonActive}
+                            isActive={this.state.commentsButtonActive}
                         />
                     </li>
                     <li className="item">
                         <FilterSidebarButton
-                            onClick={this.openFilter}
-                            isActive={this.props.filterButtonActive}
+                            onClick={() => this.openFilter('filterButtonActive')}
+                            isActive={this.state.filterButtonActive}
                         />
                     </li>
                 </ul>

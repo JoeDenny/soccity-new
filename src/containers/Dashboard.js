@@ -42,6 +42,12 @@ class Dashboard extends Component {
         })
     }
 
+    showAllArticles = () => {
+        this.setState({
+            showBookmarkedArticles: false
+        })
+    }
+
     openComments = () => {        
         this.setState({
             ...this.state,
@@ -61,7 +67,7 @@ class Dashboard extends Component {
         this.setState({
             ...this.state,
             isCommentsOpen: false,            
-            isFilterOpen: true
+            isFilterOpen: !this.state.isFilterOpen
         })
     }
 
@@ -116,6 +122,7 @@ class Dashboard extends Component {
                             className={sidebarOpenClass}
                             news={news}
                             showBookmarkedArticles={this.state.showBookmarkedArticles}
+                            showAllArticles={this.showAllArticles}
                             current_page={current_page}
                             last_page={last_page}
                             onOpenComments={this.openComments}
