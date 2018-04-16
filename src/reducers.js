@@ -1,11 +1,12 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
     user: {},
     activeNews: {},
     news: [],
+    dashboards: [],
     competitions: [],
     teams: [],
     players: [],
@@ -65,6 +66,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 sources: action.payload.sources
             };
+        case SAVE_DASHBOARDS:
+            return {
+                ...state,
+                dashboards: action.payload.dashboards
+            };
+        case DELETE_DASHBOARD:
+            api.getDashboards();
+            break;
         case SET_ACTIVE_NEWS:        
             return {
                 ...state,

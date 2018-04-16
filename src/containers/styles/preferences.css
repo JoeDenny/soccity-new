@@ -37,6 +37,17 @@
     margin: 10px;
     color: #6bac0f; }
 
+.preferences-page .dashboard-item h3 {
+  display: inline-block; }
+
+.preferences-page .dashboard-item button {
+  color: #d72b3f; }
+
+.preferences-page .no-dashboards-message {
+  text-align: center; }
+  .preferences-page .no-dashboards-message.hide {
+    display: none; }
+
 .preferences-page .logout-btn {
   margin: 2rem 0 3rem;
   cursor: pointer;

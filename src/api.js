@@ -89,6 +89,30 @@ class Api {
         });
     }
 
+    addDashboard = (params) => {
+        return axios.post(`${this.API_URL}/user/dashboards`, params, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    deleteDashboard = (id) => {
+        return axios.delete(`${this.API_URL}/user/dashboards/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getDashboards = () => {
+        return axios.get(`${this.API_URL}/user/dashboards`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     saveToken(token) {    
         
         this.token = token;

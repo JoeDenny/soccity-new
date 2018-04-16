@@ -132,6 +132,19 @@ export const search = (searchValue) => ({
     }
 });
 
+export const SAVE_DASHBOARDS = 'get dashboards';
+export const getDashboardsUpdate = (dashboards) => ({
+    type: SAVE_DASHBOARDS,
+    payload: {
+        dashboards
+    }
+});
+
+export const DELETE_DASHBOARD = 'delete dashboard';
+export const deleteDashboardUpdate = (dashboards) => ({
+    type: DELETE_DASHBOARD
+});
+
 export const login = (email, password) => {
     return (dispatch) => {        
         api.login(email, password).then((res) => {
@@ -241,6 +254,36 @@ export const bookmarkArticle = (id) => {
         api.bookmarkArticle(id)
             .then((res) => {
                 dispatch(bookmarkArticleUpdate(res.data.news));
+            });
+    };
+};
+
+export const addDashboard = (params) => {
+
+    return (dispatch) => {
+        api.addDashboard(params)
+            .then((res) => {                
+                // dispatch(addDashboardUpdate(res.data.news));
+            });
+    };
+};
+
+export const deleteDashboard = (id) => {
+    
+    return (dispatch) => {
+        api.deleteDashboard(id)
+            .then((res) => {                                
+                dispatch(deleteDashboardUpdate());
+            });
+    };
+};
+
+export const getDashboards = () => {
+
+    return (dispatch) => {
+        api.getDashboards()
+            .then((res) => {   
+                dispatch(getDashboardsUpdate(res.data.dashboards));
             });
     };
 };

@@ -52,6 +52,23 @@
         }
     }
 
+    .dashboard-item {        
+        h3 {
+            display: inline-block;
+        }
+        button {
+            color: $error;
+        }
+    }
+    
+    .no-dashboards-message {
+        text-align: center;
+    
+        &.hide {
+            display: none;
+        }
+    }
+
     .logout-btn {
         margin: 2rem 0 3rem;
         cursor: pointer;

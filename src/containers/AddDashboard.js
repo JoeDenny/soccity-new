@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/add-dashboard.css';
 import { connect } from 'react-redux';
-import { getCompetitions, getTeams, getPlayers, getSources } from '../actions';
+import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
 import CustomFilters from '../components/CustomFilters';
 import FilterResults from '../components/FilterResults';
@@ -81,6 +81,18 @@ class AddDashboard extends Component {
         }
     }
 
+    addDashboard = () => {
+        const params = {
+            name: 'test dashboard',
+            keywords: 'keywords go here',
+            sources: [1, 2],
+            team_id: 1,
+            player_id: 1,
+            competition_id: 1
+        }
+        this.props.addDashboard(params);
+    }
+
     render() {
         const { competitions, teams, players, sources } = this.props;
         
@@ -147,7 +159,8 @@ class AddDashboard extends Component {
                         </div>
 
                         <div className="text-center">
-                            <button className="btn btn-primary">Save Dashboard</button>
+                            <button className="btn btn-primary"
+                                    onClick={this.addDashboard}>Save Dashboard</button>
                         </div>
 
                     </section>
@@ -169,7 +182,8 @@ const mapDispatchToProps = (dispatch) => ({
     getCompetitions: () => dispatch(getCompetitions()),
     getTeams: () => dispatch(getTeams()),
     getPlayers: () => dispatch(getPlayers()),
-    getSources: () => dispatch(getSources())
+    getSources: () => dispatch(getSources()),
+    addDashboard: (params) => dispatch(addDashboard(params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDashboard);

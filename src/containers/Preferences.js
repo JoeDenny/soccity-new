@@ -8,7 +8,7 @@ import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
-import { logout } from '../actions';
+import { logout, getDashboards, deleteDashboard } from '../actions';
 import api from '../api';
 import './styles/preferences.css';
 
@@ -27,6 +27,8 @@ class Preferences extends Component {
     }
 
     componentWillMount() {
+        this.props.getDashboards();
+
         this.setState({
             name: this.props.user.name,
             email: this.props.user.email
@@ -40,6 +42,14 @@ class Preferences extends Component {
             ...this.state,
             [name]: event.target.value
           });        
+    }
+
+    getDashboards = () => {
+        this.props.getDashboards();
+    }
+
+    deleteDashboard = (id) => {
+        this.props.deleteDashboard(id);
     }
     
     handleFormSubmit = (event) => {
@@ -119,7 +129,7 @@ class Preferences extends Component {
                     </div>
 
                     <div className="container">                
-                        <ManageDashboards />
+                        <ManageDashboards dashboards={this.props.dashboards} deleteDashboard={this.deleteDashboard}/>
                     </div>
 
                     <div className="container">
@@ -135,11 +145,14 @@ class Preferences extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
+    dashboards: state.dashboards
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(logout())    
+    logout: () => dispatch(logout())  ,  
+    getDashboards: () => dispatch(getDashboards()), 
+    deleteDashboard: (id) => dispatch(deleteDashboard(id))    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);

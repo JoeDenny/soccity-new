@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
+import DashboardItem from './DashboardItem';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 
 class ManageDashboards extends Component {
 
+    deleteDashboard = (id) => {        
+        this.props.deleteDashboard(id);
+    }
+
     render() {
+        let dashboards,
+            noDashboardsClass;
+
+        if(this.props.dashboards) {
+            
+            noDashboardsClass = `no-dashboards-message ${this.props.dashboards.length ? 'hide' : ''}`;
+
+            dashboards = this.props.dashboards.map((dashboard, index) => {
+                
+                return (
+                    <DashboardItem key={index} dashboard={dashboard} deleteDashboard={this.deleteDashboard}/>
+                );
+            });
+        }
     
         return (
             <div className="dashboards-section">
@@ -14,9 +33,15 @@ class ManageDashboards extends Component {
                     </div>
                     <div className="col-xs-12 col-md-8">
                     
-                       <p>You haven't created any dashboards yet!</p>
+                       {dashboards}
 
-                        <Link to={routes.ADD_DASHBOARD_PATH}>Create a dashboard.</Link>
+                        <div className={noDashboardsClass}>
+                            <p>You haven't created any dashboards yet!</p>
+                        </div>
+
+                        <div className="text-center">
+                            <Link to={routes.ADD_DASHBOARD_PATH}>Create a dashboard.</Link>
+                        </div>
                     </div>
                 </div>
             </div>
