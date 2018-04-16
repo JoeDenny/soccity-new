@@ -51,7 +51,8 @@
     display: none; }
 
 .comment-list .comment {
-  margin: .5rem 0; }
+  margin: .5rem 0;
+  font-family: 'Encode Sans Semi Expanded', sans-serif; }
 
 .comment-list h4 {
   margin-bottom: 0;

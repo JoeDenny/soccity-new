@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Zwizz Regular';
+  src: local("Zwizz Regular"), url("./styles/fonts/zwizz-regular.woff") format("woff");
+  src: url("./styles/fonts/zwizz-regular.ttf") format("truetype"), url("./styles/fonts/zwizz-regular.otf") format("opentype"); }
+
+@font-face {
+  font-family: 'Zwizz Bold';
+  src: local("Zwizz Bold"), url("./styles/fonts/zwizz-bold.woff") format("woff");
+  src: url("./styles/fonts/zwizz-bold.ttf") format("truetype"), url("./styles/fonts/zwizz-bold.otf") format("opentype"); }
+
 html {
   position: relative;
   min-height: 100vh;
@@ -8,13 +18,16 @@ html {
   -ms-overflow-style: scrollbar; }
 
 body {
-  font-family: 'Encode Sans', sans-serif;
+  font-family: 'Zwizz Regular', serif;
   color: #222629;
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5; }
+
+h1, h2 {
+  font-family: 'Domine', serif; }
 
 * {
   box-sizing: border-box; }
@@ -55,7 +68,7 @@ nav li {
   margin-left: 1.5rem; }
 
 .btn {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Encode Sans Semi Expanded', sans-serif;
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -70,7 +83,7 @@ nav li {
   border-radius: 0.25rem; }
   .btn a {
     color: #fff;
-    font-family: 'Open Sans', sans-serif; }
+    font-family: 'Encode Sans Semi Expanded', sans-serif; }
 
 .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
   outline: thin dotted;
