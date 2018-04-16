@@ -60,22 +60,28 @@
     }
 }
 
-.comment-icon {    
+.comments-icon {    
     position: relative;
+    height: 25px;
+    width: 24px;
+    opacity: .38;
+
+    &.active {
+        opacity: 1;
+    }
     
     svg {
-        vertical-align: middle;
-        width: 22px;
-        height: 22px;
-        stroke-width: 5px;
+        width: 23px;
+        height: 17px;
         stroke: #000;
+        stroke-width: 4px;
     }
 
     span {
         position: absolute;
-        bottom: -4px;
-        font-size: .7rem;
-        right: -6px;
+        bottom: 0;
+        font-size: .6rem;
+        right: -1px;
     }
 }
 

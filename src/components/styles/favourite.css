@@ -1,17 +1,22 @@
 .favourite-icon {
-  position: relative; }
+  position: relative;
+  height: 24px;
+  width: 24px;
+  margin: 0 2px;
+  opacity: .38; }
   .favourite-icon svg {
-    width: 24px;
-    height: 22px;
+    width: 23px;
+    height: 16px;
     fill: none;
     stroke: #000;
-    stroke-width: 4px;
-    margin: 2px 10px; }
-  .favourite-icon.active svg {
-    fill: #6bac0f;
-    stroke-width: 0px; }
+    stroke-width: 4px; }
+  .favourite-icon.active {
+    opacity: 1; }
+    .favourite-icon.active svg {
+      fill: #34B151;
+      stroke-width: 0px; }
   .favourite-icon span {
     position: absolute;
     bottom: 0;
-    font-size: .7rem;
-    right: 6px; }
+    right: 0;
+    font-size: .6rem; }

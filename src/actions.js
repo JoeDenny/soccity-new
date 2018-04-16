@@ -108,6 +108,14 @@ export const favouriteArticleUpdate = (news) => ({
     }
 });
 
+export const BOOKMARK_ARTICLE = '[News] bookmark news';
+export const bookmarkArticleUpdate = (news) => ({
+    type: BOOKMARK_ARTICLE,
+    payload: {
+        news
+    }
+});
+
 export const SAVE_ACTIVITY = '[News] Save received activity';
 export const saveActivity = (activity) => ({
     type: SAVE_ACTIVITY,
@@ -224,6 +232,15 @@ export const favouriteArticle = (id) => {
         api.favouriteArticle(id)
             .then((res) => {
                 dispatch(favouriteArticleUpdate(res.data.news));
+            });
+    };
+};
+
+export const bookmarkArticle = (id) => {
+    return (dispatch) => {
+        api.bookmarkArticle(id)
+            .then((res) => {
+                dispatch(bookmarkArticleUpdate(res.data.news));
             });
     };
 };

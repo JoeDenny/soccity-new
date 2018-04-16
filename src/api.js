@@ -81,6 +81,14 @@ class Api {
         });
     }
 
+    bookmarkArticle = (id) => {
+        return axios.post(`${this.API_URL}/news/${id}/toggle_bookmark`, null, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     saveToken(token) {    
         
         this.token = token;
