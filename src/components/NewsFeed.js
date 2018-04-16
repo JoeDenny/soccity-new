@@ -47,12 +47,19 @@ class NewsFeed extends Component {
             noResultsClass;
         
         if(this.props.news) {
-            newsItems = this.props.news.reduce((result, newsItem) => {
 
-                if(newsItem.title.toLowerCase().includes(searchTerm)) {
+            console.log('asdf', this.props.showBookmarkedArticles);
+            
+            newsItems = this.props.news.reduce((result, newsItem) => {
+                if(this.props.showBookmarkedArticles) {
+
+                    if(newsItem.is_bookmarked) {
+
+                        result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>);
+                    }
+                } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>);
-                     
                 }
                 return result;           
             }, []);            

@@ -18,5 +18,5 @@
   .favourite-icon span {
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: -1px;
     font-size: .6rem; }

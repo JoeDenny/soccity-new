@@ -18,7 +18,8 @@ class Dashboard extends Component {
         this.state = {
             isCommentsOpen: false,
             isFilterOpen: false,
-            searchTerm: ''
+            searchTerm: '',
+            showBookmarkedArticles: false
         }        
     }
 
@@ -33,6 +34,12 @@ class Dashboard extends Component {
         }; 
         
         this.props.getNews(params);        
+    }
+
+    showBookmarkedArticles = () => {
+        this.setState({
+            showBookmarkedArticles: !this.state.showBookmarkedArticles
+        })
     }
 
     openComments = () => {        
@@ -97,6 +104,7 @@ class Dashboard extends Component {
                         setSearchTerm={this.setSearchTerm}/>
                     
                     <DashboardSettings
+                        showBookmarkedArticles={this.showBookmarkedArticles}
                         refreshNews={this.getNews}
                         openFilter={this.openFilter}/>
 
@@ -107,6 +115,7 @@ class Dashboard extends Component {
                         <NewsFeed
                             className={sidebarOpenClass}
                             news={news}
+                            showBookmarkedArticles={this.state.showBookmarkedArticles}
                             current_page={current_page}
                             last_page={last_page}
                             onOpenComments={this.openComments}

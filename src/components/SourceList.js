@@ -5,7 +5,9 @@ class SourceList extends Component {
         // let sources;
         
         // if(this.props.sources) {
-        //     sources = this.props.sources.map(source => {                                
+        //     sources = this.props.sources.map(source => {
+                
+
         //         return (
         //             <SourceCard key={source.id} source={source} />
         //         );
@@ -18,10 +20,12 @@ class SourceList extends Component {
                 <ul>
                     <li className="filter-card text-secondary">
                         <p className="name">Tier 1</p>
+                        {/* <p>E.g. Guardian Sport, Sky News, BBC, Talksport...</p> */}
                         <input type="checkbox" />
                     </li>
                     <li className="filter-card text-secondary">
                         <p className="name">Tier 2</p>
+                        <p>E.g. Guardian Sport, Sky News, BBC, Talksport...</p>                        
                         <input type="checkbox" />
                     </li>
                     <li className="filter-card text-secondary">

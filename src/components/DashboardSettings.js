@@ -13,6 +13,11 @@ class DashboardSettings extends Component {
         // }
     }
 
+    showBookmarkedArticles = () => {
+        
+        this.props.showBookmarkedArticles();
+    }
+
     openFilter = () => {
         this.props.openFilter();        
     }
@@ -36,7 +41,7 @@ class DashboardSettings extends Component {
                     </li>
                     <li className="item">
                         <BookmarkButton
-
+                            onClick={this.showBookmarkedArticles}
                             isActive={this.props.bookmarkButtonActive}
                             
                         />
