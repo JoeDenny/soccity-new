@@ -63,7 +63,8 @@
   font-weight: 300; }
 
 .comment-list p {
-  margin: 1rem 0 0 0; }
+  margin: 1rem 0 0 0;
+  font-size: .8rem; }
 
 .comment-list .user-photo {
   float: left;

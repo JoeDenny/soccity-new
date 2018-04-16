@@ -16,6 +16,7 @@ class Dashboard extends Component {
         super();
 
         this.state = {
+            template: 1,
             isCommentsOpen: false,
             isFilterOpen: false,
             searchTerm: '',
@@ -46,6 +47,19 @@ class Dashboard extends Component {
         this.setState({
             showBookmarkedArticles: false
         })
+    }
+
+    changeTemplate = (toggleOn) => {
+        
+        if(toggleOn) {
+            this.setState({
+                template: 2
+            });
+        } else {
+            this.setState({
+                template: 1
+            });
+        }
     }
 
     openComments = () => {        
@@ -112,6 +126,7 @@ class Dashboard extends Component {
                     <DashboardSettings
                         showBookmarkedArticles={this.showBookmarkedArticles}
                         refreshNews={this.getNews}
+                        changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
 
                     <Sidebar />
@@ -127,7 +142,8 @@ class Dashboard extends Component {
                             last_page={last_page}
                             onOpenComments={this.openComments}
                             loadNextPage={this.loadNextPage}
-                            searchTerm={this.state.searchTerm} />
+                            searchTerm={this.state.searchTerm}
+                            template={this.state.template} />
 
                         <CommentsContainer
                             isVisible={this.state.isCommentsOpen}

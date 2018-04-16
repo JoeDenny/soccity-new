@@ -1,7 +1,10 @@
 .template-tab {
-  display: none !important;
-  padding-top: 10px;
-  text-align: right; }
+  text-align: right;
+  float: left; }
+  .template-tab span {
+    vertical-align: super;
+    margin-right: 5px;
+    font-size: .8rem; }
 
 .switch {
   position: relative;
@@ -39,7 +42,7 @@ input:focus + .slider {
   box-shadow: 0 0 1px #2196F3; }
 
 input:checked + .slider:before {
-  transform: translateX(21px); }
+  transform: translateX(16px); }
 
 .slider.round {
   border-radius: 34px; }
@@ -49,4 +52,5 @@ input:checked + .slider:before {
 
 @media (min-width: 768px) {
   .template-tab {
-    display: block; } }
+    display: block;
+    margin-left: 65px; } }

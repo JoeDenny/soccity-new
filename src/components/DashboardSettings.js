@@ -5,6 +5,7 @@ import RecentlyViewedButton from './RecentlyViewedButton';
 import FilterSidebarButton from './FilterSidebarButton';
 import AutoRefreshButton from './AutoRefreshButton';
 import CommentsButton from './CommentsButton';
+import TemplateTab from './TemplateTab';
 
 class DashboardSettings extends Component {
     constructor() {
@@ -16,6 +17,11 @@ class DashboardSettings extends Component {
             commentsButtonActive: false,
             filterButtonActive: false
         }
+    }
+
+    changeTemplate = (toggleOn) => {
+
+        this.props.changeTemplate(toggleOn)
     }
 
     setActiveButton = (title) => {
@@ -42,6 +48,9 @@ class DashboardSettings extends Component {
     render() {
         return (
             <div className="dashboard-settings-container">
+
+                <TemplateTab onChangeTemplate={this.changeTemplate}/>
+
                 <ul className="settings-buttons">
                     <li className="item">
                         <AutoRefreshButton refreshNews={this.refreshNews}/>

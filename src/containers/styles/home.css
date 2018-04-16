@@ -1,5 +1,7 @@
 .app-home {
   padding-bottom: 8rem; }
+  .app-home .app-header {
+    height: 70px; }
 
 .background-color-block {
   position: absolute;

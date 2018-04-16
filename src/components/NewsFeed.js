@@ -1,38 +1,11 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
-import TemplateTab from './TemplateTab';
 
 class NewsFeed extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            template: 1
-        }
-    }
-
-    componentWillMount() {
-        this.setState({
-            template: 1
-        })
-    }
 
     onOpenComments = () => {
         this.props.onOpenComments();
-    }
-
-    changeTemplate = (toggleOn) => {
-        
-        if(toggleOn) {
-            this.setState({
-                template: 2
-            });
-        } else {
-            this.setState({
-                template: 1
-            });
-        }
     }
 
     loadNextPage = () => {
@@ -46,7 +19,7 @@ class NewsFeed extends Component {
     render() {
         let newsItems,
             searchTerm = this.props.searchTerm,
-            className = `news-feed ${this.state.template === 1 ? 'template1' : 'template2'}`,
+            className = `news-feed ${this.props.template === 1 ? 'template1' : 'template2'}`,
             loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`,
             newsFeedViewClass,
             noResultsClass;
@@ -73,9 +46,6 @@ class NewsFeed extends Component {
 
         return (
             <section className={className}>
-
-                <TemplateTab onChangeTemplate={this.changeTemplate}/>
-
                 <ul className="row">
                     {newsItems}
                 </ul>
