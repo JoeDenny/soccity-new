@@ -114,10 +114,7 @@ const rootReducer = (state = initialState, action) => {
                 })
             };
         case BOOKMARK_ARTICLE:     
-            
-            const { bookmarks_count, is_bookmarked } = action.payload.news;
-            console.log('action.payload.news', action.payload.news);
-            
+            const { bookmarks_count, is_bookmarked } = action.payload.news;            
             return {
                 ...state,
                 news: state.news && state.news.map((news) => {
