@@ -51,8 +51,8 @@ class NewsFeed extends Component {
                 <div style={{ display: this.props.isFetching ? 'none' : 'block' }}>  
 
                     <div style={{ display: this.props.showBookmarkedArticles ? 'block' : 'none' }}>
-                        <p className="back-to-feed"
-                            onClick={this.showAllArticles}>Back to main feed...</p>
+                        {/* <p className="back-to-feed"
+                            onClick={this.showAllArticles}>Back to main feed...</p> */}
 
                         <p className="news-feed-messages" style={{ display: !newsItems.length ? 'block' : 'none' }}>You don't have any articles bookmarked!</p>
                     </div>
