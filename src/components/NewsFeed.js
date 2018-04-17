@@ -31,7 +31,7 @@ class NewsFeed extends Component {
 
                     if(newsItem.is_bookmarked) {
 
-                        result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>);
+                        result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments} />);
                     }
                 } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 

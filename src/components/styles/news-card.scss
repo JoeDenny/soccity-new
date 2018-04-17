@@ -8,6 +8,24 @@
     box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
     height: 95%;
 
+    &.twitter {
+        .title {
+            display: none;
+        }
+        .source {
+            font-size: 1rem;
+            top: 0;
+        }
+        .description {
+            font-family: 'Zwizz Bold', serif;            
+        }
+        .thumbnail {
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
     .thumbnail {
         border-top-left-radius: .28571429rem;
         border-top-right-radius: .28571429rem;

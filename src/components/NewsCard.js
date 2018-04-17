@@ -5,6 +5,7 @@ import './styles/news-card.css';
 import FavouriteIcon from './FavouriteIcon';
 import BookmarkIcon from './BookmarkIcon';
 import TierIcon from './TierIcon';
+import TwitterLogo from './Twitter_Logo.png';
 
 
 class NewsCard extends Component {
@@ -15,11 +16,23 @@ class NewsCard extends Component {
 
     render() {
 
-        let thumbnail;
+        let thumbnail,
+            newsCardClass,
+            sourceLogoSrc;
         
         if(this.props.newsItem) {
 
+            const sourceType = this.props.newsItem.source.type;
+
+            newsCardClass = `news-card clearfix ${sourceType}`;
+
             thumbnail = this.props.newsItem.thumbnail.includes("thumbnail_generic") ? this.props.newsItem.source.logo_path : this.props.newsItem.thumbnail;
+
+            if(sourceType === 'twitter') {
+                thumbnail = TwitterLogo;
+            }
+
+            sourceLogoSrc = sourceType === 'rss' ? this.props.newsItem.source.logo_path : this.props.newsItem.additional.image;  
         }
 
         const commentsIconClass = `comments-icon ${this.props.newsItem.comments.length ? 'active' : ''}`;
@@ -27,7 +40,7 @@ class NewsCard extends Component {
         
         return (
             <li className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">   
-                <div className="news-card clearfix">
+                <div className={newsCardClass}>
                     <a href={this.props.newsItem.link} target="_blank">
                         <div className="thumbnail"> 
                             <img
@@ -36,13 +49,13 @@ class NewsCard extends Component {
                         </div>
                         <div className="content">
                             <header>
-                                <img className="source-logo" src={this.props.newsItem.source.logo_path} alt=""/>
-                                <h5 className="source">{this.props.newsItem.source.title}</h5>
+                                <img className="source-logo" src={sourceLogoSrc} alt=""/>
+                                <h5 className="source"><span style={{display: this.props.newsItem.source.type === 'twitter' ? 'inline' : 'none' }}>@</span>{this.props.newsItem.source.title}</h5>
                                 
                                 <h2 className="title"
                                     dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
 
-                                <TierIcon tier={this.props.newsItem.source.group_id} />
+                                <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                             </header>
                             
                             <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>

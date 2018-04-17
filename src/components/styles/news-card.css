@@ -5,6 +5,15 @@
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
   height: 95%; }
+  .news-card.twitter .title {
+    display: none; }
+  .news-card.twitter .source {
+    font-size: 1rem;
+    top: 0; }
+  .news-card.twitter .description {
+    font-family: 'Zwizz Bold', serif; }
+  .news-card.twitter .thumbnail img {
+    object-fit: contain; }
   .news-card .thumbnail {
     border-top-left-radius: .28571429rem;
     border-top-right-radius: .28571429rem;
