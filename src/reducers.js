@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -12,6 +12,7 @@ const initialState = {
     players: [],
     loginErrors: [],
     registerErrors: [],
+    isFetching: false,
     updateUserSuccess: false
 };
 
@@ -26,6 +27,11 @@ const rootReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 user: action.payload.user
             };
+        case FETCHING_DATA:
+            return {
+                ...state,
+                isFetching: true
+            }
         case REGISTER_FAILURE:
             return {
                 ...state,
@@ -56,7 +62,8 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 news: action.payload.news.data,
                 current_page: action.payload.news.current_page,
-                last_page: action.payload.news.last_page
+                last_page: action.payload.news.last_page,
+                isFetching: false
             };
         case SAVE_COMPETITIONS:
             return {

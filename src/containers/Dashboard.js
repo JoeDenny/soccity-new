@@ -136,6 +136,7 @@ class Dashboard extends Component {
                         <NewsFeed
                             className={sidebarOpenClass}
                             news={news}
+                            isFetching={this.props.isFetching}
                             showBookmarkedArticles={this.state.showBookmarkedArticles}
                             showAllArticles={this.showAllArticles}
                             current_page={current_page}
@@ -167,7 +168,8 @@ const mapStateToProps = (state) => ({
     user: state.user,
     news: state.news,
     current_page: state.current_page,
-    last_page: state.last_page
+    last_page: state.last_page,
+    isFetching: state.isFetching
 });
 
 const mapDispatchToProps = (dispatch) => ({

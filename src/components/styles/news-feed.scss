@@ -25,37 +25,32 @@
     }
 }
 
-.main-view {
-    .all-articles {
-        display: none;
-    }
-}
 
-.bookmark-view {
-    .all-articles {
-        position: fixed;
-        top: 67px;
-        z-index: 101;
-        text-decoration: underline;
-        cursor: pointer;
-        font-weight: 600;
-    }
+.back-to-feed {
+    margin: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 
-.dashboard-message {
-    padding: 5rem;
-    opacity: 0;
+.news-feed-messages {
+    padding: 5rem 0;
+    text-align: center;
+}
 
-    &.no-search-results {
-        opacity: 1;
+.no-search-results-message {
+    display: none;
+
+    &.show {
+        display: block;
     }
 }
 
 .load-more-btn {
 
-    display: none;
-    &.hide {
+    &.show {
+        display: none;
     }
 }
 

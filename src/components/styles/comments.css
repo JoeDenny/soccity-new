@@ -14,7 +14,9 @@
   .dashboard-chat .close-icon,
   .dashboard-filter .close-icon {
     width: 30px;
-    height: 30px; }
+    height: 30px;
+    top: 0;
+    right: 0; }
     .dashboard-chat .close-icon svg,
     .dashboard-filter .close-icon svg {
       width: 15px;

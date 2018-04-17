@@ -18,24 +18,22 @@
     top: 40px;
     padding: 0; }
 
-.main-view .all-articles {
-  display: none; }
-
-.bookmark-view .all-articles {
-  position: fixed;
-  top: 67px;
-  z-index: 101;
+.back-to-feed {
+  margin: 1rem;
   text-decoration: underline;
   cursor: pointer;
   font-weight: 600; }
 
-.dashboard-message {
-  padding: 5rem;
-  opacity: 0; }
-  .dashboard-message.no-search-results {
-    opacity: 1; }
+.news-feed-messages {
+  padding: 5rem 0;
+  text-align: center; }
 
-.load-more-btn {
+.no-search-results-message {
+  display: none; }
+  .no-search-results-message.show {
+    display: block; }
+
+.load-more-btn.show {
   display: none; }
 
 @media (min-width: 544px) {

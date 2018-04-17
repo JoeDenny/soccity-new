@@ -14,6 +14,11 @@ export const logout = () => ({
     type: LOGOUT
 });
 
+export const FETCHING_DATA = 'fetching data';
+export const fetchingData = () => ({
+    type: FETCHING_DATA
+});
+
 export const REGISTER_SUCCESS = 'register success';
 export const registerSuccess = (token, user) => ({
     type: REGISTER_SUCCESS,
@@ -213,6 +218,7 @@ export const updateUserDetails = (formData) => {
 
 export const getNews = (params) => {
     return (dispatch) => {
+        dispatch(fetchingData());
         api.getNews(params).then(
             (res) => {            
                 dispatch(saveNews(res.data.allNews));

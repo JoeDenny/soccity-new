@@ -18,7 +18,7 @@ class ManageDashboards extends Component {
             noDashboardsClass = `no-dashboards-message ${this.props.dashboards.length ? 'hide' : ''}`;
 
             dashboards = this.props.dashboards.map((dashboard, index) => {
-                
+                                
                 return (
                     <DashboardItem key={index} dashboard={dashboard} deleteDashboard={this.deleteDashboard}/>
                 );
