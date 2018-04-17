@@ -24,6 +24,15 @@
         height: 40px;
         font-size: 16px;
         border-radius: 4px;
+
+        &.protected {
+            display: inline-block;
+            cursor: pointer;
+            padding-top: 7px;
+            text-align: left;
+            background: $white;
+            cursor: default;
+        }
     }
 
     .login-note {

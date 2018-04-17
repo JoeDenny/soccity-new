@@ -15,6 +15,14 @@ class Api {
         return axios.post(`${this.API_URL}/register`, formData);
     }
 
+    updateUserDetails = (formData) => {        
+        return axios.post(`${this.API_URL}/user/update`, formData, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getNews = (params) => {
         return axios.get(`${this.API_URL}/news?time=${params.time}&page=${params.page}`, {
             headers: {

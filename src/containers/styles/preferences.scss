@@ -11,6 +11,32 @@
             background-color: $lightGrey;
             border: 1px solid $grey;
             color: $black;
+
+            &.protected {
+                background: $darkGrey;
+                color: $white;
+            }
+        }
+    }
+
+    .errors-container {
+        margin: 1rem auto;
+        width: 400px;
+        text-align: left;
+        
+        li {
+            span {
+                color: $black;
+            }
+        }
+    }
+
+    .update-success-message {
+        color: $primary;
+        margin: 1rem 0;
+
+        &.hide {
+            display: none;
         }
     }
 

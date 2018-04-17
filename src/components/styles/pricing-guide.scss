@@ -32,7 +32,14 @@
     }
 
     .premium {
-        color: $secondary;
+        padding: 0;
+        background-color: $secondary;
+        color: $white;
+        padding: 1rem;
+
+        .card-title {
+            border-bottom-color: $white;
+        }
     }
 
     .footnote {

@@ -17,6 +17,13 @@
     height: 40px;
     font-size: 16px;
     border-radius: 4px; }
+    .auth-layout .text-input.protected {
+      display: inline-block;
+      cursor: pointer;
+      padding-top: 7px;
+      text-align: left;
+      background: #fff;
+      cursor: default; }
   .auth-layout .login-note {
     margin-top: 20px;
     color: #fff; }

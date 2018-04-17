@@ -3,7 +3,7 @@ import './styles/add-dashboard.css';
 import { connect } from 'react-redux';
 import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
-import CustomFilters from '../components/CustomFilters';
+// import CustomFilters from '../components/CustomFilters';
 import FilterResults from '../components/FilterResults';
 import CompetitionList from '../components/CompetitionList';
 import TeamList from '../components/TeamList';
@@ -18,7 +18,11 @@ class AddDashboard extends Component {
         super();
 
         this.state = {
-            filterResults: []
+            filterResults: [],
+            sources: [],
+            competition_id: '',
+            team_id: '',
+            player_id: ''
         }
 
         this.keywords = [];
@@ -32,18 +36,19 @@ class AddDashboard extends Component {
         this.props.getSources();
     }
 
+
     addToFilter = (filterItem) => {
         
-        if(!this.keywords.includes(filterItem.name.toLowerCase())) { 
-            this.setState({
-                filterResults: [
-                    ...this.state.filterResults,
-                    filterItem
-                ]
-            });  
+        this.setState({
+            filterResults: [
+                ...this.state.filterResults,
+                filterItem
+            ]
+        });  
+        // if(!this.keywords.includes(filterItem.name.toLowerCase())) { 
             
-            this.keywords.push(filterItem.name.toLowerCase());
-        }
+        //     this.keywords.push(filterItem.name.toLowerCase());
+        // }
     }
 
     removeFromFilter = (filterItem) => {
@@ -63,23 +68,23 @@ class AddDashboard extends Component {
         this.keywords.splice(index, 1);
     }
 
-    addCustomFilter = (keyword) => {
+    // addCustomFilter = (keyword) => {
 
-        const filterItem = {
-            name: keyword,
-            logo_path: ""
-        }
+    //     const filterItem = {
+    //         name: keyword,
+    //         logo_path: ""
+    //     }
         
-        if(!this.keywords.includes(keyword.toLowerCase())) {
-            this.setState({
-                filterResults: [
-                    ...this.state.filterResults,
-                    filterItem
-                ]
-            })   
-            this.keywords.push(keyword.toLowerCase()); 
-        }
-    }
+    //     if(!this.keywords.includes(keyword.toLowerCase())) {
+    //         this.setState({
+    //             filterResults: [
+    //                 ...this.state.filterResults,
+    //                 filterItem
+    //             ]
+    //         })   
+    //         this.keywords.push(keyword.toLowerCase()); 
+    //     }
+    // }
 
     addDashboard = () => {
         const params = {
@@ -115,10 +120,10 @@ class AddDashboard extends Component {
 
                         <FilterResults results={this.state.filterResults}/>
                         
-                        <h4>Create your own custom filters: </h4>
+                        {/* <h4>Create your own custom filters: </h4>
                         <div className="row">            
                             <CustomFilters addCustomFilter={this.addCustomFilter} />
-                        </div>
+                        </div> */}
                     </section>
 
                     <section className="container">

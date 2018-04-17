@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -12,6 +12,7 @@ const initialState = {
     players: [],
     loginErrors: [],
     registerErrors: [],
+    updateUserSuccess: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +30,17 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 registerErrors: action.payload.errors
+            }    
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                updateUserSuccess: true
+            }   
+        case UPDATE_USER_FAILURE:
+            return {
+                ...state,
+                updateUserSuccess: false,
+                updateUserErrors: action.payload.errors
             }            
         case LOGIN_FAILURE:
             return {

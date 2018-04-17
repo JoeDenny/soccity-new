@@ -7,6 +7,22 @@
     background-color: #f7f7f7;
     border: 1px solid #6B6E70;
     color: #222629; }
+    .preferences-page .auth-layout .text-input.protected {
+      background: #474B4F;
+      color: #fff; }
+
+.preferences-page .errors-container {
+  margin: 1rem auto;
+  width: 400px;
+  text-align: left; }
+  .preferences-page .errors-container li span {
+    color: #222629; }
+
+.preferences-page .update-success-message {
+  color: #86C232;
+  margin: 1rem 0; }
+  .preferences-page .update-success-message.hide {
+    display: none; }
 
 .preferences-page .profile-section,
 .preferences-page .notifications-section,

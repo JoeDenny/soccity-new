@@ -3,6 +3,7 @@
     background-color: #f9f9f9;
     
     .searchbar {
+        width: 100%;
         margin-right: 0;
         border: 1px solid $borderGrey;
 
@@ -23,8 +24,8 @@
 }
 
 .list {
-    overflow-y: scroll;
     position: relative;
+    margin-top: 1rem;
     background-color: $white;
     padding: .1rem;
     border: 1px solid rgba(0,0,0,0.1);
@@ -51,8 +52,8 @@
 
 @media (min-width: 544px) {
     .list {
-        height: 70vh;
-        min-height: 400px;
+        height: 400px;
+        overflow-y: scroll;        
     }
 }
 @media (min-width: 768px) {

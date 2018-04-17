@@ -31,6 +31,19 @@ export const registerFailure = (errors) => ({
     }
 });
 
+export const UPDATE_USER_SUCCESS = 'update user success';
+export const updateUserSuccess = () => ({
+    type: UPDATE_USER_SUCCESS
+});
+
+export const UPDATE_USER_FAILURE = 'update user failure';
+export const updateUserFailure = (errors) => ({
+    type: UPDATE_USER_FAILURE,
+    payload: {
+        errors
+    }
+});
+
 export const LOGIN_FAILURE = 'login failure';
 export const loginFailure = (errors) => ({
     type: LOGIN_FAILURE,
@@ -175,6 +188,24 @@ export const register = (formData) => {
             .catch(error => {
                 if (error.response) {                                        
                     dispatch(registerFailure(error.response.data.errors));
+                }
+            });
+    };
+};
+
+export const updateUserDetails = (formData) => {
+    return (dispatch) => {
+        api.updateUserDetails(formData).then(
+            (res) => {
+                dispatch(loginSuccess(
+                    res.data.token,
+                    res.data.user          
+                ));
+                dispatch(updateUserSuccess());
+            })
+            .catch(error => {                
+                if (error.response) {                                        
+                    dispatch(updateUserFailure(error.response.data.errors));                    
                 }
             });
     };

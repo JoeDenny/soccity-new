@@ -1,15 +1,15 @@
 @import '../../styles/_variables.scss';
 
 .errors-container {
-        margin-bottom: 1rem;
+    margin-bottom: 1rem;
 
-        li {
-            color: $error;
-            list-style-type: initial;
-            
-            span {
-                color: $white;
-            }
-            padding-top: 2px;
+    li {
+        color: $error;
+        list-style-type: initial;
+        
+        span {
+            color: $white;
         }
+        padding-top: 2px;
+    }
 }

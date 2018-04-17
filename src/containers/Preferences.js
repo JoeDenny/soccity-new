@@ -8,7 +8,7 @@ import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
-import { logout, getDashboards, deleteDashboard } from '../actions';
+import { logout, updateUserDetails, getDashboards, deleteDashboard } from '../actions';
 import api from '../api';
 import './styles/preferences.css';
 
@@ -18,9 +18,10 @@ class Preferences extends Component {
 
         this.state = {
             headerIsFixed: false,
-            default_avatar: 'http://35.176.191.198/images/default_avatars/profile1.png',
+            avatar: 'http://35.176.191.198/images/default_avatars/profile1.png',
             name: '',
             email: '',
+            old_password: '',
             password: '',
             password_confirmation: ''
         }        
@@ -32,7 +33,19 @@ class Preferences extends Component {
         this.setState({
             name: this.props.user.name,
             email: this.props.user.email
+        })        
+    }
+
+    componentWillReceiveProps() {
+        this.setState({
+            name: this.props.user.name,
+            email: this.props.user.email,
+            old_password: '',
+            password: '',
+            password_confirmation: ''
         })
+
+        console.log('this.props', this.props);
     }
     
     handleFormChange = (event) => {
@@ -55,10 +68,15 @@ class Preferences extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         
-        const formData = this.state;
-        console.log('formData', formData);
+        const formData = {
+            name: this.state.name,
+            email: this.state.email,
+            old_password: this.state.old_password,
+            password: this.state.password,
+            password_confirmation: this.state.password_confirmation
+        };
         
-        // this.props.register(formData);
+        this.props.updateUserDetails(formData);
     }
 
     logout = () => {
@@ -68,7 +86,8 @@ class Preferences extends Component {
     }
 
     render() {
-        
+        let successfulUpdateclass = `update-success-message ${this.props.updateUserSuccess ? '' : 'hide'}`
+
         return (
             <AuthWrapper>
                  <section className="preferences-page">
@@ -91,10 +110,13 @@ class Preferences extends Component {
 
                             <div className="details text-center">
 
-                                <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />                
-                                <ErrorMessages errors={this.props.errors}/>                
-
+                                <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />                                                
                                 <div className="auth-layout">
+
+                                    <ErrorMessages errors={this.props.errors}/>     
+
+                                    <p className={successfulUpdateclass}>Update Successful!</p>
+
                                     <form onSubmit={this.handleFormSubmit}>
 
                                         <div className="input-wrapper">
@@ -102,19 +124,23 @@ class Preferences extends Component {
                                         </div>
 
                                         <div className="input-wrapper">
-                                            <input className="text-input" placeholder="Email" type="text" value={this.state.email} name="email" onChange={this.handleFormChange} />
+                                            <p className="text-input protected">{this.state.email}</p>
                                         </div>
 
-                                        {/* <h3>Update Password</h3>
+                                        <h3>Update Password</h3>
                                         <div className="input-wrapper">
-                                            <input className="text-input" placeholder="Password" type="password" value={this.state.password} name="password" onChange={this.handleChange} />
+                                            <input className="text-input" placeholder="Current Password" type="password" value={this.state.old_password} name="old_password" onChange={this.handleFormChange} />
                                         </div>
 
                                         <div className="input-wrapper">
-                                            <input className="text-input" placeholder="Confirm password" type="password" value={this.state.password_confirmation} name="password_confirmation" onChange={this.handleChange} />
-                                        </div> */}
+                                            <input className="text-input" placeholder="Password" type="password" value={this.state.password} name="password" onChange={this.handleFormChange} />
+                                        </div>
 
-                                        <input className="btn btn-primary" type="submit" value="Update" />
+                                        <div className="input-wrapper">
+                                            <input className="text-input" placeholder="Confirm password" type="password" value={this.state.password_confirmation} name="password_confirmation" onChange={this.handleFormChange} />
+                                        </div>
+
+                                        <input className="btn btn-primary" type="submit" value="Update" />                                        
                                     </form>
                                 </div>
                             </div>
@@ -146,13 +172,16 @@ class Preferences extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.user,
-    dashboards: state.dashboards
+    dashboards: state.dashboards,
+    errors: state.updateUserErrors,
+    updateUserSuccess: state.updateUserSuccess
 });
 
 const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout())  ,  
     getDashboards: () => dispatch(getDashboards()), 
-    deleteDashboard: (id) => dispatch(deleteDashboard(id))    
+    deleteDashboard: (id) => dispatch(deleteDashboard(id)),
+    updateUserDetails: (formData) => dispatch(updateUserDetails(formData))  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);

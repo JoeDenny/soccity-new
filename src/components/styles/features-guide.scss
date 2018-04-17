@@ -1,0 +1,11 @@
+@import './src/styles/variables.scss';
+
+.features-guide {
+    max-width: 750px;
+    margin: 5rem auto;
+    
+    .card {
+        background-color: $secondary;
+        color: $white;
+    }
+}

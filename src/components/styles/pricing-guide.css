@@ -19,7 +19,12 @@
   .pricing-guide .card {
     margin-top: 1rem; }
   .pricing-guide .premium {
-    color: #6bac0f; }
+    padding: 0;
+    background-color: #6bac0f;
+    color: #fff;
+    padding: 1rem; }
+    .pricing-guide .premium .card-title {
+      border-bottom-color: #fff; }
   .pricing-guide .footnote {
     margin: 2rem 0 0; }
   @media (min-width: 768px) {

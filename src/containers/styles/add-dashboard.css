@@ -1,6 +1,7 @@
 .add-dashboard {
   background-color: #f9f9f9; }
   .add-dashboard .searchbar {
+    width: 100%;
     margin-right: 0;
     border: 1px solid #ebebeb; }
     .add-dashboard .searchbar .add-icon {
@@ -15,8 +16,8 @@
     padding: 1rem; }
 
 .list {
-  overflow-y: scroll;
   position: relative;
+  margin-top: 1rem;
   background-color: #fff;
   padding: .1rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -36,8 +37,8 @@
 
 @media (min-width: 544px) {
   .list {
-    height: 70vh;
-    min-height: 400px; } }
+    height: 400px;
+    overflow-y: scroll; } }
 
 @media (min-width: 768px) {
   .add-dashboard .title {
