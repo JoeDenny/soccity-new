@@ -22,14 +22,30 @@
         }
     }
 
+    .content {
+        padding: 1rem;
+    }
+
     header {
-        padding: .7rem;
         padding-bottom: 0;
+    }
+
+    .source-logo {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid $borderGrey;
+        float: left;
+        object-fit: contain;
     }
 
     .source {
         color: $secondary;
-        margin: .5rem 0;
+        position: relative;
+        top: 5px;
+        left: 7px;
+        font-size: .7rem;
+        margin-bottom: 15px;
     }
 
     .title {
@@ -41,8 +57,8 @@
     }
 
     .description {
-        padding: .7rem;
-        height: 72px;
+        margin: 1rem 0;
+        height: 80px;
         overflow: hidden;
         word-break: break-word;
         font-size: .9rem;
@@ -88,8 +104,12 @@
 
 @media (min-width: 544px) {
     .news-card {
+        padding-bottom: 2.5rem;
         .thumbnail {
             height: 175px;
+        }
+        .description {
+            height: 60px;
         }
     }
 }
@@ -105,8 +125,13 @@
         border-bottom: 1px solid $borderGrey;
 
         header {
-            min-height: 100px;
             padding: 0;
+        }
+
+        .content {
+            padding: 0;
+            float: right;
+            width: calc(100% - 120px);
         }
 
         .thumbnail {
@@ -117,10 +142,6 @@
             border-bottom: 0;
             border-radius: 50%;
         }
-
-        .source {
-            margin: 0;
-        }
         .title {
             margin-top: .5rem;
         }
@@ -130,8 +151,7 @@
             border: 1px solid $secondary;
         }
         .description {
-            padding: 1rem 5px;
-            max-height: 100px;
+            height: 65px;
         }
 
         footer {
@@ -150,13 +170,8 @@
             width: 140px;
         }
 
-        header {
-            min-height: 140px
-        }
-
-        .description {
-            height: auto;
-            max-height: 80px;
+        .content {
+            width: calc(100% - 160px);
         }
 
         footer {

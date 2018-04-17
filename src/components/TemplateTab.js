@@ -17,11 +17,12 @@ class TemplateTab extends Component {
 
         return (
            <div className="template-tab">
-           <span>Change layout:</span>
+           <span>Grid</span>
             <label className="switch">
                 <input type="checkbox" onChange={this.onChangeTemplate} />
                 <span className="slider round"></span>
             </label>
+           <span>Magazine</span>            
            </div>
         )
     }

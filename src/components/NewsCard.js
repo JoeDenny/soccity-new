@@ -27,22 +27,27 @@ class NewsCard extends Component {
         
         return (
             <li className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">   
-                <div className="news-card">
-                    <div className="thumbnail"> 
-                        <img
-                            alt=""
-                            src={thumbnail} />
-                    </div>
-                    <header>
-                        <h5 className="source">{this.props.newsItem.source.title}</h5>
-                        
-                        <h2 className="title"
-                            dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
+                <div className="news-card clearfix">
+                    <a href={this.props.newsItem.link} target="_blank">
+                        <div className="thumbnail"> 
+                            <img
+                                alt=""
+                                src={thumbnail} />
+                        </div>
+                        <div className="content">
+                            <header>
+                                <img className="source-logo" src={this.props.newsItem.source.logo_path} alt=""/>
+                                <h5 className="source">{this.props.newsItem.source.title}</h5>
+                                
+                                <h2 className="title"
+                                    dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
 
-                        <TierIcon tier={this.props.newsItem.source.group_id} />
-                    </header>
-                    
-                    <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>
+                                <TierIcon tier={this.props.newsItem.source.group_id} />
+                            </header>
+                            
+                            <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>
+                        </div>
+                    </a>
                     <footer>
                         <span className="text-tiny">{this.props.newsItem.posted_date_formated}</span>
                         <ul className="pull-right">
@@ -69,7 +74,6 @@ class NewsCard extends Component {
                         </ul>
                     </footer>
                 </div>
-
             </li>
         )
     }
