@@ -61,7 +61,17 @@
         border-left: 1px solid $borderGrey;
 
         .username {
-            margin: 22px 15px;
+            margin: 10px 15px;
+        }
+
+        .upgrade {
+            position: absolute;
+            cursor: pointer;
+            font-size: .6rem;
+            left: 10px;
+            background-color: #86C232;
+            bottom: -12px;
+            padding: 4px;
         }
 
         a {

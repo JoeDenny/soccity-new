@@ -1,8 +1,19 @@
 .faqs {
+    max-width: 750px;
+    margin: auto;    
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    p {
+        font-size: .85rem;
+        margin-bottom: 0;        
+    }
     .title {
         margin-bottom: 2rem;
     }
     .card {
+        margin-bottom: .5rem;
         transition: all 0.3s ease;
 
         &:hover {

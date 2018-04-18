@@ -5,7 +5,7 @@ import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
-import { getNews } from '../actions';
+import { getNews, getDashboards } from '../actions';
 import CommentsContainer from '../components/CommentsContainer';
 import FilterContainer from '../components/FilterContainer';
 import DashboardSettings from '../components/DashboardSettings';
@@ -26,9 +26,11 @@ class Dashboard extends Component {
 
     componentWillMount() {
         this.getNews();
+        this.props.getDashboards();
     }
 
     getNews = (pageNumber) => {
+
         const params = {
             time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: pageNumber || 1
@@ -93,9 +95,11 @@ class Dashboard extends Component {
     }
 
     loadNextPage = () => {
-        const pageNumber = this.props.current_page + 1;        
+        const params = {
+            page: this.props.current_page + 1
+        }
 
-        this.getNews(pageNumber);
+        this.getNews(params);
 
         window.scrollTo(0,0);
     }
@@ -106,6 +110,16 @@ class Dashboard extends Component {
             ...this.state,
             searchTerm: searchTerm
         })
+    }
+
+    setActiveDashboard = (dashboard) => {
+
+        const params = {
+            sources: dashboard.sources
+        }
+        console.log('sources', params.sources);
+        
+        // this.getNews(params);
     }
 
     render() {
@@ -129,7 +143,7 @@ class Dashboard extends Component {
                         changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
 
-                    <Sidebar />
+                    <Sidebar dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
 
                     <div className={sidebarOpenClass}>
 
@@ -167,13 +181,15 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     user: state.user,
     news: state.news,
+    dashboards: state.dashboards,    
     current_page: state.current_page,
     last_page: state.last_page,
     isFetching: state.isFetching
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getNews: (params) => dispatch(getNews(params))
+    getNews: (params) => dispatch(getNews(params)),
+    getDashboards: () => dispatch(getDashboards())    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

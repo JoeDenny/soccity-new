@@ -17,7 +17,11 @@
     margin-bottom: 7.5px;
     font-size: .92rem; }
   .pricing-guide .card {
-    margin-top: 1rem; }
+    margin-top: 1rem;
+    transition: all 0.3s ease; }
+    .pricing-guide .card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 15px rgba(57, 73, 76, 0.35); }
   .pricing-guide .premium {
     padding: 0;
     background-color: #6bac0f;

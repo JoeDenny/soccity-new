@@ -19,6 +19,7 @@ class DashboardHeader extends Component {
 
                 <nav className="user-details">
                     <h5 className="username pull-left">{this.props.user.name}</h5>
+                    <p className="upgrade bold card">Upgrade?</p>
                     <Link to={routes.PREFERENCES_PATH}>
                         <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png" size={50}/>
                     </Link>

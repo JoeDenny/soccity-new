@@ -216,7 +216,7 @@ export const updateUserDetails = (formData) => {
     };
 };
 
-export const getNews = (params) => {
+export const getNews = (params) => {        
     return (dispatch) => {
         dispatch(fetchingData());
         api.getNews(params).then(

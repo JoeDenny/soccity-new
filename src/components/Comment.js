@@ -14,6 +14,8 @@ class Comment extends Component {
                     <h5 className="text-tiny">{comment.created_at_formated}</h5>
                 </header>
                 <p>{comment.comment}</p>
+
+                <p className="text-right">Reply</p>
             </li>
         )
     }

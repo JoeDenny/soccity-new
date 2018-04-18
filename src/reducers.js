@@ -85,7 +85,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 sources: action.payload.sources
             };
-        case SAVE_DASHBOARDS:
+        case SAVE_DASHBOARDS:            
             return {
                 ...state,
                 dashboards: action.payload.dashboards
