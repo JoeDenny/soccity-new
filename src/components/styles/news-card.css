@@ -42,6 +42,8 @@
     left: 7px;
     font-size: .7rem;
     margin-bottom: 15px; }
+    .news-card .source h5 {
+      display: inline-block; }
   .news-card .title {
     line-height: 24px;
     margin-bottom: 0;

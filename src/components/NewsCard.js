@@ -50,12 +50,16 @@ class NewsCard extends Component {
                         <div className="content">
                             <header>
                                 <img className="source-logo" src={sourceLogoSrc} alt=""/>
-                                <h5 className="source"><span style={{display: this.props.newsItem.source.type === 'twitter' ? 'inline' : 'none' }}>@</span>{this.props.newsItem.source.title}</h5>
+                                
+                                <div className="source">
+                                    <h5><span style={{display: this.props.newsItem.source.type === 'twitter' ? 'inline' : 'none' }}>@</span>{this.props.newsItem.source.title}</h5>
+
+                                    <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
+                                </div>
                                 
                                 <h2 className="title"
                                     dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
 
-                                <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                             </header>
                             
                             <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>

@@ -3,10 +3,10 @@ import './styles/tier-icon.css';
 
 class TierIcon extends Component {
     render() {
+        const className = `tier-icon tier-${this.props.tier}`;
+
         return (
-            <div className="tier-icon card">
-                <span>Tier {this.props.tier}</span>
-            </div>
+            <h5 className={className}>tier {this.props.tier}</h5>
         );
     }
 }
