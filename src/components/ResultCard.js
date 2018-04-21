@@ -8,9 +8,10 @@ class ResultCard extends Component {
     }
 
     render() {
+        
         return ( 
             <div className="result-card card">
-                <span>{this.props.result.name}</span>
+                <span>{this.props.result}</span>
             </div>
         )
     }

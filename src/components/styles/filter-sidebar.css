@@ -1,2 +1,13 @@
 .dashboard-filter.open {
   transform: none; }
+  .dashboard-filter.open .searchbar {
+    width: 100%;
+    margin-right: 0;
+    border: 1px solid #ebebeb; }
+    .dashboard-filter.open .searchbar .add-icon {
+      transform: rotate(45deg);
+      width: 20px;
+      height: 20px;
+      fill: #484848;
+      float: right;
+      margin: 20px; }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
 // import CustomFilters from '../components/CustomFilters';
-import FilterResults from '../components/FilterResults';
+// import FilterResults from '../components/FilterResults';
 import CompetitionList from '../components/CompetitionList';
 import TeamList from '../components/TeamList';
 import PlayerList from '../components/PlayerList';
@@ -118,7 +118,7 @@ class AddDashboard extends Component {
 
                     <section className="container">
 
-                        <FilterResults results={this.state.filterResults}/>
+                        {/* <FilterResults results={this.state.filterResults}/> */}
                         
                         {/* <h4>Create your own custom filters: </h4>
                         <div className="row">            
@@ -128,7 +128,7 @@ class AddDashboard extends Component {
 
                     <section className="container">
 
-                        <h4>Or choose from this list:</h4>
+                        {/* <h4>Or choose from this list:</h4> */}
 
                         <div className="row">
                             <div className="col-xs-12 col-md-4">

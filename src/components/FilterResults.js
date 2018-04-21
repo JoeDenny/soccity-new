@@ -3,21 +3,23 @@ import ResultCard from './ResultCard';
 import './styles/filter-results.css';
 
 class FilterResults extends Component {
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.results = [];
-    }
-    componentWillReceiveProps(nextProps) {
-        this.results = nextProps.results;   
-    }
+    //     this.results = [];
+    // }
+    // componentWillReceiveProps(nextProps) {
+    //     this.results = nextProps.results;   
+    // }
+
     render() {
         let results;  
         
-        if(this.results.length) {
-            results = this.results.map(result => {                
+        if(this.props.results.length) {
+            
+            results = this.props.results.map((result, i) => {                        
                 return (
-                    <ResultCard key={result.name} result={result} />
+                    <ResultCard key={i} result={result} />
                 );
             });
         }    

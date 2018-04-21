@@ -17,7 +17,12 @@
             top: 0;
         }
         .description {
-            font-family: 'Zwizz Bold', serif;            
+            font-family: 'Zwizz Bold', serif;    
+            background-color: #fff;
+            border-radius: .28571429rem;
+            box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35);
+            height: auto;
+            padding: .5rem;        
         }
         .thumbnail {
             img {
@@ -146,8 +151,19 @@
         height: auto;
         border-bottom: 1px solid $borderGrey;
 
+        &.twitter {
+            .description {
+                height: auto;
+                max-width: 530px;
+            }
+        }
+
         header {
             padding: 0;
+        }
+
+        .source {
+            top: 0;
         }
 
         .content {
@@ -170,7 +186,6 @@
         .tier-icon {
             margin-top: 5px;
             box-shadow: none;
-            border: 1px solid $secondary;
         }
         .description {
             height: 65px;

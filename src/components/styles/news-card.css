@@ -11,7 +11,12 @@
     font-size: 1rem;
     top: 0; }
   .news-card.twitter .description {
-    font-family: 'Zwizz Bold', serif; }
+    font-family: 'Zwizz Bold', serif;
+    background-color: #fff;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35);
+    height: auto;
+    padding: .5rem; }
   .news-card.twitter .thumbnail img {
     object-fit: contain; }
   .news-card .thumbnail {
@@ -98,8 +103,13 @@
   box-shadow: none;
   height: auto;
   border-bottom: 1px solid #ebebeb; }
+  .template2 .news-card.twitter .description {
+    height: auto;
+    max-width: 530px; }
   .template2 .news-card header {
     padding: 0; }
+  .template2 .news-card .source {
+    top: 0; }
   .template2 .news-card .content {
     padding: 0;
     float: right;
@@ -115,8 +125,7 @@
     margin-top: .5rem; }
   .template2 .news-card .tier-icon {
     margin-top: 5px;
-    box-shadow: none;
-    border: 1px solid #6bac0f; }
+    box-shadow: none; }
   .template2 .news-card .description {
     height: 65px; }
   .template2 .news-card footer {

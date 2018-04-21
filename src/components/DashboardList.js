@@ -16,7 +16,7 @@ class DashboardList extends Component {
                 return (
                     <section onClick={() => this.setActiveDashboard(dashboard) } key={i} className="dashboard-list-item">
                         <div className="img-container">
-                            <img src={dashboard.sources[0].source.logo_path} alt="" />
+                            {/* <img src={dashboard.sources[0].source.logo_path} alt="" /> */}
                         </div>
                     </section>
                 );
