@@ -4,7 +4,7 @@ import './styles/filter-card.css';
 class FilterCard extends Component {
     handleChange = (event) => {
          if(event.target.checked) {
-             this.props.addToFilter(this.props.data);
+             this.props.addToFilter(this.props.data.id);
          } else {
              this.props.removeFromFilter(this.props.data);
          }

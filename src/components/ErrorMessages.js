@@ -4,9 +4,9 @@ import './styles/errors.css';
 class ErrorMessages extends Component {
     
     render() {
-        let allErrors = [];        
-
-        if(this.props.errors) {      
+        let allErrors = [];  
+                
+        if(this.props.errors) {   
             
             for(let error in this.props.errors) {
                 

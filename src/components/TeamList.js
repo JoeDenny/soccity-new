@@ -6,17 +6,19 @@ class TeamList extends Component {
 
     addTeam = (team) => {
 
-        this.props.addToFilter(team);        
+        this.props.addToFilter('teams', team);        
     }
 
     removeTeam = (team) => {
 
-        this.props.removeFromFilter(team);        
+        this.props.removeFromFilter('teams', team);        
     }
 
     render() {
         let teams,
             isInFilterResults;
+
+        let isDisabled = this.props.filterResults.length >= 5 ? 'disabled' : '';
         
         if(this.props.teams) {
             teams = this.props.teams.map(team => {
@@ -28,13 +30,14 @@ class TeamList extends Component {
                         key={team.id}
                         data={team}
                         addToFilter={this.addTeam}
+                        removeFromFilter={this.removeTeam}                        
                         isInFilterResults={isInFilterResults} />
                 );
             });
         }    
 
         return (
-            <div className="list team-feed">
+            <div className={"list team-feed " + isDisabled}>
                 <h4 className="list-title">Add teams</h4>            
                 <ul>
                     {teams}

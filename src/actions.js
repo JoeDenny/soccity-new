@@ -159,8 +159,21 @@ export const getDashboardsUpdate = (dashboards) => ({
 });
 
 export const DELETE_DASHBOARD = 'delete dashboard';
-export const deleteDashboardUpdate = (dashboards) => ({
+export const deleteDashboardUpdate = () => ({
     type: DELETE_DASHBOARD
+});
+
+export const ADD_DASHBOARD = 'add dashboard';
+export const addDashboardUpdate = () => ({
+    type: ADD_DASHBOARD
+});
+
+export const ADD_DASHBOARD_FAILURE = 'add dashboard failure';
+export const addDashboardFailure = (errors) => ({
+    type: ADD_DASHBOARD_FAILURE,
+    payload: {
+        errors
+    }
 });
 
 export const login = (email, password) => {
@@ -300,7 +313,12 @@ export const addDashboard = (params) => {
     return (dispatch) => {
         api.addDashboard(params)
             .then((res) => {                
-                // dispatch(addDashboardUpdate(res.data.news));
+                dispatch(addDashboardUpdate());
+            })
+            .catch(error => {  
+                if (error.response) {                                        
+                    dispatch(addDashboardFailure(error.response.data.errors));
+                }
             });
     };
 };

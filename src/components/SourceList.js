@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
 class SourceList extends Component {
-    render() {
-        // let sources;
-        
-        // if(this.props.sources) {
-        //     sources = this.props.sources.map(source => {
-                
 
-        //         return (
-        //             <SourceCard key={source.id} source={source} />
-        //         );
-        //     });
-        // }    
+    handleChange = (event) => {
+
+        const source = event.target.name;
+        
+        if(event.target.checked) {
+            this.props.addToFilter('sources', source);        
+        } else {
+            this.props.removeFromFilter('sources', source);
+        }
+   }
+
+    render() {
 
         return (
             <div className="source-feed list">
@@ -20,21 +21,19 @@ class SourceList extends Component {
                 <ul>
                     <li className="filter-card text-secondary">
                         <p className="name">Tier 1</p>
-                        {/* <p>E.g. Guardian Sport, Sky News, BBC, Talksport...</p> */}
-                        <input type="checkbox" />
+                        <input type="checkbox" name={1} onChange={this.handleChange}/>
                     </li>
                     <li className="filter-card text-secondary">
-                        <p className="name">Tier 2</p>
-                        <p>E.g. Guardian Sport, Sky News, BBC, Talksport...</p>                        
-                        <input type="checkbox" />
+                        <p className="name">Tier 2</p>                      
+                        <input type="checkbox" name={2} onChange={this.handleChange}/>
                     </li>
                     <li className="filter-card text-secondary">
                         <p className="name">Tier 3</p>
-                        <input type="checkbox" />
+                        <input type="checkbox" name={3} onChange={this.handleChange}/>
                     </li>
                     <li className="filter-card text-secondary">
                         <p className="name">Tier 4</p>
-                        <input type="checkbox" />
+                        <input type="checkbox" name={4} onChange={this.handleChange}/>
                     </li>
                 </ul>
             </div>

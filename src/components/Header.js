@@ -17,28 +17,16 @@ class Header extends Component {
                         src={Logo}
                         alt="soccity" />
                     <nav className="pull-right">
-                        <div className="auth-btns">
-                            <ul>
-                                <li>
-                                    <Link to={routes.LOGIN_PATH}>Login</Link>
-                                </li>
-                                <li>
-                                    <button className="btn btn-primary">
-                                        <Link to={routes.REGISTER_PATH}>Register</Link>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="dashboard-btn">
-                            <ul>
-                                <li>
-                                    <button className="btn btn-primary">
-                                        <Link to={routes.DASHBOARD_PATH}>Dashboard</Link>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-
+                        <ul>
+                            <li>
+                                <Link to={routes.LOGIN_PATH}>Login</Link>
+                            </li>
+                            <li>
+                                <button className="btn btn-primary">
+                                    <Link to={routes.REGISTER_PATH}>Register</Link>
+                                </button>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
             </header>

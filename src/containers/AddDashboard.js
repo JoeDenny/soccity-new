@@ -3,13 +3,12 @@ import './styles/add-dashboard.css';
 import { connect } from 'react-redux';
 import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
-// import CustomFilters from '../components/CustomFilters';
-// import FilterResults from '../components/FilterResults';
 import CompetitionList from '../components/CompetitionList';
 import TeamList from '../components/TeamList';
 import PlayerList from '../components/PlayerList';
 import SourceList from '../components/SourceList';
 import TwitterFilter from '../components/TwitterFilter';
+import ErrorMessages from '../components/ErrorMessages';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 
@@ -18,11 +17,11 @@ class AddDashboard extends Component {
         super();
 
         this.state = {
-            filterResults: [],
+            source_type: '',
             sources: [],
-            competition_id: '',
-            team_id: '',
-            player_id: ''
+            competitions: [],
+            teams: [],
+            players: []
         }
 
         this.keywords = [];
@@ -33,73 +32,59 @@ class AddDashboard extends Component {
         this.props.getCompetitions();
         this.props.getTeams();
         this.props.getPlayers();
-        this.props.getSources();
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.updateDashboardSuccess) {
+            this.props.history.push(routes.DASHBOARD_PATH);
+        }
+    }
 
-    addToFilter = (filterItem) => {
+    addToFilter = (type, item) => {
         
         this.setState({
-            filterResults: [
-                ...this.state.filterResults,
-                filterItem
+            [type]: [
+                ...this.state[type],
+                item
             ]
-        });  
-        // if(!this.keywords.includes(filterItem.name.toLowerCase())) { 
-            
-        //     this.keywords.push(filterItem.name.toLowerCase());
-        // }
+        });        
     }
 
-    removeFromFilter = (filterItem) => {
+    addSourceType = (showTweets) => {
+        this.setState({
+            source_type: showTweets ? 'twitter' : 'rss'
+        })
+    }
 
-        let filterArray = this.state.filterResults;        
+    removeFromFilter = (type, filterItem) => {
+
+        let filterArray = this.state[type];        
 
         let index = filterArray.indexOf(filterItem);
 
         filterArray.splice(index, 1);
         
         this.setState({
-            filterResults: filterArray
+            [type]: filterArray
         });  
-        
-        index = this.keywords.indexOf(filterItem);
-
-        this.keywords.splice(index, 1);
     }
 
-    // addCustomFilter = (keyword) => {
-
-    //     const filterItem = {
-    //         name: keyword,
-    //         logo_path: ""
-    //     }
-        
-    //     if(!this.keywords.includes(keyword.toLowerCase())) {
-    //         this.setState({
-    //             filterResults: [
-    //                 ...this.state.filterResults,
-    //                 filterItem
-    //             ]
-    //         })   
-    //         this.keywords.push(keyword.toLowerCase()); 
-    //     }
-    // }
-
     addDashboard = () => {
+
         const params = {
-            name: 'test dashboard',
-            keywords: 'keywords go here',
-            sources: [1, 2],
-            team_id: 1,
-            player_id: 1,
-            competition_id: 1
+            name:  'default dashboard',
+            sources: this.state.sources,
+            source_type: this.state.source_type,
+            teams: this.state.teams,
+            players: this.state.players,
+            competitions: this.state.competitions
         }
-        this.props.addDashboard(params);
+        
+        this.props.addDashboard(params);        
     }
 
     render() {
-        const { competitions, teams, players, sources } = this.props;
+        const { competitions, teams, players } = this.props;
         
         return (
             <AuthWrapper>
@@ -134,7 +119,7 @@ class AddDashboard extends Component {
                             <div className="col-xs-12 col-md-4">
                                 <CompetitionList
                                     competitions={competitions}
-                                    filterResults={this.state.filterResults}
+                                    filterResults={this.state.competitions}
                                     addToFilter={this.addToFilter}
                                     removeFromFilter={this.removeFromFilter} />
                             </div>
@@ -143,29 +128,37 @@ class AddDashboard extends Component {
                                 <TeamList
                                     teams={teams}
                                     addToFilter={this.addToFilter}
-                                    filterResults={this.state.filterResults} />
+                                    removeFromFilter={this.removeFromFilter}
+                                    filterResults={this.state.teams} />
                             </div>
 
                             <div className="col-xs-12 col-md-4">                    
                                 <PlayerList
                                     players={players}
                                     addToFilter={this.addToFilter}
-                                    filterResults={this.state.filterResults} />
+                                    removeFromFilter={this.removeFromFilter}
+                                    filterResults={this.state.players} />
                             </div>
                         </div>
                         
                         <div className="row">
                             <div className="col-xs-12 col-md-6">
-                                <SourceList sources={sources}/>
+                                <SourceList 
+                                    addToFilter={this.addToFilter}
+                                    removeFromFilter={this.removeFromFilter}/>
                             </div>
                             <div className="col-xs-12 col-md-6">
-                                <TwitterFilter sources={sources}/>
+
+                                <TwitterFilter addSourceType={this.addSourceType} />
                             </div>
                         </div>
+
+                        <ErrorMessages errors={this.props.errors} />
 
                         <div className="text-center">
                             <button className="btn btn-primary"
                                     onClick={this.addDashboard}>Save Dashboard</button>
+
                         </div>
 
                     </section>
@@ -180,7 +173,9 @@ const mapStateToProps = (state) => ({
     competitions: state.competitions,
     teams: state.teams,
     players: state.players,
-    sources: state.sources
+    sources: state.sources,
+    errors: state.addDashboardErrors,
+    updateDashboardSuccess: state.updateDashboardSuccess
 });
 
 const mapDispatchToProps = (dispatch) => ({

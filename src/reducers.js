@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -12,8 +12,10 @@ const initialState = {
     players: [],
     loginErrors: [],
     registerErrors: [],
+    addDashboardErrors: [],
     isFetching: false,
-    updateUserSuccess: false
+    updateUserSuccess: false,
+    updateDashboardSuccess: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -89,6 +91,17 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dashboards: action.payload.dashboards
+            };
+        case ADD_DASHBOARD:            
+            api.getDashboards();
+            return {
+                ...state,
+                updateDashboardSuccess: true
+            };
+        case ADD_DASHBOARD_FAILURE:            
+            return {
+                ...state,
+                addDashboardErrors: action.payload.errors
             };
         case DELETE_DASHBOARD:
             api.getDashboards();

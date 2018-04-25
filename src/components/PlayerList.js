@@ -4,13 +4,14 @@ import '../containers/styles/add-dashboard.css';
 
 class PlayerList extends Component {
 
-    addPlayer = (team) => {
-        this.props.addToFilter(team);        
+    addPlayer = (player) => {
+
+        this.props.addToFilter('players', player);        
     }
 
     removePlayer = (player) => {
 
-        this.props.removeFromFilter(player);        
+        this.props.removeFromFilter('players', player);        
     }
 
     render() {
@@ -27,6 +28,7 @@ class PlayerList extends Component {
                         key={player.id}
                         data={player}
                         addToFilter={this.addPlayer}
+                        removeFromFilter={this.removePlayer}                        
                         isInFilterResults={isInFilterResults}/>
                 );
             });

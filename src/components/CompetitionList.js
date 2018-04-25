@@ -6,12 +6,12 @@ class CompetitionList extends Component {
 
     addCompetition = (competition) => {
 
-        this.props.addToFilter(competition);        
+        this.props.addToFilter('competitions', competition);        
     }
 
     removeCompetition = (competition) => {
 
-        this.props.removeFromFilter(competition);        
+        this.props.removeFromFilter('competitions', competition);        
     }
 
     render() {
