@@ -24,7 +24,10 @@ class Api {
     }
 
     getNews = (params) => {
-        return axios.get(`${this.API_URL}/news?time=${params.time}&page=${params.page}`, {
+
+        const requestParams = this.createGetNewsUrl(params);
+
+        return axios.get(`${this.API_URL}/news?${requestParams}`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }
@@ -134,6 +137,32 @@ class Api {
 
     getToken() {
         return this.token;
+    }
+
+    createGetNewsUrl(params) {
+        let teamsUrl = '',
+            competitionsUrl = '',
+            playersUrl = '';
+
+        let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
+
+        if(params.teams) {
+            for(let i=0; i < params.teams.length; i++) {
+                teamsUrl += `&teams[]=${params.teams[i].id}`;
+            }
+        } else if(params.competitions) {
+            for(let i=0; i < params.competitions.length; i++) {
+                competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
+            }
+        } else if(params.players) {
+            for(let i=0; i < params.players.length; i++) {
+                playersUrl += `&players[]=${params.players[i].id}`;
+            }
+        }
+
+        let url = `time=${params.time}&page=${params.page}${sourceTypeUrl}${teamsUrl}${competitionsUrl}${playersUrl}`;
+
+        return url;
     }
 }
 

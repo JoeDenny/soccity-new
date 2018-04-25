@@ -102,7 +102,9 @@
   margin: 0;
   box-shadow: none;
   height: auto;
-  border-bottom: 1px solid #ebebeb; }
+  border-radius: 0;
+  border: 1px solid #ebebeb;
+  border-top: none; }
   .template2 .news-card.twitter .description {
     height: auto;
     max-width: 530px; }

@@ -98,6 +98,15 @@
 
 @media (min-width: 992px) {
 
+    .news-feed {
+        max-width: 932px;
+        padding-left: 60px;
+
+        &.template1 {
+            margin: auto !important;
+        }
+    }
+
     .sidebar-open {
         .template1 {
             .col-lg-4 {

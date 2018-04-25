@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as moment from 'moment';
 import { connect } from 'react-redux';
 import DashboardHeader from '../components/DashboardHeader';
-import AuthWrapper from '../components/AuthWrapper';
+// import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
 import { getNews, getDashboards } from '../actions';
@@ -115,11 +115,15 @@ class Dashboard extends Component {
     setActiveDashboard = (dashboard) => {
 
         const params = {
-            sources: dashboard.sources
-        }
-        console.log('sources', params.sources);
-        
-        // this.getNews(params);
+            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            page: 1,
+            source_type: dashboard.source_type,
+            teams: dashboard.teams,
+            players: dashboard.players,
+            competitions: dashboard.competitions
+        }        
+
+        this.props.getNews(params);
     }
 
     render() {
@@ -130,7 +134,7 @@ class Dashboard extends Component {
         const overlayClassName = `overlay ${this.state.isCommentsOpen ? 'open' : ''}`;
     
         return (
-            <AuthWrapper>
+            // <AuthWrapper>
                 <section className="app-dashboard">
 
                     <DashboardHeader
@@ -173,7 +177,7 @@ class Dashboard extends Component {
                     <div className={overlayClassName}
                         onClick={this.closeComments}></div>
                 </section>
-            </AuthWrapper>
+            // </AuthWrapper>
         )
     }
 }
