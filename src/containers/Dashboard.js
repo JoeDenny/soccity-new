@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
+import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getDashboards } from '../actions';
-import CommentsContainer from '../components/CommentsContainer';
-import FilterContainer from '../components/FilterContainer';
+import { getNews, getDashboards, openMenu, closeMenu, setActiveMenuItem } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -17,10 +16,8 @@ class Dashboard extends Component {
 
         this.state = {
             template: 1,
-            isCommentsOpen: false,
             isFilterOpen: false,
-            searchTerm: '',
-            showBookmarkedArticles: false
+            searchTerm: ''
         }                
     }
 
@@ -39,16 +36,12 @@ class Dashboard extends Component {
         this.props.getNews(params);        
     }
 
-    showBookmarkedArticles = () => {
-        this.setState({
-            showBookmarkedArticles: !this.state.showBookmarkedArticles
-        })
+    openMenu = () => {        
+        this.props.openMenu();      
     }
 
-    showAllArticles = () => {
-        this.setState({
-            showBookmarkedArticles: false
-        })
+    closeMenu = () => {        
+        this.props.closeMenu();      
     }
 
     changeTemplate = (toggleOn) => {
@@ -64,25 +57,9 @@ class Dashboard extends Component {
         }
     }
 
-    openComments = () => {        
-        this.setState({
-            ...this.state,
-            isCommentsOpen: true,
-            isFilterOpen: false
-        });        
-    }
-
-    closeComments = () => {
-        this.setState({
-            ...this.state,
-            isCommentsOpen: false
-        });
-    }
-
     openFilter = () => {
         this.setState({
-            ...this.state,
-            isCommentsOpen: false,            
+            ...this.state,        
             isFilterOpen: !this.state.isFilterOpen
         })
     }
@@ -112,6 +89,10 @@ class Dashboard extends Component {
         })
     }
 
+    setActiveMenuItem = (item) => {
+        this.props.setActiveMenuItem(item);
+    }
+
     setActiveDashboard = (dashboard) => {
 
         const params = {
@@ -127,56 +108,46 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { user, news, current_page, last_page } = this.props;
+        const { user, news, activeNews, current_page, last_page, isMenuOpen, activeMenuItem } = this.props;
 
-        const sidebarOpenClass = this.state.isCommentsOpen || this.state.isFilterOpen ? 'sidebar-open' : 'sidebar-closed';
-
-        const overlayClassName = `overlay ${this.state.isCommentsOpen ? 'open' : ''}`;
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';
     
         return (
             <AuthWrapper>
                 <section className="app-dashboard">
-
                     <DashboardHeader
                         user={user}
                         setSearchTerm={this.setSearchTerm}/>
                     
                     <DashboardSettings
-                        showBookmarkedArticles={this.showBookmarkedArticles}
+                        setActiveMenuItem={this.setActiveMenuItem}
+                        activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
                         changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
 
                     <Sidebar dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
 
-                    <div className={sidebarOpenClass}>
-
+                    <div className={menuClass}>
                         <NewsFeed
-                            className={sidebarOpenClass}
+                            className={menuClass}
                             news={news}
                             errors={this.props.errors}
                             loading={this.props.loading}
-                            showBookmarkedArticles={this.state.showBookmarkedArticles}
                             showAllArticles={this.showAllArticles}
                             current_page={current_page}
                             last_page={last_page}
-                            onOpenComments={this.openComments}
                             loadNextPage={this.loadNextPage}
                             searchTerm={this.state.searchTerm}
                             template={this.state.template} />
 
-                        <CommentsContainer
-                            isVisible={this.state.isCommentsOpen}
-                            onCloseComments={this.closeComments} />
-                        
-                        <FilterContainer                      
-                            isVisible={this.state.isFilterOpen}
-                            onCloseFilter={this.closeFilter} />
+                        <Menu
+                            isOpen={isMenuOpen}
+                            news={news}
+                            activeNews={activeNews}
+                            closeMenu={this.closeMenu}
+                            activeMenuItem={activeMenuItem} />
                     </div>
-
-
-                    <div className={overlayClassName}
-                        onClick={this.closeComments}></div>
                 </section>
             </AuthWrapper>
         )
@@ -186,16 +157,22 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     user: state.user,
     news: state.news,
+    activeNews: state.activeNews,
+    activeMenuItem: state.activeMenuItem,
     errors: state.errors,
     dashboards: state.dashboards,    
     current_page: state.current_page,
     last_page: state.last_page,
-    loading: state.loading
+    loading: state.loading,
+    isMenuOpen: state.isMenuOpen
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
-    getDashboards: () => dispatch(getDashboards())    
+    getDashboards: () => dispatch(getDashboards()),
+    openMenu: () => dispatch(openMenu()),   
+    closeMenu: () => dispatch(closeMenu()),
+    setActiveMenuItem: (item) => dispatch(setActiveMenuItem(item))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

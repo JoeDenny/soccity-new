@@ -1,15 +1,17 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
     user: {},
-    activeNews: {},
     news: [],
+    activeNews: {},
+    activeMenuItem: undefined,
     dashboards: [],
     competitions: [],
     teams: [],
     players: [],
+    isMenuOpen: false,
     errors: [],
     loginErrors: [],
     registerErrors: [],
@@ -34,6 +36,17 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        case OPEN_MENU:
+            return {
+                ...state,
+                isMenuOpen: true
+            }
+        case CLOSE_MENU:
+            return {
+                ...state,
+                isMenuOpen: false,
+                activeMenuItem: undefined
             }
         case REGISTER_FAILURE:
             return {
@@ -118,6 +131,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeNews: action.payload.news
+            };
+        case SET_ACTIVE_MENU_ITEM:            
+            return {
+                ...state,
+                isMenuOpen: true,
+                activeMenuItem: action.payload.item
             };
         case REMOVE_ACTIVE_NEWS:
             return {

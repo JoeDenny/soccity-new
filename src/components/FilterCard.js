@@ -13,7 +13,7 @@ class FilterCard extends Component {
     render() {
         const data = this.props.data,
               logo = data.logo_path ? data.logo_path : data.image_path,
-              className = `filter-card text-secondary ${this.props.isInFilterResults ? 'selected' : ''}`
+              className = `filter-card text-secondary ${this.props.isInFilterResults ? 'selected' : ''}`;
               
         return (
             <li className={className}>   

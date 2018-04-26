@@ -1,0 +1,75 @@
+@import '../../styles/variables.scss';
+
+.menu-container {
+    position: fixed;
+    max-width: 400px;
+    padding: 1rem;
+    border-left: 1px solid $borderGrey;
+    background-color: $white;
+    transform: translateX(400px);
+    right: 0;
+    bottom: 50px;
+    top: 95px;
+    z-index: 99;
+    transition: transform .2s ease;
+
+    header {
+        h3 {
+            padding-right: 2rem;
+        }
+    }
+
+    .close-icon {
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        
+        svg {
+            width: 15px;
+            height: 15px;
+            fill: $textSecondary;
+        }
+    }
+    
+    .fixed-content {
+        display: none;
+    }
+
+    &.open {
+        transform: none;
+        .fixed-content {
+            display: block;
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .menu-container {
+        bottom: 0;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        display: none;
+        position: static;
+        transition: none;
+
+        .scrollable {
+            overflow-y: auto;
+            max-height: 67vh;
+            padding: 1px;
+        }
+
+        .fixed-content {
+            position: fixed;
+            margin-right: 15px;
+            margin-top: 45px;
+            min-width: 335px;
+        }
+
+        &.open {
+            display: flex;        
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './styles/comments.css';
-import UserPhoto from './UserPhoto';
+import '../styles/comments.css';
+import UserPhoto from '../UserPhoto';
 
 class Comment extends Component {
     render() {

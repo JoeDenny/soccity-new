@@ -14,6 +14,16 @@ export const logout = () => ({
     type: LOGOUT
 });
 
+export const OPEN_MENU = 'OPEN_MENU';
+export const openMenu = () => ({
+    type: OPEN_MENU
+});
+
+export const CLOSE_MENU = 'CLOSE_MENU';
+export const closeMenu = () => ({
+    type: CLOSE_MENU
+});
+
 export const FETCHING_DATA = 'fetching data';
 export const fetchingData = () => ({
     type: FETCHING_DATA
@@ -109,6 +119,14 @@ export const setActiveNews = (news) => ({
     }
 });
 
+export const SET_ACTIVE_MENU_ITEM = 'SET_ACTIVE_MENU_ITEM';
+export const setActiveMenuItem = (item) => ({
+    type: SET_ACTIVE_MENU_ITEM,
+    payload: {
+        item
+    }
+});
+
 export const REMOVE_ACTIVE_NEWS = '[News] Remove active news';
 export const removeActiveNews = () => ({
     type: REMOVE_ACTIVE_NEWS,
@@ -130,7 +148,7 @@ export const favouriteArticleUpdate = (news) => ({
     }
 });
 
-export const BOOKMARK_ARTICLE = '[News] bookmark news';
+export const BOOKMARK_ARTICLE = 'BOOKMARK_ARTICLE';
 export const bookmarkArticleUpdate = (news) => ({
     type: BOOKMARK_ARTICLE,
     payload: {

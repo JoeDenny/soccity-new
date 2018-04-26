@@ -4,7 +4,8 @@
   background-color: #fff;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-  height: 95%; }
+  height: 95%;
+  position: relative; }
   .news-card.twitter .title {
     display: none; }
   .news-card.twitter .source {
@@ -65,9 +66,9 @@
       display: none; }
   .news-card footer {
     position: absolute;
-    bottom: 20px;
-    left: 25px;
-    right: 25px; }
+    bottom: 0px;
+    left: 15px;
+    right: 15px; }
 
 .comments-icon {
   position: relative;

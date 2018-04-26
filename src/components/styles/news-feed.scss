@@ -68,8 +68,8 @@
         padding-right: 15px;
     }
 
-    .sidebar-closed,
-    .sidebar-open {
+    .menu-closed,
+    .menu-open {
         .template2 {
             .col-sm-6,
             .col-md-4,
@@ -89,7 +89,7 @@
         padding: 0;
     }
     
-    .sidebar-open {
+    .menu-open {
         .template1 {
             .col-md-4,
             .col-sm-6,
@@ -115,7 +115,7 @@
         }
     }
 
-    .sidebar-open {
+    .menu-open {
         .template1 {
             .col-lg-4 {
                 max-width: 50%;                
@@ -125,7 +125,7 @@
 }
 
 @media (min-width: 1200px) {
-    .sidebar-open {
+    .menu-open {
         .template1 {
             .col-xl-3 {
                 max-width: calc(100% / 3);

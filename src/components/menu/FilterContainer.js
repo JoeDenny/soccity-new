@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CustomFilters from './CustomFilters';
-import FilterResults from './FilterResults';
+import CustomFilters from '../CustomFilters';
+import FilterResults from '../FilterResults';
 // import CompetitionList from '../components/CompetitionList';
 // import TeamList from '../components/TeamList';
 // import PlayerList from '../components/PlayerList';
-import './styles/filter-sidebar.css';
+import '../styles/filter-sidebar.css';
 
 class FilterContainer extends Component {
 

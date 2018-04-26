@@ -3,9 +3,7 @@ import './styles/settings-button.css';
 
 class SettingsButton extends Component {
     onClick = () => {
-        if (this.props.onClick) {
-            this.props.onClick();
-        }
+        this.props.onClick();
     }
     render() {
         const className = `settings-button ${this.props.isActive ? 'active' : ''}`;

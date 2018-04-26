@@ -6,10 +6,6 @@ import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
 
-    onOpenComments = () => {
-        this.props.onOpenComments();
-    }
-
     loadNextPage = () => {
         this.props.loadNextPage();
     }
@@ -28,15 +24,15 @@ class NewsFeed extends Component {
         if(this.props.news) {
 
             newsItems = this.props.news.reduce((result, newsItem) => {
-                if(this.props.showBookmarkedArticles) {
+               
+                if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
-                    if(newsItem.is_bookmarked) {
+                    result.push(
 
-                        result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments} />);
-                    }
-                } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
-
-                    result.push(<NewsCard key={newsItem.id} newsItem={newsItem} onOpenComments={this.onOpenComments}/>);
+                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                            <NewsCard newsItem={newsItem} />
+                        </li>
+                    );
                 }
                 return result;           
             }, []);            
@@ -51,12 +47,6 @@ class NewsFeed extends Component {
                 <LoadingIcon show={this.props.loading}/>
 
                 <div style={{ display: this.props.loading ? 'none' : 'block' }}>  
-
-                    <div style={{ display: this.props.showBookmarkedArticles ? 'block' : 'none' }}>
-
-
-                        <p className="news-feed-messages" style={{ display: !newsItems.length ? 'block' : 'none' }}>You don't have any articles bookmarked!</p>
-                    </div>
                 
                     <ul className="row">
                         {newsItems}
