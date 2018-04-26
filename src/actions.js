@@ -57,12 +57,16 @@ export const loginFailure = (errors) => ({
     }
 });
 
-export const SAVE_NEWS = '[News] Save received news';
-export const saveNews = (news) => ({
-    type: SAVE_NEWS,
-    payload: {
-        news
-    }
+export const GET_NEWS_SUCCESS = 'GET_NEWS_SUCCESS';
+export const getNewsSuccess = (news) => ({
+    type: GET_NEWS_SUCCESS,
+    payload: { news }
+});
+
+export const GET_NEWS_FAILURE = 'GET_NEWS_FAILURE';
+export const getNewsFailure = (errors) => ({
+    type: GET_NEWS_FAILURE,
+    payload: { errors }
 });
 
 export const SAVE_COMPETITIONS = '[News] Save competitions';
@@ -232,12 +236,17 @@ export const updateUserDetails = (formData) => {
 export const getNews = (params) => {        
     return (dispatch) => {
         dispatch(fetchingData());
-        api.getNews(params).then(
-            (res) => {            
-                dispatch(saveNews(res.data.allNews));
-            },
-            (err) => {
-                api.destroyToken();                       
+        api.getNews(params)
+            .then((res) => {                
+                dispatch(getNewsSuccess(res.data.allNews));
+            })
+            .catch(error => {  
+                if (error.response) {                                        
+                    let error = {
+                        getNews: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
+                    }                
+                    dispatch(getNewsFailure(error));
+                }
             });
     };
 };

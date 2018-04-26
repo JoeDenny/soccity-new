@@ -14,9 +14,6 @@ class Login extends Component {
             email: '',
             password: ''
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -25,7 +22,7 @@ class Login extends Component {
         }
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         const name = event.target.name;
 
         this.setState({
@@ -34,7 +31,7 @@ class Login extends Component {
           });        
     }
     
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         
         const { email, password } = this.state;

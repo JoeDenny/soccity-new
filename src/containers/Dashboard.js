@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as moment from 'moment';
 import { connect } from 'react-redux';
 import DashboardHeader from '../components/DashboardHeader';
-// import AuthWrapper from '../components/AuthWrapper';
+import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import NewsFeed from '../components/NewsFeed';
 import { getNews, getDashboards } from '../actions';
@@ -21,12 +21,12 @@ class Dashboard extends Component {
             isFilterOpen: false,
             searchTerm: '',
             showBookmarkedArticles: false
-        }        
+        }                
     }
 
     componentWillMount() {
         this.getNews();
-        this.props.getDashboards();
+        this.props.getDashboards();        
     }
 
     getNews = (pageNumber) => {
@@ -134,7 +134,7 @@ class Dashboard extends Component {
         const overlayClassName = `overlay ${this.state.isCommentsOpen ? 'open' : ''}`;
     
         return (
-            // <AuthWrapper>
+            <AuthWrapper>
                 <section className="app-dashboard">
 
                     <DashboardHeader
@@ -154,7 +154,8 @@ class Dashboard extends Component {
                         <NewsFeed
                             className={sidebarOpenClass}
                             news={news}
-                            isFetching={this.props.isFetching}
+                            errors={this.props.errors}
+                            loading={this.props.loading}
                             showBookmarkedArticles={this.state.showBookmarkedArticles}
                             showAllArticles={this.showAllArticles}
                             current_page={current_page}
@@ -177,7 +178,7 @@ class Dashboard extends Component {
                     <div className={overlayClassName}
                         onClick={this.closeComments}></div>
                 </section>
-            // </AuthWrapper>
+            </AuthWrapper>
         )
     }
 }
@@ -185,10 +186,11 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     user: state.user,
     news: state.news,
+    errors: state.errors,
     dashboards: state.dashboards,    
     current_page: state.current_page,
     last_page: state.last_page,
-    isFetching: state.isFetching
+    loading: state.loading
 });
 
 const mapDispatchToProps = (dispatch) => ({

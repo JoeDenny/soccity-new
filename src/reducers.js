@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, LOGIN_FAILURE, REGISTER_FAILURE, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, SAVE_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -10,10 +10,11 @@ const initialState = {
     competitions: [],
     teams: [],
     players: [],
+    errors: [],
     loginErrors: [],
     registerErrors: [],
     addDashboardErrors: [],
-    isFetching: false,
+    loading: false,
     updateUserSuccess: false,
     updateDashboardSuccess: false
 };
@@ -32,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         case FETCHING_DATA:
             return {
                 ...state,
-                isFetching: true
+                loading: true
             }
         case REGISTER_FAILURE:
             return {
@@ -59,13 +60,20 @@ const rootReducer = (state = initialState, action) => {
             return {
                 state: undefined
             }
-        case SAVE_NEWS:            
+        case GET_NEWS_SUCCESS:            
             return {
                 ...state,
                 news: action.payload.news.data,
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page,
-                isFetching: false
+                loading: false
+            };
+        case GET_NEWS_FAILURE:            
+            return {
+                ...state,
+                news: [],
+                errors: action.payload.errors,
+                loading: false
             };
         case SAVE_COMPETITIONS:
             return {

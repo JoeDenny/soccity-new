@@ -14,7 +14,7 @@ class Home extends Component {
 
         this.state = {
             headerIsFixed: false
-        }        
+        }                
     }
 
     componentDidMount() {

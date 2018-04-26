@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
+import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
 
@@ -46,13 +47,13 @@ class NewsFeed extends Component {
         return (
             <section className={className}>
 
-                <LoadingIcon show={this.props.isFetching}/>
+                <ErrorMessages errors={this.props.errors} />
+                <LoadingIcon show={this.props.loading}/>
 
-                <div style={{ display: this.props.isFetching ? 'none' : 'block' }}>  
+                <div style={{ display: this.props.loading ? 'none' : 'block' }}>  
 
                     <div style={{ display: this.props.showBookmarkedArticles ? 'block' : 'none' }}>
-                        {/* <p className="back-to-feed"
-                            onClick={this.showAllArticles}>Back to main feed...</p> */}
+
 
                         <p className="news-feed-messages" style={{ display: !newsItems.length ? 'block' : 'none' }}>You don't have any articles bookmarked!</p>
                     </div>
