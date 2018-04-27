@@ -3,7 +3,7 @@ import '../styles/comments.css';
 import Comment from './Comment';
 import AddComment from './AddComment';
 import { connect } from 'react-redux';
-import { removeActiveNews, addComment } from '../../actions';
+import { removeActiveNews, addComment, toggleFollow } from '../../actions';
 
 class ComentsContainer extends Component {
     onSendComment = (comment) => {
@@ -12,6 +12,11 @@ class ComentsContainer extends Component {
         if (activeNews) {
             this.props.addComment(activeNews.id, comment);
         }
+    }
+
+    toggleFollow = (userId) => {
+        
+        this.props.toggleFollow(userId);
     }
 
     render() {
@@ -28,7 +33,10 @@ class ComentsContainer extends Component {
             comments = this.props.activeNews.comments.map(comment => {
                 
                 return (
-                    <Comment key={comment.id} comment={comment} />
+                    <Comment
+                        key={comment.id}
+                        comment={comment}
+                        toggleFollow={this.toggleFollow}/>
                 );
             });
         }
@@ -55,8 +63,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     removeActiveNews: () => dispatch(removeActiveNews()),
-    // removeComment: (newsId, commentId: number) => dispatch(removeComment(newsId, commentId)),
     addComment: (id, comment) => dispatch(addComment(id, comment)),
+    toggleFollow: (userId) => dispatch(toggleFollow(userId)),
+    // removeComment: (newsId, commentId: number) => dispatch(removeComment(newsId, commentId)),
     // editComment: (newsId: number, commentId: number, comment: string) => dispatch(editComment(newsId, commentId, comment))
 });
 

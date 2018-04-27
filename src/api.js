@@ -34,8 +34,41 @@ class Api {
         });
     }
 
+    getPopularNews = () => {
+
+        return axios.get(`${this.API_URL}/news/popular`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getLatestComments = () => {
         return axios.get(`${this.API_URL}/comments/latest`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getFollowers = () => {
+        return axios.get(`${this.API_URL}/user/followers`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getFollowings = () => {
+        return axios.get(`${this.API_URL}/user/followings`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    toggleFollow = (user) => {
+        return axios.post(`${this.API_URL}/user/${user}/toggle_follow`, {}, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

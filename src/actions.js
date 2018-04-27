@@ -156,6 +156,12 @@ export const getLatestCommentsSuccess = (latestComments) => ({
     }
 });
 
+export const TOGGLE_FOLLOW_SUCCESS = 'TOGGLE_FOLLOW_SUCCESS';
+export const toggleFollowSuccess = () => ({
+    type: TOGGLE_FOLLOW_SUCCESS,
+    payload: {}
+});
+
 export const FAVOURITE_ARTICLE = '[News] Like news';
 export const favouriteArticleUpdate = (news) => ({
     type: FAVOURITE_ARTICLE,
@@ -285,6 +291,24 @@ export const getNews = (params) => {
     };
 };
 
+export const getPopularNews = () => {        
+    return (dispatch) => {
+        dispatch(fetchingData());
+        api.getPopularNews()
+            .then((res) => {                                
+                dispatch(getNewsSuccess(res.data.popularNews));                
+            })
+            .catch(error => {  
+                if (error.response) {                                        
+                    let error = {
+                        getNews: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
+                    }                
+                    dispatch(getNewsFailure(error));
+                }
+            });
+    };
+};
+
 export const getCompetitions = () => {
     return (dispatch) => {
         api.getCompetitions().then((res) => {            
@@ -329,6 +353,33 @@ export const addComment = (id, comment) => {
     return (dispatch) => {
         api.addComment(id, comment).then((res) => {
             dispatch(commentNewsUpdate(res.data.news));            
+        });
+    };
+};
+
+export const getFollowers = () => {
+    return (dispatch) => {
+        api.getFollowers().then((res) => {
+            // dispatch(commentNewsUpdate(res.data.news));            
+            console.log('res', res);
+        });
+    };
+};
+
+export const getFollowings = () => {
+    return (dispatch) => {
+        api.getFollowings().then((res) => {
+            // dispatch(commentNewsUpdate(res.data.news));            
+            console.log('res', res);
+        });
+    };
+};
+
+export const toggleFollow = (user) => {
+    return (dispatch) => {
+        api.toggleFollow(user).then((res) => {
+            // dispatch(commentNewsUpdate(res.data.news));            
+            console.log('res', res);
         });
     };
 };

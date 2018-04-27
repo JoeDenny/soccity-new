@@ -29,6 +29,9 @@ class DashboardSettings extends Component {
 
                 <TemplateTab onChangeTemplate={this.changeTemplate}/>
 
+                {/* <button className="btn btn-primary" onClick={this.props.getPopularNews}>get popular news</button> */}
+                <button className="btn btn-secondary" onClick={() => this.setActiveMenuItem('filter')}>Edit Filters</button>
+                
                 <ul className="settings-buttons">
                     <li className="item">
                         <AutoRefreshButton refreshNews={this.refreshNews}/>

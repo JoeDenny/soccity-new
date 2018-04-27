@@ -1,20 +1,19 @@
 @import '../../styles/variables.scss';
 
-.dashboard-filter.open {
-    transform: none;
+.dashboard-filter {
 
-    .searchbar {
-        width: 100%;
-        margin-right: 0;
-        border: 1px solid $borderGrey;
+    // .searchbar {
+    //     width: 100%;
+    //     margin-right: 0;
+    //     border: 1px solid $borderGrey;
 
-        .add-icon {
-            transform: rotate(45deg);
-            width: 20px;
-            height: 20px;
-            fill: $textSecondary;
-            float: right;
-            margin: 20px;
-        }
-    }
+    //     .add-icon {
+    //         transform: rotate(45deg);
+    //         width: 20px;
+    //         height: 20px;
+    //         fill: $textSecondary;
+    //         float: right;
+    //         margin: 20px;
+    //     }
+    // }
 }

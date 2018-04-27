@@ -16,8 +16,12 @@
 
     .comment {
         display: flex;
-        margin: .75rem 0;
+        margin: 1rem 0;
         font-family: 'Encode Sans Semi Expanded', sans-serif;
+
+        .user-photo {
+            margin-top: 3px;
+        }
     }
     .comment-content {
         margin: 0 10px;
@@ -38,6 +42,10 @@
     }
     p {
         margin: 0;
+    }
+    .article h2 {
+        font-size: .8rem;
+        margin-bottom: 2px;
     }
 }
 

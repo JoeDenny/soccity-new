@@ -15,6 +15,9 @@ class SourceList extends Component {
 
     render() {
 
+        console.log('sources', this.props.sources);
+        
+
         return (
             <div className="source-feed list">
                 <h4 className="list-title">Choose which publication tiers you would like: </h4>                        

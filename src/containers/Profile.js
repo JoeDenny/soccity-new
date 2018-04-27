@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import './styles/profile.css';
 import { connect } from 'react-redux';
 import UserActivity from '../components/UserActivity';
+import FollowingActivity from '../components/FollowingActivity';
 import UserPhoto from '../components/UserPhoto';
 import AuthWrapper from '../components/AuthWrapper';
-import { getUserActivity, logout } from '../actions';
+import { getUserActivity, getFollowers, getFollowings, logout } from '../actions';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
 
@@ -21,6 +22,8 @@ class Profile extends Component {
 
     componentWillMount() {
         this.props.getUserActivity();        
+        this.props.getFollowers();        
+        this.props.getFollowings();        
     }
 
     render() {
@@ -41,6 +44,8 @@ class Profile extends Component {
                         </div>
                     </div>
 
+                    <FollowingActivity />
+
                     <UserActivity activity={activity}/>
 
                 </section>
@@ -56,6 +61,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getUserActivity: () => dispatch(getUserActivity()),
+    getFollowers: () => dispatch(getFollowers()),
+    getFollowings: () => dispatch(getFollowings()),
     logout: () => dispatch(logout())
 });
 

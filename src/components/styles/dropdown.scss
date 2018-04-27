@@ -3,6 +3,7 @@
 .dropdown {
   position: relative;
   display: none;
+  top: -16px;
 
   &.open {
       display: block;

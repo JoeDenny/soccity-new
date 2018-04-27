@@ -3,6 +3,12 @@ import '../styles/comments.css';
 import UserPhoto from '../UserPhoto';
 
 class Comment extends Component {
+
+    toggleFollow = () => {
+
+        this.props.toggleFollow(this.props.comment.user.id);
+    }
+
     render() {
         const comment = this.props.comment;
 
@@ -11,7 +17,7 @@ class Comment extends Component {
         if(this.props.article) {            
             article = (
                 <div className="article">
-                    <h5>{this.props.article.title}</h5>
+                    <h2>{this.props.article.title}</h2>
                 </div>
             );
         }
@@ -24,6 +30,7 @@ class Comment extends Component {
 
                 <div className="comment-content">
                     <h4>{comment.user.name}</h4>
+                    {/* <div onClick={this.toggleFollow}>Follow</div> */}
                     <h5 className="time text-secondary">{comment.created_at_formated}</h5>
 
                     {article}

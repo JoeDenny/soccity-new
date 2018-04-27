@@ -72,7 +72,7 @@
 
 @media (min-width: 992px) {
   .news-feed {
-    max-width: 932px;
+    max-width: 980px;
     padding-left: 60px; }
     .news-feed.template1 {
       margin: auto !important; }

@@ -10,8 +10,10 @@
 
 .dashboard-chat .comment {
   display: flex;
-  margin: .75rem 0;
+  margin: 1rem 0;
   font-family: 'Encode Sans Semi Expanded', sans-serif; }
+  .dashboard-chat .comment .user-photo {
+    margin-top: 3px; }
 
 .dashboard-chat .comment-content {
   margin: 0 10px; }
@@ -32,6 +34,10 @@
 
 .dashboard-chat p {
   margin: 0; }
+
+.dashboard-chat .article h2 {
+  font-size: .8rem;
+  margin-bottom: 2px; }
 
 .no-comments {
   padding: 1rem 0;

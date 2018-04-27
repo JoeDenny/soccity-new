@@ -1,6 +1,7 @@
 .dropdown {
   position: relative;
-  display: none; }
+  display: none;
+  top: -16px; }
   .dropdown.open {
     display: block; }
   .dropdown .menu {

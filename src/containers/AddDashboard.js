@@ -32,6 +32,7 @@ class AddDashboard extends Component {
         this.props.getCompetitions();
         this.props.getTeams();
         this.props.getPlayers();
+        this.props.getSources();
     }
 
     componentWillReceiveProps(newProps) {
@@ -143,7 +144,8 @@ class AddDashboard extends Component {
                         
                         <div className="row">
                             <div className="col-xs-12 col-md-6">
-                                <SourceList 
+                                <SourceList
+                                    sources={this.props.sources} 
                                     addToFilter={this.addToFilter}
                                     removeFromFilter={this.removeFromFilter}/>
                             </div>

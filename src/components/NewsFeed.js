@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
-import ErrorMessages from './ErrorMessages';
+// import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
 
@@ -43,7 +43,8 @@ class NewsFeed extends Component {
         return (
             <section className={className}>
 
-                <ErrorMessages errors={this.props.errors} />
+                {/* <ErrorMessages errors={this.props.errors} /> */}
+
                 <LoadingIcon show={this.props.loading}/>
 
                 <div style={{ display: this.props.loading ? 'none' : 'block' }}>  

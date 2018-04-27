@@ -6,7 +6,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getPopularNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -125,6 +125,7 @@ class Dashboard extends Component {
                         setSearchTerm={this.setSearchTerm}/>
                     
                     <DashboardSettings
+                        getPopularNews={this.props.getPopularNews}
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
@@ -175,6 +176,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
+    getPopularNews: () => dispatch(getPopularNews()),
     getDashboards: () => dispatch(getDashboards()),
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
     openMenu: () => dispatch(openMenu()),   
