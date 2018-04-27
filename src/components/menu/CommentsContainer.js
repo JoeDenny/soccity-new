@@ -50,7 +50,6 @@ class ComentsContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    activeNews: state.activeNews,
     user: state.user
 });
 

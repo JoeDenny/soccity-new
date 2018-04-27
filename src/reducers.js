@@ -1,11 +1,12 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
     user: {},
     news: [],
     activeNews: {},
+    autoRefreshRate: undefined,
     activeMenuItem: undefined,
     dashboards: [],
     competitions: [],
@@ -132,6 +133,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 activeNews: action.payload.news
             };
+        case SET_AUTO_REFRESH:        
+            return {
+                ...state,
+                autoRefreshRate: action.payload.time
+            };
         case SET_ACTIVE_MENU_ITEM:            
             return {
                 ...state,
@@ -142,6 +148,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeNews: undefined
+            };
+        case GET_LATEST_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                latestComments: action.payload.latestComments
             };
         case COMMENT_NEWS: 
             const { comments, comments_count } = action.payload.news;

@@ -13,18 +13,6 @@
             object-fit: contain;
         }
     }
-}
-
-.no-comments {
-    padding: 1rem 0;
-    font-style: italic;
-
-    &.hide-message {
-        display: none;
-    }
-}
-
-.comment-list {
 
     .comment {
         margin: .5rem 0;
@@ -46,6 +34,15 @@
     .user-photo {
         float: left;
         margin-right: 10px;
+    }
+}
+
+.no-comments {
+    padding: 1rem 0;
+    font-style: italic;
+
+    &.hide-message {
+        display: none;
     }
 }
 
@@ -79,5 +76,13 @@
 
     .user-photo {
         margin-top: 5px;
+    }
+}
+
+.dashboard-latest-comments {
+    .comment {
+        .reply-text {
+            display: none;
+        }
     }
 }

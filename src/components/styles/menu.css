@@ -10,8 +10,10 @@
   top: 95px;
   z-index: 99;
   transition: transform .2s ease; }
-  .menu-container header h3 {
-    padding-right: 2rem; }
+  .menu-container header {
+    border-bottom: 1px solid #ebebeb; }
+    .menu-container header h3 {
+      padding-right: 2rem; }
   .menu-container .close-icon {
     width: 30px;
     height: 30px;
@@ -39,8 +41,9 @@
     transition: none; }
     .menu-container .scrollable {
       overflow-y: auto;
-      max-height: 67vh;
-      padding: 1px; }
+      max-height: 80vh;
+      padding: 1px;
+      padding-bottom: 30px; }
     .menu-container .fixed-content {
       position: fixed;
       margin-right: 15px;

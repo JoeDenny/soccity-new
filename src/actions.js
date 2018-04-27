@@ -14,6 +14,14 @@ export const logout = () => ({
     type: LOGOUT
 });
 
+export const SET_AUTO_REFRESH = 'SET_AUTO_REFRESH';
+export const setAutoRefresh = (time) => ({
+    type: SET_AUTO_REFRESH,
+    payload: {
+        time
+    }
+});
+
 export const OPEN_MENU = 'OPEN_MENU';
 export const openMenu = () => ({
     type: OPEN_MENU
@@ -137,6 +145,14 @@ export const commentNewsUpdate = (news) => ({
     type: COMMENT_NEWS,
     payload: {
         news
+    }
+});
+
+export const GET_LATEST_COMMENTS_SUCCESS = 'GET_LATEST_COMMENTS_SUCCESS';
+export const getLatestCommentsSuccess = (latestComments) => ({
+    type: GET_LATEST_COMMENTS_SUCCESS,
+    payload: {
+        latestComments
     }
 });
 
@@ -297,6 +313,14 @@ export const getSources = () => {
     return (dispatch) => {
         api.getSources().then((res) => {                             
             dispatch(saveSources(res.data.data));
+        });
+    };
+};
+
+export const getLatestComments = () => {
+    return (dispatch) => {
+        api.getLatestComments().then((res) => {
+            dispatch(getLatestCommentsSuccess(res.data.comments.data));            
         });
     };
 };

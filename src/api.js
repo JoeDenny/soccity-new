@@ -34,6 +34,14 @@ class Api {
         });
     }
 
+    getLatestComments = () => {
+        return axios.get(`${this.API_URL}/comments/latest`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getCompetitions = () => {
         return axios.get(`${this.API_URL}/competitions`, {
             headers: {

@@ -20,16 +20,10 @@ class BookmarksContainer extends Component {
         }    
         return (
             <div className="bookmarks-container">
-                <div className="fixed-content">  
-                    <header>
-                        <h3>Bookmarked Articles</h3>
-                    </header>
-
+                <div className="scrollable">
                     <p style={{ display: !newsItems.length ? 'block' : 'none' }}>You don't have any articles bookmarked!</p>
 
-                    <div className="scrollable">
-                        {newsItems}
-                    </div>
+                    {newsItems}
                 </div>
             </div>
         )

@@ -14,6 +14,8 @@
     transition: transform .2s ease;
 
     header {
+        border-bottom: 1px solid $borderGrey;
+        
         h3 {
             padding-right: 2rem;
         }
@@ -57,8 +59,9 @@
 
         .scrollable {
             overflow-y: auto;
-            max-height: 67vh;
+            max-height: 80vh;
             padding: 1px;
+            padding-bottom: 30px;
         }
 
         .fixed-content {

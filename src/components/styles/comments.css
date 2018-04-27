@@ -8,31 +8,31 @@
     height: 100%;
     object-fit: contain; }
 
+.dashboard-chat .comment {
+  margin: .5rem 0;
+  font-family: 'Encode Sans Semi Expanded', sans-serif; }
+
+.dashboard-chat h4 {
+  margin-bottom: 0;
+  line-height: 20px;
+  color: #6bac0f; }
+
+.dashboard-chat h5 {
+  font-weight: 300; }
+
+.dashboard-chat p {
+  margin: 1rem 0 0 0;
+  font-size: .8rem; }
+
+.dashboard-chat .user-photo {
+  float: left;
+  margin-right: 10px; }
+
 .no-comments {
   padding: 1rem 0;
   font-style: italic; }
   .no-comments.hide-message {
     display: none; }
-
-.comment-list .comment {
-  margin: .5rem 0;
-  font-family: 'Encode Sans Semi Expanded', sans-serif; }
-
-.comment-list h4 {
-  margin-bottom: 0;
-  line-height: 20px;
-  color: #6bac0f; }
-
-.comment-list h5 {
-  font-weight: 300; }
-
-.comment-list p {
-  margin: 1rem 0 0 0;
-  font-size: .8rem; }
-
-.comment-list .user-photo {
-  float: left;
-  margin-right: 10px; }
 
 .add-comment {
   display: flex;
@@ -59,3 +59,6 @@
     text-transform: uppercase; }
   .add-comment .user-photo {
     margin-top: 5px; }
+
+.dashboard-latest-comments .comment .reply-text {
+  display: none; }

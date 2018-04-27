@@ -6,7 +6,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getDashboards, openMenu, closeMenu, setActiveMenuItem } from '../actions';
+import { getNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -23,7 +23,8 @@ class Dashboard extends Component {
 
     componentWillMount() {
         this.getNews();
-        this.props.getDashboards();        
+        this.props.getDashboards();
+        this.props.setAutoRefresh(10000);     
     }
 
     getNews = (pageNumber) => {
@@ -110,8 +111,12 @@ class Dashboard extends Component {
     render() {
         const { user, news, activeNews, current_page, last_page, isMenuOpen, activeMenuItem } = this.props;
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';
-    
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';        
+        
+        // if(this.props.autoRefreshRate) {            
+        //     setTimeout(() => this.getNews(), this.props.autoRefreshRate);
+        // }
+
         return (
             <AuthWrapper>
                 <section className="app-dashboard">
@@ -159,6 +164,7 @@ const mapStateToProps = (state) => ({
     news: state.news,
     activeNews: state.activeNews,
     activeMenuItem: state.activeMenuItem,
+    autoRefreshRate: state.autoRefreshRate,
     errors: state.errors,
     dashboards: state.dashboards,    
     current_page: state.current_page,
@@ -170,6 +176,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
     getDashboards: () => dispatch(getDashboards()),
+    setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
     openMenu: () => dispatch(openMenu()),   
     closeMenu: () => dispatch(closeMenu()),
     setActiveMenuItem: (item) => dispatch(setActiveMenuItem(item))
