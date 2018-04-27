@@ -18,18 +18,18 @@ class Comment extends Component {
         
 
         return (
-            <li className="comment card">
-                <header>
-                    <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png"/>
+            <li className="comment">
+
+                <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png"/>
+
+                <div className="comment-content">
                     <h4>{comment.user.name}</h4>
-                    <h5 className="text-tiny">{comment.created_at_formated}</h5>
-                </header>
+                    <h5 className="time text-secondary">{comment.created_at_formated}</h5>
 
-                {article}
+                    {article}
 
-                <p>{comment.comment}</p>
-
-                <p className="reply-text text-right">Reply</p>
+                    <p className="text-tiny">{comment.comment}</p>
+                </div>
             </li>
         )
     }

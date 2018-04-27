@@ -1,7 +1,6 @@
 .menu-container {
   position: fixed;
   max-width: 400px;
-  padding: 1rem;
   border-left: 1px solid #ebebeb;
   background-color: #fff;
   transform: translateX(400px);
@@ -10,15 +9,16 @@
   top: 95px;
   z-index: 99;
   transition: transform .2s ease; }
-  .menu-container header {
+  .menu-container .header {
+    padding: 1rem;
     border-bottom: 1px solid #ebebeb; }
-    .menu-container header h3 {
-      padding-right: 2rem; }
+    .menu-container .header h3 {
+      padding-right: 1.25rem; }
   .menu-container .close-icon {
-    width: 30px;
-    height: 30px;
-    top: 0;
-    right: 0; }
+    width: 15px;
+    height: 15px;
+    top: 5px;
+    right: 10px; }
     .menu-container .close-icon svg {
       width: 15px;
       height: 15px;
@@ -42,11 +42,11 @@
     .menu-container .scrollable {
       overflow-y: auto;
       max-height: 80vh;
-      padding: 1px;
-      padding-bottom: 30px; }
+      padding: 15px;
+      padding-top: 5px;
+      padding-bottom: 60px; }
     .menu-container .fixed-content {
       position: fixed;
-      margin-right: 15px;
       margin-top: 45px;
       min-width: 335px; }
     .menu-container.open {

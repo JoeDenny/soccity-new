@@ -47,7 +47,7 @@ class Menu extends Component {
         return (
             <div className={"menu-container " + menuClass}>
                 <div className="fixed-content">  
-                    <header>
+                    <header className="header">
                         
                         {title}
 
