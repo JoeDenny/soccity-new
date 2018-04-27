@@ -15,6 +15,15 @@
   .dashboard-chat .comment .user-photo {
     margin-top: 3px; }
 
+.dashboard-chat .btn-follow {
+  padding: 5px;
+  font-size: .7rem;
+  border: 1px solid #ebebeb;
+  margin: 0 15px;
+  float: right; }
+  .dashboard-chat .btn-follow.active {
+    background-color: #6bac0f; }
+
 .dashboard-chat .comment-content {
   margin: 0 10px; }
 

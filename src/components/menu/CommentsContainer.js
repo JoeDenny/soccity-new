@@ -3,9 +3,14 @@ import '../styles/comments.css';
 import Comment from './Comment';
 import AddComment from './AddComment';
 import { connect } from 'react-redux';
-import { removeActiveNews, addComment, toggleFollow } from '../../actions';
+import { removeActiveNews, addComment, getFollowings, toggleFollow } from '../../actions';
 
 class ComentsContainer extends Component {
+
+    componentDidMount() {
+        this.props.getFollowings();
+    }
+
     onSendComment = (comment) => {
         const { activeNews } = this.props;
         
@@ -35,6 +40,8 @@ class ComentsContainer extends Component {
                 return (
                     <Comment
                         key={comment.id}
+                        user={this.props.user}
+                        followings={this.props.followings}
                         comment={comment}
                         toggleFollow={this.toggleFollow}/>
                 );
@@ -58,13 +65,15 @@ class ComentsContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    user: state.user,
+    followings: state.followings
 });
 
 const mapDispatchToProps = (dispatch) => ({
     removeActiveNews: () => dispatch(removeActiveNews()),
     addComment: (id, comment) => dispatch(addComment(id, comment)),
     toggleFollow: (userId) => dispatch(toggleFollow(userId)),
+    getFollowings: () => dispatch(getFollowings()),
     // removeComment: (newsId, commentId: number) => dispatch(removeComment(newsId, commentId)),
     // editComment: (newsId: number, commentId: number, comment: string) => dispatch(editComment(newsId, commentId, comment))
 });

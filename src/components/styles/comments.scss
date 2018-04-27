@@ -23,9 +23,23 @@
             margin-top: 3px;
         }
     }
+
+    .btn-follow {
+        padding: 5px;
+        font-size: .7rem;
+        border: 1px solid $borderGrey;
+        margin: 0 15px;
+        float: right;
+
+        &.active {
+            background-color: $secondary;
+        }
+    }
+
     .comment-content {
         margin: 0 10px;
     }
+
     h4 {
         display: inline-block;
         line-height: 20px;

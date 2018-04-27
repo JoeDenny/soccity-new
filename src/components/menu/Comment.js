@@ -12,7 +12,8 @@ class Comment extends Component {
     render() {
         const comment = this.props.comment;
 
-        let article;
+        let article,
+            isFollowingUser;
 
         if(this.props.article) {            
             article = (
@@ -22,6 +23,15 @@ class Comment extends Component {
             );
         }
         
+        if(this.props.followings) {
+            const followings = this.props.followings;
+            for(let i = 0; i < followings.length; i++) {
+                
+                if (followings[i].id === comment.user.id) {
+                    isFollowingUser = true;
+                }
+            }
+        }
 
         return (
             <li className="comment">
@@ -30,8 +40,19 @@ class Comment extends Component {
 
                 <div className="comment-content">
                     <h4>{comment.user.name}</h4>
-                    <div onClick={this.toggleFollow}>Follow</div>
                     <h5 className="time text-secondary">{comment.created_at_formated}</h5>
+                    
+                    <span style={{display : comment.user.id === this.props.user.id ? 'none' : 'inline'}}>
+
+                        <span style={{display : isFollowingUser ? 'none' : 'inline'}}>
+                            <div className="btn btn-follow" onClick={this.toggleFollow}>Follow</div>
+                        </span>
+
+                        <span style={{display : isFollowingUser ? 'inline' : 'none'}}>
+                            <div className="btn btn-follow active" onClick={this.toggleFollow}>Unfollow</div>
+                        </span>
+
+                    </span>
 
                     {article}
 

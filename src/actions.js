@@ -156,12 +156,6 @@ export const getLatestCommentsSuccess = (latestComments) => ({
     }
 });
 
-export const TOGGLE_FOLLOW_SUCCESS = 'TOGGLE_FOLLOW_SUCCESS';
-export const toggleFollowSuccess = () => ({
-    type: TOGGLE_FOLLOW_SUCCESS,
-    payload: {}
-});
-
 export const GET_FOLLOWERS_SUCCESS = 'GET_FOLLOWERS_SUCCESS';
 export const getFollowersSuccess = (followers) => ({
     type: GET_FOLLOWERS_SUCCESS,
@@ -368,8 +362,15 @@ export const addComment = (id, comment) => {
         });
     };
 };
+export const toggleFollow = (user) => {    
+    return (dispatch) => {
+        api.toggleFollow(user).then((res) => {
+            dispatch(getFollowings());            
+        });
+    };
+};
 
-export const getFollowers = () => {
+export const getFollowers = () => {    
     return (dispatch) => {
         api.getFollowers().then((res) => {
             dispatch(getFollowersSuccess(res.data.followers.data));            
@@ -377,19 +378,10 @@ export const getFollowers = () => {
     };
 };
 
-export const getFollowings = () => {
+export const getFollowings = () => {    
     return (dispatch) => {
-        api.getFollowings().then((res) => {
+        api.getFollowings().then((res) => {            
             dispatch(getFollowingsSuccess(res.data.followings.data));            
-        });
-    };
-};
-
-export const toggleFollow = (user) => {
-    return (dispatch) => {
-        api.toggleFollow(user).then((res) => {
-            // dispatch(commentNewsUpdate(res.data.news));            
-            console.log('res', res);
         });
     };
 };
