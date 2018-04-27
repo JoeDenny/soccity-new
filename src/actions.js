@@ -162,6 +162,18 @@ export const toggleFollowSuccess = () => ({
     payload: {}
 });
 
+export const GET_FOLLOWERS_SUCCESS = 'GET_FOLLOWERS_SUCCESS';
+export const getFollowersSuccess = (followers) => ({
+    type: GET_FOLLOWERS_SUCCESS,
+    payload: { followers }
+});
+
+export const GET_FOLLOWINGS_SUCCESS = 'GET_FOLLOWINGS_SUCCESS';
+export const getFollowingsSuccess = (followings) => ({
+    type: GET_FOLLOWINGS_SUCCESS,
+    payload: { followings }
+});
+
 export const FAVOURITE_ARTICLE = '[News] Like news';
 export const favouriteArticleUpdate = (news) => ({
     type: FAVOURITE_ARTICLE,
@@ -360,8 +372,7 @@ export const addComment = (id, comment) => {
 export const getFollowers = () => {
     return (dispatch) => {
         api.getFollowers().then((res) => {
-            // dispatch(commentNewsUpdate(res.data.news));            
-            console.log('res', res);
+            dispatch(getFollowersSuccess(res.data.followers.data));            
         });
     };
 };
@@ -369,8 +380,7 @@ export const getFollowers = () => {
 export const getFollowings = () => {
     return (dispatch) => {
         api.getFollowings().then((res) => {
-            // dispatch(commentNewsUpdate(res.data.news));            
-            console.log('res', res);
+            dispatch(getFollowingsSuccess(res.data.followings.data));            
         });
     };
 };

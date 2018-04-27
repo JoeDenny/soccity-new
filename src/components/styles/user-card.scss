@@ -1,0 +1,13 @@
+@import '../../styles/_variables.scss';
+
+.user-card {
+    display: flex;
+
+    .user-photo {
+        margin: 0;
+    }
+
+    h4 {
+        margin: 9px;
+    }
+}

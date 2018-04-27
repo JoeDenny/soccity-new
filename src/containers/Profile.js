@@ -37,14 +37,16 @@ class Profile extends Component {
                             <Link className="text-secondary" to={routes.PREFERENCES_PATH}><span>&lt;</span> Back to preferences.</Link>                
                         </p>
                         <div className="details text-center">
-                            <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />
+                            <UserPhoto size={80} link={this.props.user.avatar_path} />
 
                             <h2>{user.name}</h2>
                             <h2>{user.email}</h2>
                         </div>
                     </div>
 
-                    <FollowingActivity />
+                    <FollowingActivity
+                        followers={this.props.followers}
+                        followings={this.props.followings}/>
 
                     <UserActivity activity={activity}/>
 
@@ -56,7 +58,9 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.user,
-    activity: state.activity
+    activity: state.activity,
+    followers: state.followers,
+    followings: state.followings
 });
 
 const mapDispatchToProps = (dispatch) => ({

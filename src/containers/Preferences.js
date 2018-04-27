@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AuthWrapper from '../components/AuthWrapper';
+import AvatarInput from '../components/AvatarInput';
 import ErrorMessages from '../components/ErrorMessages';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import UserPhoto from '../components/UserPhoto';
+// import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
@@ -18,18 +19,18 @@ class Preferences extends Component {
 
         this.state = {
             headerIsFixed: false,
-            avatar: 'http://35.176.191.198/images/default_avatars/profile1.png',
+            avatar: '',
             name: '',
             email: '',
             old_password: '',
             password: '',
             password_confirmation: ''
-        }        
+        }  
     }
-
+    
     componentWillMount() {
         this.props.getDashboards();
-
+        
         this.setState({
             name: this.props.user.name,
             email: this.props.user.email
@@ -44,8 +45,6 @@ class Preferences extends Component {
             password: '',
             password_confirmation: ''
         })
-
-        console.log('this.props', this.props);
     }
     
     handleFormChange = (event) => {
@@ -55,6 +54,14 @@ class Preferences extends Component {
             ...this.state,
             [name]: event.target.value
           });        
+    }
+
+    handleImageUpload = (image) => {
+
+        this.setState({
+            ...this.state,
+            avatar: image
+        }); 
     }
 
     getDashboards = () => {
@@ -67,16 +74,19 @@ class Preferences extends Component {
     
     handleFormSubmit = (event) => {
         event.preventDefault();
-        
+                
         const formData = {
+            avatar: this.state.avatar,
             name: this.state.name,
             email: this.state.email,
             old_password: this.state.old_password,
             password: this.state.password,
             password_confirmation: this.state.password_confirmation
         };
+
+        let data = new FormData(formData);
         
-        this.props.updateUserDetails(formData);
+        this.props.updateUserDetails(data);
     }
 
     logout = () => {
@@ -110,7 +120,8 @@ class Preferences extends Component {
 
                             <div className="details text-center">
 
-                                <UserPhoto size={80} link="http://35.176.191.198/images/default_avatars/profile1.png" />                                                
+                                <AvatarInput handleImageUpload={this.handleImageUpload} />
+
                                 <div className="auth-layout">
 
                                     <ErrorMessages errors={this.props.errors}/>     

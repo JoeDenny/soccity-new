@@ -30,7 +30,7 @@ class Comment extends Component {
 
                 <div className="comment-content">
                     <h4>{comment.user.name}</h4>
-                    {/* <div onClick={this.toggleFollow}>Follow</div> */}
+                    <div onClick={this.toggleFollow}>Follow</div>
                     <h5 className="time text-secondary">{comment.created_at_formated}</h5>
 
                     {article}

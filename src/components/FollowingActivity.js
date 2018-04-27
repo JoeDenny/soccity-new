@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserCard from './UserCard';
 
 class FollowingActivity extends Component {
     render() {
@@ -7,35 +8,35 @@ class FollowingActivity extends Component {
             followersCount,
             followingsCount;
 
-        if(this.props.followers) {            
+        if(this.props.followers) {               
             
-            followers = this.props.followers.map(follower => {                
+            followers = this.props.followers.map((follower, i) => {                
                 return (
-                    <li>{follower}</li>        
+                    <UserCard key={i} user={follower} />     
                 );
             }); 
+
             followersCount = followers.length;          
         }
 
         if(this.props.followings) {            
             
-            followings = this.props.followings.map(following => {                
+            followings = this.props.followings.map((following, i) => {                
                 return (
-                    <li>{following}</li>        
+                    <UserCard key={i} user={following} />      
                 );
             });   
-            followingsCount = followingsCount.length;          
-                    
+            followingsCount = followings.length;
         }    
        return(
-           <div className="activity container">
+           <div className="activity following container">
             <div className="row">
                 <div className="col-xs-12 col-md-6">
-                    <h5>Followers: {followersCount}</h5>
+                    <h4 className="subtitle">Followers ({followersCount})</h4>
                     <ul>{followers}</ul>
                 </div>
                 <div className="col-xs-12 col-md-6">
-                    <h5>Following: {followingsCount}</h5>
+                    <h4 className="subtitle">Following ({followingsCount})</h4>
                     <ul>{followings}</ul>
                 </div>
             </div>

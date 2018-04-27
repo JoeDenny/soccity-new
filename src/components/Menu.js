@@ -38,7 +38,7 @@ class Menu extends Component {
                     break;
             case 'recentlyViewed':
                     title = <h3>Recenlty Viewed Articles</h3>
-                    activeMenuItem = <h1>recentlyViewed</h1>;
+                    activeMenuItem = <h1>recently viewed articles go here</h1>;
                     break;
             default:
                 return <div className={"menu-container " + menuClass}><h1>menu y'all</h1></div>;

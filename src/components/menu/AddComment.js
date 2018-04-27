@@ -44,7 +44,7 @@ class AddComment extends Component {
             <form className="add-comment" onSubmit={this.onSubmit}>
                 <div className="add-comment__photo">
                     <UserPhoto
-                        link="http://35.176.191.198/images/default_avatars/profile1.png"
+                        link=""
                     />
                 </div>
                 <div className="add-comment__input">

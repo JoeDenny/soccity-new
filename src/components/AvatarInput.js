@@ -24,7 +24,6 @@ class AvatarInput extends Component {
         fr.readAsDataURL(file);
     }
     render() {
-        const { name } = this.props;
         return (
             <div className="file-input">
                 <div className="avatar-container">
@@ -37,7 +36,7 @@ class AvatarInput extends Component {
                     <input 
                         type="file" 
                         onChange={this.onChange}
-                        name={name}
+                        name="avatar"
                     />
                     <div className="file-input__btn">Upload image</div>
                 </label>

@@ -1,0 +1,6 @@
+.user-card {
+  display: flex; }
+  .user-card .user-photo {
+    margin: 0; }
+  .user-card h4 {
+    margin: 9px; }
