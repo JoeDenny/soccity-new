@@ -46,7 +46,11 @@
     .dashboards-section {
         background: #fff;
         padding: 2rem 1rem;
-        border-bottom: 1px solid $borderGrey;        
+        border-bottom: 1px solid $borderGrey;     
+        
+        .new-dashboard-link {
+            margin-top: 2rem;
+        }
 
         a {
             text-decoration: underline;
@@ -79,11 +83,29 @@
     }
 
     .dashboard-item {        
+        position: relative;
         h3 {
             display: inline-block;
         }
+        h5 {
+            margin: 0;
+        }
+        &.box {
+            padding: 1rem;
+            margin-bottom: 5px;
+        }
+        .text-tiny {
+            margin-bottom: 10px;
+        }
         button {
             color: $error;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid $error;
+            border-radius: .25rem;
+            padding: 2px;
+            font-size: .8rem;
         }
     }
     

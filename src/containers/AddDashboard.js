@@ -73,7 +73,7 @@ class AddDashboard extends Component {
     }
 
     addDashboard = () => {
-
+        
         const params = {
             name:  'default dashboard',
             sources: this.state.sources,

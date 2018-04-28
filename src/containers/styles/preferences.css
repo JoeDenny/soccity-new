@@ -31,6 +31,11 @@
   background: #fff;
   padding: 2rem 1rem;
   border-bottom: 1px solid #ebebeb; }
+  .preferences-page .profile-section .new-dashboard-link,
+  .preferences-page .notifications-section .new-dashboard-link,
+  .preferences-page .billing-section .new-dashboard-link,
+  .preferences-page .dashboards-section .new-dashboard-link {
+    margin-top: 2rem; }
   .preferences-page .profile-section a,
   .preferences-page .notifications-section a,
   .preferences-page .billing-section a,
@@ -53,11 +58,26 @@
     margin: 10px;
     color: #6bac0f; }
 
-.preferences-page .dashboard-item h3 {
-  display: inline-block; }
-
-.preferences-page .dashboard-item button {
-  color: #d72b3f; }
+.preferences-page .dashboard-item {
+  position: relative; }
+  .preferences-page .dashboard-item h3 {
+    display: inline-block; }
+  .preferences-page .dashboard-item h5 {
+    margin: 0; }
+  .preferences-page .dashboard-item.box {
+    padding: 1rem;
+    margin-bottom: 5px; }
+  .preferences-page .dashboard-item .text-tiny {
+    margin-bottom: 10px; }
+  .preferences-page .dashboard-item button {
+    color: #d72b3f;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid #d72b3f;
+    border-radius: .25rem;
+    padding: 2px;
+    font-size: .8rem; }
 
 .preferences-page .no-dashboards-message {
   text-align: center; }

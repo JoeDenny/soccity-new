@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -125,11 +125,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 sources: action.payload.sources
             };
-        case SAVE_DASHBOARDS:            
-            return {
-                ...state,
-                dashboards: action.payload.dashboards
-            };
         case ADD_CUSTOM_TWITTER_SUCCESS:            
             return {
                 ...state,
@@ -140,8 +135,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 errors: action.payload.errors
             };
-        case ADD_DASHBOARD:            
-            api.getDashboards();
+        case SAVE_DASHBOARDS:            
+            return {
+                ...state,
+                dashboards: action.payload.dashboards,
+            };
+        case ADD_DASHBOARD_SUCCESS:            
             return {
                 ...state,
                 updateDashboardSuccess: true
@@ -151,9 +150,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 addDashboardErrors: action.payload.errors
             };
-        case DELETE_DASHBOARD:
-            api.getDashboards();
-            break;
         case SET_ACTIVE_NEWS:        
             return {
                 ...state,

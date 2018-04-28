@@ -212,7 +212,7 @@ export const addCustomTwitterAccountFailure = (errors) => ({
     payload: { errors }
 });
 
-export const SAVE_DASHBOARDS = 'get dashboards';
+export const SAVE_DASHBOARDS = 'SAVE_DASHBOARDS';
 export const getDashboardsUpdate = (dashboards) => ({
     type: SAVE_DASHBOARDS,
     payload: {
@@ -220,17 +220,17 @@ export const getDashboardsUpdate = (dashboards) => ({
     }
 });
 
-export const DELETE_DASHBOARD = 'delete dashboard';
+export const DELETE_DASHBOARD = 'DELETE_DASHBOARD';
 export const deleteDashboardUpdate = () => ({
     type: DELETE_DASHBOARD
 });
 
-export const ADD_DASHBOARD = 'add dashboard';
-export const addDashboardUpdate = () => ({
-    type: ADD_DASHBOARD
+export const ADD_DASHBOARD_SUCCESS = 'ADD_DASHBOARD_SUCCESS';
+export const addDashboardSuccess = () => ({
+    type: ADD_DASHBOARD_SUCCESS
 });
 
-export const ADD_DASHBOARD_FAILURE = 'add dashboard failure';
+export const ADD_DASHBOARD_FAILURE = 'ADD_DASHBOARD_FAILURE';
 export const addDashboardFailure = (errors) => ({
     type: ADD_DASHBOARD_FAILURE,
     payload: {
@@ -443,8 +443,9 @@ export const addDashboard = (params) => {
 
     return (dispatch) => {
         api.addDashboard(params)
-            .then((res) => {                
-                dispatch(addDashboardUpdate());
+            .then((res) => {    
+                dispatch(addDashboardSuccess());            
+                dispatch(getDashboards());
             })
             .catch(error => {  
                 if (error.response) {                                        
@@ -460,6 +461,7 @@ export const deleteDashboard = (id) => {
         api.deleteDashboard(id)
             .then((res) => {                                
                 dispatch(deleteDashboardUpdate());
+                dispatch(getDashboards())
             });
     };
 };

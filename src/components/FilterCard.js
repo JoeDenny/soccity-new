@@ -6,7 +6,7 @@ class FilterCard extends Component {
          if(event.target.checked) {
              this.props.addToFilter(this.props.data.id);
          } else {
-             this.props.removeFromFilter(this.props.data);
+             this.props.removeFromFilter(this.props.data.id);
          }
     }
 

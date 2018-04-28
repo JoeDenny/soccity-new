@@ -8,13 +8,38 @@ class DashboardItem extends Component {
 
     render() {
         const dashboard = this.props.dashboard;
-            
 
+        let sources,
+            teams;
+
+        if(dashboard.sources.length) {
+            sources = dashboard.sources.map(source => {
+
+                return <span key={source.id}>{source.title} </span>;
+            })
+        }
+
+        if(dashboard.teams.length) {
+            teams = dashboard.teams.map(team => {
+
+                return <span key={team.id}>{team.name} </span>;
+            })
+        }
+            
         return (
-            <div className="dashboard-item card">
-                <h3>{dashboard.name}</h3>
-                <button className="pull-right" onClick={this.deleteDashboard}>Delete</button>
-                <p>Keywords: {dashboard.keywords}</p>
+            <div className="dashboard-item box">
+                <span style={{display: dashboard.sources.length ? 'inline' : 'none'}}>                
+                    <h5>Sources</h5>
+                    <p className="text-tiny">{sources}</p>
+                </span>
+                <span style={{display: dashboard.teams.length ? 'inline' : 'none'}}>
+                    <h5>Teams</h5>
+                    <p className="text-tiny">{teams}</p>
+                </span>
+                <span style={{display: dashboard.keywords ? 'inline' : 'none'}}>
+                    <p className="text-tiny">Keywords: {dashboard.keywords}</p>
+                </span>
+                <button onClick={this.deleteDashboard}>Delete</button>
             </div>
         )
     }

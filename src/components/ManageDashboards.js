@@ -39,7 +39,7 @@ class ManageDashboards extends Component {
                             <p>You haven't created any dashboards yet!</p>
                         </div>
 
-                        <div className="text-center">
+                        <div className="text-center new-dashboard-link">
                             <Link to={routes.ADD_DASHBOARD_PATH}>Create a dashboard.</Link>
                         </div>
                     </div>

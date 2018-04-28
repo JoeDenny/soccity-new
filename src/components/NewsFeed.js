@@ -61,7 +61,7 @@ class NewsFeed extends Component {
                         </div>
 
                         <p
-                            style={{display: this.props.searchTerm || !newsItems.length ? 'none' : 'block' }}
+                            style={{display: this.props.searchTerm || newsItems.length < 50 ? 'none' : 'block' }}
                             className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</p>
                     </div>
                 </div>
