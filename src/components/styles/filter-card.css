@@ -4,8 +4,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   font-weight: 600;
   font-size: .8rem; }
-  .filter-card:first-child {
-    border-top: 1px solid rgba(0, 0, 0, 0.1); }
   .filter-card:last-child {
     border-bottom: none; }
   .filter-card.selected {

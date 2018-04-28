@@ -90,6 +90,14 @@ class Api {
         });
     }
 
+    openArticle = (id) => {
+        return axios.get(`${this.API_URL}/news/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getPopularNews = () => {
 
         return axios.get(`${this.API_URL}/news/popular`, {
@@ -101,6 +109,14 @@ class Api {
 
     getLatestComments = () => {
         return axios.get(`${this.API_URL}/comments/latest`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getRecentlyViewed = () => {
+        return axios.get(`${this.API_URL}/user/seen`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

@@ -156,6 +156,14 @@ export const getLatestCommentsSuccess = (latestComments) => ({
     }
 });
 
+export const GET_RECENTLY_VIEWED_SUCCESS = 'GET_RECENTLY_VIEWED_SUCCESS';
+export const getRecentlyViewedSuccess = (recentlyViewed) => ({
+    type: GET_RECENTLY_VIEWED_SUCCESS,
+    payload: {
+        recentlyViewed
+    }
+});
+
 export const GET_FOLLOWERS_SUCCESS = 'GET_FOLLOWERS_SUCCESS';
 export const getFollowersSuccess = (followers) => ({
     type: GET_FOLLOWERS_SUCCESS,
@@ -328,6 +336,15 @@ export const getPopularNews = () => {
     };
 };
 
+export const openArticle = (id) => {        
+    return (dispatch) => {
+        api.openArticle(id)
+            .then(() => {                                
+                dispatch(getRecentlyViewed());
+            })
+    };
+};
+
 export const getCompetitions = () => {
     return (dispatch) => {
         api.getCompetitions().then((res) => {            
@@ -356,6 +373,14 @@ export const getSources = () => {
     return (dispatch) => {
         api.getSources().then((res) => {                             
             dispatch(saveSources(res.data.data));
+        });
+    };
+};
+
+export const getRecentlyViewed = () => {
+    return (dispatch) => {
+        api.getRecentlyViewed().then((res) => {            
+            dispatch(getRecentlyViewedSuccess(res.data.seen));            
         });
     };
 };

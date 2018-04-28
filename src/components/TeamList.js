@@ -14,6 +14,11 @@ class TeamList extends Component {
         this.props.removeFromFilter('teams', team);        
     }
 
+    setActiveCatergory = (id) => {
+
+        this.props.setActiveCatergory('teamId', id)
+    }
+
     render() {
         let teams,
             isInFilterResults;
@@ -29,6 +34,7 @@ class TeamList extends Component {
                     <FilterCard
                         key={team.id}
                         data={team}
+                        competitionId={this.props.competitionId}
                         addToFilter={this.addTeam}
                         removeFromFilter={this.removeTeam}                        
                         isInFilterResults={isInFilterResults} />
@@ -41,6 +47,10 @@ class TeamList extends Component {
                 <h4 className="list-title">Add teams</h4>            
                 <ul>
                     {teams}
+
+                    {/* <li className={"no-results " + noResultsClass}>
+                        Click on a competition to get started...
+                    </li> */}
                 </ul>
             </div>
         )

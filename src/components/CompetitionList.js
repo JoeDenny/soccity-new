@@ -14,6 +14,11 @@ class CompetitionList extends Component {
         this.props.removeFromFilter('competitions', competition);        
     }
 
+    setActiveCatergory = (id) => {
+
+        this.props.setActiveCatergory('competitionId', id)
+    }
+
     render() {
         let competitions,
             isInFilterResults;
@@ -27,6 +32,7 @@ class CompetitionList extends Component {
                         <FilterCard
                             key={competition.id}
                             data={competition}
+                            setActiveCatergory={this.setActiveCatergory}
                             addToFilter={this.addCompetition}
                             removeFromFilter={this.removeCompetition}
                             isInFilterResults={isInFilterResults} />

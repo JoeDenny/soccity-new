@@ -10,19 +10,29 @@ class FilterCard extends Component {
          }
     }
 
+    setActiveCatergory = () => {
+
+        this.props.setActiveCatergory(this.props.data.id);
+    }
+
     render() {
         const data = this.props.data,
               logo = data.logo_path ? data.logo_path : data.image_path,
               className = `filter-card text-secondary ${this.props.isInFilterResults ? 'selected' : ''}`;
               
         return (
-            <li className={className}>   
+            <li className={className}> 
+
+                
+                {/* style={{display: this.props.competitionId === this.props.data.competition_id ? 'block' :  'none'}}       */}
                     <img
                         className="logo"
                         src={logo}
                         alt="" />
-                    <p className="name">{this.props.data.name}</p>
-                    <p className="name">{this.props.data.title}</p>
+                    <span onClick={this.setActiveCatergory}>
+                        <p className="name">{this.props.data.name}</p>
+                        <p className="name">{this.props.data.title}</p>
+                    </span>
                     <input type="checkbox" onChange={this.handleChange} />
             </li>
         )

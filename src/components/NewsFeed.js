@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
+import AdvertContainer from './AdvertContainer';
 // import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
@@ -23,9 +24,12 @@ class NewsFeed extends Component {
         
         if(this.props.news) {
 
-            newsItems = this.props.news.reduce((result, newsItem) => {
-               
-                if (newsItem.title.toLowerCase().includes(searchTerm)) {
+            newsItems = this.props.news.reduce((result, newsItem, index) => {
+                
+                if(index > 0 && index % 9 === 0) {
+
+                    result.push(<AdvertContainer key={index}/>)
+                } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     result.push(
 

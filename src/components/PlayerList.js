@@ -27,6 +27,7 @@ class PlayerList extends Component {
                     <FilterCard
                         key={player.id}
                         data={player}
+                        teamId={this.props.teamId}                        
                         addToFilter={this.addPlayer}
                         removeFromFilter={this.removePlayer}                        
                         isInFilterResults={isInFilterResults}/>

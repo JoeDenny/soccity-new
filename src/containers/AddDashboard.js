@@ -24,7 +24,9 @@ class AddDashboard extends Component {
             teams: [],
             players: [],
             competitions: [],
-            preferences: []
+            preferences: [],
+            competitionId: undefined,
+            teamId: undefined
         }
         
     }
@@ -86,6 +88,13 @@ class AddDashboard extends Component {
         this.props.addDashboard(params);        
     }
 
+    setActiveCatergory = (category, id) => {
+        this.setState({
+            ...this.state,
+            [category]: id
+        });
+    }
+
     render() {
         const { competitions, teams, players } = this.props;
         
@@ -122,6 +131,7 @@ class AddDashboard extends Component {
                             <div className="col-xs-12 col-md-4">
                                 <CompetitionList
                                     competitions={competitions}
+                                    setActiveCatergory={this.setActiveCatergory}
                                     filterResults={this.state.competitions}
                                     addToFilter={this.addToFilter}
                                     removeFromFilter={this.removeFromFilter} />
@@ -130,6 +140,7 @@ class AddDashboard extends Component {
                             <div className="col-xs-12 col-md-4">
                                 <TeamList
                                     teams={teams}
+                                    competitionId={this.state.competitionId}
                                     addToFilter={this.addToFilter}
                                     removeFromFilter={this.removeFromFilter}
                                     filterResults={this.state.teams} />
@@ -138,6 +149,7 @@ class AddDashboard extends Component {
                             <div className="col-xs-12 col-md-4">                    
                                 <PlayerList
                                     players={players}
+                                    teamId={this.state.teamId}
                                     addToFilter={this.addToFilter}
                                     removeFromFilter={this.removeFromFilter}
                                     filterResults={this.state.players} />

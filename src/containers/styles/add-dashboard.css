@@ -22,8 +22,12 @@
   padding: .1rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: .28571429rem; }
+  .list ul {
+    border-top: 1px solid #ebebeb; }
   .list .list-title {
     margin: 1rem; }
+  .list .no-results.hide {
+    display: none; }
 
 .add-dashboard .col-md-4,
 .add-dashboard .col-md-6 {

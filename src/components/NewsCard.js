@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setActiveNews, setActiveMenuItem } from '../actions';
+import { setActiveNews, setActiveMenuItem, openArticle } from '../actions';
 import './styles/news-card.css';
 import FavouriteIcon from './FavouriteIcon';
 import BookmarkIcon from './BookmarkIcon';
@@ -13,6 +13,10 @@ class NewsCard extends Component {
     onOpenComments = () => {
         this.props.setActiveNews(this.props.newsItem);
         this.props.setActiveMenuItem('comments');        
+    }
+
+    openArticle = () => {
+        this.props.openArticle(this.props.newsItem.id);
     }
 
     render() {
@@ -41,7 +45,7 @@ class NewsCard extends Component {
         
         return (
             <div className={newsCardClass}>
-                <a href={this.props.newsItem.link} target="_blank">
+                <a href={this.props.newsItem.link} onClick={this.openArticle} target="_blank">
                     <div className="thumbnail"> 
                         <img
                             alt=""
@@ -102,7 +106,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     setActiveNews: (news) => dispatch(setActiveNews(news)),
-    setActiveMenuItem: (item) => dispatch(setActiveMenuItem(item))
+    setActiveMenuItem: (item) => dispatch(setActiveMenuItem(item)),
+    openArticle: (id) => dispatch(openArticle(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsCard);

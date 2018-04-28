@@ -31,8 +31,18 @@
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: .28571429rem;    
 
+    ul {
+        border-top: 1px solid $borderGrey;
+    }
+
     .list-title {
         margin: 1rem;
+    }
+
+    .no-results {
+        &.hide {
+            display: none;
+        }
     }
 }
 

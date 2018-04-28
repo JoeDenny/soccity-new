@@ -4,6 +4,7 @@ import CommentsContainer from './menu/CommentsContainer';
 import BookmarksContainer from './menu/BookmarksContainer';
 import FilterContainer from './menu/FilterContainer';
 import LatestCommentsContainer from './menu/LatestCommentsContainer';
+import RecentlyViewedContainer from './menu/RecentlyViewedContainer';
 
 class Menu extends Component {
 
@@ -37,8 +38,8 @@ class Menu extends Component {
                     activeMenuItem = <BookmarksContainer news={this.props.news} />;
                     break;
             case 'recentlyViewed':
-                    title = <h3>Recenlty Viewed Articles</h3>
-                    activeMenuItem = <h1>recently viewed articles go here</h1>;
+                    title = <h3>Recently Viewed Articles</h3>
+                    activeMenuItem = <RecentlyViewedContainer />
                     break;
             default:
                 return <div className={"menu-container " + menuClass}><h1>menu y'all</h1></div>;
