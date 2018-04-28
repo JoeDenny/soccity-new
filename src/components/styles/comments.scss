@@ -28,7 +28,6 @@
         padding: 5px;
         font-size: .7rem;
         border: 1px solid $borderGrey;
-        margin: 0 15px;
         float: right;
 
         &.active {
@@ -38,6 +37,7 @@
 
     .comment-content {
         margin: 0 10px;
+        width: 100%;
     }
 
     h4 {

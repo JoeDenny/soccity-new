@@ -1,13 +1,18 @@
 .menu-container {
   position: fixed;
   max-width: 400px;
+  width: 95vw;
   border-left: 1px solid #ebebeb;
   background-color: #fff;
   transform: translateX(400px);
   right: 0;
   bottom: 50px;
-  top: 95px;
+  top: 100px;
   z-index: 99; }
+  .menu-container .scrollable {
+    padding: 15px;
+    padding-top: 5px;
+    padding-bottom: 60px; }
   .menu-container .header {
     padding: 1rem;
     border-bottom: 1px solid #ebebeb; }
@@ -33,22 +38,20 @@
 @media (min-width: 768px) {
   .menu-container {
     bottom: 0;
-    min-height: 95vh;
-    flex-direction: column;
-    flex: 1;
+    position: static;
+    width: 335px;
+    right: 0;
+    top: 0;
+    bottom: 0;
     overflow: hidden;
     display: none;
-    position: static;
     transition: none; }
     .menu-container .scrollable {
       overflow-y: auto;
-      max-height: 80vh;
-      padding: 15px;
-      padding-top: 5px;
-      padding-bottom: 60px; }
+      max-height: 80vh; }
     .menu-container .fixed-content {
       position: fixed;
       margin-top: 45px;
       min-width: 335px; }
     .menu-container.open {
-      display: flex; } }
+      display: block; } }

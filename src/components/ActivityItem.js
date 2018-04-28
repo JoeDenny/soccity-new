@@ -9,19 +9,22 @@ class ActivityItem extends Component {
 
         switch(this.props.activity.type) {
             case 'created_comment':
-                action = 'You commented';
+                action = 'commented on an article';
                 break
             case 'created_favorite':
-                action = 'You liked an article';
+                action = 'liked an article';
+                break
+            case 'created_dashboard':
+                action = 'created a dashboard';
                 break
             default:
                 action = this.props.activity.type;
         }
         return (
             <tr>
-                <td>{this.props.activity.subject.created_at_formated}</td>
-                <td>{this.props.activity.user.name}</td>
-                <td>{action}</td>
+                <td><span>{this.props.activity.subject.created_at_formated}</span> {this.props.activity.user.name} {action}</td>
+                {/* <td></td> */}
+                {/* <td>{action}</td> */}
             </tr>
         )
     }
