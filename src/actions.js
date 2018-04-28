@@ -76,9 +76,9 @@ export const loginFailure = (errors) => ({
 });
 
 export const GET_NEWS_SUCCESS = 'GET_NEWS_SUCCESS';
-export const getNewsSuccess = (news) => ({
+export const getNewsSuccess = (news, isPopularNews) => ({
     type: GET_NEWS_SUCCESS,
-    payload: { news }
+    payload: { news, isPopularNews }
 });
 
 export const GET_NEWS_FAILURE = 'GET_NEWS_FAILURE';
@@ -284,7 +284,7 @@ export const getNews = (params) => {
         dispatch(fetchingData());
         api.getNews(params)
             .then((res) => {                
-                dispatch(getNewsSuccess(res.data.allNews));
+                dispatch(getNewsSuccess(res.data.allNews, false));
             })
             .catch(error => {  
                 if (error.response) {                                        
@@ -302,7 +302,7 @@ export const getPopularNews = () => {
         dispatch(fetchingData());
         api.getPopularNews()
             .then((res) => {                                
-                dispatch(getNewsSuccess(res.data.popularNews));                
+                dispatch(getNewsSuccess(res.data.popularNews, true));                
             })
             .catch(error => {  
                 if (error.response) {                                        

@@ -6,6 +6,7 @@ const initialState = {
     user: {},
     news: [],
     activeNews: {},
+    isPopularNews: false,
     autoRefreshRate: undefined,
     activeMenuItem: undefined,
     dashboards: [],
@@ -80,6 +81,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 news: action.payload.news.data,
+                isPopularNews: action.payload.isPopularNews,
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page,
                 loading: false

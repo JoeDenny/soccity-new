@@ -24,12 +24,16 @@ class DashboardSettings extends Component {
     }
 
     render() {
+        
         return (
             <div className="dashboard-settings-container">
 
                 <TemplateTab onChangeTemplate={this.changeTemplate}/>
 
-                {/* <button className="btn btn-primary" onClick={this.props.getPopularNews}>get popular news</button> */}
+                <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-primary" onClick={this.props.getPopularNews}>Popular News</button>
+
+                <button style={{display : this.props.isPopularNews ? 'inline-block' : 'none' }} className="btn btn-primary" onClick={this.refreshNews}>All News</button>
+                
                 <button className="btn btn-secondary" onClick={() => this.setActiveMenuItem('filter')}>Edit Filters</button>
                 
                 <ul className="settings-buttons">

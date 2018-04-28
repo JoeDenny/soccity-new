@@ -126,6 +126,7 @@ class Dashboard extends Component {
                     
                     <DashboardSettings
                         getPopularNews={this.props.getPopularNews}
+                        isPopularNews={this.props.isPopularNews}
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
@@ -165,6 +166,7 @@ const mapStateToProps = (state) => ({
     news: state.news,
     activeNews: state.activeNews,
     activeMenuItem: state.activeMenuItem,
+    isPopularNews: state.isPopularNews,
     autoRefreshRate: state.autoRefreshRate,
     errors: state.errors,
     dashboards: state.dashboards,    
