@@ -16,7 +16,15 @@ class DashboardList extends Component {
         if(this.props.dashboards) {
             dashboards = this.props.dashboards.map((dashboard, i) => {                                
                 
-                logoPath = dashboard.teams[0] ? dashboard.teams[0].logo_path : Logo;
+                if(dashboard.teams[0]) {
+                    logoPath = dashboard.teams[0].logo_path;
+                } else if(dashboard.players[0]) {
+                    logoPath = dashboard.players[0].image_path;
+                } else if(dashboard.sources[0]) {
+                    logoPath = dashboard.sources[0].logo_path;
+                } else {
+                    logoPath = Logo;
+                }
                 
                 return (
                     <section onClick={() => this.setActiveDashboard(dashboard) } key={i} className="dashboard-list-item">

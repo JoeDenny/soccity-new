@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD, ADD_DASHBOARD_FAILURE, DELETE_DASHBOARD, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -60,12 +60,14 @@ const rootReducer = (state = initialState, action) => {
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
-                updateUserSuccess: true
+                updateUserSuccess: true,
+                loading: false
             }   
         case UPDATE_USER_FAILURE:
             return {
                 ...state,
                 updateUserSuccess: false,
+                loading: false,
                 updateUserErrors: action.payload.errors
             }            
         case LOGIN_FAILURE:
@@ -127,6 +129,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dashboards: action.payload.dashboards
+            };
+        case ADD_CUSTOM_TWITTER_SUCCESS:            
+            return {
+                ...state,
+                twitterSources: action.payload.source
+            };
+        case ADD_CUSTOM_TWITTER_FAILURE:            
+            return {
+                ...state,
+                errors: action.payload.errors
             };
         case ADD_DASHBOARD:            
             api.getDashboards();

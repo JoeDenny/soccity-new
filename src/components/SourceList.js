@@ -1,43 +1,45 @@
 import React, { Component } from 'react';
+import FilterCard from './FilterCard';
+import '../containers/styles/add-dashboard.css';
 
 class SourceList extends Component {
 
-    handleChange = (event) => {
+    addSource = (source) => {
 
-        const source = event.target.name;
-        
-        if(event.target.checked) {
-            this.props.addToFilter('sources', source);        
-        } else {
-            this.props.removeFromFilter('sources', source);
-        }
-   }
+        this.props.addToFilter('sources', source);        
+    }
+
+    removeSource = (source) => {
+
+        this.props.removeFromFilter('sources', source);        
+    }
 
     render() {
+        let sources,
+            isInFilterResults,
+            isDisabled = this.props.filterResults.length >= 5 ? 'disabled' : '';
 
-        console.log('sources', this.props.sources);
-        
+        if(this.props.sources) {
+
+            
+            sources = this.props.sources.map(source => {
+                
+                return (
+                    <FilterCard
+                        key={source.id}
+                        data={source}
+                        addToFilter={this.addSource}
+                        removeFromFilter={this.removeSource}                        
+                        isInFilterResults={isInFilterResults} />
+                );
+            });
+        }    
 
         return (
-            <div className="source-feed list">
-                <h4 className="list-title">Choose which publication tiers you would like: </h4>                        
+            <div className={"list team-feed " + isDisabled}>
+                <h4 className="list-title">Add Sources</h4>            
                 <ul>
-                    <li className="filter-card text-secondary">
-                        <p className="name">Tier 1</p>
-                        <input type="checkbox" name={1} onChange={this.handleChange}/>
-                    </li>
-                    <li className="filter-card text-secondary">
-                        <p className="name">Tier 2</p>                      
-                        <input type="checkbox" name={2} onChange={this.handleChange}/>
-                    </li>
-                    <li className="filter-card text-secondary">
-                        <p className="name">Tier 3</p>
-                        <input type="checkbox" name={3} onChange={this.handleChange}/>
-                    </li>
-                    <li className="filter-card text-secondary">
-                        <p className="name">Tier 4</p>
-                        <input type="checkbox" name={4} onChange={this.handleChange}/>
-                    </li>
+                    {sources}
                 </ul>
             </div>
         )

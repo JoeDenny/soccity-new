@@ -36,7 +36,7 @@ class Comment extends Component {
         return (
             <li className="comment">
 
-                <UserPhoto link="http://35.176.191.198/images/default_avatars/profile1.png"/>
+                <UserPhoto link={comment.user.avatar_path} />
 
                 <div className="comment-content">
                     <h4>{comment.user.name}</h4>

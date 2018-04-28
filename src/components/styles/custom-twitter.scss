@@ -1,0 +1,21 @@
+.custom-twitter {
+    &.auth-layout {
+        min-height: auto;
+        display: block;
+        padding: 1rem;
+        border-radius: .25rem;
+        color: white;
+
+        h2 {
+            font-size: 1rem;
+        }
+    }
+
+    .text-input {
+        width: 100%;
+    }
+
+    .errors-container {
+        padding-left: 2rem;
+    }
+}

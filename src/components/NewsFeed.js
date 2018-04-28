@@ -10,14 +10,14 @@ class NewsFeed extends Component {
         this.props.loadNextPage();
     }
 
-    showAllArticles = () => {
-        this.props.showAllArticles();
+    refreshNews = () => {
+        this.props.refreshNews();
     }
 
     render() {
         let newsItems = [],
             searchTerm = this.props.searchTerm,
-            className = `news-feed ${this.props.template === 1 ? 'template1' : 'template2'}`,
+            className = `news-feed container ${this.props.template === 1 ? 'template1' : 'template2'}`,
             loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`,
             noResultsClass;
         
@@ -29,7 +29,7 @@ class NewsFeed extends Component {
 
                     result.push(
 
-                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                             <NewsCard newsItem={newsItem} />
                         </li>
                     );
@@ -54,14 +54,15 @@ class NewsFeed extends Component {
                     </ul>
 
                     <div className="news-feed-messages">
-                        <div style={{ display: this.props.showBookmarkedArticles ? 'none' : 'block' }}>
-
-                            <p className={noResultsClass}>No results found</p>
-
-                            <p
-                                style={{display: this.props.searchTerm ? 'none' : 'block' }}
-                                className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</p>
+                
+                        <div className={noResultsClass}>
+                            <p>No results found</p>
+                            <p className="link" onClick={this.refreshNews}>Back to main feed?</p>
                         </div>
+
+                        <p
+                            style={{display: this.props.searchTerm || !newsItems.length ? 'none' : 'block' }}
+                            className={loadMoreClass} onClick={this.loadNextPage}>Load more news...</p>
                     </div>
                 </div>
             </section>

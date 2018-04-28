@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SettingsButton from './SettingsButton';
 
-class CommentsButton extends Component {
+class LatestCommentsButton extends Component {
     onClick = () => {
         this.props.setActiveMenuItem('latestComments');
     }
@@ -17,4 +17,4 @@ class CommentsButton extends Component {
     }
 }
 
-export default CommentsButton;
+export default LatestCommentsButton;

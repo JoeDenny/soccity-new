@@ -23,11 +23,67 @@ class Api {
         });
     }
 
-    getNews = (params) => {
+    getNews(params) {
+        let url;
 
-        const requestParams = this.createGetNewsUrl(params);
+        // let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
 
-        return axios.get(`${this.API_URL}/news?${requestParams}`, {
+        let baseUrl = `time=${params.time}&page=${params.page}`
+
+        if(params.sources) {
+            let sourceUrl = '';
+
+            for(let i=0; i < params.sources.length; i++) {
+                sourceUrl += `&sources[]=${params.sources[i].id}`;
+            }
+
+            baseUrl += `${sourceUrl}`;
+        }
+
+        // if(params.teams || params.competitions || params.players) {
+        //     if(params.teams) {
+        //         let teamsUrl = '';
+    
+        //         for(let i=0; i < params.teams.length; i++) {
+        //             teamsUrl += `&teams[]=${params.teams[i].id}`;
+        //         }
+        //         url = baseUrl + teamsUrl;
+    
+        //         return this.fetchNews(url).then((res) => res);
+        //     }
+    
+            // if(params.players) {
+            //     let playersUrl = '';
+    
+            //     for(let i=0; i < params.players.length; i++) {
+            //         playersUrl += `&players[]=${params.players[i].id}`;
+            //     }
+            //     url = baseUrl + playersUrl;
+    
+            //     return this.fetchNews(url).then((res) => res);
+            // }
+    
+            // if(params.competitions) {
+            //     let competitionsUrl = '';
+    
+            //     for(let i=0; i < params.competitions.length; i++) {
+            //         competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
+            //     }
+            //     url = baseUrl + competitionsUrl;
+    
+            //     return this.fetchNews(url).then((res) => res);
+        //     // }
+        // } else {
+
+        //     url = baseUrl;
+        // }
+        url = baseUrl;
+        return this.fetchNews(url).then((res) => res);
+    }
+
+    fetchNews = (url) => {
+
+        return axios.get(`${this.API_URL}/news?${url}`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }
@@ -117,6 +173,14 @@ class Api {
         });
     }
 
+    addCustomTwitterAccount = (type, name) => {
+        return axios.post(`${this.API_URL}/user/add_twitter`, { type, name }, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     addComment = (id, comment) => {
         return axios.post(`${this.API_URL}/news/${id}/comments`, { comment }, {
             headers: {
@@ -178,32 +242,6 @@ class Api {
 
     getToken() {
         return this.token;
-    }
-
-    createGetNewsUrl(params) {
-        let teamsUrl = '',
-            competitionsUrl = '',
-            playersUrl = '';
-
-        let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
-
-        if(params.teams) {
-            for(let i=0; i < params.teams.length; i++) {
-                teamsUrl += `&teams[]=${params.teams[i].id}`;
-            }
-        } else if(params.competitions) {
-            for(let i=0; i < params.competitions.length; i++) {
-                competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
-            }
-        } else if(params.players) {
-            for(let i=0; i < params.players.length; i++) {
-                playersUrl += `&players[]=${params.players[i].id}`;
-            }
-        }
-
-        let url = `time=${params.time}&page=${params.page}${sourceTypeUrl}${teamsUrl}${competitionsUrl}${playersUrl}`;
-
-        return url;
     }
 }
 

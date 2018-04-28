@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import '../styles/comments.css';
 import Comment from './Comment';
 import { connect } from 'react-redux';
-import { getLatestComments } from '../../actions';
+import { getLatestComments, toggleFollow } from '../../actions';
 
 class LatestCommentsContainer extends Component {
 
     componentWillMount() {
         this.props.getLatestComments();        
+    }
+
+    toggleFollow = (userId) => {
+        
+        this.props.toggleFollow(userId);
     }
 
     render() {
@@ -22,7 +27,13 @@ class LatestCommentsContainer extends Component {
                 });
                 
                 return (
-                    <Comment key={comment.id} comment={comment} article={newsCard[0]}/>
+                    <Comment
+                        key={comment.id}
+                        user={this.props.user}
+                        comment={comment}
+                        followings={this.props.followings}                        
+                        article={newsCard[0]}
+                        toggleFollow={this.toggleFollow} />
                 );
             });
         }
@@ -40,12 +51,15 @@ class LatestCommentsContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.user,
     news: state.news,
-    latestComments: state.latestComments
+    latestComments: state.latestComments,
+    followings: state.followings    
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getLatestComments: () => dispatch(getLatestComments()),
+    toggleFollow: (userId) => dispatch(toggleFollow(userId))    
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LatestCommentsContainer);

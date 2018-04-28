@@ -200,6 +200,18 @@ export const search = (searchValue) => ({
     }
 });
 
+export const ADD_CUSTOM_TWITTER_SUCCESS = 'ADD_CUSTOM_TWITTER_SUCCESS';
+export const addCustomTwitterAccountSuccess = (source) => ({
+    type: ADD_CUSTOM_TWITTER_SUCCESS,
+    payload: { source }
+});
+
+export const ADD_CUSTOM_TWITTER_FAILURE = 'ADD_CUSTOM_TWITTER_FAILURE';
+export const addCustomTwitterAccountFailure = (errors) => ({
+    type: ADD_CUSTOM_TWITTER_FAILURE,
+    payload: { errors }
+});
+
 export const SAVE_DASHBOARDS = 'get dashboards';
 export const getDashboardsUpdate = (dashboards) => ({
     type: SAVE_DASHBOARDS,
@@ -263,6 +275,7 @@ export const register = (formData) => {
 
 export const updateUserDetails = (formData) => {
     return (dispatch) => {
+        dispatch(fetchingData());
         api.updateUserDetails(formData).then(
             (res) => {
                 dispatch(loginSuccess(
@@ -360,6 +373,20 @@ export const addComment = (id, comment) => {
         api.addComment(id, comment).then((res) => {
             dispatch(commentNewsUpdate(res.data.news));            
         });
+    };
+};
+
+export const addCustomTwitterAccount = (type, name) => {
+    return (dispatch) => {
+        api.addCustomTwitterAccount(type, name)
+            .then((res) => {                
+                // dispatch(addCustomTwitterAccountSuccess());
+            })
+            .catch(error => {  
+                if (error.response) {                                        
+                    dispatch(addCustomTwitterAccountFailure(error.response.data.errors));
+                }
+            });
     };
 };
 export const toggleFollow = (user) => {    

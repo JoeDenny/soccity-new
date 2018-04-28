@@ -16,7 +16,7 @@ import './styles/preferences.css';
 class Preferences extends Component {
     constructor() {
         super();
-
+        this.form = undefined;
         this.state = {
             headerIsFixed: false,
             avatar: '',
@@ -29,6 +29,7 @@ class Preferences extends Component {
     }
     
     componentWillMount() {
+
         this.props.getDashboards();
         
         this.setState({
@@ -76,7 +77,6 @@ class Preferences extends Component {
         event.preventDefault();
                 
         const formData = {
-            avatar: this.state.avatar,
             name: this.state.name,
             email: this.state.email,
             old_password: this.state.old_password,
@@ -85,6 +85,8 @@ class Preferences extends Component {
         };
 
         let data = new FormData(formData);
+
+        data.append('avatar', this.state.avatar);
         
         this.props.updateUserDetails(data);
     }
@@ -120,7 +122,10 @@ class Preferences extends Component {
 
                             <div className="details text-center">
 
-                                <AvatarInput handleImageUpload={this.handleImageUpload} />
+                                <AvatarInput
+                                    name="avatar"
+                                    user={this.props.user}
+                                    handleImageUpload={this.handleImageUpload} />
 
                                 <div className="auth-layout">
 
@@ -183,6 +188,7 @@ class Preferences extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.user,
+    loading: state.loading,
     dashboards: state.dashboards,
     errors: state.updateUserErrors,
     updateUserSuccess: state.updateUserSuccess

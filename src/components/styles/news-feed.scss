@@ -1,14 +1,12 @@
 @import '../../styles/_variables.scss';
 
 .news-feed {
-    margin-left: 0;
     position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
     min-width: 1px;
     top: 45px;
-    min-height: 1;
 
     .errors-container {
         width: 340px;
@@ -19,7 +17,7 @@
     }
 
     .col-sm-6,
-    .col-md-4,
+    .col-md-6,
     .col-lg-3,
     .col-xl-2 {
         padding-left: 10px !important;
@@ -27,9 +25,9 @@
     }
 
     &.template2 {
-        margin: 0;
         top: 40px;
-        padding: 0;
+        max-width: none;
+        padding: 0 !important;
     }
 }
 
@@ -63,11 +61,6 @@
 }
 
 @media (min-width: 544px) {
-    .news-feed {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
     .menu-closed,
     .menu-open {
         .template2 {
@@ -85,8 +78,11 @@
 
 @media (min-width: 768px) {
     .news-feed {
-        margin: 0 20px 10px 80px;
-        padding: 0;
+        padding-left: 75px !important;
+        
+        &.template2 {
+            padding-left: 60px !important;
+        }
     }
     
     .menu-open {
@@ -107,9 +103,6 @@
 @media (min-width: 992px) {
 
     .news-feed {
-        max-width: 980px;
-        padding-left: 60px;
-
         &.template1 {
             margin: auto !important;
         }
@@ -127,7 +120,7 @@
 @media (min-width: 1200px) {
     .menu-open {
         .template1 {
-            .col-xl-3 {
+            .col-xl-4 {
                 max-width: calc(100% / 3);
             }
         }

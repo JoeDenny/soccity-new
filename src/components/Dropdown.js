@@ -25,13 +25,16 @@ class Dropdown extends Component {
     
     render() {
         let isOpen = this.props.isOpen ? 'open' : '';
+
+        const disabledClass = this.props.user.stripe_id ? '' : 'disabled';
+
         return (
             <div className={"dropdown " + isOpen}
                 id="dropdown">
                 <div className="menu card">
                     <ul>
-                        <li onClick={() => this.setAutoRefresh(10000)}>10 sec</li>
-                        <li onClick={() => this.setAutoRefresh(30000)}>30 sec</li>
+                        <li className={disabledClass} onClick={() => this.setAutoRefresh(10000)}>10 sec</li>
+                        <li className={disabledClass} onClick={() => this.setAutoRefresh(30000)}>30 sec</li>
                         <li onClick={() => this.setAutoRefresh(60000)}>1 min</li>
                         <li onClick={() => this.setAutoRefresh(120000)}>2 min</li>
                         <li onClick={() => this.setAutoRefresh(300000)}>5 min</li>

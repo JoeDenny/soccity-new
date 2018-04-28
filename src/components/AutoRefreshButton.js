@@ -42,6 +42,7 @@ class AutoRefreshButton extends Component {
 
                 <Dropdown  
                     isOpen={this.state.dropdownOpen}
+                    user={this.props.user}
                     setAutoRefresh={this.setAutoRefresh}
                     closeDropdown={this.closeDropdown} />
 
@@ -50,9 +51,12 @@ class AutoRefreshButton extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user
+});
 
 const mapDispatchToProps = (dispatch) => ({
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time))
 });
 
-export default connect(null, mapDispatchToProps)(AutoRefreshButton);
+export default connect(mapStateToProps, mapDispatchToProps)(AutoRefreshButton);

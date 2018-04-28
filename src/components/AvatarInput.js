@@ -28,6 +28,7 @@ class AvatarInput extends Component {
             <div className="file-input">
                 <div className="avatar-container">
                     <img
+                        src={this.props.user.avatar_path}
                         className="avatar-icon"
                         alt=""
                     />

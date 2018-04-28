@@ -4,7 +4,7 @@ import BookmarkButton from './BookmarkButton';
 import RecentlyViewedButton from './RecentlyViewedButton';
 import FilterSidebarButton from './FilterSidebarButton';
 import AutoRefreshButton from './AutoRefreshButton';
-import CommentsButton from './CommentsButton';
+import LatestCommentsButton from './LatestCommentsButton';
 import TemplateTab from './TemplateTab';
 
 class DashboardSettings extends Component {
@@ -53,7 +53,7 @@ class DashboardSettings extends Component {
                         />
                     </li>
                     <li className="item">
-                        <CommentsButton
+                        <LatestCommentsButton
                             setActiveMenuItem={this.setActiveMenuItem}
                             isActive={this.props.activeMenuItem === 'latestComments'}
                         />

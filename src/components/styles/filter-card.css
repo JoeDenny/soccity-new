@@ -23,7 +23,8 @@
   .filter-card input {
     float: right;
     margin: 11px;
-    margin: 13px 5px; }
+    margin: 13px 5px;
+    margin-right: 15px; }
 
 .competition-feed .filter-card .logo {
   display: none; }

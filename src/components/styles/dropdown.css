@@ -19,6 +19,12 @@
     .dropdown ul li {
       cursor: pointer;
       padding: 10px; }
+      .dropdown ul li.disabled {
+        background: #ebebeb;
+        cursor: not-allowed;
+        opacity: .65; }
+        .dropdown ul li.disabled:hover {
+          background: #ebebeb; }
       .dropdown ul li:first-child {
         border-top-left-radius: .25rem;
         border-top-right-radius: .25rem; }

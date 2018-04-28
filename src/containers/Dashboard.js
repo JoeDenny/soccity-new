@@ -24,7 +24,7 @@ class Dashboard extends Component {
     componentWillMount() {
         this.getNews();
         this.props.getDashboards();
-        this.props.setAutoRefresh(10000);     
+        this.props.setAutoRefresh(10000);
     }
 
     getNews = (pageNumber) => {
@@ -100,6 +100,7 @@ class Dashboard extends Component {
             time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: 1,
             source_type: dashboard.source_type,
+            sources: dashboard.sources,
             teams: dashboard.teams,
             players: dashboard.players,
             competitions: dashboard.competitions
@@ -111,11 +112,7 @@ class Dashboard extends Component {
     render() {
         const { user, news, activeNews, current_page, last_page, isMenuOpen, activeMenuItem } = this.props;
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';        
-        
-        // if(this.props.autoRefreshRate) {            
-        //     setTimeout(() => this.getNews(), this.props.autoRefreshRate);
-        // }
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';            
 
         return (
             <AuthWrapper>
@@ -141,7 +138,7 @@ class Dashboard extends Component {
                             news={news}
                             errors={this.props.errors}
                             loading={this.props.loading}
-                            showAllArticles={this.showAllArticles}
+                            refreshNews={this.getNews}
                             current_page={current_page}
                             last_page={last_page}
                             loadNextPage={this.loadNextPage}

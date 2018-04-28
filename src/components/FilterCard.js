@@ -22,6 +22,7 @@ class FilterCard extends Component {
                         src={logo}
                         alt="" />
                     <p className="name">{this.props.data.name}</p>
+                    <p className="name">{this.props.data.title}</p>
                     <input type="checkbox" onChange={this.handleChange} />
             </li>
         )

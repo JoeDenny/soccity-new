@@ -33,6 +33,12 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: .5rem;
 }
   
-  p {
+p {
     margin-top: 0;
     margin-bottom: 1rem; }
+
+.link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: $navy;
+}

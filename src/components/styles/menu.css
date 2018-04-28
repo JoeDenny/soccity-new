@@ -7,8 +7,7 @@
   right: 0;
   bottom: 50px;
   top: 95px;
-  z-index: 99;
-  transition: transform .2s ease; }
+  z-index: 99; }
   .menu-container .header {
     padding: 1rem;
     border-bottom: 1px solid #ebebeb; }
@@ -34,6 +33,7 @@
 @media (min-width: 768px) {
   .menu-container {
     bottom: 0;
+    min-height: 95vh;
     flex-direction: column;
     flex: 1;
     overflow: hidden;

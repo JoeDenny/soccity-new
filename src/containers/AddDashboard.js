@@ -3,6 +3,7 @@ import './styles/add-dashboard.css';
 import { connect } from 'react-redux';
 import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
+import AddCustomTwitter from '../components/AddCustomTwitter';
 import CompetitionList from '../components/CompetitionList';
 import TeamList from '../components/TeamList';
 import PlayerList from '../components/PlayerList';
@@ -17,14 +18,15 @@ class AddDashboard extends Component {
         super();
 
         this.state = {
+            keywords: '',
             source_type: '',
             sources: [],
-            competitions: [],
             teams: [],
-            players: []
+            players: [],
+            competitions: [],
+            preferences: []
         }
-
-        this.keywords = [];
+        
     }
 
     componentWillMount() {
@@ -147,13 +149,19 @@ class AddDashboard extends Component {
                                 <SourceList
                                     sources={this.props.sources} 
                                     addToFilter={this.addToFilter}
-                                    removeFromFilter={this.removeFromFilter}/>
+                                    removeFromFilter={this.removeFromFilter}
+                                    filterResults={this.state.sources} />
+                                    
                             </div>
                             <div className="col-xs-12 col-md-6">
 
                                 <TwitterFilter addSourceType={this.addSourceType} />
+
+                                <AddCustomTwitter />
+                                
                             </div>
                         </div>
+
 
                         <ErrorMessages errors={this.props.errors} />
 
