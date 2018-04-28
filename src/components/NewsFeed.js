@@ -26,9 +26,9 @@ class NewsFeed extends Component {
 
             newsItems = this.props.news.reduce((result, newsItem, index) => {
                 
-                if(index > 0 && index % 9 === 0) {
+                if(index === 6 || index === 13 || index === 20 || index === 27) {
 
-                    result.push(<AdvertContainer key={index}/>)
+                    result.push(<AdvertContainer user={this.props.user} key={index}/>)
                 } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     result.push(

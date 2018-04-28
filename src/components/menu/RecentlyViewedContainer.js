@@ -18,7 +18,7 @@ class RecentlyViewedContainer extends Component {
                 
                 return (
                     // <NewsCard key={newsItem.id} newsItem={newsItem} />
-                    <div className="news-card">
+                    <div key={newsItem.id} className="news-card">
                         <header>
                             <h2 className="title"
                                 dangerouslySetInnerHTML={{__html: newsItem.title}}></h2>

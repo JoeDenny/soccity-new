@@ -136,6 +136,7 @@ class Dashboard extends Component {
                         <NewsFeed
                             className={menuClass}
                             news={news}
+                            user={this.props.user}
                             errors={this.props.errors}
                             loading={this.props.loading}
                             refreshNews={this.getNews}
