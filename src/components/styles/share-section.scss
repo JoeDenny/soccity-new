@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.share-container {
+    text-align: right;
+    button {
+        color: #33A4EC;
+        border-color: #33A4EC;
+        padding: 2px;
+        margin: 5px;
+        font-size: .7rem;
+    }
+}

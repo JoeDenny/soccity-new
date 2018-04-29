@@ -4,6 +4,7 @@ import { setActiveNews, setActiveMenuItem, openArticle } from '../actions';
 import './styles/news-card.css';
 import FavouriteIcon from './FavouriteIcon';
 import BookmarkIcon from './BookmarkIcon';
+import ShareSection from './ShareSection';
 import TierIcon from './TierIcon';
 import TwitterLogo from './Twitter_Logo.png';
 
@@ -42,7 +43,6 @@ class NewsCard extends Component {
 
         const commentsIconClass = `comments-icon ${this.props.newsItem.comments.length ? 'active' : ''}`;
         
-        
         return (
             <div className={newsCardClass}>
                 <a href={this.props.newsItem.link} onClick={this.openArticle} target="_blank">
@@ -70,6 +70,7 @@ class NewsCard extends Component {
                     </div>
                 </a>
                 <footer>
+                    <ShareSection />
                     <span className="text-tiny">{this.props.newsItem.posted_date_formated}</span>
                     <ul className="pull-right">
                         <li className="pull-left">

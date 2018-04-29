@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
+import PopularNewsTicker from '../components/PopularNewsTicker';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getPopularNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getPopularNews, setPopularNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -23,6 +24,7 @@ class Dashboard extends Component {
 
     componentWillMount() {
         this.getNews();
+        this.props.getPopularNews();
         this.props.getDashboards();
         this.props.setAutoRefresh(120000);
     }
@@ -110,7 +112,9 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { user, news, activeNews, current_page, last_page, isMenuOpen, activeMenuItem } = this.props;
+        const { user, activeNews, current_page, last_page, isMenuOpen, activeMenuItem } = this.props;
+
+        const news = this.props.isPopularNews ? this.props.popularNews : this.props.news;        
 
         const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';            
 
@@ -122,13 +126,15 @@ class Dashboard extends Component {
                         setSearchTerm={this.setSearchTerm}/>
                     
                     <DashboardSettings
-                        getPopularNews={this.props.getPopularNews}
+                        setPopularNews={this.props.setPopularNews}
                         isPopularNews={this.props.isPopularNews}
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
                         changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
+
+                    <PopularNewsTicker popularNews={this.props.popularNews}/>
 
                     <Sidebar dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
 
@@ -164,6 +170,7 @@ const mapStateToProps = (state) => ({
     news: state.news,
     activeNews: state.activeNews,
     activeMenuItem: state.activeMenuItem,
+    popularNews: state.popularNews,
     isPopularNews: state.isPopularNews,
     autoRefreshRate: state.autoRefreshRate,
     errors: state.errors,
@@ -177,6 +184,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
     getPopularNews: () => dispatch(getPopularNews()),
+    setPopularNews: () => dispatch(setPopularNews()),
     getDashboards: () => dispatch(getDashboards()),
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
     openMenu: () => dispatch(openMenu()),   

@@ -30,7 +30,7 @@ class DashboardSettings extends Component {
 
                 <TemplateTab onChangeTemplate={this.changeTemplate}/>
 
-                <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-primary" onClick={this.props.getPopularNews}>Popular News</button>
+                <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-primary" onClick={this.props.setPopularNews}>Popular News</button>
 
                 <button style={{display : this.props.isPopularNews ? 'inline-block' : 'none' }} className="btn btn-primary" onClick={this.refreshNews}>All News</button>
                 

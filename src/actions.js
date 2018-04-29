@@ -97,15 +97,26 @@ export const loginFailure = (errors) => ({
 });
 
 export const GET_NEWS_SUCCESS = 'GET_NEWS_SUCCESS';
-export const getNewsSuccess = (news, isPopularNews) => ({
+export const getNewsSuccess = (news) => ({
     type: GET_NEWS_SUCCESS,
-    payload: { news, isPopularNews }
+    payload: { news }
 });
 
 export const GET_NEWS_FAILURE = 'GET_NEWS_FAILURE';
 export const getNewsFailure = (errors) => ({
     type: GET_NEWS_FAILURE,
     payload: { errors }
+});
+
+export const GET_POPULAR_NEWS_SUCCESS = 'GET_POPULAR_NEWS_SUCCESS';
+export const getPopularNewsSuccess = (popularNews) => ({
+    type: GET_POPULAR_NEWS_SUCCESS,
+    payload: { popularNews }
+});
+
+export const SET_POPULAR_NEWS = 'SET_POPULAR_NEWS';
+export const setPopularNews = () => ({
+    type: SET_POPULAR_NEWS
 });
 
 export const SAVE_COMPETITIONS = '[News] Save competitions';
@@ -358,7 +369,7 @@ export const getNews = (params) => {
         dispatch(fetchingData());
         api.getNews(params)
             .then((res) => {                
-                dispatch(getNewsSuccess(res.data.allNews, false));
+                dispatch(getNewsSuccess(res.data.allNews));
             })
             .catch(error => {  
                 if (error.response) {                                        
@@ -375,8 +386,8 @@ export const getPopularNews = () => {
     return (dispatch) => {
         dispatch(fetchingData());
         api.getPopularNews()
-            .then((res) => {                                
-                dispatch(getNewsSuccess(res.data.popularNews, true));                
+            .then((res) => {
+                dispatch(getPopularNewsSuccess(res.data.popularNews));                                
             })
             .catch(error => {  
                 if (error.response) {                                        
