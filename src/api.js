@@ -15,6 +15,27 @@ class Api {
         return axios.post(`${this.API_URL}/register`, formData);
     }
 
+    getStripeConfig = () => {
+        return axios.get(`${this.API_URL}/config`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    subscribe = (token, email, plan) => {
+        const params = {
+            stripeToken: token.id,
+            stripeEmail: email,
+            plan: plan
+        }
+        return axios.post(`${this.API_URL}/subscribe`, params, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     updateUserDetails = (formData) => {        
         return axios.post(`${this.API_URL}/user/update`, formData, {
             headers: {

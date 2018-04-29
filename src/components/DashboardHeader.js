@@ -21,7 +21,9 @@ class DashboardHeader extends Component {
                 <nav className="user-details">
                     <h5 className="username pull-left">{this.props.user.name}</h5>
 
-                    <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade bold card">Upgrade?</p>
+                    <Link to={routes.BILLING_PATH}>
+                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade bold card">Upgrade?</p>
+                    </Link>
                     
                     <Link to={routes.PREFERENCES_PATH}>
                         <UserPhoto link={this.props.user.avatar_path} size={50}/>

@@ -54,6 +54,27 @@ export const registerFailure = (errors) => ({
     }
 });
 
+export const GET_STRIPE_CONFIG_SUCCESS = 'GET_STRIPE_CONFIG_SUCCESS';
+export const getStripeConfigSuccess = (stripeConfig) => ({
+    type: GET_STRIPE_CONFIG_SUCCESS,
+    payload: {
+        stripeConfig
+    }
+});
+
+export const SUBCRIBE_SUCCESS = 'SUBCRIBE_SUCCESS';
+export const subscribeSuccess = () => ({
+    type: SUBCRIBE_SUCCESS
+});
+
+export const SUBSCRIBE_FAILURE = 'SUBSCRIBE_FAILURE';
+export const subscribeFailure = (errors) => ({
+    type: SUBSCRIBE_FAILURE,
+    payload: {
+        errors
+    }
+});
+
 export const UPDATE_USER_SUCCESS = 'update user success';
 export const updateUserSuccess = () => ({
     type: UPDATE_USER_SUCCESS
@@ -284,6 +305,32 @@ export const register = (formData) => {
                     dispatch(registerFailure(error.response.data.errors));
                 }
             });
+    };
+};
+
+export const getStripeConfig = () => {
+    return (dispatch) => {
+        api.getStripeConfig().then(
+            (res) => {
+                dispatch(getStripeConfigSuccess(res.data));
+            })
+    };
+};
+
+export const subscribe = (token, email, plan) => {
+    return (dispatch) => {
+        api.subscribe(token, email, plan).then(
+            (res) => {
+                if(res.data.success) {                    
+                    dispatch(subscribeSuccess());
+                } else {
+                    let error = {
+                        message: res.data.message
+                    }  
+                    dispatch(subscribeFailure(error))
+                }
+                
+            })
     };
 };
 

@@ -21,7 +21,7 @@ class Register extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.token) {
-            this.props.history.push(routes.DASHBOARD_PATH);
+            this.props.history.push(routes.BILLING_PATH);
         }
     }
 
