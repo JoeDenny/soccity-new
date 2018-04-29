@@ -98,6 +98,14 @@ class Api {
         });
     }
 
+    getDefaultAvatars = () => {
+        return axios.get(`${this.API_URL}/default_avatars`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getPopularNews = () => {
 
         return axios.get(`${this.API_URL}/news/popular`, {

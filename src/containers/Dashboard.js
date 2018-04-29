@@ -24,7 +24,7 @@ class Dashboard extends Component {
     componentWillMount() {
         this.getNews();
         this.props.getDashboards();
-        this.props.setAutoRefresh(10000);
+        this.props.setAutoRefresh(120000);
     }
 
     getNews = (pageNumber) => {

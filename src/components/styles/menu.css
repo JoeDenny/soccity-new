@@ -8,7 +8,8 @@
   right: 0;
   bottom: 50px;
   top: 100px;
-  z-index: 99; }
+  z-index: 99;
+  overflow-y: auto; }
   .menu-container .scrollable {
     padding: 15px;
     padding-top: 5px;
@@ -45,7 +46,8 @@
     bottom: 0;
     overflow: hidden;
     display: none;
-    transition: none; }
+    transition: none;
+    overflow-y: initial; }
     .menu-container .scrollable {
       overflow-y: auto;
       max-height: 80vh; }

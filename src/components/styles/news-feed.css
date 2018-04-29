@@ -10,12 +10,6 @@
     margin: 2rem auto;
     background-color: #474B4F;
     border-radius: .25rem; }
-  .news-feed .col-sm-6,
-  .news-feed .col-md-6,
-  .news-feed .col-lg-3,
-  .news-feed .col-xl-2 {
-    padding-left: 10px !important;
-    padding-right: 10px !important; }
   .news-feed.template2 {
     top: 40px;
     max-width: none;

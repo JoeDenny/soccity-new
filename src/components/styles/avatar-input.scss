@@ -38,3 +38,15 @@
         object-fit: cover;
     }
 }
+
+.default-avatar-list {
+    img {
+        width: 50px;
+        margin: 0 2px;
+        cursor: pointer;
+
+        &.active {
+            border: 1px solid red;
+        }
+    }
+}

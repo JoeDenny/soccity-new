@@ -11,6 +11,7 @@
     bottom: 50px;
     top: 100px;
     z-index: 99;
+    overflow-y: auto;
 
     .scrollable {
         padding: 15px;
@@ -65,6 +66,7 @@
         overflow: hidden;
         display: none;
         transition: none;
+        overflow-y: initial;
 
         .scrollable {
             overflow-y: auto;

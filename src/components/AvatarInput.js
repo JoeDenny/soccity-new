@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DefaultAvatar from '../components/DefaultAvatar';
 import './styles/avatar-input.css';
 
 class AvatarInput extends Component {
@@ -23,6 +24,17 @@ class AvatarInput extends Component {
         };
         fr.readAsDataURL(file);
     }
+
+    updateAvatar = (avatarSrc) => {
+        const img = document.querySelector('.avatar-icon');
+
+        if(img) {
+            img.setAttribute('src', avatarSrc)
+        }
+
+        this.props.handleDefaultAvatarUpload(avatarSrc);
+    }
+
     render() {
         return (
             <div className="file-input">
@@ -41,6 +53,8 @@ class AvatarInput extends Component {
                     />
                     <div className="file-input__btn">Upload image</div>
                 </label>
+
+                <DefaultAvatar updateAvatar={this.updateAvatar}/>
             </div>
         );
     }

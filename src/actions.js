@@ -176,6 +176,12 @@ export const getFollowingsSuccess = (followings) => ({
     payload: { followings }
 });
 
+export const GET_DEFAULT_AVATARS_SUCCESS = 'GET_DEFAULT_AVATARS_SUCCESS';
+export const getDefaultAvatarsSuccess = (defaultAvatars) => ({
+    type: GET_DEFAULT_AVATARS_SUCCESS,
+    payload: { defaultAvatars }
+});
+
 export const FAVOURITE_ARTICLE = '[News] Like news';
 export const favouriteArticleUpdate = (news) => ({
     type: FAVOURITE_ARTICLE,
@@ -341,6 +347,15 @@ export const openArticle = (id) => {
         api.openArticle(id)
             .then(() => {                                
                 dispatch(getRecentlyViewed());
+            })
+    };
+};
+
+export const getDefaultAvatars = () => {        
+    return (dispatch) => {
+        api.getDefaultAvatars()
+            .then((res) => {                                
+                dispatch(getDefaultAvatarsSuccess(res.data.avatars));                
             })
     };
 };

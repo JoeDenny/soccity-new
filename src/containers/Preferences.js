@@ -20,6 +20,7 @@ class Preferences extends Component {
         this.state = {
             headerIsFixed: false,
             avatar: '',
+            default_avatar: '',
             name: '',
             email: '',
             old_password: '',
@@ -57,6 +58,14 @@ class Preferences extends Component {
           });        
     }
 
+    handleDefaultAvatarUpload = (avatarSrc) => {
+
+        this.setState({
+            ...this.state,
+            default_avatar: avatarSrc
+        }); 
+    }
+
     handleImageUpload = (image) => {
 
         this.setState({
@@ -79,6 +88,7 @@ class Preferences extends Component {
         const formData = {
             name: this.state.name,
             email: this.state.email,
+            default_avatar: this.state.default_avatar,
             old_password: this.state.old_password,
             password: this.state.password,
             password_confirmation: this.state.password_confirmation
@@ -86,8 +96,8 @@ class Preferences extends Component {
 
         let data = new FormData(formData);
 
-        data.append('avatar', this.state.avatar);
-        
+        data.append('avatar', this.state.avatar);        
+
         this.props.updateUserDetails(data);
     }
 
@@ -125,6 +135,7 @@ class Preferences extends Component {
                                 <AvatarInput
                                     name="avatar"
                                     user={this.props.user}
+                                    handleDefaultAvatarUpload={this.handleDefaultAvatarUpload}
                                     handleImageUpload={this.handleImageUpload} />
 
                                 <div className="auth-layout">
