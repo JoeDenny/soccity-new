@@ -27,7 +27,7 @@ class MyStoreCheckout extends Component {
 
     render() {
         return (
-            <div className="billing-page container">
+            <div className="billing-page">
                 <div>
                     <Elements>
                         <InjectedCheckoutForm config={this.props.stripeConfig} subscribe={this.subscribe}/>

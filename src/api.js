@@ -226,8 +226,9 @@ class Api {
         });
     }
 
-    addComment = (id, comment) => {
-        return axios.post(`${this.API_URL}/news/${id}/comments`, { comment }, {
+    addComment = (id, comment, parent_id) => {
+        
+        return axios.post(`${this.API_URL}/news/${id}/comments`, { comment, parent_id }, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

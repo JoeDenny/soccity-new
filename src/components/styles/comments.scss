@@ -14,6 +14,42 @@
         }
     }
 
+    .nested-reply {
+        float: right;
+        font-size: .7rem;   
+        cursor: pointer;
+    }
+    .reply-count {
+        font-size: .7rem;
+        cursor: pointer;
+        position: relative;
+        top: -5px;
+    }
+
+    .nested-reply-container {
+        height: 0;
+        overflow: hidden;
+
+        &.open {
+            height: auto;
+        }
+        .add-comment {
+            margin-top: 5px;
+        }
+        .add-comment__photo {
+            display: none;
+        }
+        .add-comment__input {
+            display: flex;
+            margin: 0;
+            textarea {
+                height: 25px;
+                padding: 3px 10px;
+                margin-right: 5px;
+            }
+        }
+    }
+
     .comment {
         display: flex;
         margin: 1rem 0;
@@ -103,7 +139,8 @@
 
 .dashboard-latest-comments {
     .comment {
-        .reply-text {
+        .reply-text,
+        .reply-container {
             display: none;
         }
     }

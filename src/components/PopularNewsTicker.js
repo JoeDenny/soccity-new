@@ -13,7 +13,7 @@ class PopularNewsTicker extends Component {
             popularNews = this.props.popularNews.map(news => {
 
                 return (
-                    <a key={news.id} className="bold">{news.title}</a>
+                    <a key={news.id} href={news.link} target="_blank" className="bold">{news.title}</a>
                 )
             })
         }

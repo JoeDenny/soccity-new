@@ -42,6 +42,10 @@ class Home extends Component {
         return (
             <section className="app-home">
 
+            <button className="js-push-button" disabled>
+            Enable Push Messages  
+            </button>
+
                 <Header fixedHeader={this.state.fixedHeader}/>
 
                 <div className="background-color-block"></div>

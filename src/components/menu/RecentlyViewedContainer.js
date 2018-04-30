@@ -10,7 +10,7 @@ class RecentlyViewedContainer extends Component {
     }
 
     render() {
-        let recentlyViewed;
+        let recentlyViewed = [];
                 
         if(this.props.recentlyViewed) {
             
@@ -18,12 +18,6 @@ class RecentlyViewedContainer extends Component {
                 
                 return (
                     <NewsCard key={newsItem.id} newsItem={newsItem} />
-                    // <div key={newsItem.id} className="news-card">
-                    //     <header>
-                    //         <h2 className="title"
-                    //             dangerouslySetInnerHTML={{__html: newsItem.title}}></h2>
-                    //     </header>
-                    // </div>
                 );
             });
         }
@@ -33,6 +27,7 @@ class RecentlyViewedContainer extends Component {
                 <div className="scrollable">
                     <ul>
                         {recentlyViewed}
+                        <p style={{ display: !recentlyViewed.length ? 'block' : 'none' }}>You haven't viewed any articles yet!</p>
                     </ul>
                 </div>
             </div>

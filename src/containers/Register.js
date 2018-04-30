@@ -82,7 +82,7 @@ class Register extends Component {
 
 const mapStateToProps = (state) => ({
     token: state.token,
-    errors: state.registerErrors
+    errors: state.errors
 });
 
 const mapDispatchToProps = (dispatch) => ({

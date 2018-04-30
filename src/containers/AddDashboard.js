@@ -230,7 +230,7 @@ const mapStateToProps = (state) => ({
     teams: state.teams,
     players: state.players,
     sources: state.sources,
-    errors: state.addDashboardErrors,
+    errors: state.errors,
     updateDashboardSuccess: state.updateDashboardSuccess
 });
 

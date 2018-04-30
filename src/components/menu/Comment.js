@@ -1,19 +1,57 @@
 import React, { Component } from 'react';
 import '../styles/comments.css';
 import UserPhoto from '../UserPhoto';
+import AddComment from './AddComment';
 
 class Comment extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            replyOpen: false
+        }
+    }
 
     toggleFollow = () => {
 
         this.props.toggleFollow(this.props.comment.user.id);
     }
 
+    toggleNestedReply = () => {
+        this.setState({
+            replyOpen: !this.state.replyOpen
+        })
+    }
+
+    sendReply = (comment) => {
+        
+        this.props.sendReply(comment, this.props.comment.id);
+    }
+
     render() {
         const comment = this.props.comment;
 
         let article,
-            isFollowingUser;
+            isFollowingUser,
+            replies = [];
+
+        if(comment.replies) {
+            replies = comment.replies.map(reply => {
+                return (
+                    <div key={reply.id} className="comment">
+
+                        <UserPhoto link={reply.user.avatar_path} />
+
+                        <div className="comment-content">
+                            <h4>{comment.user.name}</h4>
+                            <h5 className="time text-secondary">{comment.created_at_formated}</h5>
+
+                            <p className="text-tiny">{comment.comment}</p>
+                        </div>
+                    </div>
+                )
+            });
+        }
 
         if(this.props.article) {            
             article = (
@@ -32,6 +70,8 @@ class Comment extends Component {
                 }
             }
         }
+
+        let nestedReplyClass = this.state.replyOpen ? 'open' : '';
 
         return (
             <li className="comment">
@@ -56,7 +96,26 @@ class Comment extends Component {
 
                     {article}
 
-                    <p className="text-tiny">{comment.comment}</p>
+                    <p>{comment.comment}</p>
+
+                    <div className="reply-container">
+                        <span style={{display: this.state.replyOpen ? 'none' : 'inline' }} className="nested-reply" onClick={this.toggleNestedReply}>reply</span>
+
+
+                        <span style={{display: this.state.replyOpen ? 'inline' : 'none' }}  className="nested-reply" onClick={this.toggleNestedReply}>X</span>
+
+                        <span style={{display: replies.length ? 'inline' : 'none' }}>
+                            <a className="reply-count" onClick={this.toggleNestedReply}>{replies.length} replies</a>
+
+                            <div className={"nested-reply-container " + nestedReplyClass}>
+                                {replies}
+
+                                <AddComment
+                                    user={this.props.user}
+                                    onSubmit={this.sendReply} />
+                            </div>
+                        </span>
+                    </div>
                 </div>
             </li>
         )

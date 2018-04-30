@@ -11,11 +11,11 @@ class ComentsContainer extends Component {
         this.props.getFollowings();
     }
 
-    onSendComment = (comment) => {
+    onSendComment = (comment, parentId) => {
         const { activeNews } = this.props;
         
         if (activeNews) {
-            this.props.addComment(activeNews.id, comment);
+            this.props.addComment(activeNews.id, comment, parentId);            
         }
     }
 
@@ -43,6 +43,7 @@ class ComentsContainer extends Component {
                         user={this.props.user}
                         followings={this.props.followings}
                         comment={comment}
+                        sendReply={this.onSendComment}
                         toggleFollow={this.toggleFollow}/>
                 );
             });
@@ -71,7 +72,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     removeActiveNews: () => dispatch(removeActiveNews()),
-    addComment: (id, comment) => dispatch(addComment(id, comment)),
+    addComment: (id, comment, parentId) => dispatch(addComment(id, comment, parentId)),
     toggleFollow: (userId) => dispatch(toggleFollow(userId)),
     getFollowings: () => dispatch(getFollowings()),
     // removeComment: (newsId, commentId: number) => dispatch(removeComment(newsId, commentId)),

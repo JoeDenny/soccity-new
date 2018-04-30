@@ -288,7 +288,8 @@ export const addDashboardFailure = (errors) => ({
 });
 
 export const login = (email, password) => {
-    return (dispatch) => {        
+    return (dispatch) => {    
+        dispatch(fetchingData());    
         api.login(email, password).then((res) => {
             dispatch(loginSuccess(
                 res.data.token,
@@ -465,9 +466,9 @@ export const getLatestComments = () => {
     };
 };
 
-export const addComment = (id, comment) => {
+export const addComment = (id, comment, parentId) => {    
     return (dispatch) => {
-        api.addComment(id, comment).then((res) => {
+        api.addComment(id, comment, parentId).then((res) => {
             dispatch(commentNewsUpdate(res.data.news));            
         });
     };

@@ -8,6 +8,34 @@
     height: 100%;
     object-fit: contain; }
 
+.dashboard-chat .nested-reply {
+  float: right;
+  font-size: .7rem;
+  cursor: pointer; }
+
+.dashboard-chat .reply-count {
+  font-size: .7rem;
+  cursor: pointer;
+  position: relative;
+  top: -5px; }
+
+.dashboard-chat .nested-reply-container {
+  height: 0;
+  overflow: hidden; }
+  .dashboard-chat .nested-reply-container.open {
+    height: auto; }
+  .dashboard-chat .nested-reply-container .add-comment {
+    margin-top: 5px; }
+  .dashboard-chat .nested-reply-container .add-comment__photo {
+    display: none; }
+  .dashboard-chat .nested-reply-container .add-comment__input {
+    display: flex;
+    margin: 0; }
+    .dashboard-chat .nested-reply-container .add-comment__input textarea {
+      height: 25px;
+      padding: 3px 10px;
+      margin-right: 5px; }
+
 .dashboard-chat .comment {
   display: flex;
   margin: 1rem 0;
@@ -78,5 +106,6 @@
     margin-left: auto;
     text-transform: uppercase; }
 
-.dashboard-latest-comments .comment .reply-text {
+.dashboard-latest-comments .comment .reply-text,
+.dashboard-latest-comments .comment .reply-container {
   display: none; }

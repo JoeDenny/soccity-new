@@ -22,9 +22,6 @@ const initialState = {
     defaultAvatars: [],
     isMenuOpen: false,
     errors: [],
-    loginErrors: [],
-    registerErrors: [],
-    addDashboardErrors: [],
     loading: false,
     updateUserSuccess: false,
     updateDashboardSuccess: false
@@ -39,8 +36,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload.token,
-                user: action.payload.user
+                user: action.payload.user,
+                loading: false,
+                errors: []
             };
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                errors: action.payload.errors
+            }  
         case GET_STRIPE_CONFIG_SUCCESS:       
             return {
                 ...state,
@@ -49,6 +54,7 @@ const rootReducer = (state = initialState, action) => {
         case SUBCRIBE_SUCCESS:       
             return {
                 ...state,
+                errors: [],
                 subscribeSuccess: true
             };
         case SUBSCRIBE_FAILURE:       
@@ -77,14 +83,15 @@ const rootReducer = (state = initialState, action) => {
         case REGISTER_FAILURE:
             return {
                 ...state,
-                registerErrors: action.payload.errors
+                errors: action.payload.errors
             }    
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 updateUserSuccess: true,
                 user: action.payload.user,
-                loading: false
+                loading: false,
+                errors: []
             }   
         case UPDATE_USER_FAILURE:
             return {
@@ -92,12 +99,7 @@ const rootReducer = (state = initialState, action) => {
                 updateUserSuccess: false,
                 loading: false,
                 errors: action.payload.errors
-            }            
-        case LOGIN_FAILURE:
-            return {
-                ...state,
-                loginErrors: action.payload.errors
-            }            
+            }                     
         case LOGOUT:
             return {
                 state: undefined
@@ -109,7 +111,8 @@ const rootReducer = (state = initialState, action) => {
                 isPopularNews: false,
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page,
-                loading: false
+                loading: false,
+                errors: []
             };
         case GET_NEWS_FAILURE:            
             return {
@@ -166,6 +169,7 @@ const rootReducer = (state = initialState, action) => {
         case ADD_CUSTOM_TWITTER_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 twitterSources: action.payload.source
             };
         case ADD_CUSTOM_TWITTER_FAILURE:            
@@ -186,7 +190,7 @@ const rootReducer = (state = initialState, action) => {
         case ADD_DASHBOARD_FAILURE:            
             return {
                 ...state,
-                addDashboardErrors: action.payload.errors
+                errors: action.payload.errors
             };
         case SET_ACTIVE_NEWS:        
             return {
