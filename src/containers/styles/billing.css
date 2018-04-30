@@ -1,4 +1,9 @@
 .billing-page {
-  padding-top: 5rem; }
+  padding-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #F7F8F9; }
   .billing-page .errors-container li span {
     color: black; }

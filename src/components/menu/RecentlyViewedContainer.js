@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getRecentlyViewed } from '../../actions';
-// import NewsCard from '../NewsCard';
+import NewsCard from '../NewsCard';
 
 class RecentlyViewedContainer extends Component {
 
@@ -17,19 +17,19 @@ class RecentlyViewedContainer extends Component {
             recentlyViewed = this.props.recentlyViewed.map(newsItem => {
                 
                 return (
-                    // <NewsCard key={newsItem.id} newsItem={newsItem} />
-                    <div key={newsItem.id} className="news-card">
-                        <header>
-                            <h2 className="title"
-                                dangerouslySetInnerHTML={{__html: newsItem.title}}></h2>
-                        </header>
-                    </div>
+                    <NewsCard key={newsItem.id} newsItem={newsItem} />
+                    // <div key={newsItem.id} className="news-card">
+                    //     <header>
+                    //         <h2 className="title"
+                    //             dangerouslySetInnerHTML={{__html: newsItem.title}}></h2>
+                    //     </header>
+                    // </div>
                 );
             });
         }
 
         return (
-            <div className="dashboard-chat dashboard-latest-comments">
+            <div className="dashboard-recently-viewed-container">
                 <div className="scrollable">
                     <ul>
                         {recentlyViewed}

@@ -28,24 +28,16 @@ class MyStoreCheckout extends Component {
     render() {
         return (
             <div className="billing-page container">
-                <div className="row">
+                <div>
+                    <Elements>
+                        <InjectedCheckoutForm config={this.props.stripeConfig} subscribe={this.subscribe}/>
+                    </Elements>
 
-                    <div className="col-xs-12 col-md-6">       
-                        <Elements>
-                            <InjectedCheckoutForm config={this.props.stripeConfig} subscribe={this.subscribe}/>
-                        </Elements>
+                    <ErrorMessages errors={this.props.errors} />
 
-                        <ErrorMessages errors={this.props.errors} />
-                    </div>
-
-                    <div className="col-xs-12 col-md-6">
-                        <div className="payment-form text-center">
-                            <h3 className="card-title">FREE Subscription</h3>
-                            <Link to={routes.DASHBOARD_PATH}>
-                                <button className="btn btn-secondary">Continue as Free User</button>
-                            </Link>
-                        </div>
-                    </div>
+                    <Link className="pull-right" to={routes.DASHBOARD_PATH}>
+                            <button className="btn btn-secondary">Continue as Free User</button>
+                    </Link>
                 </div>
             </div>
         );

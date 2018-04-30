@@ -28,6 +28,7 @@ class DashboardItem extends Component {
             
         return (
             <div className="dashboard-item box">
+                <h3>{dashboard.name}</h3>
                 <span style={{display: dashboard.sources.length ? 'inline' : 'none'}}>                
                     <h5>Sources</h5>
                     <p className="text-tiny">{sources}</p>

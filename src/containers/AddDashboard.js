@@ -8,6 +8,9 @@ import CompetitionList from '../components/CompetitionList';
 import TeamList from '../components/TeamList';
 import PlayerList from '../components/PlayerList';
 import SourceList from '../components/SourceList';
+import SourceTypeList from '../components/SourceTypeList';
+import FilterResults from '../components/FilterResults';
+import CustomFilters from '../components/CustomFilters';
 import TwitterFilter from '../components/TwitterFilter';
 import ErrorMessages from '../components/ErrorMessages';
 import { Link } from 'react-router-dom';
@@ -18,6 +21,7 @@ class AddDashboard extends Component {
         super();
 
         this.state = {
+            name: '',
             keywords: '',
             source_type: '',
             sources: [],
@@ -45,6 +49,13 @@ class AddDashboard extends Component {
         }
     }
 
+    handleChange = (event) => {
+        this.setState({
+            ...this.state,
+            name: event.target.value
+          });        
+    }
+
     addToFilter = (type, item) => {
         
         this.setState({
@@ -53,6 +64,21 @@ class AddDashboard extends Component {
                 item
             ]
         });        
+    }
+
+    addCustomFilter = (keyword) => {
+
+        keyword = keyword.toLowerCase();
+        
+        if(!this.state.keywords.includes(keyword)) {
+            this.setState({
+                keywords: [
+                    ...this.state.keywords,
+                    keyword
+                ]
+            })            
+        }
+        
     }
 
     addSourceType = (showTweets) => {
@@ -75,9 +101,12 @@ class AddDashboard extends Component {
     }
 
     addDashboard = () => {
+
+        const keywords = this.state.keywords.join();
         
         const params = {
-            name:  'default dashboard',
+            name:  this.state.name,
+            keywords: keywords,
             sources: this.state.sources,
             source_type: this.state.source_type,
             teams: this.state.teams,
@@ -113,19 +142,22 @@ class AddDashboard extends Component {
                         </div>
                     </header>
 
-                    <section className="container">
+                    <section className="container content">
 
-                        {/* <FilterResults results={this.state.filterResults}/> */}
-                        
-                        {/* <h4>Create your own custom filters: </h4>
-                        <div className="row">            
-                            <CustomFilters addCustomFilter={this.addCustomFilter} />
-                        </div> */}
-                    </section>
+                        <div className="input-wrapper">
+                            <h4 className="label">Dashboard Name</h4>
+                            <input className="text-input" placeholder="e.g. Arsenal" type="test" value={this.state.name} name="name" onChange={this.handleChange} />
+                        </div>
 
-                    <section className="container">
+                        <div className="custom-filters">
 
-                        {/* <h4>Or choose from this list:</h4> */}
+                            <div>
+                                <h4 className="label">Add keywords to filter: </h4>        
+                                <CustomFilters addCustomFilter={this.addCustomFilter} />
+                            </div>
+
+                            <FilterResults results={this.state.keywords}/>
+                        </div>
 
                         <div className="row">
                             <div className="col-xs-12 col-md-4">
@@ -156,7 +188,7 @@ class AddDashboard extends Component {
                             </div>
                         </div>
                         
-                        <div className="row">
+                        <div className="row sources">
                             <div className="col-xs-12 col-md-6">
                                 <SourceList
                                     sources={this.props.sources} 
@@ -165,14 +197,16 @@ class AddDashboard extends Component {
                                     filterResults={this.state.sources} />
                                     
                             </div>
-                            <div className="col-xs-12 col-md-6">
+                            <div className="col-xs-12 col-md-6 twitter">
 
                                 <TwitterFilter addSourceType={this.addSourceType} />
 
-                                <AddCustomTwitter />
+                                <AddCustomTwitter /> 
                                 
                             </div>
                         </div>
+
+                        <SourceTypeList />
 
 
                         <ErrorMessages errors={this.props.errors} />

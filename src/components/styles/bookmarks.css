@@ -1,2 +1,3 @@
-.bookmarks-container .news-card {
+.bookmarks-container .news-card,
+.dashboard-recently-viewed-container .news-card {
   margin: .5rem .1rem; }

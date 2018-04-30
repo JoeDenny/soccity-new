@@ -1,5 +1,16 @@
 .add-dashboard {
   background-color: #f9f9f9; }
+  .add-dashboard .content {
+    margin-top: 3rem; }
+  .add-dashboard .custom-filters {
+    display: flex; }
+  .add-dashboard .source-type h4 {
+    cursor: pointer; }
+  .add-dashboard .source-type ul {
+    overflow: hidden;
+    transition: height .3s; }
+  .add-dashboard .label {
+    margin: 0; }
   .add-dashboard .searchbar {
     width: 100%;
     margin-right: 0;
@@ -14,6 +25,26 @@
   .add-dashboard .btn-primary {
     margin: 3rem auto;
     padding: 1rem; }
+  .add-dashboard .input-wrapper {
+    margin-bottom: 10px; }
+  .add-dashboard .text-input {
+    min-width: 320px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    padding: 0 10px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 4px; }
+  .add-dashboard .sources .source-feed {
+    height: 140px; }
+  .add-dashboard .sources .list {
+    width: 100%; }
+  .add-dashboard .sources .custom-twitter {
+    height: 70%; }
+    .add-dashboard .sources .custom-twitter .text-input {
+      color: black; }
+  .add-dashboard .sources .twitter {
+    flex-direction: column; }
 
 .list {
   position: relative;
@@ -49,4 +80,6 @@
   .add-dashboard .title {
     font-size: 2.5rem; }
   .add-dashboard .searchbar {
-    width: 400px; } }
+    width: 400px; }
+  .add-dashboard .source-type {
+    max-width: 400px; } }

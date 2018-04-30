@@ -9,6 +9,7 @@ class CustomFilters extends Component {
             keyword: ''
         };
     }
+    
     onChange = (event) => {
         
         this.setState({
@@ -28,8 +29,6 @@ class CustomFilters extends Component {
             });
         }
     }
-
-
 
     render() {
         return (

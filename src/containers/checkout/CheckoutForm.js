@@ -1,11 +1,8 @@
-// CheckoutForm.js
 import React from 'react';
 import {injectStripe} from 'react-stripe-elements';
 import {CardElement} from 'react-stripe-elements';
 import '../styles/checkout-form.css';
 
-// import AddressSection from './AddressSection';
-// import CardSection from './CardSection';
 
 class CheckoutForm extends React.Component {
     constructor() {
@@ -35,9 +32,6 @@ class CheckoutForm extends React.Component {
             }
     
         });
-
-        // However, this line of code will do the same thing:
-        // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
     }
 
   render() {
@@ -66,16 +60,16 @@ class CheckoutForm extends React.Component {
                     </label>
                 </div>
 
-                <p className="instruction">Complete your shipping and payment details below</p>
+                <p className="instruction">Complete your payment details below</p>
 
                 <section>
                     <h2>Payment Information</h2>
                     <div className="payment-info card visible">
                         <fieldset>
                             <label htmlFor="card-element">Credit or debit card</label>
-                        <div id="card-element">
-                            <CardElement style={{base: {fontSize: '18px'}}} />
-                        </div>
+                            <div id="card-element">
+                                <CardElement style={{base: {fontSize: '18px'}}} />
+                            </div>
                         </fieldset>
                     </div>
                 </section>

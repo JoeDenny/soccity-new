@@ -7,7 +7,7 @@ const initialState = {
     stripeConfig: {},
     subscribeSuccess: false,
     news: [],
-    popularNews: {},
+    popularNews: [],
     activeNews: {},
     isPopularNews: false,
     autoRefreshRate: undefined,

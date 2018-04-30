@@ -9,7 +9,7 @@ import { routes } from '../constants';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
-import { logout, updateUserDetails, getDashboards, deleteDashboard } from '../actions';
+import { logout, updateUserDetails, getDashboards, deleteDashboard, getStripeConfig } from '../actions';
 import api from '../api';
 import './styles/preferences.css';
 
@@ -32,6 +32,8 @@ class Preferences extends Component {
     componentWillMount() {
 
         this.props.getDashboards();
+
+        this.props.getStripeConfig();
         
         this.setState({
             name: this.props.user.name,
@@ -178,7 +180,7 @@ class Preferences extends Component {
                     </div>
                     
                     <div className="container">                
-                        <BillingPreferences />
+                        <BillingPreferences stripeConfig={this.props.stripeConfig} />
                     </div>
 
                     <div className="container">                
@@ -199,6 +201,7 @@ class Preferences extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.user,
+    stripeConfig: state.stripeConfig,
     loading: state.loading,
     dashboards: state.dashboards,
     errors: state.updateUserErrors,
@@ -206,7 +209,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    logout: () => dispatch(logout())  ,  
+    logout: () => dispatch(logout()),
+    getStripeConfig: () => dispatch(getStripeConfig()),      
     getDashboards: () => dispatch(getDashboards()), 
     deleteDashboard: (id) => dispatch(deleteDashboard(id)),
     updateUserDetails: (formData) => dispatch(updateUserDetails(formData))  

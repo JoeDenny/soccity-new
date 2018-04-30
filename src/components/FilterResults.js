@@ -3,15 +3,6 @@ import ResultCard from './ResultCard';
 import './styles/filter-results.css';
 
 class FilterResults extends Component {
-    // constructor() {
-    //     super();
-
-    //     this.results = [];
-    // }
-    // componentWillReceiveProps(nextProps) {
-    //     this.results = nextProps.results;   
-    // }
-
     render() {
         let results;  
         
