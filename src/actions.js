@@ -76,8 +76,11 @@ export const subscribeFailure = (errors) => ({
 });
 
 export const UPDATE_USER_SUCCESS = 'update user success';
-export const updateUserSuccess = () => ({
-    type: UPDATE_USER_SUCCESS
+export const updateUserSuccess = (user) => ({
+    type: UPDATE_USER_SUCCESS,
+    payload: {
+        user
+    }
 });
 
 export const UPDATE_USER_FAILURE = 'update user failure';
@@ -350,11 +353,7 @@ export const updateUserDetails = (formData) => {
         dispatch(fetchingData());
         api.updateUserDetails(formData).then(
             (res) => {
-                dispatch(loginSuccess(
-                    res.data.token,
-                    res.data.user          
-                ));
-                dispatch(updateUserSuccess());
+                dispatch(updateUserSuccess(res.data.user));
             })
             .catch(error => {                
                 if (error.response) {                                        

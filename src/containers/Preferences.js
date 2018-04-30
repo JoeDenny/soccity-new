@@ -19,7 +19,7 @@ class Preferences extends Component {
         this.form = undefined;
         this.state = {
             headerIsFixed: false,
-            avatar: '',
+            avatar: undefined,
             default_avatar: '',
             name: '',
             email: '',
@@ -41,14 +41,17 @@ class Preferences extends Component {
         })        
     }
 
-    componentWillReceiveProps() {
-        this.setState({
-            name: this.props.user.name,
-            email: this.props.user.email,
-            old_password: '',
-            password: '',
-            password_confirmation: ''
-        })
+    componentWillReceiveProps(newProps) {
+
+        if(newProps.updateUserSuccess) {
+            this.setState({
+                name: newProps.user.name,
+                email: newProps.user.email,
+                old_password: '',
+                password: '',
+                password_confirmation: ''
+            })
+        }
     }
     
     handleFormChange = (event) => {
@@ -86,21 +89,32 @@ class Preferences extends Component {
     
     handleFormSubmit = (event) => {
         event.preventDefault();
-                
-        const formData = {
+
+        let formData = {
             name: this.state.name,
-            email: this.state.email,
-            default_avatar: this.state.default_avatar,
-            old_password: this.state.old_password,
-            password: this.state.password,
-            password_confirmation: this.state.password_confirmation
+            email: this.state.email
         };
 
-        let data = new FormData(formData);
+        if(this.state.default_avatar.length) {
+            formData.default_avatar =this.state.default_avatar;
+        }
 
-        data.append('avatar', this.state.avatar);        
+        if(this.state.old_password.length) {
+            formData.old_password = this.state.old_password;
+            formData.password = this.state.password;
+            formData.password_confirmation = this.state.password_confirmation;
+        }
 
-        this.props.updateUserDetails(data);
+        if(this.state.avatar) {
+
+            let data = new FormData(formData);
+    
+            data.append('avatar', this.state.avatar);  
+            
+            formData = data;
+        }
+
+        this.props.updateUserDetails(formData);
     }
 
     logout = () => {
@@ -204,7 +218,7 @@ const mapStateToProps = (state) => ({
     stripeConfig: state.stripeConfig,
     loading: state.loading,
     dashboards: state.dashboards,
-    errors: state.updateUserErrors,
+    errors: state.errors,
     updateUserSuccess: state.updateUserSuccess
 });
 

@@ -5,14 +5,17 @@ import { routes } from '../constants';
 class BillingPreferences extends Component {
 
     render() {
-        let config = this.props.stripeConfig,
+        let config,
             premiumUser,
             subscription;
 
-        if(config) {            
-            premiumUser = config.user_subscription.active;
-            subscription = config.user_subscription.plan;
+        if(this.props.stripeConfig) {     
+            config = this.props.stripeConfig;
 
+            if(config.user_subscription) {
+                premiumUser = config.user_subscription.active;
+                subscription = config.user_subscription.plan;
+            }       
         }
     
         return (

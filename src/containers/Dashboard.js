@@ -127,6 +127,7 @@ class Dashboard extends Component {
                     
                     <DashboardSettings
                         setPopularNews={this.props.setPopularNews}
+                        setSearchTerm={this.setSearchTerm}
                         isPopularNews={this.props.isPopularNews}
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}

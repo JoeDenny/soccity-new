@@ -59,6 +59,8 @@ const rootReducer = (state = initialState, action) => {
         case FETCHING_DATA:
             return {
                 ...state,
+                updateUserSuccess: false,
+                errors: [],
                 loading: true
             }
         case OPEN_MENU:
@@ -81,6 +83,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 updateUserSuccess: true,
+                user: action.payload.user,
                 loading: false
             }   
         case UPDATE_USER_FAILURE:
@@ -88,7 +91,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 updateUserSuccess: false,
                 loading: false,
-                updateUserErrors: action.payload.errors
+                errors: action.payload.errors
             }            
         case LOGIN_FAILURE:
             return {
