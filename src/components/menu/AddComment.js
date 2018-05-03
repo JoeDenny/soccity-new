@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import UserPhoto from '../UserPhoto';
 import '../styles/comments.css';
+import { connect } from 'react-redux';
+import UserListDropdown from '../UserListDropdown';
+import { findUsers } from '../../actions';
 
 
 class AddComment extends Component {
@@ -16,6 +19,15 @@ class AddComment extends Component {
     
     onCommentChange = (event) => {
         const commentLength = event.currentTarget.value.length;
+
+        let comment = event.currentTarget.value;
+
+        if(comment.includes('@')) {
+            let username = comment.split('@')[1]; 
+            if(username.length) {
+                this.props.findUsers(username);
+            }       
+        }
         
         this.setState({
             comment: event.currentTarget.value,
@@ -59,10 +71,20 @@ class AddComment extends Component {
                     >
                         Send
                     </button>
+                    <UserListDropdown isOpen={true} users={this.props.foundUsers} />
                 </div>
             </form>
         )
     }
 }
 
-export default AddComment;
+
+const mapStateToProps = (state) => ({
+    foundUsers: state.foundUsers
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    findUsers: (username) => dispatch(findUsers(username))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddComment);

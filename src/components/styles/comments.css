@@ -14,6 +14,7 @@
   cursor: pointer; }
 
 .dashboard-chat .reply-count {
+  color: #0576b9;
   font-size: .7rem;
   cursor: pointer;
   position: relative;

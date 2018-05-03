@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class Api {
     token = undefined;
-    API_URL = 'http://35.176.191.198/api';
+    API_URL = 'https://c.soccity.net/api';
 
     login = (email, password) => {        
         return axios.post(`${this.API_URL}/login`, {
@@ -229,6 +229,15 @@ class Api {
     addComment = (id, comment, parent_id) => {
         
         return axios.post(`${this.API_URL}/news/${id}/comments`, { comment, parent_id }, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    findUsers = (username) => {
+        
+        return axios.get(`${this.API_URL}/users?query=${username}`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

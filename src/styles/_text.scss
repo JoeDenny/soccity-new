@@ -27,9 +27,6 @@ text-align: justify !important; }
 .cursor-pointer {
     cursor: pointer;
 }
-a {
-    color: #0576b9;
-}
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: .5rem;
@@ -44,3 +41,16 @@ p {
     text-decoration: underline;
     color: $navy;
 }
+
+.input-wrapper.inline-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .form-label {
+        white-space: nowrap;
+        margin-bottom: 0;
+        margin-right: 7.5px;
+    }
+}
+

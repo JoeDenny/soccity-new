@@ -409,6 +409,17 @@ export const openArticle = (id) => {
     };
 };
 
+export const findUsers = (username) => {        
+    return (dispatch) => {
+        api.findUsers(username)
+            .then((res) => {                                
+                console.log('res', res);
+                
+                // dispatch(findUsersSuccess());
+            })
+    };
+};
+
 export const getDefaultAvatars = () => {        
     return (dispatch) => {
         api.getDefaultAvatars()

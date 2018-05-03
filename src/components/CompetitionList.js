@@ -14,28 +14,23 @@ class CompetitionList extends Component {
         this.props.removeFromFilter('competitions', competition);        
     }
 
-    setActiveCatergory = (id) => {
-
-        this.props.setActiveCatergory('competitionId', id)
+    setActiveCompetitionId = (id) => {        
+        this.props.setActiveCompetitionId(id)
     }
 
     render() {
-        let competitions,
-            isInFilterResults;
+        let competitions;
         
         if(this.props.competitions) {
             competitions = this.props.competitions.map(competition => {
 
-                isInFilterResults = this.props.filterResults.includes(competition) ? true : false;
-              
                 return (
                         <FilterCard
                             key={competition.id}
                             data={competition}
-                            setActiveCatergory={this.setActiveCatergory}
+                            setActiveId={this.setActiveCompetitionId}
                             addToFilter={this.addCompetition}
-                            removeFromFilter={this.removeCompetition}
-                            isInFilterResults={isInFilterResults} />
+                            removeFromFilter={this.removeCompetition} />
                 )   
             });
         }    

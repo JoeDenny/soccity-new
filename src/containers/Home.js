@@ -42,9 +42,9 @@ class Home extends Component {
         return (
             <section className="app-home">
 
-            <button className="js-push-button" disabled>
+            {/* <button className="js-push-button" disabled>
             Enable Push Messages  
-            </button>
+            </button> */}
 
                 <Header fixedHeader={this.state.fixedHeader}/>
 

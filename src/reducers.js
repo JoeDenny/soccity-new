@@ -112,6 +112,7 @@ const rootReducer = (state = initialState, action) => {
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page,
                 loading: false,
+                updateDashboardSuccess: false,
                 errors: []
             };
         case GET_NEWS_FAILURE:            

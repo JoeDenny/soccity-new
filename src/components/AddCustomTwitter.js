@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCustomTwitterAccount } from '../actions';
-import ErrorMessages from './ErrorMessages';
 import './styles/custom-twitter.css';
 
 class AddCustomTwitter extends Component {
@@ -9,7 +8,7 @@ class AddCustomTwitter extends Component {
         super();
 
         this.state = {
-            type: 'twitter',
+            type: '',
             name: ''
         }
     }
@@ -26,8 +25,7 @@ class AddCustomTwitter extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         
-        const {name} = this.state;
-        const type = 'twitter';
+        const {type, name} = this.state;
         
         this.props.addCustomTwitterAccount(type, name);
     }
@@ -35,22 +33,19 @@ class AddCustomTwitter extends Component {
     render() {
 
         return (
-            <div className="custom-twitter auth-layout">
+            <div className="custom-twitter">
                 
-                <h2>Add custom twitter accounts</h2>
-
-                <ErrorMessages errors={this.props.errors}/>     
+                <h3 className="sub-title">Add Custom Twitter Feed</h3>
 
                 <form onSubmit={this.handleSubmit}>
-                    {/* <div className="input-wrapper">
-                        <input className="text-input" placeholder="hashtag or screen name" type="text" value={this.state.type} name="type" onChange={this.handleChange} />
-                    </div> */}
 
-                    <div className="input-wrapper">
-                        <input className="text-input" placeholder="valid twitter screen_name or hashtag starts with #" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
+                    <div className="input-wrapper inline-input">
+                        <label className="form-label"></label>
+                        <input className="text-input square" placeholder="# or @" type="text" value={this.state.type} name="type" onChange={this.handleChange} />
+                        <input className="text-input" placeholder="twitter feed or user name" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
                     </div>
 
-                    <input className="auth-form-button" type="submit" value="Add Twitter Account" />
+                    <input className="btn btn-primary" type="submit" value="Add" />
                 </form>
             </div>
         );

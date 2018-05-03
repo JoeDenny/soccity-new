@@ -1,0 +1,207 @@
+@import './src/styles/variables.scss';
+.add-dashboard {
+    background-color: #f9f9f9;
+
+    .content {
+        padding: 2rem 0;
+        width: 90vw;
+        max-width: 950px;
+        margin: auto;
+    }
+    
+    .add-dashboard-section {
+        padding: 1rem;
+        background-color: $white;
+        margin: 1rem 0;
+        border: 1px solid $borderGrey;
+        border-radius: .25rem;
+
+        .label-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        &.align-items {
+            align-items: center;
+        }
+
+        .sub-title {
+            border-bottom: 1px solid $borderGrey;
+            font-size: 1.8rem;
+        }
+    }
+
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .checkbox {
+        border: 1px solid $borderGrey;
+        margin: 5px;
+        border-radius: .25rem;
+        padding-left: 5px;
+
+        .form-label {
+            margin-left: 5px;
+        }
+
+        &.full-width {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            justify-content: space-between;
+        }
+    }
+
+    .text-input {
+        width: 300px;
+        background-color: $white;
+        border: 1px solid $borderGrey;
+        padding: 0 10px;
+        height: 40px;
+        font-size: 16px;
+        border-radius: 4px;
+
+        &.square {
+            width: 80px;
+            padding: 15px;
+        }
+    }
+
+    .list {
+        position: relative;
+        margin-top: 5px;
+        background-color: $white;
+        padding: .1rem;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: .28571429rem;    
+
+        .plus-icon {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            min-height: 0;
+            top: 8px;
+            background-color: grey;
+            border-color: transparent;
+            box-shadow: none;
+
+            &:before,
+            &:after {
+                width: 2px;
+                height: 11px;
+            }
+        }
+
+        header {
+            display: none;
+        }
+    }
+
+    .preset-filter-dropdown {
+        padding: 1rem 0;
+
+        h4 {
+            cursor: pointer;
+        }
+        ul {
+            overflow: hidden;
+            transition: height .3s;
+        }
+    }
+
+    .errors-container {
+        li span {
+            color: $black;
+        }
+    }
+
+    .source-type {
+        border-bottom: 1px solid $borderGrey;
+        padding: 1rem 0;
+    }
+
+    @media (min-width: 544px) {
+        .list {
+            height: 400px;
+            overflow-y: scroll;        
+        }
+    }
+
+    @media (min-width: 768px) {
+        .title {
+            font-size: 2.5rem;
+        }
+        .add-dashboard-section {
+            display: flex;
+            justify-content: space-between;
+        }
+        .add-dashboard-form {
+            width: 65%;
+            justify-content: left;
+
+            &.half {
+                width: 49%;
+                align-content: top;
+
+                &:last-child {
+                    border-left: 1px solid $borderGrey;
+                    padding-left: 15px;
+                }
+            }
+        }
+        .add-dashboard-instructions {
+            width: 35%;
+            border-left: 1px solid $borderGrey;
+            padding-left: 15px;
+        }
+    }
+
+}
+
+.header-tab {
+    display: flex;
+    text-align: center;
+    border-bottom: 1px solid $borderGrey;
+    margin: 1rem 0;
+    text-transform: capitalize;
+
+    li {
+        flex: 1;
+        padding: .5rem;
+        transition: background-color .2s;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        cursor: pointer;
+
+        &:not(:last-child) {
+            border-right: 1px solid $borderGrey;
+        }
+    }
+}
+
+.arrow {
+    border: solid $black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 5px;
+    margin: 2px 5px;
+
+    &.down {
+        transform: rotate(45deg);
+
+        .true & {
+            transform: rotate(-135deg);
+            position: relative;
+            top: 5px;
+        }
+    }
+}
+
+.breadcrumbs {
+    cursor: pointer;
+    .active {
+        text-decoration: underline;
+    }
+}

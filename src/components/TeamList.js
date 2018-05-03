@@ -14,43 +14,40 @@ class TeamList extends Component {
         this.props.removeFromFilter('teams', team);        
     }
 
-    setActiveCatergory = (id) => {
+    setActiveTeamId = (id) => {
 
-        this.props.setActiveCatergory('teamId', id)
+        this.props.setActiveTeamId(id)
+    }
+
+    backToCompetitions = () => {
+
+        this.props.setActiveCategory('competitions');
     }
 
     render() {
-        let teams,
-            isInFilterResults;
+        let teams;        
 
-        let isDisabled = this.props.filterResults.length >= 5 ? 'disabled' : '';
-        
         if(this.props.teams) {
-            teams = this.props.teams.map(team => {
 
-                isInFilterResults = this.props.filterResults.includes(team) ? true : false;
-                
-                return (
-                    <FilterCard
-                        key={team.id}
-                        data={team}
-                        competitionId={this.props.competitionId}
-                        addToFilter={this.addTeam}
-                        removeFromFilter={this.removeTeam}                        
-                        isInFilterResults={isInFilterResults} />
-                );
-            });
+            teams = this.props.teams.reduce((result, team) => {
+                    if(team.competition_id === this.props.competitionId) {
+        
+                        result.push(<FilterCard
+                            key={team.id}
+                            data={team}
+                            setActiveId={this.setActiveTeamId}                      
+                            addToFilter={this.addTeam}
+                            removeFromFilter={this.removeTeam} />);
+                    }
+                    return result;           
+                }, []);  
         }    
 
         return (
-            <div className={"list team-feed " + isDisabled}>
-                <h4 className="list-title">Add teams</h4>            
+            <div className={"list team-feed"}>
+                <p className="breadcrumbs"><span onClick={this.backToCompetitions}>Competitions</span> &#62; <span className="active">Teams</span></p>
                 <ul>
                     {teams}
-
-                    {/* <li className={"no-results " + noResultsClass}>
-                        Click on a competition to get started...
-                    </li> */}
                 </ul>
             </div>
         )

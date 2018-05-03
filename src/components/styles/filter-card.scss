@@ -7,6 +7,10 @@
     font-weight: 600;
     font-size: .8rem;
 
+    .clickable {
+        cursor: pointer;
+    }
+
     &:last-child {
         border-bottom: none;
     }
@@ -27,6 +31,7 @@
         float: left;
         margin: 10px;
         margin-left: 10px;
+        cursor: pointer;
     }
 
     input {

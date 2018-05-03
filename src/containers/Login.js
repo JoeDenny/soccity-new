@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './styles/auth.css';
 import ErrorMessages from '../components/ErrorMessages';
+// import SocialLogin from './SocialLogin';
 import { login } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -42,6 +43,8 @@ class Login extends Component {
     render() {
         return (
             <div className="auth-layout">
+
+                {/* <SocialLogin /> */}
                 
                 <h1>Login</h1>
 

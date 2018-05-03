@@ -20,11 +20,23 @@ class NewsCard extends Component {
         this.props.openArticle(this.props.newsItem.id);
     }
 
+    getHighlightedText(text, higlight) {
+        // Split on higlight term and include term into parts, ignore case
+        let parts = text.split(new RegExp(`(${higlight})`, 'gi'));
+        return <span> { parts.map((part, i) => 
+            <span key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { color: '#6bac0f' } : {} }>
+                { part }
+            </span>)
+        } </span>;
+    }
+
     render() {
 
         let thumbnail,
             newsCardClass,
-            sourceLogoSrc;
+            sourceLogoSrc,
+            title,
+            description;
         
         if(this.props.newsItem) {
 
@@ -39,12 +51,21 @@ class NewsCard extends Component {
             }
 
             sourceLogoSrc = sourceType === 'rss' ? this.props.newsItem.source.logo_path : this.props.newsItem.additional.image;  
+
+            if(this.props.searchTerm) {
+               title = this.getHighlightedText(this.props.newsItem.title, this.props.searchTerm);
+               description = this.getHighlightedText(this.props.newsItem.description, this.props.searchTerm);
+           } else {
+               title = this.props.newsItem.title;
+               description = this.props.newsItem.description;
+           }
         }
 
         const commentsIconClass = `comments-icon ${this.props.newsItem.comments.length ? 'active' : ''}`;
         
         return (
             <div className={newsCardClass}>
+
                 <a href={this.props.newsItem.link} onClick={this.openArticle} target="_blank">
                     <div className="thumbnail"> 
                         <img
@@ -61,12 +82,15 @@ class NewsCard extends Component {
                                 <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                             </div>
                             
-                            <h2 className="title"
-                                dangerouslySetInnerHTML={{__html: this.props.newsItem.title}}></h2>
+                            <h2 className="title">{title}</h2>
+                            {/* <h2 className="title"
+                                dangerouslySetInnerHTML={{__html: title}}></h2> */}
 
                         </header>
                         
-                        <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p>
+                        <p className="description text-secondary">{description}</p>
+
+                        {/* <p className="description text-secondary" dangerouslySetInnerHTML={{__html: this.props.newsItem.description}}></p> */}
                     </div>
                 </a>
                 <footer>

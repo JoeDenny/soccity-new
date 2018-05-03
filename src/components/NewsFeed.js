@@ -32,9 +32,9 @@ class NewsFeed extends Component {
                 } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     result.push(
-
+                        
                         <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <NewsCard newsItem={newsItem} />
+                            <NewsCard newsItem={newsItem}  searchTerm={searchTerm}/>
                         </li>
                     );
                 }

@@ -1,0 +1,15 @@
+@import './src/styles/variables.scss';
+
+.add-dashboard {
+    .custom-filter-input {
+        .text-input {
+            height: 60px;
+            width: 98%;
+            padding-top: 15px;
+            border: 0;
+            border-bottom: 1px solid $borderGrey;
+            border-radius: 0;
+            margin-bottom: 1rem;
+        }
+    }
+}

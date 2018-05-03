@@ -14,30 +14,30 @@ class SourceList extends Component {
         this.props.removeFromFilter('sources', source);        
     }
 
+    setActiveId() {
+        return null;
+    }
+
     render() {
-        let sources,
-            isInFilterResults,
-            isDisabled = this.props.filterResults.length >= 5 ? 'disabled' : '';
+        let sources;
 
         if(this.props.sources) {
 
-            
             sources = this.props.sources.map(source => {
                 
                 return (
                     <FilterCard
                         key={source.id}
                         data={source}
+                        setActiveId={this.setActiveId}
                         addToFilter={this.addSource}
-                        removeFromFilter={this.removeSource}                        
-                        isInFilterResults={isInFilterResults} />
+                        removeFromFilter={this.removeSource} />
                 );
             });
         }    
 
         return (
-            <div className={"list team-feed " + isDisabled}>
-                <h4 className="list-title">Add Sources</h4>            
+            <div className={"list team-feed"}>         
                 <ul>
                     {sources}
                 </ul>
