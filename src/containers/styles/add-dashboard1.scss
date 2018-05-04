@@ -34,6 +34,7 @@
     .flex-container {
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
     }
 
     .checkbox {
@@ -44,13 +45,28 @@
 
         .form-label {
             margin-left: 5px;
+            cursor: pointer;
+            
+            input {
+                margin-right: 10px;
+            }
         }
 
         &.full-width {
             width: 100%;
-            padding: 1rem;
+            display: initial;
             font-size: 1.1rem;
-            justify-content: space-between;
+
+            .form-label {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px;
+    
+                input {
+                    margin: 0;
+                    margin-top: 7px;
+                }
+            }
         }
     }
 
@@ -67,6 +83,10 @@
             width: 80px;
             padding: 15px;
         }
+    }
+
+    .relative {
+        position: relative;
     }
 
     .list {
@@ -109,6 +129,20 @@
             overflow: hidden;
             transition: height .3s;
         }
+
+        .form-label {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+
+            input {
+                margin: 0;
+            }
+        }
+
+        .arrow {
+            margin: 7px 5px;
+        }
     }
 
     .errors-container {
@@ -125,7 +159,19 @@
     @media (min-width: 544px) {
         .list {
             height: 400px;
-            overflow-y: scroll;        
+            overflow-y: scroll;   
+            
+            &.competition-list {
+                margin-right: 25px;
+            }
+
+            &.team-list {
+                margin: 0 25px;
+            }
+
+            &.player-list {
+                margin-left: 25px;
+            }
         }
     }
 
@@ -181,6 +227,40 @@
     }
 }
 
+.arrow-icon {
+    border: 1px solid $navy;
+    background-color: $navy;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+
+    .arrow {
+        padding: 4px;
+        border-color: $white;
+    }
+    
+    &.left {
+        left: -6px;
+        top: 170px;
+
+        .arrow {
+            margin: 7px 8px;
+            transform: rotate(135deg);
+        }
+    }
+    &.right {
+        right: -10px;
+        top: 170px;
+
+        .arrow {
+            margin: 7px 5px;
+            transform: rotate(-45deg);
+        }
+    }
+}
+
 .arrow {
     border: solid $black;
     border-width: 0 2px 2px 0;
@@ -200,6 +280,7 @@
 }
 
 .breadcrumbs {
+    margin: 5px;
     cursor: pointer;
     .active {
         text-decoration: underline;

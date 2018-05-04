@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import './styles/activity.css';
+import './styles/comments.css';
 
 class UserListDropdown extends Component {
+
+    tagUser(user) {
+        console.log('tag');
+        
+        this.props.tagUser(user);
+    }
 
     render() {
 
@@ -9,9 +15,10 @@ class UserListDropdown extends Component {
             users;
 
         if(this.props.users) {
+            
             users = this.props.users.map(user => {
                 return (
-                    <li>{user.name}</li>
+                    <li key={user.id} onClick={ () => this.tagUser(user) }>{user.name}</li>
                 )
             })
         }
@@ -22,7 +29,7 @@ class UserListDropdown extends Component {
                 id="dropdown">
                 <div className="menu card">
                     <ul>
-                       {users}
+                        {users}
                     </ul>
                 </div>
             </div>

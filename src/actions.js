@@ -225,6 +225,14 @@ export const favouriteArticleUpdate = (news) => ({
     }
 });
 
+export const FIND_USERS_SUCCESS = 'FIND_USERS_SUCCESS';
+export const findUsersSuccess = (users) => ({
+    type: FIND_USERS_SUCCESS,
+    payload: {
+        users
+    }
+});
+
 export const BOOKMARK_ARTICLE = 'BOOKMARK_ARTICLE';
 export const bookmarkArticleUpdate = (news) => ({
     type: BOOKMARK_ARTICLE,
@@ -371,12 +379,18 @@ export const getNews = (params) => {
             .then((res) => {                
                 dispatch(getNewsSuccess(res.data.allNews));
             })
-            .catch(error => {  
-                if (error.response) {                                        
-                    let error = {
-                        getNews: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
-                    }                
-                    dispatch(getNewsFailure(error));
+            .catch(error => {
+                if (error.response) {
+                    if(error.response.status === 401) {
+                        dispatch(getNewsFailure());                        
+                    } else if(error.response.data.errors) {
+                        dispatch(getNewsFailure(error.response.data.errors));
+                    } else {
+                        let errorMessage = {
+                            error: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
+                        };
+                        dispatch(getNewsFailure(errorMessage));
+                    }        
                 }
             });
     };
@@ -413,9 +427,7 @@ export const findUsers = (username) => {
     return (dispatch) => {
         api.findUsers(username)
             .then((res) => {                                
-                console.log('res', res);
-                
-                // dispatch(findUsersSuccess());
+                dispatch(findUsersSuccess(res.data.users.data));
             })
     };
 };
@@ -579,7 +591,7 @@ export const getDashboards = () => {
 
     return (dispatch) => {
         api.getDashboards()
-            .then((res) => {   
+            .then((res) => {                   
                 dispatch(getDashboardsUpdate(res.data.dashboards));
             });
     };

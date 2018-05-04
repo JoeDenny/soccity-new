@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, FIND_USERS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -19,6 +19,7 @@ const initialState = {
     players: [],
     followers: [],
     followings: [],
+    foundUsers: [], 
     defaultAvatars: [],
     isMenuOpen: false,
     errors: [],
@@ -80,6 +81,11 @@ const rootReducer = (state = initialState, action) => {
                 isMenuOpen: false,
                 activeMenuItem: undefined
             }
+        case FIND_USERS_SUCCESS:
+            return {
+                ...state,
+                foundUsers: action.payload.users
+            }
         case REGISTER_FAILURE:
             return {
                 ...state,
@@ -100,7 +106,7 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
                 errors: action.payload.errors
             }                     
-        case LOGOUT:
+        case LOGOUT:       
             return {
                 state: undefined
             }
@@ -119,6 +125,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 news: [],
+                token: undefined,
                 errors: action.payload.errors,
                 loading: false
             };

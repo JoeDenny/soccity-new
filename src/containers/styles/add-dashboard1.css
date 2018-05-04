@@ -21,19 +21,29 @@
       font-size: 1.8rem; }
   .add-dashboard .flex-container {
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    width: 100%; }
   .add-dashboard .checkbox {
     border: 1px solid #ebebeb;
     margin: 5px;
     border-radius: .25rem;
     padding-left: 5px; }
     .add-dashboard .checkbox .form-label {
-      margin-left: 5px; }
+      margin-left: 5px;
+      cursor: pointer; }
+      .add-dashboard .checkbox .form-label input {
+        margin-right: 10px; }
     .add-dashboard .checkbox.full-width {
       width: 100%;
-      padding: 1rem;
-      font-size: 1.1rem;
-      justify-content: space-between; }
+      display: initial;
+      font-size: 1.1rem; }
+      .add-dashboard .checkbox.full-width .form-label {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px; }
+        .add-dashboard .checkbox.full-width .form-label input {
+          margin: 0;
+          margin-top: 7px; }
   .add-dashboard .text-input {
     width: 300px;
     background-color: #fff;
@@ -45,6 +55,8 @@
     .add-dashboard .text-input.square {
       width: 80px;
       padding: 15px; }
+  .add-dashboard .relative {
+    position: relative; }
   .add-dashboard .list {
     position: relative;
     margin-top: 5px;
@@ -73,6 +85,14 @@
     .add-dashboard .preset-filter-dropdown ul {
       overflow: hidden;
       transition: height .3s; }
+    .add-dashboard .preset-filter-dropdown .form-label {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px; }
+      .add-dashboard .preset-filter-dropdown .form-label input {
+        margin: 0; }
+    .add-dashboard .preset-filter-dropdown .arrow {
+      margin: 7px 5px; }
   .add-dashboard .errors-container li span {
     color: #222629; }
   .add-dashboard .source-type {
@@ -81,7 +101,13 @@
   @media (min-width: 544px) {
     .add-dashboard .list {
       height: 400px;
-      overflow-y: scroll; } }
+      overflow-y: scroll; }
+      .add-dashboard .list.competition-list {
+        margin-right: 25px; }
+      .add-dashboard .list.team-list {
+        margin: 0 25px; }
+      .add-dashboard .list.player-list {
+        margin-left: 25px; } }
   @media (min-width: 768px) {
     .add-dashboard .title {
       font-size: 2.5rem; }
@@ -118,6 +144,30 @@
     .header-tab li:not(:last-child) {
       border-right: 1px solid #ebebeb; }
 
+.arrow-icon {
+  border: 1px solid #323648;
+  background-color: #323648;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer; }
+  .arrow-icon .arrow {
+    padding: 4px;
+    border-color: #fff; }
+  .arrow-icon.left {
+    left: -6px;
+    top: 170px; }
+    .arrow-icon.left .arrow {
+      margin: 7px 8px;
+      transform: rotate(135deg); }
+  .arrow-icon.right {
+    right: -10px;
+    top: 170px; }
+    .arrow-icon.right .arrow {
+      margin: 7px 5px;
+      transform: rotate(-45deg); }
+
 .arrow {
   border: solid #222629;
   border-width: 0 2px 2px 0;
@@ -132,6 +182,7 @@
       top: 5px; }
 
 .breadcrumbs {
+  margin: 5px;
   cursor: pointer; }
   .breadcrumbs .active {
     text-decoration: underline; }

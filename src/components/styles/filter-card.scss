@@ -9,6 +9,8 @@
 
     .clickable {
         cursor: pointer;
+        width: 90%;
+        float: left;
     }
 
     &:last-child {
@@ -42,7 +44,7 @@
     }
 }
 
-.competition-feed {
+.competition-list {
     .filter-card .logo {
         display: none;
     }

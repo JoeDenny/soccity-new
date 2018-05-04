@@ -36,14 +36,20 @@ class CompetitionList extends Component {
         }    
 
         return (
-            <div className="list competition-feed">
-                <header>
-                    <h4 className="list-title">Add competitions</h4>
-                </header>
-                
-                <ul>
-                    {competitions}
-                </ul>
+            <div className="relative">
+                <div className="list competition-list">
+                    <header>
+                        <h4 className="list-title">Add competitions</h4>
+                    </header>
+                    
+                    <ul>
+                        {competitions}
+                    </ul>
+                </div>
+                <div className="arrow-icon right" onClick={() => this.setActiveCompetitionId(undefined)}>
+                    <div className="arrow"></div>
+                </div>
+                <p className="breadcrumbs">Competitions</p>
             </div>
         )
     }

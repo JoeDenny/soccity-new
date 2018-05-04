@@ -16,6 +16,19 @@ class AddComment extends Component {
             textareaHeight: 27
         };
     }
+
+    tagUser = (user) => {
+        let newComment = this.state.comment;
+
+        let username = newComment.split('@')[1];
+        
+        newComment = newComment.replace(username, user.name);
+        
+        this.setState({
+            ...this.state,
+            comment: newComment
+        });
+    }
     
     onCommentChange = (event) => {
         const commentLength = event.currentTarget.value.length;
@@ -71,7 +84,7 @@ class AddComment extends Component {
                     >
                         Send
                     </button>
-                    <UserListDropdown isOpen={true} users={this.props.foundUsers} />
+                    <UserListDropdown isOpen={true} users={this.props.foundUsers} tagUser={this.tagUser} />
                 </div>
             </form>
         )

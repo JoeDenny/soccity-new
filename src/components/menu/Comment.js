@@ -17,9 +17,15 @@ class Comment extends Component {
         this.props.toggleFollow(this.props.comment.user.id);
     }
 
-    toggleNestedReply = () => {
+    openNestedReply = () => {
         this.setState({
-            replyOpen: !this.state.replyOpen
+            replyOpen: true
+        })
+    }
+
+    closeNestedReply = () => {
+        this.setState({
+            replyOpen: false
         })
     }
 
@@ -99,15 +105,15 @@ class Comment extends Component {
                     <p>{comment.comment}</p>
 
                     <div className="reply-container">
-                        <span style={{display: this.state.replyOpen ? 'none' : 'inline' }} className="nested-reply" onClick={this.toggleNestedReply}>reply</span>
-
-
-                        <span style={{display: this.state.replyOpen ? 'inline' : 'none' }}  className="nested-reply" onClick={this.toggleNestedReply}>X</span>
-
+                        <span style={{display: this.state.replyOpen ? 'none' : 'inline' }} className="nested-reply" onClick={this.openNestedReply}>reply</span>
+                        
                         <span style={{display: replies.length ? 'inline' : 'none' }}>
-                            <a className="reply-count" onClick={this.toggleNestedReply}>{replies.length} replies</a>
+                            <a className="reply-count" onClick={this.openNestedReply}>{replies.length} replies</a>
+                        </span>
 
-                            <div className={"nested-reply-container " + nestedReplyClass}>
+                        <span style={{display: this.state.replyOpen ? 'inline' : 'none' }}  className="nested-reply">
+                        <p className="text-right" onClick={this.closeNestedReply}>X</p>
+                        <div className={"nested-reply-container " + nestedReplyClass}>
                                 {replies}
 
                                 <AddComment

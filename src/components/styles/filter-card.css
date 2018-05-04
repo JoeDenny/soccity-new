@@ -5,7 +5,9 @@
   font-weight: 600;
   font-size: .8rem; }
   .filter-card .clickable {
-    cursor: pointer; }
+    cursor: pointer;
+    width: 90%;
+    float: left; }
   .filter-card:last-child {
     border-bottom: none; }
   .filter-card.selected {
@@ -27,5 +29,5 @@
     margin: 13px 5px;
     margin-right: 15px; }
 
-.competition-feed .filter-card .logo {
+.competition-list .filter-card .logo {
   display: none; }

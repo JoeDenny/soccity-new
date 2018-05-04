@@ -37,9 +37,6 @@ class DashboardItem extends Component {
                     <h5>Teams</h5>
                     <p className="text-tiny">{teams}</p>
                 </span>
-                <span style={{display: dashboard.keywords ? 'inline' : 'none'}}>
-                    <p className="text-tiny">Keywords: {dashboard.keywords}</p>
-                </span>
                 <button onClick={this.deleteDashboard}>Delete</button>
             </div>
         )

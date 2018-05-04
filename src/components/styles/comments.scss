@@ -14,6 +14,14 @@
         }
     }
 
+    .dropdown.open {
+        .menu {
+            left: 0;
+            right: 68px;
+            top: -10px;
+        }
+    }
+
     .nested-reply {
         float: right;
         font-size: .7rem;   

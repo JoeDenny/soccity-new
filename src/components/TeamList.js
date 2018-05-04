@@ -29,26 +29,51 @@ class TeamList extends Component {
 
         if(this.props.teams) {
 
-            teams = this.props.teams.reduce((result, team) => {
-                    if(team.competition_id === this.props.competitionId) {
-        
-                        result.push(<FilterCard
-                            key={team.id}
-                            data={team}
-                            setActiveId={this.setActiveTeamId}                      
-                            addToFilter={this.addTeam}
-                            removeFromFilter={this.removeTeam} />);
-                    }
-                    return result;           
-                }, []);  
+            if(this.props.competitionId) {
+
+                teams = this.props.teams.reduce((result, team) => {
+                        if(team.competition_id === this.props.competitionId) {
+            
+                            result.push(<FilterCard
+                                key={team.id}
+                                data={team}
+                                setActiveId={this.setActiveTeamId}                      
+                                addToFilter={this.addTeam}
+                                removeFromFilter={this.removeTeam} />);
+                        }
+                        return result;           
+                    }, []);  
+            } else {
+
+                teams = this.props.teams.map(team => {
+                    return (
+                        <FilterCard
+                                key={team.id}
+                                data={team}
+                                setActiveId={this.setActiveTeamId}                      
+                                addToFilter={this.addTeam}
+                                removeFromFilter={this.removeTeam} />
+                    )
+                })
+            }
+
         }    
 
         return (
-            <div className={"list team-feed"}>
+            <div className="relative">
+                <div className={"list team-list"}>
+                    <ul>
+                        {teams}
+                    </ul>
+                </div>
+
                 <p className="breadcrumbs"><span onClick={this.backToCompetitions}>Competitions</span> &#62; <span className="active">Teams</span></p>
-                <ul>
-                    {teams}
-                </ul>
+                <div className="arrow-icon left" onClick={() => this.backToCompetitions()}>
+                    <div className="arrow"></div>
+                </div>
+                <div className="arrow-icon right" onClick={() => this.setActiveTeamId(undefined)}>
+                    <div className="arrow"></div>
+                </div>
             </div>
         )
     }

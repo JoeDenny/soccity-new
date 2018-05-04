@@ -19,15 +19,14 @@ class FilterCard extends Component {
         return (
             <li className="filter-card text-secondary"> 
 
-            
-                    <span className="clickable" onClick={this.setActiveId}>
+                    <div className="clickable clearfix" onClick={this.setActiveId}>
                         <img
                             className="logo"
                             src={logo}
                             alt="" />
                         <p className="name">{this.props.data.name}</p>
                         <p className="name">{this.props.data.title}</p>
-                    </span>
+                    </div>
                     
                     <div onClick={this.handleClick} className="plus-icon"></div>
             </li>

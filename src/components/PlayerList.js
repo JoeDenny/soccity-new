@@ -34,28 +34,49 @@ class PlayerList extends Component {
 
         if(this.props.players) {
 
-            players = this.props.players.reduce((result, player) => {
-                
-                    if(player.team_id === this.props.teamId) {
-        
-                        result.push(<FilterCard
+            if(this.props.teamId) {
+
+                players = this.props.players.reduce((result, player) => {
+                    
+                        if(player.team_id === this.props.teamId) {
+            
+                            result.push(<FilterCard
+                                key={player.id}
+                                data={player}
+                                setActiveId={this.setActiveId}                        
+                                addToFilter={this.addPlayer}
+                                removeFromFilter={this.removePlayer} />);
+                        }
+                        return result;           
+                    }, []); 
+            } else {
+
+                players = this.props.players.map(player => {
+
+                    return (
+                        <FilterCard
                             key={player.id}
                             data={player}
                             setActiveId={this.setActiveId}                        
                             addToFilter={this.addPlayer}
-                            removeFromFilter={this.removePlayer} />);
-                    }
-                    return result;           
-                }, []);  
+                            removeFromFilter={this.removePlayer} />
+                    )
+                });
+            }
         }    
         
         return (
-            <div className="list player-feed">   
+            <div className="relative">
+                <div className="list player-list">                         
+                    <ul>
+                        {players}
+                    </ul>
+                </div>
+                <div className="arrow-icon left" onClick={() => this.backToTeams()}>
+                    <div className="arrow"></div>
+                </div>
+
                 <p className="breadcrumbs"><span onClick={this.backToCompetitions}>Competitions</span> &#62; <span onClick={this.backToTeams}>Teams</span> &#62; <span className="active">Players</span></p>
-                      
-                <ul>
-                    {players}
-                </ul>
             </div>
         )
     }

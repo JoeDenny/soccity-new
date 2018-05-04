@@ -86,12 +86,12 @@ class AddDashboard extends Component {
         keyword = keyword.toLowerCase();
         
         this.setState({
+            ...this.state,
             choices: {
+                ...this.state.choices,
                 keywords: keyword
             }
-        })            
-        // if(!this.state.choices.keywords.includes(keyword)) {            
-        // }
+        })
     }
 
     addSourceType = (showTweets) => {
@@ -100,17 +100,14 @@ class AddDashboard extends Component {
         })
     }
 
-    removeFromFilter = (type, filterItem) => {
-
-        let filterArray = this.state[type];        
-
-        let index = filterArray.indexOf(filterItem);
-
-        filterArray.splice(index, 1);
-        
+    removeFilter = (type) => {
         this.setState({
-            [type]: filterArray
-        });  
+            ...this.state,
+            choices: {
+                ...this.state.choices,
+                [type]: undefined
+            }
+        })
     }
 
     addDashboard = () => {
@@ -252,20 +249,28 @@ class AddDashboard extends Component {
                                     <label className="form-label label-title">Select auto-refresh rate:</label>
                                     <div className="flex-container">
                                         <div className="input-wrapper inline-input checkbox radio">
-                                            <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
-                                            <label className="form-label">30 secs</label>
+                                            <label className="form-label">
+                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
+                                                30 secs
+                                            </label>
                                         </div>
                                         <div className="input-wrapper inline-input checkbox radio">
-                                            <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
-                                            <label className="form-label">1 min</label>
+                                            <label className="form-label">
+                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
+                                                1 min
+                                            </label>
                                         </div>
                                         <div className="input-wrapper inline-input checkbox radio">
-                                            <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "120"} value="120"/>
-                                            <label className="form-label">2 mins</label>
+                                            <label className="form-label">
+                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "120"} value="120"/>
+                                                2 mins
+                                            </label>
                                         </div>
                                         <div className="input-wrapper inline-input checkbox radio">
-                                            <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "300"} value="300"/>
-                                            <label className="form-label">5 mins</label>
+                                            <label className="form-label">
+                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "300"} value="300"/>
+                                                5 mins
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +287,7 @@ class AddDashboard extends Component {
                                 <CustomFilters addCustomFilter={this.addCustomFilter}/>
                                 <div className="input-wrapper inline-input">
                                     <label className="form-label label-title">Dashboard Keyword:</label>
-                                    <FilterResults choices={this.state.choices} />                            
+                                    <FilterResults choices={this.state.choices} removeFilter={this.removeFilter} />                            
                                 </div>
                             </div>
                             <div className="add-dashboard-instructions">
@@ -313,12 +318,16 @@ class AddDashboard extends Component {
                                 <div className="input-wrapper inline-input">
                                     <div className="flex-container">
                                         <div className="input-wrapper inline-input checkbox full-width">
-                                            <label className="form-label">Include Default Tweets</label>
-                                            <input type="checkbox" onChange={this.handleChange} />
+                                            <label className="form-label">
+                                                <span>Include Default Tweets</span>
+                                                <input type="checkbox" />
+                                            </label>
                                         </div>
                                         <div className="input-wrapper inline-input checkbox full-width">
-                                            <label className="form-label">Include Multimedia Tweets</label>
-                                            <input type="checkbox" onChange={this.handleChange} />
+                                            <label className="form-label">
+                                                <span>Include Multimedia Tweets</span>
+                                                <input type="checkbox" />
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

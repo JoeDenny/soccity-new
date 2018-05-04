@@ -8,6 +8,11 @@
     height: 100%;
     object-fit: contain; }
 
+.dashboard-chat .dropdown.open .menu {
+  left: 0;
+  right: 68px;
+  top: -10px; }
+
 .dashboard-chat .nested-reply {
   float: right;
   font-size: .7rem;
