@@ -69,7 +69,8 @@
       width: 20px;
       height: 20px;
       min-height: 0;
-      top: 8px;
+      top: 20px;
+      right: 5px;
       background-color: grey;
       border-color: transparent;
       box-shadow: none; }
@@ -80,6 +81,11 @@
       display: none; }
   .add-dashboard .preset-filter-dropdown {
     padding: 1rem 0; }
+    .add-dashboard .preset-filter-dropdown .filter-card {
+      height: 40px;
+      padding: 0 5px;
+      font-weight: 600;
+      font-size: .8rem; }
     .add-dashboard .preset-filter-dropdown h4 {
       cursor: pointer; }
     .add-dashboard .preset-filter-dropdown ul {
@@ -115,7 +121,7 @@
       display: flex;
       justify-content: space-between; }
     .add-dashboard .add-dashboard-form {
-      width: 65%;
+      width: 70%;
       justify-content: left; }
       .add-dashboard .add-dashboard-form.half {
         width: 49%;
@@ -124,9 +130,13 @@
           border-left: 1px solid #ebebeb;
           padding-left: 15px; }
     .add-dashboard .add-dashboard-instructions {
-      width: 35%;
+      width: 30%;
       border-left: 1px solid #ebebeb;
-      padding-left: 15px; } }
+      padding-left: 15px; }
+      .add-dashboard .add-dashboard-instructions p {
+        font-size: .9rem; } }
+  .add-dashboard .update-dashboard-btn {
+    display: none; }
 
 .header-tab {
   display: flex;
@@ -183,6 +193,7 @@
 
 .breadcrumbs {
   margin: 5px;
+  margin-top: 20px;
   cursor: pointer; }
   .breadcrumbs .active {
     text-decoration: underline; }

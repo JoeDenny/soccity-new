@@ -1,0 +1,30 @@
+.dashboard-filter .add-dashboard {
+  background-color: #fff; }
+  .dashboard-filter .add-dashboard .app-header {
+    display: none; }
+  .dashboard-filter .add-dashboard .content {
+    width: 100%;
+    padding: 0; }
+    .dashboard-filter .add-dashboard .content .add-dashboard-section {
+      display: block; }
+      .dashboard-filter .add-dashboard .content .add-dashboard-section .label-title {
+        font-size: 1rem; }
+    .dashboard-filter .add-dashboard .content .add-dashboard-form {
+      width: 100%; }
+      .dashboard-filter .add-dashboard .content .add-dashboard-form .text-input {
+        width: 100%; }
+    .dashboard-filter .add-dashboard .content .add-dashboard-instructions {
+      display: none; }
+    .dashboard-filter .add-dashboard .content .input-wrapper {
+      display: block; }
+    .dashboard-filter .add-dashboard .content .breadcrumbs {
+      margin-top: 5px;
+      margin-bottom: 30px; }
+  .dashboard-filter .add-dashboard .add-dashboard-btn {
+    display: none; }
+  .dashboard-filter .add-dashboard .update-dashboard-btn {
+    display: inline-block; }
+  .dashboard-filter .add-dashboard .custom-twitter form {
+    display: block; }
+    .dashboard-filter .add-dashboard .custom-twitter form .btn {
+      width: 100%; }

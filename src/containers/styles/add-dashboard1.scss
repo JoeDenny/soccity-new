@@ -102,7 +102,8 @@
             width: 20px;
             height: 20px;
             min-height: 0;
-            top: 8px;
+            top: 20px;
+            right: 5px;
             background-color: grey;
             border-color: transparent;
             box-shadow: none;
@@ -121,6 +122,13 @@
 
     .preset-filter-dropdown {
         padding: 1rem 0;
+
+        .filter-card {
+            height: 40px;
+            padding: 0 5px;
+            font-weight: 600;
+            font-size: .8rem;
+        }
 
         h4 {
             cursor: pointer;
@@ -184,7 +192,7 @@
             justify-content: space-between;
         }
         .add-dashboard-form {
-            width: 65%;
+            width: 70%;
             justify-content: left;
 
             &.half {
@@ -198,10 +206,18 @@
             }
         }
         .add-dashboard-instructions {
-            width: 35%;
+            width: 30%;
             border-left: 1px solid $borderGrey;
             padding-left: 15px;
+
+            p {
+                font-size: .9rem;
+            }
         }
+    }
+
+    .update-dashboard-btn {
+        display: none;
     }
 
 }
@@ -281,8 +297,10 @@
 
 .breadcrumbs {
     margin: 5px;
+    margin-top: 20px;
     cursor: pointer;
     .active {
         text-decoration: underline;
     }
 }
+

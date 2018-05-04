@@ -10,6 +10,15 @@
   top: 135px;
   z-index: 99;
   overflow-y: auto; }
+  .menu-container .header .close-icon {
+    width: 15px;
+    height: 15px;
+    top: 10px;
+    right: 15px; }
+    .menu-container .header .close-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: #484848; }
   .menu-container .scrollable {
     padding: 15px;
     padding-top: 5px;
@@ -20,15 +29,6 @@
     .menu-container .header h3 {
       padding-right: 1.25rem;
       margin: 0; }
-  .menu-container .close-icon {
-    width: 15px;
-    height: 15px;
-    top: 10px;
-    right: 15px; }
-    .menu-container .close-icon svg {
-      width: 15px;
-      height: 15px;
-      fill: #484848; }
   .menu-container .fixed-content {
     display: none; }
   .menu-container.open {
@@ -40,7 +40,6 @@
   .menu-container {
     bottom: 0;
     position: static;
-    width: 335px;
     right: 0;
     top: 0;
     bottom: 0;
@@ -53,6 +52,6 @@
       max-height: 80vh; }
     .menu-container .fixed-content {
       position: fixed;
-      min-width: 335px; }
+      width: 400px; }
     .menu-container.open {
       display: block; } }

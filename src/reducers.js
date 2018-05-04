@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, FIND_USERS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, SET_ACTIVE_DASHBOARD, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, SEARCHING_FOR_USERS, STOP_SEARCHING_FOR_USERS, FIND_USERS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
 
 const initialState = {
     token: '',
@@ -14,6 +14,7 @@ const initialState = {
     activeMenuItem: undefined,
     recentlyViewed: [],
     dashboards: [],
+    activeDashboard: undefined,
     competitions: [],
     teams: [],
     players: [],
@@ -85,6 +86,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 foundUsers: action.payload.users
+            }
+        case SEARCHING_FOR_USERS:
+            return {
+                ...state,
+                searchingForUsers: true
+            }
+        case STOP_SEARCHING_FOR_USERS:
+            return {
+                ...state,
+                searchingForUsers: false
             }
         case REGISTER_FAILURE:
             return {
@@ -200,6 +211,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 errors: action.payload.errors
             };
+        case SET_ACTIVE_DASHBOARD:                    
+            return {
+                ...state,
+                activeDashboard: action.payload.activeDashboard
+            };
         case SET_ACTIVE_NEWS:        
             return {
                 ...state,
@@ -286,9 +302,8 @@ const rootReducer = (state = initialState, action) => {
                 })
             };
         case SEARCH:
-            const {value} = action.payload.searchValue;
-            const works = state.news.filter((val) => val.includes(value));            
-            console.log('search works', works);
+            // const {value} = action.payload.searchValue;
+            // const works = state.news.filter((val) => val.includes(value));            
             return {
                 ...state
             };

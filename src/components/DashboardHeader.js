@@ -19,12 +19,12 @@ class DashboardHeader extends Component {
                 <Searchbar setSearchTerm={this.setSearchTerm}/>
 
                 <nav className="user-details">
-                        <h5 className="username pull-left">
+                        <h4 className="username pull-left">
                             <Link to={routes.PREFERENCES_PATH}>{this.props.user.name}</Link>
-                        </h5>
+                        </h4>
 
                     <Link to={routes.BILLING_PATH}>
-                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade bold card">Upgrade?</p>
+                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade card">Upgrade?</p>
                     </Link>
                     
                     <Link to={routes.PREFERENCES_PATH}>

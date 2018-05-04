@@ -1,31 +1,30 @@
 .filter-card {
-  height: 40px;
+  height: 60px;
   padding: 0 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-  font-size: .8rem; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .filter-card .clickable {
     cursor: pointer;
     width: 90%;
-    float: left; }
+    float: left;
+    font-size: 1.1rem; }
   .filter-card:last-child {
     border-bottom: none; }
   .filter-card.selected {
     background-color: #86C232; }
   .filter-card .logo {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     margin-top: 5px;
     float: left; }
   .filter-card .name {
     float: left;
-    margin: 10px;
+    margin: 15px;
     margin-left: 10px;
     cursor: pointer; }
   .filter-card input {
     float: right;
-    margin: 11px;
+    margin: 1px;
     margin: 13px 5px;
     margin-right: 15px; }
 

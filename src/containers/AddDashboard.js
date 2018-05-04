@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/add-dashboard1.css';
 import { connect } from 'react-redux';
-import { getCompetitions, getTeams, getPlayers, getSources, addDashboard } from '../actions';
+import { getCompetitions, getTeams, getPlayers, getSources, addDashboard, updateDashboard} from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
 import AddCustomTwitter from '../components/AddCustomTwitter';
 import CompetitionList from '../components/CompetitionList';
@@ -46,13 +46,60 @@ class AddDashboard extends Component {
         this.props.getTeams();
         this.props.getPlayers();
         this.props.getSources();
+
+        if(this.props.activeDashboard) {
+            
+            let activeDashboard = this.props.activeDashboard;
+            
+            this.setState({
+                choices: {
+                    teams: activeDashboard.teams,
+                    players: activeDashboard.players,
+                    competitions: activeDashboard.competitions,
+                    sources: activeDashboard.sources,
+                    keywords: activeDashboard.keywords.keyword
+                },
+                name: activeDashboard.name,
+                refreshRate: '30',
+                source_type: '',
+                preferences: [],
+                activeFilterList: 'competitions',
+                competitionId: '',
+                teamId: '',
+            })
+        }
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.updateDashboardSuccess) {
             this.props.history.push(routes.DASHBOARD_PATH);
         }
+
+        if(newProps.activeDashboard) {
+            let activeDashboard = newProps.activeDashboard;
+
+            this.setState({
+                choices: {
+                    teams: activeDashboard.teams,
+                    players: activeDashboard.players,
+                    competitions: activeDashboard.competitions,
+                    sources: activeDashboard.sources,
+                    keywords: activeDashboard.keywords
+                },
+                name: activeDashboard.name,
+                refreshRate: '30',
+                source_type: '',
+                preferences: [],
+                activeFilterList: 'competitions',
+                competitionId: '',
+                teamId: '',
+            })
+        }
+
+        
+        
     }
+
 
     handleChange = (event) => {
         
@@ -76,7 +123,9 @@ class AddDashboard extends Component {
             ...this.state,
             choices: {
                 ...this.state.choices,
-                [category]: item
+                [category]: [
+                    item
+                ]
             }
         })
     }
@@ -89,7 +138,7 @@ class AddDashboard extends Component {
             ...this.state,
             choices: {
                 ...this.state.choices,
-                keywords: keyword
+                keywords: [keyword]
             }
         })
     }
@@ -110,30 +159,62 @@ class AddDashboard extends Component {
         })
     }
 
-    addDashboard = () => {
-        
+    updateDashboard = () => {
         const params = {
             name: this.state.name || 'default dashboard',
             source_type: this.state.source_type
         }
 
+        if(this.state.choices.competitions.length) {
+            params.competitions = this.state.choices.competitions.id;
+        } else if(this.state.choices.teams.length) {
+            params.teams = this.state.choices.teams.id;
+        } else if(this.state.choices.players.length) {
+            params.players = this.state.choices.players.id;
+        }
+
+        if(this.state.choices.sources.length) {
+            params.sources = this.state.choices.sources.id;
+        }
+
+        if(this.state.choices.keywords.length) {
+            params.keywords = this.state.choices.keywords
+        }
+
+        console.log('para', params);
+        
+        // if(this.props.activeDashboard) {
+            
+        //     let dashboardId = this.props.activeDashboard.id;
+        //     this.props.updateDashboard(dashboardId, params);  
+        // } else {
+
+        //     this.props.addDashboard(params);
+        // }
+    }
+
+    addDashboard = () => {
+        
+        const params = {
+            name: this.state.name || 'default dashboard',
+            source_type: this.state.source_type
+        }        
+
         if(this.state.choices.competitions) {
-            params.competitions = [this.state.choices.competitions.id]
+            params.competitions = this.state.choices.competitions.id
         } else if(this.state.choices.teams) {
-            params.teams = [this.state.choices.teams.id]
+            params.teams = this.state.choices.teams.id
         } else if(this.state.choices.players) {
-            params.players = [this.state.choices.players.id]
+            params.players = this.state.choices.players.id
         }
 
         if(this.state.choices.sources) {
-            params.sources = [this.state.choices.sources.id];
+            params.sources = this.state.choices.sources.id;
         }
 
         if(this.state.choices.keywords) {
-            params.keywords = [this.state.choices.keywords]
+            params.keywords = this.state.choices.keywords;
         }
-
-        console.log('params: ', params);
         
         this.props.addDashboard(params);        
     }
@@ -349,8 +430,11 @@ class AddDashboard extends Component {
                         <ErrorMessages errors={this.props.errors} />
 
                         <div className="text-center">
-                            <button className="btn btn-primary"
+                            <button className="btn btn-primary add-dashboard-btn"
                                     onClick={this.addDashboard}>Save Dashboard</button>
+
+                            <button className="btn btn-primary update-dashboard-btn"
+                                    onClick={this.updateDashboard}>Update Dashboard</button>
                         </div>
                     </section>
                 
@@ -374,7 +458,8 @@ const mapDispatchToProps = (dispatch) => ({
     getTeams: () => dispatch(getTeams()),
     getPlayers: () => dispatch(getPlayers()),
     getSources: () => dispatch(getSources()),
-    addDashboard: (params) => dispatch(addDashboard(params))
+    addDashboard: (params) => dispatch(addDashboard(params)),
+    updateDashboard: (dashboardId, params) => dispatch(updateDashboard(dashboardId, params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDashboard);

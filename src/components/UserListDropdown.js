@@ -4,8 +4,6 @@ import './styles/comments.css';
 class UserListDropdown extends Component {
 
     tagUser(user) {
-        console.log('tag');
-        
         this.props.tagUser(user);
     }
 

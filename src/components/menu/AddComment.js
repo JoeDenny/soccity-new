@@ -3,7 +3,7 @@ import UserPhoto from '../UserPhoto';
 import '../styles/comments.css';
 import { connect } from 'react-redux';
 import UserListDropdown from '../UserListDropdown';
-import { findUsers } from '../../actions';
+import { findUsers, stopSearchingForUsers } from '../../actions';
 
 
 class AddComment extends Component {
@@ -11,6 +11,7 @@ class AddComment extends Component {
         super(props);
 
         this.state = {
+            tag: '',
             comment: undefined,
             commentLength: 0,
             textareaHeight: 27
@@ -18,28 +19,36 @@ class AddComment extends Component {
     }
 
     tagUser = (user) => {
-        let newComment = this.state.comment;
 
-        let username = newComment.split('@')[1];
-        
-        newComment = newComment.replace(username, user.name);
-        
+        let comment = this.state.comment.split('@')[0];
+
+        // let newComment = this.state.comment.replace(username, user.name);
+
+        let newComment = comment + '@' + user.name;
+
         this.setState({
             ...this.state,
             comment: newComment
         });
+        this.props.stopSearchingForUsers();
     }
     
     onCommentChange = (event) => {
         const commentLength = event.currentTarget.value.length;
 
         let comment = event.currentTarget.value;
-
+        
         if(comment.includes('@')) {
-            let username = comment.split('@')[1]; 
-            if(username.length) {
-                this.props.findUsers(username);
-            }       
+            let splitComment = comment.split('@');
+
+            if(splitComment[1].split(' ').length === 1) {
+                
+                let username = splitComment[1]; 
+                if(username.length) {
+                    this.props.findUsers(username);
+                }       
+            }
+
         }
         
         this.setState({
@@ -62,7 +71,6 @@ class AddComment extends Component {
     }
 
     render() {
-        
         const placeholder = 'Write a response...';
 
         return (
@@ -78,13 +86,14 @@ class AddComment extends Component {
                         placeholder={placeholder}
                         onChange={this.onCommentChange}
                     />
+
                     <button 
                         type="submit" 
                         className="add-comment__button"
                     >
                         Send
                     </button>
-                    <UserListDropdown isOpen={true} users={this.props.foundUsers} tagUser={this.tagUser} />
+                    <UserListDropdown isOpen={this.props.searchingForUsers} users={this.props.foundUsers} tagUser={this.tagUser} />
                 </div>
             </form>
         )
@@ -93,11 +102,13 @@ class AddComment extends Component {
 
 
 const mapStateToProps = (state) => ({
-    foundUsers: state.foundUsers
+    foundUsers: state.foundUsers,
+    searchingForUsers: state.searchingForUsers
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    findUsers: (username) => dispatch(findUsers(username))
+    findUsers: (username) => dispatch(findUsers(username)),
+    stopSearchingForUsers: () => dispatch(stopSearchingForUsers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddComment);

@@ -1,19 +1,59 @@
 @import '../../styles/variables.scss';
 
 .dashboard-filter {
+    .add-dashboard {
+        background-color: $white;
 
-    // .searchbar {
-    //     width: 100%;
-    //     margin-right: 0;
-    //     border: 1px solid $borderGrey;
+        .app-header {
+            display: none;
+        }
 
-    //     .add-icon {
-    //         transform: rotate(45deg);
-    //         width: 20px;
-    //         height: 20px;
-    //         fill: $textSecondary;
-    //         float: right;
-    //         margin: 20px;
-    //     }
-    // }
+        .content {
+            width: 100%;
+            padding: 0;
+
+            .add-dashboard-section {
+                display: block;
+                
+                .label-title {
+                    font-size: 1rem;
+                }
+            }
+
+            .add-dashboard-form {
+                width: 100%;
+                .text-input {
+                    width: 100%;
+                }
+            }
+
+            .add-dashboard-instructions {
+                display: none;
+            }
+
+            .input-wrapper {
+                display: block;
+            }
+
+            .breadcrumbs {
+                margin-top: 5px;
+                margin-bottom: 30px;
+            }
+        }
+        .add-dashboard-btn {
+            display: none;
+        }
+        .update-dashboard-btn {
+            display: inline-block;
+        }
+        .custom-twitter {
+            form {
+                display: block;
+
+                .btn {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

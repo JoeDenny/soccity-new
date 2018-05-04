@@ -7,7 +7,7 @@ import Sidebar from '../components/Sidebar';
 import PopularNewsTicker from '../components/PopularNewsTicker';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getPopularNews, setPopularNews, getDashboards, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -109,6 +109,7 @@ class Dashboard extends Component {
         }        
 
         this.props.getNews(params);
+        this.props.setActiveDashboard(dashboard);
     }
 
     render() {
@@ -157,6 +158,7 @@ class Dashboard extends Component {
                             isOpen={isMenuOpen}
                             news={news}
                             activeNews={activeNews}
+                            activeDashboard={this.props.activeDashboard}
                             closeMenu={this.closeMenu}
                             activeMenuItem={activeMenuItem} />
                     </div>
@@ -175,7 +177,8 @@ const mapStateToProps = (state) => ({
     isPopularNews: state.isPopularNews,
     autoRefreshRate: state.autoRefreshRate,
     errors: state.errors,
-    dashboards: state.dashboards,    
+    dashboards: state.dashboards,  
+    activeDashboard: state.activeDashboard,
     current_page: state.current_page,
     last_page: state.last_page,
     loading: state.loading,
@@ -190,6 +193,7 @@ const mapDispatchToProps = (dispatch) => ({
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
     openMenu: () => dispatch(openMenu()),   
     closeMenu: () => dispatch(closeMenu()),
+    setActiveDashboard: (dashboard) => dispatch(setActiveDashboard(dashboard)),
     setActiveMenuItem: (item) => dispatch(setActiveMenuItem(item))
 });
 

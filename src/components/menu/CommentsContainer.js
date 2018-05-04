@@ -52,6 +52,7 @@ class ComentsContainer extends Component {
         return (
             <div className="dashboard-chat">
                 <div className="scrollable">
+                    <p>Mention people using '@' + username.</p>
                     <ul>
                         {comments}
                     </ul>

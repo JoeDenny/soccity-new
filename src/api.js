@@ -227,7 +227,7 @@ class Api {
     }
 
     addComment = (id, comment, parent_id) => {
-        
+
         return axios.post(`${this.API_URL}/news/${id}/comments`, { comment, parent_id }, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
@@ -262,6 +262,14 @@ class Api {
 
     addDashboard = (params) => {
         return axios.post(`${this.API_URL}/user/dashboards`, params, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    updateDashboard = (id, params) => {
+        return axios.put(`${this.API_URL}/user/dashboards/${id}`, params, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

@@ -49,22 +49,21 @@
         border-left: 1px solid $borderGrey;
 
         .username {
-            margin: 10px 15px;
+            margin: 15px;
         }
 
         .upgrade {
             position: absolute;
             cursor: pointer;
-            font-size: .6rem;
-            left: 10px;
+            left: -100px;
+            top: 14px;
             background-color: #86C232;
-            bottom: -12px;
-            padding: 4px;
+            padding: 4px 10px;
+            color: $white;
         }
 
         a {
-            padding: 5px 10px;
-            padding-left: 0;
+            padding: 5px;
             float: right;
         }
     }

@@ -9,6 +9,10 @@
   font-size: 1.5rem;
   text-transform: capitalize;
   position: relative; }
+  .result-card.hide {
+    padding: 0; }
+    .result-card.hide .close-icon {
+      display: none; }
   .result-card .logo {
     width: 25px;
     height: 25px;

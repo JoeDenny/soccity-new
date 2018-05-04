@@ -13,6 +13,21 @@
     z-index: 99;
     overflow-y: auto;
 
+    .header {
+        .close-icon {
+            width: 15px;
+            height: 15px;
+            top: 10px;
+            right: 15px;
+            
+            svg {
+                width: 15px;
+                height: 15px;
+                fill: $textSecondary;
+            }
+        }
+    }
+
     .scrollable {
         padding: 15px;
         padding-top: 5px;
@@ -26,19 +41,6 @@
         h3 {
             padding-right: 1.25rem;
             margin: 0;
-        }
-    }
-
-    .close-icon {
-        width: 15px;
-        height: 15px;
-        top: 10px;
-        right: 15px;
-        
-        svg {
-            width: 15px;
-            height: 15px;
-            fill: $textSecondary;
         }
     }
     
@@ -59,7 +61,6 @@
     .menu-container {
         bottom: 0;
         position: static;
-        width: 335px;
         right: 0;
         top: 0;
         bottom: 0;
@@ -75,7 +76,7 @@
 
         .fixed-content {
             position: fixed;
-            min-width: 335px;
+            width: 400px;
         }
 
         &.open {

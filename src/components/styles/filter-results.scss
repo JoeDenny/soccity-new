@@ -12,6 +12,13 @@
     text-transform: capitalize;
     position: relative;
 
+    &.hide {
+        padding: 0;
+        .close-icon {
+            display: none;
+        }
+    }
+
     .logo {
         width: 25px;
         height: 25px;

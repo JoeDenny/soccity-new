@@ -30,7 +30,7 @@ class Comment extends Component {
     }
 
     sendReply = (comment) => {
-        
+                        
         this.props.sendReply(comment, this.props.comment.id);
     }
 
@@ -42,6 +42,7 @@ class Comment extends Component {
             replies = [];
 
         if(comment.replies) {
+            
             replies = comment.replies.map(reply => {
                 return (
                     <div key={reply.id} className="comment">
@@ -49,10 +50,10 @@ class Comment extends Component {
                         <UserPhoto link={reply.user.avatar_path} />
 
                         <div className="comment-content">
-                            <h4>{comment.user.name}</h4>
-                            <h5 className="time text-secondary">{comment.created_at_formated}</h5>
+                            <h4>{reply.user.name}</h4>
+                            <h5 className="time text-secondary">{reply.created_at_formated}</h5>
 
-                            <p className="text-tiny">{comment.comment}</p>
+                            <p className="text-tiny">{reply.comment}</p>
                         </div>
                     </div>
                 )
@@ -114,6 +115,7 @@ class Comment extends Component {
                         <span style={{display: this.state.replyOpen ? 'inline' : 'none' }}  className="nested-reply">
                         <p className="text-right" onClick={this.closeNestedReply}>X</p>
                         <div className={"nested-reply-container " + nestedReplyClass}>
+
                                 {replies}
 
                                 <AddComment

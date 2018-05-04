@@ -7,19 +7,29 @@ class ResultCard extends Component {
     }
 
     render() {
-        let result;
+        let result,
+            className;
+
+
+        if(this.props.result.length) {
+           
+            // console.log('result', this.props.result);
+            
+            if(this.props.result[0].name) {
+                result = this.props.result[0].name;
+            } else if(this.props.result[0].title) {
+                result = this.props.result[0].title;
+            } else if(typeof this.props.result[0] === 'string'){
+                result = this.props.result;
+            }        
+        }
         
 
-        if(this.props.result.name) {
-            result = this.props.result.name;
-        } else if(this.props.result.title) {
-            result = this.props.result.title;
-        } else if(typeof this.props.result === 'string'){
-            result = this.props.result;
-        }        
+
+        className = result ? '' : 'hide';
         
         return ( 
-            <div className="result-card card">
+            <div className={"result-card card " + className}>
                 <span>{result}</span>
 
                  <button type="button" className="close-icon"  onClick={this.removeFilter}>

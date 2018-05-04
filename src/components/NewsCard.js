@@ -52,13 +52,16 @@ class NewsCard extends Component {
 
             sourceLogoSrc = sourceType === 'rss' ? this.props.newsItem.source.logo_path : this.props.newsItem.additional.image;  
 
-            if(this.props.searchTerm) {
-               title = this.getHighlightedText(this.props.newsItem.title, this.props.searchTerm);
-               description = this.getHighlightedText(this.props.newsItem.description, this.props.searchTerm);
-           } else {
-               title = this.props.newsItem.title;
-               description = this.props.newsItem.description;
-           }
+            title = this.props.newsItem.title;
+            description = this.props.newsItem.description;
+
+        //     if(this.props.searchTerm) {
+        //        title = this.getHighlightedText(this.props.newsItem.title, this.props.searchTerm);
+        //        description = this.getHighlightedText(this.props.newsItem.description, this.props.searchTerm);
+        //    } else {
+        //        title = this.props.newsItem.title;
+        //        description = this.props.newsItem.description;
+        //    }
         }
 
         const commentsIconClass = `comments-icon ${this.props.newsItem.comments.length ? 'active' : ''}`;

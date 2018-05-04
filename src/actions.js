@@ -225,6 +225,16 @@ export const favouriteArticleUpdate = (news) => ({
     }
 });
 
+export const SEARCHING_FOR_USERS = 'SEARCHING_FOR_USERS';
+export const searchingForUsers = () => ({
+    type: SEARCHING_FOR_USERS
+});
+
+export const STOP_SEARCHING_FOR_USERS = 'STOP_SEARCHING_FOR_USERS';
+export const stopSearchingForUsers = () => ({
+    type: STOP_SEARCHING_FOR_USERS
+});
+
 export const FIND_USERS_SUCCESS = 'FIND_USERS_SUCCESS';
 export const findUsersSuccess = (users) => ({
     type: FIND_USERS_SUCCESS,
@@ -292,6 +302,14 @@ export const addDashboardFailure = (errors) => ({
     type: ADD_DASHBOARD_FAILURE,
     payload: {
         errors
+    }
+});
+
+export const SET_ACTIVE_DASHBOARD = 'SET_ACTIVE_DASHBOARD';
+export const setActiveDashboard = (activeDashboard) => ({
+    type: SET_ACTIVE_DASHBOARD,
+    payload: {
+        activeDashboard
     }
 });
 
@@ -382,7 +400,7 @@ export const getNews = (params) => {
             .catch(error => {
                 if (error.response) {
                     if(error.response.status === 401) {
-                        dispatch(getNewsFailure());                        
+                        dispatch(getNewsFailure(""));                        
                     } else if(error.response.data.errors) {
                         dispatch(getNewsFailure(error.response.data.errors));
                     } else {
@@ -425,6 +443,7 @@ export const openArticle = (id) => {
 
 export const findUsers = (username) => {        
     return (dispatch) => {
+        dispatch(searchingForUsers());
         api.findUsers(username)
             .then((res) => {                                
                 dispatch(findUsersSuccess(res.data.users.data));
@@ -571,6 +590,25 @@ export const addDashboard = (params) => {
             .catch(error => {  
                 if (error.response) {                                        
                     dispatch(addDashboardFailure(error.response.data.errors));
+                }
+            });
+    };
+};
+
+export const updateDashboard = (id, params) => {
+
+    return (dispatch) => {
+        api.updateDashboard(id, params)
+            .then((res) => {    
+                console.log('res', res);
+                
+                // dispatch(addDashboardSuccess());            
+                // dispatch(getDashboards());
+            })
+            .catch(error => {  
+                if (error.response) {                                        
+                    // dispatch(addDashboardFailure(error.response.data.errors));
+                console.log('error', error);
                 }
             });
     };

@@ -27,7 +27,7 @@ class Menu extends Component {
                     break;
             case 'filter':
                     title = <h3>Filter</h3>;
-                    activeMenuItem = <FilterContainer />;
+                    activeMenuItem = <FilterContainer activeDashboard={this.props.activeDashboard}/>;
                     break;
             case 'latestComments':
                     title = <h3>Latest Comments</h3>;    
