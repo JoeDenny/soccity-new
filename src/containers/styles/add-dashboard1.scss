@@ -2,13 +2,43 @@
 .add-dashboard {
     background-color: #f9f9f9;
 
-    .content {
-        padding: 2rem 0;
-        width: 90vw;
-        max-width: 950px;
+    .main-form {
         margin: auto;
     }
-    
+
+    .content {
+        padding: 2rem 0;
+        width: 95vw;
+        max-width: 1000px;
+        margin: auto;
+        display: flex;
+    }
+
+    .instructions-panel {
+        display: none;
+        width: 36%;
+        margin-left: 2rem;
+        padding: 1rem 0;
+        padding-left: 2rem;
+        border-left: 1px solid $borderGrey;
+
+        .step {
+            margin-bottom: 2rem;
+
+            &.step4 {
+                margin-top: 27rem;
+            }
+        }
+
+        h3 {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin-bottom: .5rem;
+        }
+    }
+
     .add-dashboard-section {
         padding: 1rem;
         background-color: $white;
@@ -29,6 +59,10 @@
             border-bottom: 1px solid $borderGrey;
             font-size: 1.8rem;
         }
+    }
+
+    .add-dashboard-instructions {
+        display: none;
     }
 
     .flex-container {
@@ -192,7 +226,7 @@
             justify-content: space-between;
         }
         .add-dashboard-form {
-            width: 70%;
+            width: 100%;
             justify-content: left;
 
             &.half {
@@ -267,7 +301,7 @@
         }
     }
     &.right {
-        right: -10px;
+        right: -6px;
         top: 170px;
 
         .arrow {
@@ -304,3 +338,11 @@
     }
 }
 
+
+@media (min-width: 992px) {
+    .add-dashboard {
+        .instructions-panel {
+            display: initial;
+        }
+    }
+}

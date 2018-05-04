@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/add-dashboard1.css';
 import { connect } from 'react-redux';
-import { getCompetitions, getTeams, getPlayers, getSources, addDashboard, updateDashboard} from '../actions';
+import { getCompetitions, getTeams, getPlayers, getSources, addDashboard, updateDashboard, getCommonKeywords} from '../actions';
 import AuthWrapper from '../components/AuthWrapper';
 import AddCustomTwitter from '../components/AddCustomTwitter';
 import CompetitionList from '../components/CompetitionList';
@@ -9,6 +9,7 @@ import TeamList from '../components/TeamList';
 import PlayerList from '../components/PlayerList';
 import SourceList from '../components/SourceList';
 import SourceTypeList from '../components/SourceTypeList';
+import CommonKeywords from '../components/CommonKeywords';
 import PresetFilterList from '../components/PresetFilterList';
 import FilterResults from '../components/FilterResults';
 import CustomFilters from '../components/CustomFilters';
@@ -128,6 +129,14 @@ class AddDashboard extends Component {
                 ]
             }
         })
+
+        if(category === 'competitions') {
+            this.props.getCommonKeywords('competition_id', item.id);
+        } else if(category === 'teams') {
+            this.props.getCommonKeywords('team_id', item.id);
+        } else if(category === 'players') {
+            this.props.getCommonKeywords('player_id', item.id);
+        }
     }
 
     addCustomFilter = (keyword) => {
@@ -310,131 +319,161 @@ class AddDashboard extends Component {
                         </div>
                     </header>
 
+
                     <section className="content">
-                        <div className="add-dashboard-section align-items">
-                            <div className="add-dashboard-form">
-                                <div className="input-wrapper inline-input">
-                                    <label className="form-label label-title">Dashboard Name:</label>
-                                    <input className="text-input" placeholder="e.g. Arsenal" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
+                        <div className="main-form">
+                            <div className="add-dashboard-section align-items">
+                                <div className="add-dashboard-form">
+                                    <div className="input-wrapper inline-input">
+                                        <label className="form-label label-title">Dashboard Name:</label>
+                                        <input className="text-input" placeholder="e.g. Arsenal" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
+                                    </div>
+                                </div>
+                                <div className="add-dashboard-instructions">
+                                    <h3>Step 1</h3>
+                                    <p>Give your dashboard a name.</p>
                                 </div>
                             </div>
-                            <div className="add-dashboard-instructions">
-                                <h3>Step 1</h3>
-                                <p>Name your dashboard or leave it blank for an auto-generated name.</p>
-                            </div>
-                        </div>
 
-                        <div className="add-dashboard-section align-items">
-                            <div className="add-dashboard-form">
-                                <div className="input-wrapper inline-input">
-                                    <label className="form-label label-title">Select auto-refresh rate:</label>
-                                    <div className="flex-container">
-                                        <div className="input-wrapper inline-input checkbox radio">
-                                            <label className="form-label">
-                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
-                                                30 secs
-                                            </label>
+                            <div className="add-dashboard-section align-items">
+                                <div className="add-dashboard-form">
+                                    <div className="input-wrapper inline-input">
+                                        <label className="form-label label-title">Select auto-refresh rate:</label>
+                                        <div className="flex-container">
+                                            <div className="input-wrapper inline-input checkbox radio">
+                                                <label className="form-label">
+                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
+                                                    30 secs
+                                                </label>
+                                            </div>
+                                            <div className="input-wrapper inline-input checkbox radio">
+                                                <label className="form-label">
+                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
+                                                    1 min
+                                                </label>
+                                            </div>
+                                            <div className="input-wrapper inline-input checkbox radio">
+                                                <label className="form-label">
+                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "120"} value="120"/>
+                                                    2 mins
+                                                </label>
+                                            </div>
+                                            <div className="input-wrapper inline-input checkbox radio">
+                                                <label className="form-label">
+                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "300"} value="300"/>
+                                                    5 mins
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div className="input-wrapper inline-input checkbox radio">
-                                            <label className="form-label">
-                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
-                                                1 min
-                                            </label>
-                                        </div>
-                                        <div className="input-wrapper inline-input checkbox radio">
-                                            <label className="form-label">
-                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "120"} value="120"/>
-                                                2 mins
-                                            </label>
-                                        </div>
-                                        <div className="input-wrapper inline-input checkbox radio">
-                                            <label className="form-label">
-                                                <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "300"} value="300"/>
-                                                5 mins
-                                            </label>
+                                    </div>
+                                </div>
+                                <div className="add-dashboard-instructions">
+                                    <h3>Step 2</h3>
+                                    <p>Choose how often you'd like your dashboard to update with new articles.</p>
+                                </div>
+                            </div>
+
+                            <div className="add-dashboard-section">
+                                <div className="add-dashboard-form half">
+                                    <h3 className="sub-title">Select Your Feed</h3>
+
+                                    <ul className="header-tab">
+                                        <li style={{backgroundColor : this.state.activeFilterList === 'competitions' || this.state.activeFilterList === 'teams' || this.state.activeFilterList === 'players' ? '#86C232': 'initial'}} onClick={() => this.setActiveCategory('competitions')}>{this.state.activeFilterList}</li>
+                                        <li style={{backgroundColor : this.state.activeFilterList === 'sources' ? '#86C232': 'initial'}} onClick={() => this.setActiveCategory('sources')}>Publications</li>
+                                    </ul>
+
+                                    {activeFilterList}
+
+                                </div>
+                                <div className="add-dashboard-form half">
+                                    <h3 className="sub-title">Select Publication Tiers</h3>
+
+                                    <SourceTypeList />
+
+                                    <PresetFilterList />
+
+                                    <div className="input-wrapper inline-input">
+                                        <div className="flex-container">
+                                            <div className="input-wrapper inline-input checkbox full-width">
+                                                <label className="form-label">
+                                                    <span>Include Default Tweets</span>
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </div>
+                                            <div className="input-wrapper inline-input checkbox full-width">
+                                                <label className="form-label">
+                                                    <span>Include Multimedia Tweets</span>
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="add-dashboard-instructions">
-                                <h3>Step 2</h3>
-                                <p>Select a refresh rate for how often you'd like your dashboard to auto-update with the latest articles.</p>
-                            </div>
-                        </div>
 
-                        <div className="add-dashboard-section">
-                            <div className="add-dashboard-form">
-                                <label className="label-title">Pick a competition, team or player to add to your feed:</label>
-                                <CustomFilters addCustomFilter={this.addCustomFilter}/>
-                                <div className="input-wrapper inline-input">
-                                    <label className="form-label label-title">Dashboard Keyword:</label>
-                                    <FilterResults choices={this.state.choices} removeFilter={this.removeFilter} />                            
+                            <div className="add-dashboard-section">
+                                <div className="add-dashboard-form">
+                                    <label className="label-title">Pick a competition, team or player to add to your feed:</label>
+
+                                    <div className="relative">
+                                        <FilterResults choices={this.state.choices} removeFilter={this.removeFilter} />
+                                        <CustomFilters addCustomFilter={this.addCustomFilter}/>
+                                    </div>          
+                                    <div className="input-wrapper inline-input">
+                                        <label className="form-label label-title">Related Keywords:</label>
+                                        <CommonKeywords keywords={this.props.commonKeywords} />
+                                    </div>
+                                </div>
+                                <div className="add-dashboard-instructions">
+                                    <h3>Step 3</h3>
+                                    <p>Search for competitions, teams, players, or publication sources.</p>
+                                    <p>PRO users can add up to 5 competitions, 5 teams, 5 players, and unlimited custom keywords.  <Link to={routes.BILLING_PATH}>Upgrade now?</Link></p>
                                 </div>
                             </div>
-                            <div className="add-dashboard-instructions">
+
+                            <div className="add-dashboard-section">
+                                <div className="add-dashboard-form">
+                                    <AddCustomTwitter />
+                                </div>
+                                <div className="add-dashboard-instructions">
+                                    <h3>Step 4</h3>
+                                    <p>Add Twitter accounts to your custom Twitter feed.</p>
+                                    <p>You may also include hashtags to stay up to date on specific trends.</p>
+                                </div>
+                            </div>
+
+                        
+                            <ErrorMessages errors={this.props.errors} />
+
+                            <div className="text-center">
+                                <button className="btn btn-primary add-dashboard-btn"
+                                        onClick={this.addDashboard}>Create</button>
+
+                                <button className="btn btn-primary update-dashboard-btn"
+                                        onClick={this.updateDashboard}>Update</button>
+                            </div>
+                        </div>
+                        <div className="instructions-panel">
+                            <div className="step">
+                                <h3>Step 1</h3>
+                                <p>Give your dashboard a name.</p>
+                            </div>
+                            <div className="step">
+                                <h3>Step 2</h3>
+                                <p>Choose how often you'd like your dashboard to update with new articles.</p>
+                            </div>
+                            <div className="step">
                                 <h3>Step 3</h3>
-                                <p>Search for competitions, teams, players, or publication sources. Selected keywords also appear here.</p>
+                                <p>Search for competitions, teams, players, or publication sources.</p>
+                                <p>Publication tiers represent the reliability of the articles, with Tier 1 being the most reliable and Tier 5 the least.</p>
+                                <p>Including Default Tweets will add our default list of Twitter accounts to your feed. You can add your own accounts in Step 4.</p>
                                 <p>PRO users can add up to 5 competitions, 5 teams, 5 players, and unlimited custom keywords.  <Link to={routes.BILLING_PATH}>Upgrade now?</Link></p>
                             </div>
-                        </div>
-                        <div className="add-dashboard-section">
-                            <div className="add-dashboard-form half">
-                                <h3 className="sub-title">Select Your Feed</h3>
-
-                                <ul className="header-tab">
-                                    <li style={{backgroundColor : this.state.activeFilterList === 'competitions' || this.state.activeFilterList === 'teams' || this.state.activeFilterList === 'players' ? '#86C232': 'initial'}} onClick={() => this.setActiveCategory('competitions')}>{this.state.activeFilterList}</li>
-                                    <li style={{backgroundColor : this.state.activeFilterList === 'sources' ? '#86C232': 'initial'}} onClick={() => this.setActiveCategory('sources')}>Publications</li>
-                                </ul>
-
-                                {activeFilterList}
-
+                            <div className="step step4">
+                                <h3>Step 4</h3>
+                                <p>Add Twitter accounts to your custom Twitter feed.</p>
+                                <p>You may also include hashtags to stay up to date on specific trends.</p>
                             </div>
-                            <div className="add-dashboard-form half">
-                                <h3 className="sub-title">Select Publication Tiers</h3>
-
-                                <SourceTypeList />
-
-                                <PresetFilterList />
-
-                                <div className="input-wrapper inline-input">
-                                    <div className="flex-container">
-                                        <div className="input-wrapper inline-input checkbox full-width">
-                                            <label className="form-label">
-                                                <span>Include Default Tweets</span>
-                                                <input type="checkbox" />
-                                            </label>
-                                        </div>
-                                        <div className="input-wrapper inline-input checkbox full-width">
-                                            <label className="form-label">
-                                                <span>Include Multimedia Tweets</span>
-                                                <input type="checkbox" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="add-dashboard-section">
-                            <div className="add-dashboard-form">
-                                <AddCustomTwitter />
-                            </div>
-                            <div className="add-dashboard-instructions">
-                                <h3>Step 6</h3>
-                                <p>You can also choose to add any Twitter accounts that we have not included within our default Twitter accounts list.</p>
-                                <p>You may also add any hashtag feeds to your dashboard to stay up to date on specific trends.</p>
-                            </div>
-                        </div>
-
-                    
-                        <ErrorMessages errors={this.props.errors} />
-
-                        <div className="text-center">
-                            <button className="btn btn-primary add-dashboard-btn"
-                                    onClick={this.addDashboard}>Save Dashboard</button>
-
-                            <button className="btn btn-primary update-dashboard-btn"
-                                    onClick={this.updateDashboard}>Update Dashboard</button>
                         </div>
                     </section>
                 
@@ -450,11 +489,13 @@ const mapStateToProps = (state) => ({
     players: state.players,
     sources: state.sources,
     errors: state.errors,
+    commonKeywords: state.commonKeywords,
     updateDashboardSuccess: state.updateDashboardSuccess
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getCompetitions: () => dispatch(getCompetitions()),
+    getCommonKeywords: (type, id) => dispatch(getCommonKeywords(type, id)),
     getTeams: () => dispatch(getTeams()),
     getPlayers: () => dispatch(getPlayers()),
     getSources: () => dispatch(getSources()),

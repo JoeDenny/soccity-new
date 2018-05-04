@@ -313,6 +313,14 @@ export const setActiveDashboard = (activeDashboard) => ({
     }
 });
 
+export const GET_COMMON_KEYWORDS_SUCCESS = 'GET_COMMON_KEYWORDS_SUCCESS';
+export const getCommonKeywordsSuccess = (commonKeywords) => ({
+    type: GET_COMMON_KEYWORDS_SUCCESS,
+    payload: {
+        commonKeywords
+    }
+});
+
 export const login = (email, password) => {
     return (dispatch) => {    
         dispatch(fetchingData());    
@@ -437,6 +445,15 @@ export const openArticle = (id) => {
         api.openArticle(id)
             .then(() => {                                
                 dispatch(getRecentlyViewed());
+            })
+    };
+};
+
+export const getCommonKeywords = (type, id) => {        
+    return (dispatch) => {
+        api.getCommonKeywords(type, id)
+            .then((res) => {                                
+                dispatch(getCommonKeywordsSuccess(res.data.keywords));
             })
     };
 };

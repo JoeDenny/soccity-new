@@ -218,6 +218,15 @@ class Api {
         });
     }
 
+    getCommonKeywords = (type, id) => {
+
+        return axios.get(`${this.API_URL}/keywords?${type}=${id}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     addCustomTwitterAccount = (type, name) => {
         return axios.post(`${this.API_URL}/user/add_twitter`, { type, name }, {
             headers: {
