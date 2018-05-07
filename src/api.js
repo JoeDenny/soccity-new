@@ -59,46 +59,47 @@ class Api {
             }
 
             baseUrl += `${sourceUrl}`;
+        }        
+
+        if(params.teams || params.competitions || params.players) {            
+            if(params.teams.length) {
+                let teamsUrl = '';
+    
+                for(let i=0; i < params.teams.length; i++) {
+                    teamsUrl += `&teams[]=${params.teams[i].id}`;
+                }
+
+                url = baseUrl + teamsUrl;
+                
+                return this.fetchNews(url).then((res) => res);
+            } else if(params.players.length) {
+                let playersUrl = '';
+    
+                for(let i=0; i < params.players.length; i++) {
+                    playersUrl += `&players[]=${params.players[i].id}`;
+                }
+                url = baseUrl + playersUrl;
+    
+                return this.fetchNews(url).then((res) => res);
+            } else if(params.competitions.length) {
+                let competitionsUrl = '';
+    
+                for(let i=0; i < params.competitions.length; i++) {
+                    competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
+                }
+                url = baseUrl + competitionsUrl;
+    
+                return this.fetchNews(url).then((res) => res);
+            }
+            else {
+
+                url = baseUrl;
+            }
+        } else {
+
+            url = baseUrl;
         }
-
-        // if(params.teams || params.competitions || params.players) {
-        //     if(params.teams) {
-        //         let teamsUrl = '';
-    
-        //         for(let i=0; i < params.teams.length; i++) {
-        //             teamsUrl += `&teams[]=${params.teams[i].id}`;
-        //         }
-        //         url = baseUrl + teamsUrl;
-    
-        //         return this.fetchNews(url).then((res) => res);
-        //     }
-    
-            // if(params.players) {
-            //     let playersUrl = '';
-    
-            //     for(let i=0; i < params.players.length; i++) {
-            //         playersUrl += `&players[]=${params.players[i].id}`;
-            //     }
-            //     url = baseUrl + playersUrl;
-    
-            //     return this.fetchNews(url).then((res) => res);
-            // }
-    
-            // if(params.competitions) {
-            //     let competitionsUrl = '';
-    
-            //     for(let i=0; i < params.competitions.length; i++) {
-            //         competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
-            //     }
-            //     url = baseUrl + competitionsUrl;
-    
-            //     return this.fetchNews(url).then((res) => res);
-        //     // }
-        // } else {
-
-        //     url = baseUrl;
-        // }
-        url = baseUrl;
+        
         return this.fetchNews(url).then((res) => res);
     }
 

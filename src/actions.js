@@ -402,7 +402,7 @@ export const getNews = (params) => {
     return (dispatch) => {
         dispatch(fetchingData());
         api.getNews(params)
-            .then((res) => {                
+            .then((res) => {                                
                 dispatch(getNewsSuccess(res.data.allNews));
             })
             .catch(error => {

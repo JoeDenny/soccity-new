@@ -210,15 +210,15 @@ class AddDashboard extends Component {
         }        
 
         if(this.state.choices.competitions) {
-            params.competitions = this.state.choices.competitions.id
+            params.competitions = [this.state.choices.competitions[0].id];
         } else if(this.state.choices.teams) {
-            params.teams = this.state.choices.teams.id
+            params.teams = [this.state.choices.teams[0].id];
         } else if(this.state.choices.players) {
-            params.players = this.state.choices.players.id
+            params.players = [this.state.choices.players[0].id];
         }
 
         if(this.state.choices.sources) {
-            params.sources = this.state.choices.sources.id;
+            params.sources = [this.state.choices.sources.id];
         }
 
         if(this.state.choices.keywords) {
