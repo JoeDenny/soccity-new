@@ -24,7 +24,7 @@ class DashboardHeader extends Component {
                         </h4>
 
                     <Link to={routes.BILLING_PATH}>
-                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade card">Upgrade?</p>
+                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade card">Upgrade</p>
                     </Link>
                     
                     <Link to={routes.PREFERENCES_PATH}>

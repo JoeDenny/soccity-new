@@ -3,6 +3,7 @@ import './styles/dashboard-settings.css';
 import BookmarkButton from './BookmarkButton';
 import RecentlyViewedButton from './RecentlyViewedButton';
 import FilterSidebarButton from './FilterSidebarButton';
+import KeywordHighlightButton from './KeywordHighlightButton';
 import AutoRefreshButton from './AutoRefreshButton';
 import LatestCommentsButton from './LatestCommentsButton';
 import Searchbar from './Search';
@@ -44,6 +45,9 @@ class DashboardSettings extends Component {
 
                 <div className="right-icons">
                     <ul className="settings-buttons">
+                        <li className="item">
+                            <KeywordHighlightButton />
+                        </li>
                         <li className="item">
                             <AutoRefreshButton refreshNews={this.refreshNews}/>
                         </li>

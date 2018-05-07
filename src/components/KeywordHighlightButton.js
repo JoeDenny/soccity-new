@@ -4,7 +4,7 @@ import Dropdown from './Dropdown';
 import { connect } from 'react-redux';
 import { setAutoRefresh } from '../actions';
 
-class AutoRefreshButton extends Component {
+class KeywordHighlightButton extends Component {
     constructor() {
         super();
 
@@ -42,7 +42,7 @@ class AutoRefreshButton extends Component {
 
                 <Dropdown  
                     isOpen={this.state.dropdownOpen}
-                    type="auto-refresh"
+                    type="keyword-highlight"
                     user={this.props.user}
                     autoRefreshRate={this.props.autoRefreshRate}
                     setAutoRefresh={this.setAutoRefresh}
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => ({
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AutoRefreshButton);
+export default connect(mapStateToProps, mapDispatchToProps)(KeywordHighlightButton);

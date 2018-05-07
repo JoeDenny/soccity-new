@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 import './styles/dropdown.css';
 
 class Dropdown extends Component {
-    // componentDidMount() {
-    //     document.addEventListener('click', this.handleClickOutsideDropdown);
-    // }
-    
-    // componentWillUnmount() {
-    //     document.removeEventListener('click', this.handleClickOutsideDropdown);
-    // }
+    constructor() {
+        super();
 
-    // handleClickOutsideDropdown = (event) => {
-    //     const dropdown = document.querySelector('#dropdown');
-        
-    //     if (this.props.isOpen && dropdown && !dropdown.contains(event.target)) {
-    //       this.props.closeDropdown();
-    //     }
-    // }
+        this.state = {
+            active: false
+        }
+    }
 
     setAutoRefresh(time) {
         this.props.setAutoRefresh(time);
@@ -24,15 +16,14 @@ class Dropdown extends Component {
     }
     
     render() {
-        let isOpen = this.props.isOpen ? 'open' : '';
+        let isOpen = this.props.isOpen ? 'open' : '',
+            content;
 
         const disabledClass = this.props.user.stripe_id ? '' : 'disabled';
 
-        return (
-            <div className={"dropdown " + isOpen}
-                id="dropdown">
-                <div className="menu card">
-                    <ul>
+        if(this.props.type === 'auto-refresh') {
+            content = (
+                <ul>
                         <li className={disabledClass}
                             onClick={() => this.setAutoRefresh(10000)}>10 sec</li>
 
@@ -47,6 +38,25 @@ class Dropdown extends Component {
                         <li style={{backgroundColor: this.props.autoRefreshRate === 300000 ? '#6CAA25' : 'initial'}}
                             onClick={() => this.setAutoRefresh(300000)}>5 min</li>
                     </ul>
+            )
+        } else {
+            content = (
+                <ul>
+                    <li>
+                        <label className="form-label">
+                            Highlight keywords
+                            <input type="checkbox" onChange={this.handleRadioChange} checked={this.state.active} />
+                        </label>
+                    </li>
+                </ul>
+            )
+        }
+
+        return (
+            <div className={"dropdown " + isOpen}
+                id="dropdown">
+                <div className="menu card">
+                    {content}
                 </div>
             </div>
         );

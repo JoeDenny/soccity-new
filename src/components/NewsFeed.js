@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
+// import RenderedTweet from './RenderedTweet';
 import LoadingIcon from './LoadingIcon';
 import AdvertContainer from './AdvertContainer';
+import { Tweet } from 'react-twitter-widgets'
 // import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
@@ -31,12 +33,22 @@ class NewsFeed extends Component {
                     result.push(<AdvertContainer user={this.props.user} key={index}/>)
                 } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
-                    result.push(
-                        
-                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                            <NewsCard newsItem={newsItem}  searchTerm={searchTerm}/>
-                        </li>
-                    );
+                    if(newsItem.additional) {
+                        result.push(
+                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <Tweet tweetId={newsItem.title} />
+                            </li>
+                        )
+                    } else {
+
+                        result.push(
+                            
+                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm}/>
+                            </li>
+                        );
+                    }
+
                 }
                 return result;           
             }, []);            
@@ -47,7 +59,6 @@ class NewsFeed extends Component {
         return (
             <section className={className}>
 
-                {/* <ErrorMessages errors={this.props.errors} /> */}
 
                 <LoadingIcon show={this.props.loading}/>
 
