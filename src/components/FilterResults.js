@@ -9,11 +9,7 @@ class FilterResults extends Component {
     }
 
     render() {
-        let results = [];
-
-
-        console.log('props', this.props);
-        
+        let results = [];        
           
         if(this.props.choices.competitions) {
             results.push(<ResultCard key={1} result={this.props.choices.competitions} removeFilter={() => this.removeFilter('competitions')}/>);

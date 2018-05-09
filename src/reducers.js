@@ -86,6 +86,7 @@ const rootReducer = (state = initialState, action) => {
         case FIND_USERS_SUCCESS:
             return {
                 ...state,
+                errors: [],
                 foundUsers: action.payload.users
             }
         case SEARCHING_FOR_USERS:
@@ -106,6 +107,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_COMMON_KEYWORDS_SUCCESS:
             return {
                 ...state,
+                errors: [],
                 commonKeywords: action.payload.commonKeywords
             }    
         case UPDATE_USER_SUCCESS:
@@ -149,6 +151,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_POPULAR_NEWS_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 popularNews: action.payload.popularNews.data
             };
         case SET_POPULAR_NEWS:            
@@ -159,16 +162,19 @@ const rootReducer = (state = initialState, action) => {
         case GET_FOLLOWERS_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 followers: action.payload.followers
             };
         case GET_FOLLOWINGS_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 followings: action.payload.followings
             };
         case GET_DEFAULT_AVATARS_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 defaultAvatars: action.payload.defaultAvatars
             };
         case SAVE_COMPETITIONS:
@@ -210,6 +216,7 @@ const rootReducer = (state = initialState, action) => {
         case ADD_DASHBOARD_SUCCESS:            
             return {
                 ...state,
+                errors: [],
                 updateDashboardSuccess: true
             };
         case ADD_DASHBOARD_FAILURE:            
@@ -246,11 +253,13 @@ const rootReducer = (state = initialState, action) => {
         case GET_LATEST_COMMENTS_SUCCESS:
             return {
                 ...state,
+                errors: [],
                 latestComments: action.payload.latestComments
             };
         case GET_RECENTLY_VIEWED_SUCCESS:
             return {
                 ...state,
+                errors: [],
                 recentlyViewed: action.payload.recentlyViewed
             };
         case COMMENT_NEWS: 

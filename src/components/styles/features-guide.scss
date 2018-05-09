@@ -3,15 +3,41 @@
 .features-guide {
     max-width: 750px;
     margin: 5rem auto;
+
+    h2 {
+        margin-bottom: 2rem;
+    }
     
+    ul {
+        padding-left: 60px;
+    }
+    h3 {
+        margin: 0;
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+
+        i {
+            font-size: 3rem;
+            width: 60px;
+        }
+    }
     .card {
-        background-color: $secondary;
-        color: $white;
-        transition: all 0.3s ease;        
+        background-color: $white;
+        transition: all 0.3s ease;  
+        padding: 1rem 2rem;      
 
         &:hover {
             transform: translateY(-1px);
             box-shadow: 0 5px 15px rgba(57, 73, 76, 0.35);
+        }
+    }
+
+    @media (min-width: 768px) {
+        
+        .title {
+            font-size: 2rem;
         }
     }
 }

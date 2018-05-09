@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
-// import RenderedTweet from './RenderedTweet';
 import LoadingIcon from './LoadingIcon';
 import AdvertContainer from './AdvertContainer';
 import { Tweet } from 'react-twitter-widgets'
-// import ErrorMessages from './ErrorMessages';
 
 class NewsFeed extends Component {
 
@@ -29,20 +27,23 @@ class NewsFeed extends Component {
             newsItems = this.props.news.reduce((result, newsItem, index) => {
                 
                 if(index === 6 || index === 13 || index === 20 || index === 27) {
-
-                    result.push(<AdvertContainer user={this.props.user} key={index}/>)
+                    
+                    result.push(
+                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+                            <AdvertContainer user={this.props.user} key={index}/>
+                        </li>
+                    )
                 } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     if(newsItem.additional) {
                         result.push(
-                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
                                 <Tweet tweetId={newsItem.title} />
                             </li>
                         )
                     } else {
 
-                        result.push(
-                            
+                        result.push(    
                             <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                 <NewsCard newsItem={newsItem}  searchTerm={searchTerm}/>
                             </li>
@@ -58,8 +59,7 @@ class NewsFeed extends Component {
 
         return (
             <section className={className}>
-
-
+                
                 <LoadingIcon show={this.props.loading}/>
 
                 <div style={{ display: this.props.loading ? 'none' : 'block' }}>  

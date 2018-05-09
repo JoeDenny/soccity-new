@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class Api {
     token = undefined;
-    API_URL = 'https://c.soccity.net/api';
+    API_URL = 'https://c.sourcebuffet.net/api';
 
     login = (email, password) => {        
         return axios.post(`${this.API_URL}/login`, {

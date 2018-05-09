@@ -601,8 +601,10 @@ export const addDashboard = (params) => {
     return (dispatch) => {
         api.addDashboard(params)
             .then((res) => {    
-                dispatch(addDashboardSuccess());            
-                dispatch(getDashboards());
+                console.log('res', res);
+                
+                // dispatch(addDashboardSuccess());            
+                // dispatch(getDashboards());
             })
             .catch(error => {  
                 if (error.response) {                                        

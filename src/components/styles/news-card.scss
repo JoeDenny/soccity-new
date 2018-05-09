@@ -1,12 +1,11 @@
 @import '../../styles/_variables.scss';
 
 .news-card {
-    padding-bottom: 3rem;
-    margin: .5rem 0;
+    padding-bottom: 2.5rem;
+    margin: 15px 0;
     background-color: $white;
     border-radius: .28571429rem;
     box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
-    height: 95%;
     position: relative;
 
     &.twitter {
@@ -33,8 +32,6 @@
     }
 
     .thumbnail {
-        border-top-left-radius: .28571429rem;
-        border-top-right-radius: .28571429rem;
         height: 210px;
         border-bottom: 1px solid $borderGrey;
         overflow: hidden;
@@ -51,7 +48,11 @@
     }
 
     header {
-        padding-bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        align-items: center;
+        border-bottom: 1px solid #ebebeb;
     }
 
     .source-logo {
@@ -59,20 +60,19 @@
         height: 25px;
         border-radius: 50%;
         border: 1px solid $borderGrey;
-        float: left;
         object-fit: contain;
+        margin-right: 5px;
     }
 
     .source {
         color: $secondary;
-        position: relative;
-        top: 5px;
-        left: 7px;
-        font-size: .7rem;
-        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        font-size: .8rem;
 
         h5 {
-            display: inline-block;
+            margin: 0;
+            margin-right: 5px;
         }
     }
 
@@ -85,8 +85,9 @@
     }
 
     .description {
-        margin: 1rem 0;
-        height: 80px;
+        margin: 0;
+        margin-top: 1rem;
+        max-height: 80px;
         overflow: hidden;
         word-break: break-word;
         font-size: .9rem;
@@ -132,12 +133,11 @@
 
 @media (min-width: 544px) {
     .news-card {
-        padding-bottom: 2.5rem;
         .thumbnail {
             height: 175px;
         }
         .description {
-            height: 60px;
+            max-height: 60px;
         }
     }
 }
