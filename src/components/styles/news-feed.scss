@@ -7,7 +7,7 @@
     flex-direction: column;
     min-width: 1px;
     top: 50px;
-    max-width: 1190px;
+    max-width: 1440px;
     margin: auto;
 
     .errors-container {
@@ -32,6 +32,11 @@
     font-weight: 600;
 }
 
+.tweet-container {
+    div {
+        width: 100%;
+    }
+}
 
 .news-feed-messages {
     padding: 5rem 0;

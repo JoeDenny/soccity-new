@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
+import './styles/tweets.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
 // import AdvertContainer from './AdvertContainer';
@@ -46,7 +47,7 @@ class NewsFeed extends Component {
 
                     if(newsItem.additional) {
                         result.push(
-                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <li key={newsItem.id} className="tweet-container col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                 <Tweet tweetId={newsItem.title} onLoad={ () => {this.setState({update: 'true'})}}/>
                             </li>
                         )
