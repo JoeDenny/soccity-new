@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import './styles/news-feed.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
-import AdvertContainer from './AdvertContainer';
+// import AdvertContainer from './AdvertContainer';
+import Masonry from 'react-masonry-component';
 import { Tweet } from 'react-twitter-widgets'
 
 class NewsFeed extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            update: 'false'
+        }    
+    }
 
     loadNextPage = () => {
         this.props.loadNextPage();
@@ -18,27 +26,28 @@ class NewsFeed extends Component {
     render() {
         let newsItems = [],
             searchTerm = this.props.searchTerm,
-            className = `news-feed container ${this.props.template === 1 ? 'template1' : 'template2'}`,
+            className = `news-feed ${this.props.template === 1 ? 'template1' : 'template2'}`,
             loadMoreClass = `load-more-btn ${this.props.current_page >= this.props.last_page ? 'hide' : ''}`,
             noResultsClass;
-        
+
         if(this.props.news) {
 
             newsItems = this.props.news.reduce((result, newsItem, index) => {
-                
-                if(index === 6 || index === 13 || index === 20 || index === 27) {
+
+                // if(index === 6 || index === 13 || index === 20 || index === 27) {
                     
-                    result.push(
-                        <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-                            <AdvertContainer user={this.props.user} key={index}/>
-                        </li>
-                    )
-                } else if (newsItem.title.toLowerCase().includes(searchTerm)) {
+                //     result.push(
+                //         <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                //             <AdvertContainer user={this.props.user} key={index}/>
+                //         </li>
+                //     )
+                // } else 
+                if (newsItem.title.toLowerCase().includes(searchTerm)) {
 
                     if(newsItem.additional) {
                         result.push(
-                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-                                <Tweet tweetId={newsItem.title} />
+                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <Tweet tweetId={newsItem.title} onLoad={ () => {this.setState({update: 'true'})}}/>
                             </li>
                         )
                     } else {
@@ -63,9 +72,13 @@ class NewsFeed extends Component {
                 <LoadingIcon show={this.props.loading}/>
 
                 <div style={{ display: this.props.loading ? 'none' : 'block' }}>  
-                
-                    <ul className="row">
+
+                    <ul>
+                    <Masonry
+                        update={this.state.update}
+                    >
                         {newsItems}
+                    </Masonry>
                     </ul>
 
                     <div className="news-feed-messages">

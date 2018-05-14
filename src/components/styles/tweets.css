@@ -1,4 +1,4 @@
-blockquote.twitter-tweet {
+.twitter-tweet {
   display: inline-block;
   font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
   font-size: 12px;
@@ -13,17 +13,17 @@ blockquote.twitter-tweet {
   padding: 0 16px 16px 16px;
   max-width: 468px; }
 
-blockquote.twitter-tweet p {
+.twitter-tweet p {
   font-size: 16px;
   font-weight: normal;
   line-height: 20px; }
 
-blockquote.twitter-tweet a {
+.twitter-tweet a {
   color: inherit;
   font-weight: normal;
   text-decoration: none;
   outline: 0 none; }
 
-blockquote.twitter-tweet a:hover,
-blockquote.twitter-tweet a:focus {
+.twitter-tweet a:hover,
+.twitter-tweet a:focus {
   text-decoration: underline; }
