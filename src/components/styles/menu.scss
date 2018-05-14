@@ -60,9 +60,9 @@
 @media (min-width: 768px) {
     .menu-container {
         bottom: 0;
-        position: static;
+        position: relative;
         right: 0;
-        top: 0;
+        top: 40px;
         bottom: 0;
         overflow: hidden;
         display: none;

@@ -6,7 +6,9 @@
     flex: 1;
     flex-direction: column;
     min-width: 1px;
-    top: 60px;
+    top: 50px;
+    max-width: 1190px;
+    margin: auto;
 
     .errors-container {
         width: 340px;
@@ -14,14 +16,6 @@
         background-color: $darkGrey;
         border-radius: .25rem;
     }
-
-    // .col-sm-6,
-    // .col-md-6,
-    // .col-lg-3,
-    // .col-xl-2 {
-    //     padding-left: 10px !important;
-    //     padding-right: 10px !important;
-    // }
 
     &.template2 {
         top: 40px;

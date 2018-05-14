@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
-import PopularNewsTicker from '../components/PopularNewsTicker';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
 import { getNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
@@ -135,8 +134,6 @@ class Dashboard extends Component {
                         refreshNews={this.getNews}
                         changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
-
-                    <PopularNewsTicker popularNews={this.props.popularNews}/>
 
                     <Sidebar dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
 
