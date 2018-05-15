@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './styles/news-feed.css';
-import './styles/tweets.css';
 import NewsCard from './NewsCard';
 import LoadingIcon from './LoadingIcon';
 // import AdvertContainer from './AdvertContainer';
 import Masonry from 'react-masonry-component';
-import { Tweet } from 'react-twitter-widgets'
 
 class NewsFeed extends Component {
     constructor() {
@@ -47,15 +45,18 @@ class NewsFeed extends Component {
 
                     if(newsItem.additional) {
                         result.push(
-                            <li key={newsItem.id} className="tweet-container col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                <Tweet tweetId={newsItem.title} onLoad={ () => {this.setState({update: 'true'})}}/>
+                            // <li key={newsItem.id} className="tweet-container col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            //     <Tweet tweetId={newsItem.title} onLoad={ () => {this.setState({update: 'true'})}}/>
+                            // </li>
+                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm} type="tweet" updateGrid={ () => {this.setState({update: 'true'})}}/>
                             </li>
                         )
                     } else {
 
                         result.push(    
                             <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm}/>
+                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm} />
                             </li>
                         );
                     }

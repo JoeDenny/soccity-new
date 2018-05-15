@@ -1,4 +1,9 @@
 .twitter-tweet {
-  margin: 15px !important;
-  padding-right: 30px !important;
-  margin-bottom: 30px !important; }
+  margin: 0 !important;
+  padding: 0 !important; }
+
+.EmbeddedTweet {
+  border: 0 !important; }
+
+.EmbeddedTweet--edge {
+  border-radius: 0 !important; }
