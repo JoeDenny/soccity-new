@@ -69,7 +69,7 @@
       display: none; }
   .news-card footer {
     position: absolute;
-    bottom: 0px;
+    bottom: 5px;
     left: 15px;
     right: 15px; }
 
@@ -88,9 +88,9 @@
     stroke-width: 4px; }
   .comments-icon span {
     position: absolute;
-    bottom: 0;
+    bottom: -6px;
     font-size: .6rem;
-    right: -1px; }
+    right: 0; }
 
 @media (min-width: 544px) {
   .news-card .thumbnail {

@@ -19,6 +19,7 @@ const BookmarkIcon = (props) => {
         >
         
             {/* <span className="text-secondary">{props.bookmarksCount}</span> */}
+            <span className="text-secondary">Save</span>
         </button>
     );
 };
