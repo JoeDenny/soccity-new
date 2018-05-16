@@ -1,7 +1,8 @@
 @import '../../styles/_variables.scss';
 
 .dashboard-sidebar {
-    background-color: $black;
+    background-color: #f7f7f7;
+    border: 1px solid $borderGrey;
     bottom: 0;
     width: 100%;
     position: fixed;
@@ -23,7 +24,7 @@
     height: 40px;
     border-radius: 50%;
     border: 1px solid transparent;
-    background-color: $darkGrey;
+    background-color: #1090f7;
     box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.4);
     transition: box-shadow .25s;
 }
@@ -60,7 +61,7 @@
         }
     }
     .plus-icon {
-        border-color: $black;
+        border-color: #2083d4;
         top: -15px;
     }
 }

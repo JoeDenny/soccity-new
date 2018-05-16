@@ -7,15 +7,23 @@
 
 .dashboard-settings-container {
   padding: .5rem;
-  padding-bottom: 0;
+  padding-bottom: 2px;
   width: 100%;
   border: 1px solid #ebebeb;
   background-color: #f7f7f7;
   position: fixed;
   top: 60px;
   z-index: 100; }
+  .dashboard-settings-container .btn-popular {
+    background-color: #000000;
+    color: #fff;
+    border-color: #000000; }
+    .dashboard-settings-container .btn-popular:hover {
+      background-color: #000000;
+      border-color: #000000; }
   .dashboard-settings-container .left-icons {
-    display: flex; }
+    display: flex;
+    margin-left: 55px; }
   .dashboard-settings-container .right-icons {
     margin-top: 5px; }
   .dashboard-settings-container .small-search .searchbar {

@@ -7,7 +7,6 @@ import KeywordHighlightButton from './KeywordHighlightButton';
 import AutoRefreshButton from './AutoRefreshButton';
 import LatestCommentsButton from './LatestCommentsButton';
 import Searchbar from './Search';
-import TemplateTab from './TemplateTab';
 
 class DashboardSettings extends Component {
     changeTemplate = (toggleOn) => {
@@ -30,9 +29,9 @@ class DashboardSettings extends Component {
         return (
             <div className="dashboard-settings-container">
                 <div className="left-icons">
-                    <TemplateTab onChangeTemplate={this.changeTemplate}/>
+                    {/* <TemplateTab onChangeTemplate={this.changeTemplate}/> */}
 
-                    <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-primary" onClick={this.props.setPopularNews}>Popular News</button>
+                    <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-popular btn-primary" onClick={this.props.setPopularNews}>Popular News</button>
 
                     <button style={{display : this.props.isPopularNews ? 'inline-block' : 'none' }} className="btn btn-primary" onClick={this.refreshNews}>All News</button>
                     

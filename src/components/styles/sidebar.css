@@ -1,5 +1,6 @@
 .dashboard-sidebar {
-  background-color: #222629;
+  background-color: #f7f7f7;
+  border: 1px solid #ebebeb;
   bottom: 0;
   width: 100%;
   position: fixed;
@@ -19,7 +20,7 @@
   height: 40px;
   border-radius: 50%;
   border: 1px solid transparent;
-  background-color: #474B4F;
+  background-color: #1090f7;
   box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.4);
   transition: box-shadow .25s; }
 
@@ -51,5 +52,5 @@
     .dashboard-sidebar .app-logo {
       top: -15px; }
   .plus-icon {
-    border-color: #222629;
+    border-color: #2083d4;
     top: -15px; } }

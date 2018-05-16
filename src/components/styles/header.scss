@@ -54,10 +54,11 @@
 
         .upgrade {
             position: absolute;
+            font-family: 'Montserrat', sans-serif;
             cursor: pointer;
-            left: -100px;
-            top: 14px;
-            background-color: #86C232;
+            left: -105px;
+            top: 15px;
+            background-color: #13b711;
             padding: 4px 10px;
             color: $white;
         }
