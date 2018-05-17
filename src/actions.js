@@ -413,7 +413,7 @@ export const getNews = (params) => {
                         dispatch(getNewsFailure(error.response.data.errors));
                     } else {
                         let errorMessage = {
-                            error: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
+                            error: ['']
                         };
                         dispatch(getNewsFailure(errorMessage));
                     }        

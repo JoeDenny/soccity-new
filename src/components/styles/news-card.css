@@ -1,6 +1,7 @@
 .news-card {
   padding-bottom: 2.5rem;
-  margin: 30px 15px;
+  margin: 0;
+  margin-bottom: 15px;
   background-color: #fff;
   border-radius: .28571429rem;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
@@ -136,6 +137,8 @@
     bottom: 0; }
 
 @media (min-width: 768px) {
+  .news-card {
+    margin: 30px 15px; }
   .news-feed.template2 .thumbnail {
     height: 140px;
     width: 140px; }

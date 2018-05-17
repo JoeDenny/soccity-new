@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/sidebar.css';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import Logo from './logo.png';
+import Logo from './logo_black.svg';
 import DashboardList from './DashboardList';
 
 class Sidebar extends Component {

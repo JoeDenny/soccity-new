@@ -4,7 +4,7 @@
   flex: 1;
   flex-direction: column;
   min-width: 1px;
-  top: 50px;
+  top: 90px;
   max-width: 1440px;
   margin: auto; }
   .news-feed .errors-container {
@@ -54,7 +54,8 @@
 @media (min-width: 768px) {
   .news-feed {
     padding-left: 75px !important;
-    padding-right: 15px !important; }
+    padding-right: 15px !important;
+    top: 50px; }
     .news-feed.template2 {
       padding-left: 60px !important; }
   .menu-open .template1 .col-md-4,

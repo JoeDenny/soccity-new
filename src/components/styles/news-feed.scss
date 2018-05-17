@@ -6,7 +6,7 @@
     flex: 1;
     flex-direction: column;
     min-width: 1px;
-    top: 50px;
+    top: 90px;
     max-width: 1440px;
     margin: auto;
 
@@ -78,6 +78,7 @@
     .news-feed {
         padding-left: 75px !important;
         padding-right: 15px !important;
+        top: 50px;
         
         &.template2 {
             padding-left: 60px !important;
