@@ -48,7 +48,7 @@ class Api {
         let url;
 
         // let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
-
+        
         let baseUrl = `time=${params.time}&page=${params.page}`
 
         if(params.sources) {

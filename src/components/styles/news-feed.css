@@ -38,34 +38,13 @@
 .load-more-btn.show {
   display: none; }
 
-@media (min-width: 544px) {
-  .menu-closed .template2 .col-sm-6,
-  .menu-closed .template2 .col-md-4,
-  .menu-closed .template2 .col-lg-4,
-  .menu-closed .template2 .col-xl-3,
-  .menu-open .template2 .col-sm-6,
-  .menu-open .template2 .col-md-4,
-  .menu-open .template2 .col-lg-4,
-  .menu-open .template2 .col-xl-3 {
-    flex: none;
-    width: 100%;
-    max-width: none; } }
-
 @media (min-width: 768px) {
   .news-feed {
     padding-left: 75px !important;
     padding-right: 15px !important;
     top: 50px; }
     .news-feed.template2 {
-      padding-left: 60px !important; }
-  .menu-open .template1 .col-md-4,
-  .menu-open .template1 .col-sm-6,
-  .menu-open .template1 .col-md-4,
-  .menu-open .template1 .col-lg-4,
-  .menu-open .template1 .col-xl-3 {
-    flex: none;
-    width: 100%;
-    max-width: none; } }
+      padding-left: 60px !important; } }
 
 .masonry-container {
   width: 80%;

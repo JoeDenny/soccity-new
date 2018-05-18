@@ -25,11 +25,21 @@ class Dashboard extends Component {
         this.getNews();
         this.props.getPopularNews();
         this.props.getDashboards();
-        this.props.setAutoRefresh(120000);
+
+        this.startAutoRefreshTimer(this.state.autoRefreshRate)
+    }
+
+    startAutoRefreshTimer(refreshRate = 120000) {
+
+        console.log('refreshrate', refreshRate);
+        
+        // setInterval(function () {
+        //     this.getNews();
+        //   }.bind(this), 7000); 
     }
 
     getNews = (pageNumber) => {
-
+    
         const params = {
             time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: pageNumber || 1
@@ -74,13 +84,11 @@ class Dashboard extends Component {
     }
 
     loadNextPage = () => {
-        const params = {
-            page: this.props.current_page + 1
-        }
+        const page = this.props.current_page + 1;
+        
+        this.getNews(page);
 
-        this.getNews(params);
-
-        window.scrollTo(0,0);
+        // window.scrollTo(0,0);
     }
 
     setSearchTerm = (searchTerm) => {
@@ -116,8 +124,8 @@ class Dashboard extends Component {
 
         const news = this.props.isPopularNews ? this.props.popularNews : this.props.news;        
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';            
-
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';      
+    
         return (
             <AuthWrapper>
                 <section className="app-dashboard">

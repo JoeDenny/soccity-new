@@ -31,6 +31,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+    
     switch (action.type) {
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
@@ -129,10 +130,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 state: undefined
             }
-        case GET_NEWS_SUCCESS:            
+        case GET_NEWS_SUCCESS:        
             return {
                 ...state,
-                news: action.payload.news.data,
+                news: state.news ? [
+                    ...state.news,
+                    ...action.payload.news.data
+                ] : action.payload.news.data,
                 isPopularNews: false,
                 current_page: action.payload.news.current_page,
                 last_page: action.payload.news.last_page,

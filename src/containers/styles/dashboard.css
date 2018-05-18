@@ -1,11 +1,6 @@
 .app-dashboard {
   min-height: 100vh; }
 
-.menu-open {
-  overflow: hidden;
-  display: flex;
-  flex: 1; }
-
 .overlay {
   background-color: rgba(0, 0, 0, 0.2);
   bottom: 0;

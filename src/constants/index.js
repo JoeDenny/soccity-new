@@ -6,7 +6,8 @@ export const routes =  {
     BILLING_PATH: 'billing',
     PROFILE_PATH: 'profile',
     PREFERENCES_PATH: 'preferences',
-    ADD_DASHBOARD_PATH: 'create-dashboard'
+    ADD_DASHBOARD_PATH: 'create-dashboard',
+    NEWS_ARTICLE_PATH: 'news/article'
 };
 
 export const authIds = {

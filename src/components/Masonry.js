@@ -17,9 +17,6 @@ class Masonry extends React.Component {
   render() {
     let items;
 
-    console.log('this.props', this.props.news);
-    
-
     if(this.props.news) {
         items = this.props.news;
     }

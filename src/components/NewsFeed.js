@@ -69,11 +69,13 @@ class NewsFeed extends Component {
         }    
 
         return (
-            <section className={className}>
+            <section
+                id="news-feed"
+                className={className}>
                 
                 <LoadingIcon show={this.props.loading}/>
 
-                <div style={{ display: this.props.loading ? 'none' : 'block' }}>  
+                <div>  
 
                     <ul>
                     <Masonry
@@ -83,7 +85,8 @@ class NewsFeed extends Component {
                     </Masonry>
                     </ul>
 
-                    <div className="news-feed-messages">
+                    <div className="news-feed-messages"
+                         style={{ display: this.props.loading ? 'none' : 'block' }}>
                 
                         <div className={noResultsClass}>
                             <p>No results found</p>

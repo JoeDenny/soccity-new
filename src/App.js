@@ -9,6 +9,7 @@ import MyStoreCheckout from './containers/checkout/MyStoreCheckout';
 import Profile from './containers/Profile';
 import Preferences from './containers/Preferences';
 import AddDashboard from './containers/AddDashboard';
+// import NewsArticle from './components/NewsArticle';
 import './App.css';
 import { Provider } from 'react-redux';
 import {StripeProvider} from 'react-stripe-elements';
@@ -40,6 +41,8 @@ export const App = () => (
                     <Route exact={true} path={getPath(routes.PROFILE_PATH)} component={Profile} />
                     <Route exact={true} path={getPath(routes.PREFERENCES_PATH)} component={Preferences} />
                     <Route exact={true} path={getPath(routes.ADD_DASHBOARD_PATH)} component={AddDashboard} />
+                    {/* <Route exact={true} path="/linktoarticle/:url" component={NewsArticle} /> */}
+
                     <Route component={Home}/>
                 </Switch>
             </BrowserRouter>

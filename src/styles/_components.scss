@@ -13,11 +13,19 @@
         fill: $textSecondary;
     }
 }
-
+.loading-icon {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background: rgba(255, 255, 255, .5);
+}
 .lds-dual-ring {
     width: 64px;
     height: 64px;
-    margin: 5rem auto;
   }
   .lds-dual-ring:after {
     content: " ";

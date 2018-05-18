@@ -8,6 +8,11 @@
   src: local("Zwizz Bold"), url("./styles/fonts/zwizz-bold.woff") format("woff");
   src: url("./styles/fonts/zwizz-bold.ttf") format("truetype"), url("./styles/fonts/zwizz-bold.otf") format("opentype"); }
 
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  src: local("AvenirNextLTPro-Regular"), url("./styles/fonts/AvenirNextLTPro-Regular.ttf") format("truetype");
+  src: url("./styles/fonts/AvenirNextLTPro-Regular.ttf") format("truetype")}
+
 html {
   position: relative;
   min-height: 100vh;
@@ -267,10 +272,19 @@ th {
     height: 15px;
     fill: #484848; }
 
+.loading-icon {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.5); }
+
 .lds-dual-ring {
   width: 64px;
-  height: 64px;
-  margin: 5rem auto; }
+  height: 64px; }
 
 .lds-dual-ring:after {
   content: " ";

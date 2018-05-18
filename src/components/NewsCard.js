@@ -8,7 +8,7 @@ import BookmarkIcon from './BookmarkIcon';
 import ShareSection from './ShareSection';
 import TierIcon from './TierIcon';
 import TwitterLogo from './Twitter_Logo.png';
-import { Tweet } from 'react-twitter-widgets'
+import { Tweet } from 'react-twitter-widgets';
 
 class NewsCard extends Component {
 
@@ -23,6 +23,7 @@ class NewsCard extends Component {
     }
 
     openArticle = () => {
+        
         this.props.openArticle(this.props.newsItem.id);
     }
 
@@ -84,7 +85,7 @@ class NewsCard extends Component {
                             <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                         </div>
     
-                        <ShareSection />             
+                        <ShareSection id={this.props.newsItem.id}/>             
                     </header>
     
                     <Tweet tweetId={this.props.newsItem.title} onLoad={this.updateGrid} />
@@ -130,10 +131,10 @@ class NewsCard extends Component {
                             <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                         </div>
     
-                        <ShareSection />             
+                        <ShareSection id={this.props.newsItem.id}/>             
                     </header>
-    
-                    <a href={this.props.newsItem.link} onClick={this.openArticle} target="_blank">
+
+                    <a href={"https://c.sourcebuffet.net/news/" + this.props.newsItem.id} onClick={this.openArticle} target="_blank">
                         <div className="thumbnail"> 
                             <img
                                 alt=""
