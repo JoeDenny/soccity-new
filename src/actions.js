@@ -432,7 +432,7 @@ export const getPopularNews = () => {
             .catch(error => {  
                 if (error.response) {                                        
                     let error = {
-                        getNews: ['Oops! Sorry something went wrong, please contact hello@soccity.com']
+                        getNews: ['']
                     }                
                     dispatch(getNewsFailure(error));
                 }

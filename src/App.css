@@ -8,11 +8,6 @@
   src: local("Zwizz Bold"), url("./styles/fonts/zwizz-bold.woff") format("woff");
   src: url("./styles/fonts/zwizz-bold.ttf") format("truetype"), url("./styles/fonts/zwizz-bold.otf") format("opentype"); }
 
-@font-face {
-  font-family: 'AvenirNextLTPro-Regular';
-  src: local("AvenirNextLTPro-Regular"), url("./styles/fonts/AvenirNextLTPro-Regular.ttf") format("truetype");
-  src: url("./styles/fonts/AvenirNextLTPro-Regular.ttf") format("truetype")}
-
 html {
   position: relative;
   min-height: 100vh;

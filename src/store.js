@@ -21,7 +21,7 @@ const store = createStore(
     process.env.NODE_ENV === 'development' ?
     compose(
         applyMiddleware(thunk),
-        (window).__REDUX_DEVTOOLS_EXTENSION__ && (window).__REDUX_DEVTOOLS_EXTENSION__()
+        // (window).__REDUX_DEVTOOLS_EXTENSION__ && (window).__REDUX_DEVTOOLS_EXTENSION__()
     ) :
     applyMiddleware(thunk)
 );
