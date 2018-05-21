@@ -6,7 +6,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -25,17 +25,27 @@ class Dashboard extends Component {
         this.getNews();
         this.props.getPopularNews();
         this.props.getDashboards();
+        this.props.getCompetitions();
+        this.props.getTeams();
+        this.props.getPlayers();
+        this.props.getSources();
 
         this.startAutoRefreshTimer(this.state.autoRefreshRate)
     }
 
-    startAutoRefreshTimer(refreshRate = 120000) {
+    componentWillReceiveProps(newProps) {
 
-        console.log('refreshrate', refreshRate);
+        if(newProps.autoRefreshRate) {
+            // this.startAutoRefreshTimer(3000);
+        }
+    }
+
+    startAutoRefreshTimer(refreshRate = 120000) {
         
-        // setInterval(function () {
-        //     this.getNews();
-        //   }.bind(this), 7000); 
+        setInterval(function () {
+            
+            this.getNews(1);
+        }.bind(this), refreshRate); 
     }
 
     getNews = (pageNumber) => {
@@ -46,6 +56,16 @@ class Dashboard extends Component {
         }; 
         
         this.props.getNews(params);        
+    }
+
+    updateNews = (pageNumber) => {
+    
+        const params = {
+            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            page: pageNumber || 1
+        }; 
+        
+        this.props.updateNews(params);        
     }
 
     openMenu = () => {        
@@ -86,7 +106,7 @@ class Dashboard extends Component {
     loadNextPage = () => {
         const page = this.props.current_page + 1;
         
-        this.getNews(page);
+        this.updateNews(page);
 
         // window.scrollTo(0,0);
     }
@@ -131,7 +151,11 @@ class Dashboard extends Component {
                 <section className="app-dashboard">
                     <DashboardHeader
                         user={user}
-                        setSearchTerm={this.setSearchTerm}/>
+                        setSearchTerm={this.setSearchTerm}
+                        competitions={this.props.competitions}
+                        teams={this.props.teams}
+                        players={this.props.players}
+                        sources={this.props.sources} />
                     
                     <DashboardSettings
                         setPopularNews={this.props.setPopularNews}
@@ -143,7 +167,10 @@ class Dashboard extends Component {
                         changeTemplate={this.changeTemplate}
                         openFilter={this.openFilter}/>
 
-                    <Sidebar dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
+                    <Sidebar
+                        dashboards={this.props.dashboards}
+                        setActiveDashboard={this.setActiveDashboard}
+                        refreshNews={this.getNews}/>
 
                     <div className={menuClass}>
                         <NewsFeed
@@ -176,6 +203,10 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     user: state.user,
     news: state.news,
+    competitions: state.competitions,
+    teams: state.teams,
+    players: state.players,
+    sources: state.sources,
     activeNews: state.activeNews,
     activeMenuItem: state.activeMenuItem,
     popularNews: state.popularNews,
@@ -192,6 +223,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
+    getCompetitions: () => dispatch(getCompetitions()),
+    getTeams: () => dispatch(getTeams()),
+    getPlayers: () => dispatch(getPlayers()),
+    getSources: () => dispatch(getSources()),
+    updateNews: (params) => dispatch(updateNews(params)),
     getPopularNews: () => dispatch(getPopularNews()),
     setPopularNews: () => dispatch(setPopularNews()),
     getDashboards: () => dispatch(getDashboards()),

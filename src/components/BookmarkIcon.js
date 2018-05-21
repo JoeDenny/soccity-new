@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/bookmark.css';
 import { bookmarkArticle } from '../actions';
 import { connect } from 'react-redux';
+import icon from '../images/bookmark.svg';
 
 const BookmarkIcon = (props) => {
     const className = `bookmark-icon ${props.isBookmarked ? 'active' : ''}`;
@@ -17,7 +18,8 @@ const BookmarkIcon = (props) => {
             className={className}
             onClick={bookmark}
         >
-        
+            <img src={icon} alt=""/>
+            
             {/* <span className="text-secondary">{props.bookmarksCount}</span> */}
             <span className="text-secondary">Save</span>
         </button>

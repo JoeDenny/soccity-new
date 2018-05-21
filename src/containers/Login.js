@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
+// import SocialButton from './SocialButton';
 
 class Login extends Component {
     constructor(props) {
@@ -40,12 +41,29 @@ class Login extends Component {
         this.props.login(email, password);
     }
 
+    handleSocialLogin = (user) => {
+        console.log(user)
+    }
+       
+    handleSocialLoginFailure = (err) => {
+        console.error(err)
+    }
+
     render() {
         return (
             <div className="auth-layout">
 
-                {/* <SocialLogin /> */}
-                
+                {/* <div>
+                    <SocialButton
+                    provider='google'
+                    appId={authIds.GOOGLE_CLIENT_ID}
+                    onLoginSuccess={this.handleSocialLogin}
+                    onLoginFailure={this.handleSocialLoginFailure}
+                    >
+                    Login with google
+                    </SocialButton>
+                </div>
+                 */}
                 <h1>Login</h1>
 
                 <ErrorMessages errors={this.props.errors}/>                

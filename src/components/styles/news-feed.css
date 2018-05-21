@@ -49,14 +49,16 @@
   .no-search-results-message.show {
     display: block; }
 
-.load-more-btn.show {
-  display: none; }
+.load-more-btn {
+  cursor: pointer; }
+  .load-more-btn.show {
+    display: none; }
 
 @media (min-width: 768px) {
   .news-feed {
     padding-left: 75px !important;
     padding-right: 15px !important;
-    top: 50px; }
+    top: 80px; }
     .news-feed.template2 {
       padding-left: 60px !important; } }
 

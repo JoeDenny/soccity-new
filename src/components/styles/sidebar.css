@@ -9,6 +9,7 @@
   padding: 5px 10px;
   height: 50px; }
   .dashboard-sidebar .app-logo {
+    cursor: pointer;
     width: 40px;
     top: 0;
     left: 0px; }
@@ -51,8 +52,7 @@
     padding: 10px; }
     .dashboard-sidebar .app-logo {
       top: 0px;
-      left: -7px;
-      width: 50px; }
+      left: -1px; }
   .plus-icon {
     border-color: #000000;
     top: 15px; } }

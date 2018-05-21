@@ -6,14 +6,16 @@
     transform: rotate(360deg); } }
 
 .dashboard-settings-container {
-  padding: .5rem;
-  padding-bottom: 2px;
+  padding: 1rem;
+  padding-bottom: 8px;
   width: 100%;
-  border: 1px solid #ebebeb;
-  background-color: #f7f7f7;
+  background-color: white;
   position: fixed;
-  top: 60px;
-  z-index: 100; }
+  z-index: 99;
+  top: 61px;
+  left: 0;
+  right: 0;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; }
   .dashboard-settings-container .btn-popular {
     background-color: #000000;
     color: #fff;
@@ -31,9 +33,10 @@
     float: left;
     border: 1px solid #ccc;
     border-radius: .25rem;
-    transition: width .2s; }
+    transition: width .2s;
+    overflow: hidden; }
     .dashboard-settings-container .small-search .searchbar.open {
-      width: 180px; }
+      width: 115px; }
     .dashboard-settings-container .small-search .searchbar .search-icon {
       width: 20px;
       height: 20px;
@@ -78,10 +81,14 @@
     transition: opacity .25s ease-in-out, transform .25s ease-in-out .1s; }
 
 @media (min-width: 768px) {
-  .dashboard-settings-container .left-icons {
-    margin: 0;
-    margin-left: 55px;
-    float: left; }
-  .dashboard-settings-container .right-icons {
-    margin-top: 0;
-    float: right; } }
+  .dashboard-settings-container {
+    top: 90px;
+    margin: auto;
+    width: 640px;
+    border-radius: .25rem; }
+    .dashboard-settings-container .left-icons {
+      margin: 0;
+      float: left; }
+    .dashboard-settings-container .right-icons {
+      margin-top: 0;
+      float: right; } }

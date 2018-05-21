@@ -105,6 +105,12 @@ export const getNewsSuccess = (news) => ({
     payload: { news }
 });
 
+export const UPDATE_NEWS_SUCCESS = 'UPDATE_NEWS_SUCCESS';
+export const updateNewsSuccess = (news) => ({
+    type: UPDATE_NEWS_SUCCESS,
+    payload: { news }
+});
+
 export const GET_NEWS_FAILURE = 'GET_NEWS_FAILURE';
 export const getNewsFailure = (errors) => ({
     type: GET_NEWS_FAILURE,
@@ -293,8 +299,11 @@ export const deleteDashboardUpdate = () => ({
 });
 
 export const ADD_DASHBOARD_SUCCESS = 'ADD_DASHBOARD_SUCCESS';
-export const addDashboardSuccess = () => ({
-    type: ADD_DASHBOARD_SUCCESS
+export const addDashboardSuccess = (dashboard) => ({
+    type: ADD_DASHBOARD_SUCCESS,
+    payload: {
+        dashboard
+    }
 });
 
 export const ADD_DASHBOARD_FAILURE = 'ADD_DASHBOARD_FAILURE';
@@ -417,6 +426,21 @@ export const getNews = (params) => {
                         };
                         dispatch(getNewsFailure(errorMessage));
                     }        
+                }
+            });
+    };
+};
+
+export const updateNews = (params) => {        
+    return (dispatch) => {
+        dispatch(fetchingData());
+        api.getNews(params)
+            .then((res) => {                                
+                dispatch(updateNewsSuccess(res.data.allNews));
+            })
+            .catch(error => {
+                if (error.response) {
+                    dispatch(getNewsFailure(""));                                
                 }
             });
     };
@@ -601,10 +625,8 @@ export const addDashboard = (params) => {
     return (dispatch) => {
         api.addDashboard(params)
             .then((res) => {    
-                console.log('res', res);
                 
-                // dispatch(addDashboardSuccess());            
-                // dispatch(getDashboards());
+                dispatch(addDashboardSuccess(res.data.dashboard));            
             })
             .catch(error => {  
                 if (error.response) {                                        

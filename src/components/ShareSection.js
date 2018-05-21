@@ -37,9 +37,9 @@ class ShareSection extends Component {
                     <button className="btn btn-secondary" onClick={this.onClick}>Share</button>
                 </CopyToClipboard>
         
-                {this.state.copied ? <span className="copied-message card">Copied to clipboard!</span> : null}
+                {this.state.copied ? <div className="copied-message"><span className="card">Copied to clipboard!</span></div> : null}
 
-                
+                <div className="copied-message"><span className="card">Copied to clipboard!</span></div> 
             </div>
         );
     }

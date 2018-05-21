@@ -33,6 +33,7 @@
     position: absolute;
     right: 0;
     top: 0;
+    bottom: 0;
     background-color: #fff;
     border-left: 1px solid #ebebeb; }
     .dashboard-header .user-details .username {

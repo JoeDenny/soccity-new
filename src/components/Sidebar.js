@@ -14,18 +14,19 @@ class Sidebar extends Component {
     render() {        
         return (
             <div className="dashboard-sidebar">    
-                    <img
-                        className="app-logo"
-                        src={Logo}
-                        alt="soccity" />
+                <img
+                    className="app-logo"
+                    onClick={this.props.refreshNews}
+                    src={Logo}
+                    alt="soccity" />
 
-                    <Link to={routes.ADD_DASHBOARD_PATH}>
-                        <button 
-                        type="button" 
-                        className="plus-icon" />
-                    </Link>
+                <Link to={routes.ADD_DASHBOARD_PATH}>
+                    <button 
+                    type="button" 
+                    className="plus-icon" />
+                </Link>
 
-                    <DashboardList dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
+                <DashboardList dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
             </div>
         )
     }

@@ -43,10 +43,10 @@ class AddDashboard extends Component {
 
     componentWillMount() {
 
-        this.props.getCompetitions();
-        this.props.getTeams();
-        this.props.getPlayers();
-        this.props.getSources();
+        // this.props.getCompetitions();
+        // this.props.getTeams();
+        // this.props.getPlayers();
+        // this.props.getSources();
 
         if(this.props.activeDashboard) {
             
@@ -72,6 +72,8 @@ class AddDashboard extends Component {
     }
 
     componentWillReceiveProps(newProps) {
+        console.log('newProps', newProps);
+        
         if (newProps.updateDashboardSuccess) {
             this.props.history.push(routes.DASHBOARD_PATH);
         }
@@ -495,10 +497,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getCompetitions: () => dispatch(getCompetitions()),
-    getCommonKeywords: (type, id) => dispatch(getCommonKeywords(type, id)),
     getTeams: () => dispatch(getTeams()),
     getPlayers: () => dispatch(getPlayers()),
     getSources: () => dispatch(getSources()),
+    getCommonKeywords: (type, id) => dispatch(getCommonKeywords(type, id)),
     addDashboard: (params) => dispatch(addDashboard(params)),
     updateDashboard: (dashboardId, params) => dispatch(updateDashboard(dashboardId, params))
 });

@@ -6,16 +6,27 @@
         color: #33A4EC;
         border-color: #33A4EC;
         padding: 2px;
-        margin: 5px;
-        font-size: .7rem;
+        margin: 0;
+        font-size: .8rem;
     }
 }
 
 .copied-message {
-    position: absolute;
-    top: -14px;
-    right: 4px;
-    font-size: .7rem;
-    line-height: 12px;
-    padding: 3px;
+    // position: fixed;
+    // top: -14px;
+    // right: 4px;
+    // font-size: .7rem;
+    // line-height: 12px;
+    // padding: 3px;
+    position: fixed;
+    top: 120px;
+    width: 100%;
+    margin: auto;
+    z-index: 100;
+
+    span {
+        font-size: .7rem;
+        line-height: 12px;
+        padding: 3px;
+    }
 }

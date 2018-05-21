@@ -5,22 +5,16 @@
     width: 24px;
     position: relative;
     min-width: 0;
-    margin: 0 2px;
+    margin: 0 5px;
     opacity: .38;
-    background-size: 20px 20px;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-image: url('data:image/svg+xml;charset%3DUS-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"UTF-8"%20standalone%3D"no"%3F><svg%20width%3D"20px"%20height%3D"20px"%20viewBox%3D"0%200%2020%2020"%20version%3D"1.1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink">%20%20%20%20%20%20%20%20<title>save-ios-sm-black<%2Ftitle>%20%20%20%20<desc>Created%20with%20Sketch.<%2Fdesc>%20%20%20%20<defs><%2Fdefs>%20%20%20%20<g%20id%3D"Icons---20%2F24"%20stroke%3D"none"%20stroke-width%3D"1"%20fill%3D"none"%20fill-rule%3D"evenodd">%20%20%20%20%20%20%20%20<g%20id%3D"save-ios-sm-black"%20fill%3D"%23000000">%20%20%20%20%20%20%20%20%20%20%20%20<path%20d%3D"M5%2C2%20L5%2C18%20L10%2C14%20L15%2C18%20L15%2C2%20L5%2C2%20Z%20M10%2C12.6999998%20L6%2C15.6999998%20L6%2C3%20L14%2C3%20L14%2C15.6999998%20L10%2C12.6999998%20Z"%20id%3D"icon-save"><%2Fpath>%20%20%20%20%20%20%20%20<%2Fg>%20%20%20%20<%2Fg><%2Fsvg>');
-
 
     &.active {
         opacity: 1;
-        background-image: url(data:image/svg+xml;charset%3DUS-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2220px%22%20height%3D%2220px%22%20viewBox%3D%220%200%2020%2020%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3Esave--active-ios-sm%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22Icons---20%2F24%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%22save--active-ios-sm%22%20fill%3D%22%232BB24C%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolygon%20id%3D%22icon-save%22%20points%3D%225%202%205%2018%2010%2014%2015%2018%2015%202%22%3E%3C%2Fpolygon%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E);
     }
 
     span {
         position: absolute;
-        bottom: -7px;
+        bottom: -10px;
         font-size: .6rem;
         right: 0;
     }

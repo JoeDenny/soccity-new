@@ -76,6 +76,7 @@
 }
 
 .load-more-btn {
+    cursor: pointer;
 
     &.show {
         display: none;
@@ -102,7 +103,7 @@
     .news-feed {
         padding-left: 75px !important;
         padding-right: 15px !important;
-        top: 50px;
+        top: 80px;
         
         &.template2 {
             padding-left: 60px !important;

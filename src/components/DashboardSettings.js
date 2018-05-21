@@ -6,7 +6,7 @@ import FilterSidebarButton from './FilterSidebarButton';
 import KeywordHighlightButton from './KeywordHighlightButton';
 import AutoRefreshButton from './AutoRefreshButton';
 import LatestCommentsButton from './LatestCommentsButton';
-import Searchbar from './Search';
+import Filter from './Filter';
 
 class DashboardSettings extends Component {
     changeTemplate = (toggleOn) => {
@@ -38,7 +38,7 @@ class DashboardSettings extends Component {
                     <button className="btn btn-secondary" onClick={() => this.setActiveMenuItem('filter')}>Edit Filters</button>
                     
                     <span className="small-search">
-                        <Searchbar setSearchTerm={this.props.setSearchTerm}/>
+                        <Filter setSearchTerm={this.props.setSearchTerm}/>
                     </span>
                 </div>
 

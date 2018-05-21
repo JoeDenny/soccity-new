@@ -13,7 +13,7 @@ const UserPhoto = (props) => {
             className="user-photo"
             style={style}
         >
-            <img src={link} alt="user icon"/>
+            <img src={link} alt=""/>
         </div>
     );
 };

@@ -1,12 +1,13 @@
 @import '../../styles/_variables.scss';
 
 .news-card {
-    padding-bottom: 2.5rem;
+    padding-bottom: 3.2rem;
     margin: 0;
     margin-bottom: 15px;
     background-color: $white;
     border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
+    // box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
+    border: 1px solid #ccc4c4;
     position: relative;
 
     &.twitter {
@@ -21,7 +22,8 @@
             top: 0;
         }
         .description {
-            font-family: 'Zwizz Bold', serif;    
+            // font-family: 'Zwizz Bold', serif;   
+            font-family: 'Domine', serif; 
             background-color: #fff;
             border-radius: .28571429rem;
             box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35);
@@ -105,33 +107,36 @@
 
     footer {
         position: absolute;
-        bottom: 5px;
+        bottom: 10px;
         left: 15px;
         right: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
 .comments-icon {    
     position: relative;
-    height: 25px;
+    height: 24px;
     width: 24px;
     opacity: .38;
-    margin-left: 1px;
+    margin: 0 5px;
 
     &.active {
         opacity: 1;
     }
     
     svg {
-        width: 23px;
-        height: 17px;
+        width: 25px;
+        height: 18px;
         stroke: #000;
         stroke-width: 4px;
     }
 
     span {
         position: absolute;
-        bottom: -6px;
+        bottom: -10px;
         font-size: .6rem;
         right: 0;
     }

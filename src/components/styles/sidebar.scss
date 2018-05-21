@@ -12,6 +12,7 @@
     height: 50px;
 
     .app-logo {
+        cursor: pointer;
         width: 40px;
         top: 0;
         left: 0px;
@@ -59,8 +60,7 @@
 
         .app-logo {
             top: 0px;
-            left: -7px;
-            width: 50px;
+            left: -1px;
         }
     }
     .plus-icon {

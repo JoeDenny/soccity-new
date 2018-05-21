@@ -16,7 +16,11 @@ class DashboardHeader extends Component {
         return (
             <header className="dashboard-header navbar-sticky-top">
 
-                <Searchbar setSearchTerm={this.setSearchTerm}/>
+                <Searchbar 
+                    competitions={this.props.competitions}
+                    teams={this.props.teams}
+                    players={this.props.players}
+                    sources={this.props.sources} />
 
                 <nav className="user-details">
                         <h4 className="username pull-left">
