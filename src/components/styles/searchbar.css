@@ -1,7 +1,13 @@
 .searchbar {
   background-color: #fff;
   height: 60px;
-  position: relative; }
+  position: relative;
+  font-family: 'Montserrat', sans-serif; }
+  .searchbar ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #c3c1c1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9rem; }
   .searchbar input {
     position: absolute;
     left: 20px;

@@ -4,6 +4,13 @@
     background-color: $white;
     height: 60px;
     position: relative;
+    font-family: 'Montserrat', sans-serif;
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #c3c1c1;
+        font-family: 'Montserrat', sans-serif;        
+        font-size: .9rem;
+      }
 
     input {
         position: absolute;

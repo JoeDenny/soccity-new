@@ -154,7 +154,9 @@ class Dashboard extends Component {
 
         const news = this.props.isPopularNews ? this.props.popularNews : this.props.news;        
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';      
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';    
+        
+        // const newsFeedContent = 
     
         return (
             <AuthWrapper>
@@ -183,6 +185,9 @@ class Dashboard extends Component {
                         dashboards={this.props.dashboards}
                         setActiveDashboard={this.setActiveDashboard}
                         refreshNews={this.getNews}/>
+
+
+                    {/* {newsFeedContent} */}
 
                     <div className={menuClass}>
                         <NewsFeed

@@ -121,7 +121,7 @@ class Searchbar extends Component {
                 </div>
                 <input
                     type="text"
-                    placeholder="Search for competitions, teams, players, or publication sources..."
+                    placeholder="Search for Teams, Players, Competitions or Publication Sources."
                     onChange={this.onChange} />
 
                 <div className={"dropdown " + isOpenClass}
