@@ -11,12 +11,19 @@ class DashboardHeader extends Component {
         this.props.setSearchTerm(searchTerm);
     }
 
+    getCustomNews = (type, id) => {
+
+        this.props.getCustomNews(type, id);        
+    }
+
     render() {        
 
         return (
             <header className="dashboard-header navbar-sticky-top">
 
                 <Searchbar 
+                    getCustomNews={this.getCustomNews}
+                    getAllNews={this.props.getAllNews}
                     competitions={this.props.competitions}
                     teams={this.props.teams}
                     players={this.props.players}

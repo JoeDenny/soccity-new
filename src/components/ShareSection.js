@@ -39,7 +39,6 @@ class ShareSection extends Component {
         
                 {this.state.copied ? <div className="copied-message"><span className="card">Copied to clipboard!</span></div> : null}
 
-                <div className="copied-message"><span className="card">Copied to clipboard!</span></div> 
             </div>
         );
     }

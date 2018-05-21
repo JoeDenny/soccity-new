@@ -431,6 +431,22 @@ export const getNews = (params) => {
     };
 };
 
+export const getCustomNews = (type, id, params) => {        
+    return (dispatch) => {
+        dispatch(fetchingData());
+        api.getCustomNews(type, id, params)
+            .then((res) => {                                
+                dispatch(getNewsSuccess(res.data.allNews));
+            })
+            .catch(error => {
+                if (error.response) {
+                   console.log('error', error.response);
+                   
+                }
+            });
+    };
+};
+
 export const updateNews = (params) => {        
     return (dispatch) => {
         dispatch(fetchingData());

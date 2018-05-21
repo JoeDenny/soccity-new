@@ -6,7 +6,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getCustomNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -66,6 +66,16 @@ class Dashboard extends Component {
         }; 
         
         this.props.updateNews(params);        
+    }
+
+    getCustomNews = (type, id) => {
+    
+        const params = {
+            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            page: 1
+        }; 
+        
+        this.props.getCustomNews(type, id, params);        
     }
 
     openMenu = () => {        
@@ -152,6 +162,8 @@ class Dashboard extends Component {
                     <DashboardHeader
                         user={user}
                         setSearchTerm={this.setSearchTerm}
+                        getCustomNews={this.getCustomNews}
+                        getAllNews={this.getNews}
                         competitions={this.props.competitions}
                         teams={this.props.teams}
                         players={this.props.players}
@@ -223,6 +235,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getNews: (params) => dispatch(getNews(params)),
+    getCustomNews: (type, id, params) => dispatch(getCustomNews(type, id, params)),
     getCompetitions: () => dispatch(getCompetitions()),
     getTeams: () => dispatch(getTeams()),
     getPlayers: () => dispatch(getPlayers()),

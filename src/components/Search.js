@@ -13,39 +13,105 @@ class Searchbar extends Component {
 
     onChange = (event) => {
 
-        // let searchTerm = event.target.value;
+        let searchTerm = event.target.value;
 
-        // this.setState({searchTerm});
+        this.setState({searchTerm});
         
-        // if(searchTerm.length) {
-        //     this.setState({
-        //         isOpen: true,
-        //     })
-        // } else {
-        //     this.setState({
-        //         isOpen: false
-        //     })
-        // }
+        if(searchTerm.length) {
+            this.setState({
+                isOpen: true,
+            });
+        } else {
+            this.props.getAllNews();
+            this.setState({
+                isOpen: false
+            });
+        }
+    }
+
+    handleClick = (type, item) => {
+
+        this.setState({
+            isOpen: false
+        });
+        this.props.getCustomNews(type, item.id);
     }
 
     render() {
         let isOpenClass = this.state.isOpen ? 'open' : '',
-            searchList;
-
-        // let searchList = this.props.teams;
+            searchList = [];
 
         if(this.props.teams) {
 
-            searchList = this.props.teams.reduce((result, item, index) => {
+            let filteredList;
+
+            filteredList = this.props.teams.reduce((result, item, index) => {
                 if (item.name.toLowerCase().includes(this.state.searchTerm)) {
 
                     result.push(
-                        <li key={index}>{item.name}</li>
+                        <li key={"team-" + item.id}
+                            onClick={() => this.handleClick('teams', item)}>{item.name}</li>
                     )
                 }
                 return result;           
-            }, []);     
+            }, []);   
+                        
+            searchList = searchList.concat(filteredList)
         }
+        
+        if(this.props.sources) {
+
+            let filteredList;
+
+            filteredList = this.props.sources.reduce((result, item, index) => {
+                if (item.title.toLowerCase().includes(this.state.searchTerm)) {
+
+                    result.push(
+                        <li key={"source-" + item.id}
+                            onClick={() => this.handleClick('sources', item)}>{item.title}</li>
+                    )
+                }
+                return result;           
+            }, []);   
+                        
+            searchList = searchList.concat(filteredList)
+        }        
+
+        if(this.props.players) {
+
+            let filteredList;
+
+            filteredList = this.props.players.reduce((result, item, index) => {
+                if (item.name.toLowerCase().includes(this.state.searchTerm)) {
+
+                    result.push(
+                        <li key={"player-" + item.id}
+                            onClick={() => this.handleClick('players', item)}>{item.name}</li>
+                    )
+                }
+                return result;           
+            }, []);   
+                        
+            searchList = searchList.concat(filteredList)
+        }        
+
+        if(this.props.competitions) {
+
+            let filteredList;
+
+            filteredList = this.props.competitions.reduce((result, item, index) => {
+                if (item.name.toLowerCase().includes(this.state.searchTerm)) {
+
+                    result.push(
+                        <li key={"competition-" + item.id}
+                            onClick={() => this.handleClick('competitions', item)}>{item.name}</li>
+                    )
+                }
+                return result;           
+            }, []);   
+                        
+            searchList = searchList.concat(filteredList)
+        }        
 
         return (
             <div className={"searchbar"}>
