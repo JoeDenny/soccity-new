@@ -330,6 +330,14 @@ export const getCommonKeywordsSuccess = (commonKeywords) => ({
     }
 });
 
+export const HIGHLIGHT_KEYWORDS = 'HIGHLIGHT_KEYWORDS';
+export const highlightKeywords = (keywordsConfig) => ({
+    type: HIGHLIGHT_KEYWORDS,
+    payload: {
+        keywordsConfig
+    }
+});
+
 export const login = (email, password) => {
     return (dispatch) => {    
         dispatch(fetchingData());    

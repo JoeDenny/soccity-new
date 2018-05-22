@@ -152,3 +152,12 @@
   .news-feed.template2 footer {
     left: 30px;
     right: 30px; } }
+
+.highlight-text {
+  background-color: transparent; }
+  .highlight-text.color {
+    background-color: #86C232; }
+  .highlight-text.bold {
+    font-weight: 700; }
+  .highlight-text.underline {
+    text-decoration: underline; }

@@ -154,9 +154,7 @@ class Dashboard extends Component {
 
         const news = this.props.isPopularNews ? this.props.popularNews : this.props.news;        
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';    
-        
-        // const newsFeedContent = 
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';            
     
         return (
             <AuthWrapper>
@@ -186,9 +184,6 @@ class Dashboard extends Component {
                         setActiveDashboard={this.setActiveDashboard}
                         refreshNews={this.getNews}/>
 
-
-                    {/* {newsFeedContent} */}
-
                     <div className={menuClass}>
                         <NewsFeed
                             className={menuClass}
@@ -201,6 +196,7 @@ class Dashboard extends Component {
                             last_page={last_page}
                             loadNextPage={this.loadNextPage}
                             searchTerm={this.state.searchTerm}
+                            keywordsConfig={this.props.keywordsConfig}
                             template={this.state.template} />
 
                         <Menu
@@ -235,7 +231,8 @@ const mapStateToProps = (state) => ({
     current_page: state.current_page,
     last_page: state.last_page,
     loading: state.loading,
-    isMenuOpen: state.isMenuOpen
+    isMenuOpen: state.isMenuOpen,
+    keywordsConfig: state.keywordsConfig
 });
 
 const mapDispatchToProps = (dispatch) => ({

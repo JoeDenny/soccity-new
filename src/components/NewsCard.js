@@ -10,6 +10,7 @@ import TierIcon from './TierIcon';
 import TwitterLogo from './Twitter_Logo.png';
 import { Tweet } from 'react-twitter-widgets';
 import icon from '../images/latest-comments.svg';
+import Highlighter from "react-highlight-words";
 
 class NewsCard extends Component {
 
@@ -28,23 +29,14 @@ class NewsCard extends Component {
         this.props.openArticle(this.props.newsItem.id);
     }
 
-    getHighlightedText(text, higlight) {
-        // Split on higlight term and include term into parts, ignore case
-        let parts = text.split(new RegExp(`(${higlight})`, 'gi'));
-        return <span> { parts.map((part, i) => 
-            <span key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { color: '#6bac0f' } : {} }>
-                { part }
-            </span>)
-        } </span>;
-    }
-
     render() {
 
         let thumbnail,
             newsCardClass,
             sourceLogoSrc,
             title,
-            description;
+            description,
+            descriptionContent;
         
         if(this.props.newsItem) {
 
@@ -63,17 +55,21 @@ class NewsCard extends Component {
             title = this.props.newsItem.title;
             description = this.props.newsItem.description;
 
-        //     if(this.props.searchTerm) {
-        //        title = this.getHighlightedText(this.props.newsItem.title, this.props.searchTerm);
-        //        description = this.getHighlightedText(this.props.newsItem.description, this.props.searchTerm);
-        //    } else {
-        //        title = this.props.newsItem.title;
-        //        description = this.props.newsItem.description;
-        //    }
+            if(this.props.newsItem.description) {
+
+                descriptionContent = this.props.keywordsConfig ?
+                    <Highlighter
+                        highlightClassName={"highlight-text " + this.props.keywordsConfig.styles.join(" ")}
+                        className="description text-secondary"
+                        searchWords={this.props.keywordsConfig.keywords}
+                        autoEscape={true}
+                        textToHighlight={description}
+                    />
+                    : <span>{description}</span>;
+            }
         }
 
         const commentsIconClass = `comments-icon ${this.props.newsItem.comments.length ? 'active' : ''}`;
-
 
         if(this.props.type === 'tweet') {
             return (
@@ -142,9 +138,17 @@ class NewsCard extends Component {
                         <div className="content">
                             <h2 className="title" dangerouslySetInnerHTML={{__html: title}}></h2>
                             
+                            
+                            <p className="description text-secondary"
+                               style={{display : description ? 'block' : 'none'}}>
+                            
+                                {descriptionContent}
+                            </p>
+                            
+                            {/*                             
                             <p className="description text-secondary"
                                style={{display : description ? 'block' : 'none'}}
-                               dangerouslySetInnerHTML={{__html: description}}></p>
+                               dangerouslySetInnerHTML={{__html: description}}></p> */}
                         </div>
                     </a>
                     <footer>

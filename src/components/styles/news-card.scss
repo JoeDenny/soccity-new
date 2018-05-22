@@ -232,3 +232,17 @@
         }
     }
 }
+
+.highlight-text {
+    background-color: transparent;
+
+    &.color {
+        background-color: $primary;
+    }
+    &.bold {
+        font-weight: 700;
+    }
+    &.underline {
+        text-decoration: underline;
+    }
+}

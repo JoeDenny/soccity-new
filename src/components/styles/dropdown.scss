@@ -9,6 +9,45 @@
       display: block;
   }
 
+  &.keyword-highlight {
+
+      h4 {
+          padding: 10px;
+          margin: 0;
+      }
+
+      .menu {
+          min-width: 200px;
+      }
+
+      li:hover {
+        background-color: white;
+      }
+
+      .form-label {
+          display: flex;
+          justify-content: space-between;
+      }
+
+      .btn-primary {
+        margin: 5px;
+        width: 95%;
+      }
+  }
+
+  .text-input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: .9rem;
+    line-height: 1.25;
+    background-color: white;
+    background-image: none;
+    background-clip: padding-box;
+    border: 1px solid $borderGrey;
+    border-radius: 0.25rem;
+  }
+
   .menu {
     position: absolute;
     right: 0;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/dashboard-settings.css';
 import Dropdown from './Dropdown';
 import { connect } from 'react-redux';
-import { setAutoRefresh } from '../actions';
+import { setAutoRefresh, highlightKeywords } from '../actions';
 import icon from '../images/keyword-highlight.svg';
 
 class KeywordHighlightButton extends Component {
@@ -43,8 +43,7 @@ class KeywordHighlightButton extends Component {
                     isOpen={this.state.dropdownOpen}
                     type="keyword-highlight"
                     user={this.props.user}
-                    autoRefreshRate={this.props.autoRefreshRate}
-                    setAutoRefresh={this.setAutoRefresh}
+                    highlightKeywords={this.props.highlightKeywords}
                     closeDropdown={this.closeDropdown} />
 
             </div>
@@ -58,7 +57,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setAutoRefresh: (time) => dispatch(setAutoRefresh(time))
+    setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
+    highlightKeywords: (config) => dispatch(highlightKeywords(config))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(KeywordHighlightButton);

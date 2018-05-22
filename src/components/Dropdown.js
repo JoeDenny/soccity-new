@@ -6,13 +6,56 @@ class Dropdown extends Component {
         super();
 
         this.state = {
-            active: false
+            active: false,
+            keyword: '',
+            color: true,
+            bold: false,
+            underline: false
         }
+    }
+
+    handleChange = (event) => {
+        const name = event.target.name;
+
+        this.setState({
+            ...this.state,
+            [name]: event.target.value
+        });        
+    }
+
+    handleCheckboxChange = (event) => {
+        const name = event.target.name;        
+
+        this.setState({
+            ...this.state,
+            [name]: event.target.checked
+        });        
     }
 
     setAutoRefresh(time) {
         this.props.setAutoRefresh(time);
         this.props.closeDropdown();
+    }
+
+    handleSubmit = () => {
+        let stylesArray = [];
+
+        if(this.state.color) {
+            stylesArray.push('color');
+        }
+        if(this.state.bold) {
+            stylesArray.push('bold');
+        }
+        if(this.state.underline) {
+            stylesArray.push('underline');
+        }
+
+        let keywordsConfig = {
+            keywords: this.state.keyword.split(" "),
+            styles: stylesArray
+        }
+
+        this.props.highlightKeywords(keywordsConfig);
     }
     
     render() {
@@ -41,19 +84,41 @@ class Dropdown extends Component {
             )
         } else {
             content = (
-                <ul>
-                    <li>
-                        <label className="form-label">
-                            Highlight keywords
-                            <input type="checkbox" onChange={this.handleRadioChange} checked={this.state.active} />
-                        </label>
-                    </li>
-                </ul>
+                <div>
+                    <h4>Highlight Keyword</h4>
+                    <ul>
+                        <li>
+                            <label className="input-wrapper">
+                                Keyword:
+                                <input className="text-input" type="text" onChange={this.handleChange} name="keyword" placeholder="e.g. transfer"/>
+                            </label>
+                        </li>
+                        <li>
+                            <label className="form-label">
+                                <span>Color:</span>
+                                <input type="checkbox" onChange={this.handleCheckboxChange} checked={this.state.color} name="color"/>
+                            </label>
+                        </li>
+                        <li>
+                            <label className="form-label">
+                                <span>Bold:</span>
+                                <input type="checkbox" onChange={this.handleCheckboxChange} checked={this.state.bold} name="bold"/>
+                            </label>
+                        </li>
+                        <li>
+                            <label className="form-label">
+                                <span>Underline:</span>
+                                <input type="checkbox" onChange={this.handleCheckboxChange} checked={this.state.underline} name="underline"/>
+                            </label>
+                        </li>
+                    </ul>
+                    <button className="btn btn-primary" onClick={this.handleSubmit}>Go!</button>
+                </div>
             )
         }
 
         return (
-            <div className={"dropdown " + isOpen}
+            <div className={"dropdown " + isOpen + " " + this.props.type}
                 id="dropdown">
                 <div className="menu card">
                     {content}

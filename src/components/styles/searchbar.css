@@ -8,6 +8,8 @@
     color: #c3c1c1;
     font-family: 'Montserrat', sans-serif;
     font-size: .9rem; }
+  .searchbar input:focus::-webkit-input-placeholder {
+    color: transparent; }
   .searchbar input {
     position: absolute;
     left: 20px;
