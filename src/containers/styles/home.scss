@@ -70,7 +70,7 @@
     max-width: 720px;
     margin: auto;
     overflow: hidden;
-    background-image: url('./dashboard-temp.png');
+    background-image: url('../../images/dashboard_temp2.png');
     background-size: cover;
     box-shadow: 0 1px 6px rgba(57, 73, 76, 0.35);
 }
@@ -99,7 +99,7 @@
 }
 @media (min-width: 992px) {
     .dashboard-preview {
-        height: 580px;
+        height: 485px;
         max-width: 900px;
     }
 }

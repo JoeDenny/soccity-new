@@ -79,9 +79,7 @@ class Home extends Component {
                 </div>
 
                 <div className="container">
-                    <Link to={routes.DASHBOARD_PATH}>
-                        <div className="dashboard-preview card"></div>
-                    </Link>
+                    <div onClick={this.anonymousLogin} className="dashboard-preview card"></div>
                 </div>
 
                 <div className="background-color-block two"></div>
