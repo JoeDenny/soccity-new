@@ -7,6 +7,8 @@ import Faqs from '../components/Faqs';
 import Footer from '../components/Footer';
 import FeaturesGuide from '../components/FeaturesGuide';
 import PricingGuide from '../components/PricingGuide';
+import { anonymousLogin } from '../actions';
+import { connect } from 'react-redux';
 
 class Home extends Component {
     constructor() {
@@ -15,6 +17,18 @@ class Home extends Component {
         this.state = {
             headerIsFixed: false
         }                
+    }
+
+    anonymousLogin = () => {
+        this.props.anonymousLogin();
+    }
+
+    componentWillReceiveProps(newProps) {
+        console.log('newprops', newProps);
+        
+        if (newProps.token) {            
+            this.props.history.push(routes.DASHBOARD_PATH);
+        }
     }
 
     componentDidMount() {
@@ -56,9 +70,7 @@ class Home extends Component {
                         <h4>Soccity is an ad-free publication featuring quality soccer stories and reliable soccer news.</h4>
                         
                         <div className="btn-container">
-                            <Link to={routes.DASHBOARD_PATH}>
-                                <button className="btn btn-primary">Get Started For Free</button>
-                            </Link>
+                            <button className="btn btn-primary" onClick={this.anonymousLogin}>Get Started For Free</button>
                             <Link to={routes.REGISTER_PATH}>
                                 <button className="btn btn-secondary">Register</button>
                             </Link>
@@ -87,4 +99,12 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    token: state.token 
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    anonymousLogin: () => dispatch(anonymousLogin())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

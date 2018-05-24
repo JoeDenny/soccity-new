@@ -18,6 +18,22 @@ class DashboardHeader extends Component {
 
     render() {        
 
+        let upgradeButton;
+
+        if(this.props.user.anonymous) {
+            upgradeButton = (
+                <Link to={routes.REGISTER_PATH}>
+                    <p className="upgrade btn">Register</p>
+                </Link>
+            )
+        } else {
+            upgradeButton = (
+                <Link to={routes.BILLING_PATH}>
+                    <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade btn">Upgrade</p>
+                </Link>
+            )
+        }
+
         return (
             <header className="dashboard-header navbar-sticky-top">
 
@@ -34,9 +50,7 @@ class DashboardHeader extends Component {
                             <Link to={routes.PREFERENCES_PATH}>{this.props.user.name}</Link>
                         </h4>
 
-                    <Link to={routes.BILLING_PATH}>
-                        <p style={{ display: this.props.user.stripe_id ? 'none' : 'block' }} className="upgrade btn">Upgrade</p>
-                    </Link>
+                    {upgradeButton}
                     
                     <Link to={routes.PREFERENCES_PATH}>
                         <UserPhoto link={this.props.user.avatar_path} size={50}/>

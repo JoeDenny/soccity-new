@@ -11,6 +11,10 @@ class Api {
         });
     }
 
+    anonymousLogin = () => {        
+        return axios.post(`${this.API_URL}/login_anonymous`, {});
+    }
+
     register = (formData) => {        
         return axios.post(`${this.API_URL}/register`, formData);
     }

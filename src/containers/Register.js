@@ -20,7 +20,8 @@ class Register extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (newProps.token) {
+        
+        if (newProps.token && !newProps.user.anonymous) {
             this.props.history.push(routes.BILLING_PATH);
         }
     }
@@ -37,8 +38,13 @@ class Register extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         
+        if(this.props.user.anonymous) {            
+            this.setState({anonymous: this.props.user.anonymous})
+        }
+
         const formData = this.state;
-        
+
+    
         this.props.register(formData);
     }
 
@@ -81,6 +87,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.user,
     token: state.token,
     errors: state.errors
 });

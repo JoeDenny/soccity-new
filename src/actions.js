@@ -381,6 +381,21 @@ export const login = (email, password) => {
     };
 };
 
+export const anonymousLogin = () => {
+    return (dispatch) => {    
+        api.anonymousLogin().then((res) => {
+            dispatch(loginSuccess(
+                res.data.token,
+                res.data.user          
+            ));
+        }).catch(error => {
+            if (error.response) {   
+               console.log('error');
+            }
+        });
+    };
+};
+
 export const register = (formData) => {
     return (dispatch) => {
         api.register(formData).then(

@@ -55,7 +55,7 @@ class NewsFeed extends Component {
 
                         result.push(    
                             <li key={index} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm} keywordsConfig={this.props.keywordsConfig}/>
+                                <NewsCard newsItem={newsItem}  searchTerm={searchTerm} keywordsConfig={this.props.keywordsConfig} updateGrid={ () => {this.setState({update: 'true'})}}/>
                             </li>
                         );
                     }

@@ -25,13 +25,9 @@ class Dashboard extends Component {
         
         this.props.getDashboards();
         
-        if(this.props.activeDashboard) {
-            console.log('active');
-            
+        if(this.props.activeDashboard) {            
             this.setActiveDashboard(this.props.activeDashboard);
-        } else {
-            console.log('news');
-            
+        } else {            
             this.getNews();
         }
         this.props.getCompetitions();
