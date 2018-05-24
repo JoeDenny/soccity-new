@@ -31,7 +31,7 @@ class AddDashboard extends Component {
                 keywords: undefined
             },
             name: '',
-            refreshRate: '30',
+            refreshRate: '300',
             source_type: '',
             preferences: [],
             activeFilterList: 'competitions',
@@ -43,10 +43,10 @@ class AddDashboard extends Component {
 
     componentWillMount() {
 
-        // this.props.getCompetitions();
-        // this.props.getTeams();
-        // this.props.getPlayers();
-        // this.props.getSources();
+        this.props.getCompetitions();
+        this.props.getTeams();
+        this.props.getPlayers();
+        this.props.getSources();
 
         if(this.props.activeDashboard) {
             
@@ -61,7 +61,7 @@ class AddDashboard extends Component {
                     keywords: activeDashboard.keywords.keyword
                 },
                 name: activeDashboard.name,
-                refreshRate: '30',
+                refreshRate: '300',
                 source_type: '',
                 preferences: [],
                 activeFilterList: 'competitions',
@@ -72,35 +72,38 @@ class AddDashboard extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('newProps', newProps);
+
+        console.log('newprops', newProps);
+        
         
         if (newProps.updateDashboardSuccess) {
-            this.props.history.push(routes.DASHBOARD_PATH);
+            if(this.props.history) {
+                this.props.history.push(routes.DASHBOARD_PATH);
+            } else {
+                this.props.dashboardUpdate();
+            }
         }
 
-        if(newProps.activeDashboard) {
-            let activeDashboard = newProps.activeDashboard;
+        // if(newProps.activeDashboard) {
+        //     let activeDashboard = newProps.activeDashboard;
 
-            this.setState({
-                choices: {
-                    teams: activeDashboard.teams,
-                    players: activeDashboard.players,
-                    competitions: activeDashboard.competitions,
-                    sources: activeDashboard.sources,
-                    keywords: activeDashboard.keywords
-                },
-                name: activeDashboard.name,
-                refreshRate: '30',
-                source_type: '',
-                preferences: [],
-                activeFilterList: 'competitions',
-                competitionId: '',
-                teamId: '',
-            })
-        }
-
-        
-        
+        //     this.setState({
+        //         choices: {
+        //             teams: activeDashboard.teams,
+        //             players: activeDashboard.players,
+        //             competitions: activeDashboard.competitions,
+        //             sources: activeDashboard.sources,
+        //             keywords: activeDashboard.keywords
+        //         },
+        //         name: activeDashboard.name,
+        //         refreshRate: '300',
+        //         source_type: '',
+        //         preferences: [],
+        //         activeFilterList: 'competitions',
+        //         competitionId: '',
+        //         teamId: '',
+        //     })
+        // }
     }
 
 
@@ -174,34 +177,31 @@ class AddDashboard extends Component {
         const params = {
             name: this.state.name || 'default dashboard',
             source_type: this.state.source_type
+        }      
+
+        if(this.state.choices.competitions && this.state.choices.competitions.length) {
+            params.competitions = [this.state.choices.competitions[0].id];
         }
 
-        if(this.state.choices.competitions.length) {
-            params.competitions = this.state.choices.competitions.id;
-        } else if(this.state.choices.teams.length) {
-            params.teams = this.state.choices.teams.id;
-        } else if(this.state.choices.players.length) {
-            params.players = this.state.choices.players.id;
+        if(this.state.choices.teams && this.state.choices.teams.length) {
+            params.teams = [this.state.choices.teams[0].id];
         }
 
-        if(this.state.choices.sources.length) {
-            params.sources = this.state.choices.sources.id;
+        if(this.state.choices.players && this.state.choices.players.length) {
+            params.players = [this.state.choices.players[0].id];
         }
 
-        if(this.state.choices.keywords.length) {
-            params.keywords = this.state.choices.keywords
+        if(this.state.choices.sources && this.state.choices.sources.length) {
+            params.sources = [this.state.choices.sources[0].id];
         }
 
-        console.log('para', params);
-        
-        // if(this.props.activeDashboard) {
-            
-        //     let dashboardId = this.props.activeDashboard.id;
-        //     this.props.updateDashboard(dashboardId, params);  
-        // } else {
+        if(this.state.choices.keywords) {
+            params.keywords = this.state.choices.keywords;
+        }
 
-        //     this.props.addDashboard(params);
-        // }
+        const id = this.props.activeDashboard.id;
+                
+        this.props.updateDashboard(id, params);         
     }
 
     addDashboard = () => {
@@ -213,24 +213,34 @@ class AddDashboard extends Component {
 
         if(this.state.choices.competitions) {
             params.competitions = [this.state.choices.competitions[0].id];
-        } else if(this.state.choices.teams) {
+        }
+
+        if(this.state.choices.teams) {
             params.teams = [this.state.choices.teams[0].id];
-        } else if(this.state.choices.players) {
+        }
+
+        if(this.state.choices.players) {
             params.players = [this.state.choices.players[0].id];
         }
 
         if(this.state.choices.sources) {
-            params.sources = [this.state.choices.sources.id];
+            params.sources = [this.state.choices.sources[0].id];
         }
 
         if(this.state.choices.keywords) {
             params.keywords = this.state.choices.keywords;
         }
-        
+                
         this.props.addDashboard(params);        
     }
 
     setActiveCompetitionId = (id) => {
+
+        this.props.getTeams(id);
+
+        console.log('id', id);
+        
+        
         this.setState({
             ...this.state,
             activeFilterList: 'teams',
@@ -239,6 +249,9 @@ class AddDashboard extends Component {
     }
 
     setActiveTeamId = (id) => {
+
+        this.props.getPlayers(id);
+        
         this.setState({
             ...this.state,
             activeFilterList: 'players',
@@ -256,14 +269,18 @@ class AddDashboard extends Component {
     render() {
         const { competitions, teams, players } = this.props;
 
+        const disabledClass = this.props.user.stripe_id ? '' : 'disabled',
+            isDisabled = this.props.user.stripe_id ? true : false;
+
         let activeFilterList;
+
         switch(this.state.activeFilterList) {
             case 'competitions':
                 activeFilterList = <CompetitionList
                                         competitions={competitions}
                                         isActive={this.state.activeFilterList === 'competitions'}
                                         setActiveCompetitionId={this.setActiveCompetitionId}
-                                        filterResults={this.state.competitions}
+                                        filterResults={this.state.choices.competitions}
                                         addToFilter={this.addToFilter}
                                         removeFromFilter={this.removeFromFilter} />;
                 break;
@@ -276,7 +293,7 @@ class AddDashboard extends Component {
                                         setActiveCategory={this.setActiveCategory}
                                         addToFilter={this.addToFilter}
                                         removeFromFilter={this.removeFromFilter}
-                                        filterResults={this.state.teams} />;
+                                        filterResults={this.state.choices.teams} />;
                 break;
             case 'players':
                 activeFilterList = <PlayerList
@@ -286,7 +303,7 @@ class AddDashboard extends Component {
                                         setActiveCategory={this.setActiveCategory}
                                         addToFilter={this.addToFilter}
                                         removeFromFilter={this.removeFromFilter}
-                                        filterResults={this.state.players} />;
+                                        filterResults={this.state.choices.players} />;
                 break;
             case 'sources':
                 activeFilterList = <SourceList
@@ -342,15 +359,15 @@ class AddDashboard extends Component {
                                     <div className="input-wrapper inline-input">
                                         <label className="form-label label-title">Select auto-refresh rate:</label>
                                         <div className="flex-container">
-                                            <div className="input-wrapper inline-input checkbox radio">
+                                            <div className={"input-wrapper inline-input checkbox radio " + disabledClass}>
                                                 <label className="form-label">
-                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
+                                                    <input type="radio" disabled={isDisabled} onChange={this.handleRadioChange} checked={this.state.refreshRate === "30"} value="30"/>
                                                     30 secs
                                                 </label>
                                             </div>
-                                            <div className="input-wrapper inline-input checkbox radio">
+                                            <div className={"input-wrapper inline-input checkbox radio " + disabledClass}>
                                                 <label className="form-label">
-                                                    <input type="radio" onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
+                                                    <input type="radio" disabled={isDisabled} onChange={this.handleRadioChange} checked={this.state.refreshRate === "60"} value="60" />
                                                     1 min
                                                 </label>
                                             </div>
@@ -486,6 +503,7 @@ class AddDashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.user,
     competitions: state.competitions,
     teams: state.teams,
     players: state.players,
@@ -497,8 +515,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     getCompetitions: () => dispatch(getCompetitions()),
-    getTeams: () => dispatch(getTeams()),
-    getPlayers: () => dispatch(getPlayers()),
+    getTeams: (id) => dispatch(getTeams(id)),
+    getPlayers: (id) => dispatch(getPlayers(id)),
     getSources: () => dispatch(getSources()),
     getCommonKeywords: (type, id) => dispatch(getCommonKeywords(type, id)),
     addDashboard: (params) => dispatch(addDashboard(params)),

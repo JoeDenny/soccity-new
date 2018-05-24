@@ -19,14 +19,20 @@ class CompetitionList extends Component {
     }
 
     render() {
-        let competitions;
+        let competitions;        
         
         if(this.props.competitions) {
             competitions = this.props.competitions.map(competition => {
+                let isActive;
 
+                if(this.props.filterResults) {
+                    isActive = this.props.filterResults.includes(competition);
+                }
+                
                 return (
                         <FilterCard
                             key={competition.id}
+                            isActive={isActive}
                             data={competition}
                             setActiveId={this.setActiveCompetitionId}
                             addToFilter={this.addCompetition}

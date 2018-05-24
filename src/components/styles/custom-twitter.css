@@ -4,3 +4,11 @@
 
 .custom-twitter .errors-container {
   padding-left: 2rem; }
+
+.custom-twitter .twitter-source span {
+  font-weight: 600;
+  margin-left: 5px;
+  cursor: pointer; }
+
+.custom-twitter .twitter-source.hide {
+  display: none; }

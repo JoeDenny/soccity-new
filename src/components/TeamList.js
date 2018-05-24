@@ -28,35 +28,23 @@ class TeamList extends Component {
         let teams;        
 
         if(this.props.teams) {
-
-            if(this.props.competitionId) {
-
-                teams = this.props.teams.reduce((result, team) => {
-                        if(team.competition_id === this.props.competitionId) {
             
-                            result.push(<FilterCard
-                                key={team.id}
-                                data={team}
-                                setActiveId={this.setActiveTeamId}                      
-                                addToFilter={this.addTeam}
-                                removeFromFilter={this.removeTeam} />);
-                        }
-                        return result;           
-                    }, []);  
-            } else {
+            teams = this.props.teams.map(team => {
+                let isActive;
 
-                teams = this.props.teams.map(team => {
-                    return (
-                        <FilterCard
-                                key={team.id}
-                                data={team}
-                                setActiveId={this.setActiveTeamId}                      
-                                addToFilter={this.addTeam}
-                                removeFromFilter={this.removeTeam} />
-                    )
-                })
-            }
-
+                if(this.props.filterResults) {
+                    isActive = this.props.filterResults.includes(team);
+                }
+                return (
+                    <FilterCard
+                            key={team.id}
+                            isActive={isActive}                            
+                            data={team}
+                            setActiveId={this.setActiveTeamId}                      
+                            addToFilter={this.addTeam}
+                            removeFromFilter={this.removeTeam} />
+                )
+            })
         }    
 
         return (

@@ -26,7 +26,7 @@ class Sidebar extends Component {
                     className="plus-icon" />
                 </Link>
 
-                <DashboardList dashboards={this.props.dashboards} setActiveDashboard={this.setActiveDashboard}/>
+                <DashboardList dashboards={this.props.dashboards} activeDashboard={this.props.activeDashboard} setActiveDashboard={this.setActiveDashboard}/>
             </div>
         )
     }

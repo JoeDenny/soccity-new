@@ -17,7 +17,7 @@ class FilterCard extends Component {
               logo = data.logo_path ? data.logo_path : data.image_path;
               
         return (
-            <li className="filter-card text-secondary"> 
+            <li className={"filter-card text-secondary " + this.props.isActive}> 
 
                     <div className="clickable clearfix" onClick={this.setActiveId}>
                         <img

@@ -48,11 +48,22 @@
     margin: 5px;
     border-radius: .25rem;
     padding-left: 5px; }
+    .add-dashboard .checkbox.disabled {
+      background-color: #ebebeb;
+      cursor: not-allowed;
+      pointer-events: none; }
+      .add-dashboard .checkbox.disabled .form-label,
+      .add-dashboard .checkbox.disabled input {
+        pointer-events: none;
+        cursor: not-allowed; }
     .add-dashboard .checkbox .form-label {
       margin-left: 5px;
       cursor: pointer; }
       .add-dashboard .checkbox .form-label input {
         margin-right: 10px; }
+        .add-dashboard .checkbox .form-label input:disabled {
+          cursor: not-allowed;
+          background-color: #ebebeb; }
     .add-dashboard .checkbox.full-width {
       width: 100%;
       display: initial;
@@ -124,6 +135,8 @@
   .add-dashboard .source-type {
     border-bottom: 1px solid #ebebeb;
     padding: 1rem 0; }
+  .add-dashboard .list.player-list .clickable {
+    cursor: default; }
   @media (min-width: 544px) {
     .add-dashboard .list {
       height: 400px;

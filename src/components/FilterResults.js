@@ -25,7 +25,7 @@ class FilterResults extends Component {
         }
 
         if(this.props.choices.sources) {
-            results.push(<ResultCard key={5} result={this.props.choices.sources} />);            
+            results.push(<ResultCard key={5} result={this.props.choices.sources} removeFilter={() => this.removeFilter('sources')} />);            
         }
             
         return (

@@ -49,10 +49,13 @@
   .dashboard-sidebar {
     height: 100%;
     width: 60px;
-    padding: 10px; }
+    padding: 10px;
+    display: flex;
+    flex-direction: column; }
     .dashboard-sidebar .app-logo {
       top: 0px;
       left: -1px; }
-  .plus-icon {
-    border-color: #000000;
-    top: 15px; } }
+    .dashboard-sidebar .plus-icon {
+      border-color: #000000;
+      margin-top: 15px;
+      float: none; } }

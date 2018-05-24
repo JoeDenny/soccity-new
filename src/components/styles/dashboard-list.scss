@@ -3,28 +3,27 @@
 .dashboard-list-item {
     color: white;
     cursor: pointer;
-    position: relative;
-    top: 35px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid #d8d5d5;
+    border-radius: 50%;
+    background-color: $borderGrey;
 
-    .img-container {
-        width: 40px;
-        height: 40px;
-        overflow: hidden;
-        margin: 0;
-        border: 1px solid #d8d5d5;
-        border-radius: 50%;
-        background-color: $borderGrey;
+    &.active {
+        border: 2px solid $primary;
+        box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.6);
+    }
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     @media (min-width: 768px) {
-        .img-container {
-            margin: 1rem auto;
-        }
+        margin-top: 15px;
     }
 }

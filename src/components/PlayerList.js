@@ -33,36 +33,23 @@ class PlayerList extends Component {
         let players;
 
         if(this.props.players) {
+            players = this.props.players.map(player => {
+                let isActive;
 
-            if(this.props.teamId) {
-
-                players = this.props.players.reduce((result, player) => {
-                    
-                        if(player.team_id === this.props.teamId) {
+                if(this.props.filterResults) {
+                    isActive = this.props.filterResults.includes(player);
+                }
             
-                            result.push(<FilterCard
-                                key={player.id}
-                                data={player}
-                                setActiveId={this.setActiveId}                        
-                                addToFilter={this.addPlayer}
-                                removeFromFilter={this.removePlayer} />);
-                        }
-                        return result;           
-                    }, []); 
-            } else {
-
-                players = this.props.players.map(player => {
-
-                    return (
-                        <FilterCard
-                            key={player.id}
-                            data={player}
-                            setActiveId={this.setActiveId}                        
-                            addToFilter={this.addPlayer}
-                            removeFromFilter={this.removePlayer} />
-                    )
-                });
-            }
+                return (
+                    <FilterCard
+                        key={player.id}
+                        isActive={isActive}
+                        data={player}
+                        setActiveId={this.setActiveId}                        
+                        addToFilter={this.addPlayer}
+                        removeFromFilter={this.removePlayer} />
+                )
+            });
         }    
         
         return (

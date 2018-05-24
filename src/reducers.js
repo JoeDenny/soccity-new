@@ -1,5 +1,5 @@
 import api from './api';
-import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, UPDATE_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, SET_ACTIVE_DASHBOARD, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, SEARCHING_FOR_USERS, STOP_SEARCHING_FOR_USERS, FIND_USERS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, GET_COMMON_KEYWORDS_SUCCESS, HIGHLIGHT_KEYWORDS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH } from './actions';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE, GET_STRIPE_CONFIG_SUCCESS, SUBCRIBE_SUCCESS, SUBSCRIBE_FAILURE, LOGOUT, UPDATE_USER_SUCCESS, OPEN_MENU, CLOSE_MENU, UPDATE_USER_FAILURE,FETCHING_DATA, GET_NEWS_SUCCESS, UPDATE_NEWS_SUCCESS, GET_NEWS_FAILURE, GET_POPULAR_NEWS_SUCCESS, SET_POPULAR_NEWS, SAVE_COMPETITIONS, SAVE_TEAMS, SAVE_PLAYERS, SAVE_SOURCES, SET_ACTIVE_NEWS, ADD_CUSTOM_TWITTER_SUCCESS, ADD_CUSTOM_TWITTER_FAILURE, SET_ACTIVE_MENU_ITEM, SAVE_DASHBOARDS, SET_ACTIVE_DASHBOARD, ADD_DASHBOARD_SUCCESS, ADD_DASHBOARD_FAILURE, GET_FOLLOWERS_SUCCESS, GET_FOLLOWINGS_SUCCESS, SEARCHING_FOR_USERS, STOP_SEARCHING_FOR_USERS, FIND_USERS_SUCCESS, GET_DEFAULT_AVATARS_SUCCESS, REMOVE_ACTIVE_NEWS, GET_COMMON_KEYWORDS_SUCCESS, HIGHLIGHT_KEYWORDS, COMMENT_NEWS, SAVE_ACTIVITY, GET_LATEST_COMMENTS_SUCCESS, GET_RECENTLY_VIEWED_SUCCESS, SET_AUTO_REFRESH, FAVOURITE_ARTICLE, BOOKMARK_ARTICLE, SEARCH_FOR_TEAMS_SUCCESS, SEARCH_FOR_COMPETITIONS_SUCCESS, SEARCH_FOR_PLAYERS_SUCCESS, SEARCH_FOR_SOURCES_SUCCESS } from './actions';
 
 const initialState = {
     token: '',
@@ -173,7 +173,9 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 errors: [],
-                popularNews: action.payload.popularNews.data
+                isPopularNews: true,
+                popularNews: action.payload.popularNews.data,
+                loading: false
             };
         case SET_POPULAR_NEWS:            
             return {
@@ -218,7 +220,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 sources: action.payload.sources
             };
-        case ADD_CUSTOM_TWITTER_SUCCESS:            
+        case ADD_CUSTOM_TWITTER_SUCCESS:                    
             return {
                 ...state,
                 errors: [],
@@ -229,10 +231,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 errors: action.payload.errors
             };
-        case SAVE_DASHBOARDS:            
+        case SAVE_DASHBOARDS: 
+            const activeDashboard = state.activeDashboard || action.payload.dashboards[0];           
             return {
                 ...state,
                 dashboards: action.payload.dashboards,
+                activeDashboard: activeDashboard
             };
         case ADD_DASHBOARD_SUCCESS:            
             return {
@@ -338,11 +342,25 @@ const rootReducer = (state = initialState, action) => {
                     return news;
                 })
             };
-        case SEARCH:
-            // const {value} = action.payload.searchValue;
-            // const works = state.news.filter((val) => val.includes(value));            
+        case SEARCH_FOR_TEAMS_SUCCESS:        
             return {
-                ...state
+                ...state,
+                searchResultsTeams: action.payload.searchResults
+            };
+        case SEARCH_FOR_COMPETITIONS_SUCCESS:        
+            return {
+                ...state,
+                searchResultsCompetitions: action.payload.searchResults
+            };
+        case SEARCH_FOR_PLAYERS_SUCCESS:        
+            return {
+                ...state,
+                searchResultsPlayers: action.payload.searchResults
+            };
+        case SEARCH_FOR_SOURCES_SUCCESS:        
+            return {
+                ...state,
+                searchResultsSources: action.payload.searchResults
             };
         default:
             return state;

@@ -4,10 +4,14 @@
   flex-wrap: wrap; }
 
 .result-card {
-  margin: 2px 8px;
-  padding: 2px 20px;
-  font-size: 1.5rem;
-  text-transform: capitalize;
+  background-color: #e7f4ff;
+  border: 0;
+  border-radius: 2px;
+  color: #1f8dd6;
+  display: inline-block;
+  line-height: 1em;
+  margin: 0 3px 3px 0;
+  padding: 4px 7px;
   position: relative; }
   .result-card.hide {
     padding: 0; }
@@ -22,7 +26,11 @@
       width: 100%;
       height: 100%; }
   .result-card .close-icon {
-    top: -6px;
-    right: -7px; }
+    position: relative;
+    width: 14px;
+    height: 15px;
+    top: 2px;
+    right: -3px; }
     .result-card .close-icon svg {
-      width: 8px; }
+      width: 8px;
+      fill: #1f8dd6; }

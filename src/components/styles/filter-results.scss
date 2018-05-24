@@ -6,10 +6,19 @@
     flex-wrap: wrap;
 }
 .result-card {
-    margin: 2px 8px;
-    padding: 2px 20px;
-    font-size: 1.5rem;
-    text-transform: capitalize;
+    // margin: 2px 8px;
+    // padding: 2px 20px;
+    // font-size: 1.5rem;
+    // text-transform: capitalize;
+    // position: relative;
+    background-color: #e7f4ff;
+    border: 0;
+    border-radius: 2px;
+    color: #1f8dd6;
+    display: inline-block;
+    line-height: 1em;
+    margin: 0 3px 3px 0;
+    padding: 4px 7px;
     position: relative;
 
     &.hide {
@@ -32,11 +41,15 @@
     }
 
     .close-icon {
-        top: -6px;
-        right: -7px;
+        position: relative;
+        width: 14px;
+        height: 15px;
+        top: 2px;
+        right: -3px;
 
         svg {
             width: 8px;
+            fill: #1f8dd6;    
         }
     }
 }

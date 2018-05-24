@@ -85,7 +85,7 @@ class Dropdown extends Component {
         } else {
             content = (
                 <div>
-                    <h4>Highlight Keyword</h4>
+                    <h4>Keyword Highlight</h4>
                     <ul>
                         <li>
                             <label className="input-wrapper">
@@ -95,7 +95,7 @@ class Dropdown extends Component {
                         </li>
                         <li>
                             <label className="form-label">
-                                <span>Color:</span>
+                                <span>Highlight:</span>
                                 <input type="checkbox" onChange={this.handleCheckboxChange} checked={this.state.color} name="color"/>
                             </label>
                         </li>

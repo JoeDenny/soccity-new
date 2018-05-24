@@ -11,10 +11,13 @@ class DashboardList extends Component {
 
     render() {
         let dashboards,
-            logoPath;     
+            logoPath,
+            isActive;     
 
         if(this.props.dashboards) {
-            dashboards = this.props.dashboards.map((dashboard, i) => {                                
+            dashboards = this.props.dashboards.map((dashboard, i) => {    
+                
+                isActive = dashboard.id === this.props.activeDashboard.id ? 'active' : '';
                 
                 if(dashboard.teams[0]) {
                     logoPath = dashboard.teams[0].logo_path;
@@ -27,11 +30,9 @@ class DashboardList extends Component {
                 }
                 
                 return (
-                    <section onClick={() => this.setActiveDashboard(dashboard) } key={i} className="dashboard-list-item">
-                        <div className="img-container">
-                            <img src={logoPath} alt="" />
-                        </div>
-                    </section>
+                    <div onClick={() => this.setActiveDashboard(dashboard) } key={i} className={"dashboard-list-item " + isActive}>
+                        <img src={logoPath} alt="" />
+                    </div>
                 );
             });
         }    

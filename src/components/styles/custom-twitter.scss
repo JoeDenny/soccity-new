@@ -7,4 +7,15 @@
     .errors-container {
         padding-left: 2rem;
     }
+
+    .twitter-source {
+        span {
+            font-weight: 600;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        &.hide {
+            display: none;
+        }
+    }
 }

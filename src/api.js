@@ -66,41 +66,35 @@ class Api {
 
             baseUrl += `${sourceUrl}`;
         }        
+         
+        if(params.teams) {
+            let teamsUrl = '';
 
-        if(params.teams || params.competitions || params.players) {            
-            if(params.teams.length) {
-                let teamsUrl = '';
-    
-                for(let i=0; i < params.teams.length; i++) {
-                    teamsUrl += `&teams[]=${params.teams[i].id}`;
-                }
-
-                url = baseUrl + teamsUrl;
-                
-                return this.fetchNews(url).then((res) => res);
-            } else if(params.players.length) {
-                let playersUrl = '';
-    
-                for(let i=0; i < params.players.length; i++) {
-                    playersUrl += `&players[]=${params.players[i].id}`;
-                }
-                url = baseUrl + playersUrl;
-    
-                return this.fetchNews(url).then((res) => res);
-            } else if(params.competitions.length) {
-                let competitionsUrl = '';
-    
-                for(let i=0; i < params.competitions.length; i++) {
-                    competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
-                }
-                url = baseUrl + competitionsUrl;
-    
-                return this.fetchNews(url).then((res) => res);
+            for(let i=0; i < params.teams.length; i++) {
+                teamsUrl += `&teams[]=${params.teams[i].id}`;
             }
-            else {
 
-                url = baseUrl;
+            url = baseUrl + teamsUrl;
+            
+            return this.fetchNews(url).then((res) => res);
+        } else if(params.players) {
+            let playersUrl = '';
+
+            for(let i=0; i < params.players.length; i++) {
+                playersUrl += `&players[]=${params.players[i].id}`;
             }
+            url = baseUrl + playersUrl;
+
+            return this.fetchNews(url).then((res) => res);
+        } else if(params.competitions) {
+            let competitionsUrl = '';
+
+            for(let i=0; i < params.competitions.length; i++) {
+                competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
+            }
+            url = baseUrl + competitionsUrl;
+
+            return this.fetchNews(url).then((res) => res);
         } else {
 
             url = baseUrl;
@@ -191,21 +185,40 @@ class Api {
         });
     }
     
-    getTeams = () => {
+    getTeams = (id) => {
+
+        if(id) {
+            return axios.get(`${this.API_URL}/teams?competition_id=${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+        } else {
+            return axios.get(`${this.API_URL}/teams`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+        }
     
-        return axios.get(`${this.API_URL}/teams`, {
-            headers: {
-                'Authorization': `Bearer ${this.token}`
-            }
-        });
     }
 
-    getPlayers = () => {
-        return axios.get(`${this.API_URL}/players`, {
-            headers: {
-                'Authorization': `Bearer ${this.token}`
-            }
-        });
+    getPlayers = (id) => {
+
+        if(id) {
+            return axios.get(`${this.API_URL}/players?team_id=${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+        } else {
+
+            return axios.get(`${this.API_URL}/players`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+        }
     }
 
     getSources = () => {
@@ -285,6 +298,7 @@ class Api {
     }
 
     updateDashboard = (id, params) => {
+        
         return axios.put(`${this.API_URL}/user/dashboards/${id}`, params, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
@@ -302,6 +316,35 @@ class Api {
 
     getDashboards = () => {
         return axios.get(`${this.API_URL}/user/dashboards`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    searchTeams = (term) => {
+        return axios.get(`${this.API_URL}/teams?query=${term}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+    searchCompetitions = (term) => {
+        return axios.get(`${this.API_URL}/competitions?query=${term}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+    searchPlayers = (term) => {
+        return axios.get(`${this.API_URL}/players?query=${term}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+    searchSources = (term) => {
+        return axios.get(`${this.API_URL}/sources?query=${term}`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

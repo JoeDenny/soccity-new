@@ -265,11 +265,35 @@ export const saveActivity = (activity) => ({
     }
 });
 
-export const SEARCH = 'SEARCH';
-export const search = (searchValue) => ({
-    type: SEARCH,
+export const SEARCH_FOR_TEAMS_SUCCESS = 'SEARCH_FOR_TEAMS_SUCCESS';
+export const searchForTeamsSuccess = (searchResults) => ({
+    type: SEARCH_FOR_TEAMS_SUCCESS,
     payload: {
-        searchValue
+        searchResults
+    }
+});
+
+export const SEARCH_FOR_COMPETITIONS_SUCCESS = 'SEARCH_FOR_COMPETITIONS_SUCCESS';
+export const searchForCompetitionsSuccess = (searchResults) => ({
+    type: SEARCH_FOR_COMPETITIONS_SUCCESS,
+    payload: {
+        searchResults
+    }
+});
+
+export const SEARCH_FOR_PLAYERS_SUCCESS = 'SEARCH_FOR_PLAYERS_SUCCESS';
+export const searchForPlayersSuccess = (searchResults) => ({
+    type: SEARCH_FOR_PLAYERS_SUCCESS,
+    payload: {
+        searchResults
+    }
+});
+
+export const SEARCH_FOR_SOURCES_SUCCESS = 'SEARCH_FOR_SOURCES_SUCCESS';
+export const searchForSourcesSuccess = (searchResults) => ({
+    type: SEARCH_FOR_SOURCES_SUCCESS,
+    payload: {
+        searchResults
     }
 });
 
@@ -533,17 +557,17 @@ export const getCompetitions = () => {
     };
 };
 
-export const getTeams = () => {
+export const getTeams = (id) => {
     return (dispatch) => {
-        api.getTeams().then((res) => {            
+        api.getTeams(id).then((res) => {            
             dispatch(saveTeams(res.data.data));
         });
     };
 };
 
-export const getPlayers = () => {
+export const getPlayers = (id) => {
     return (dispatch) => {
-        api.getPlayers().then((res) => {         
+        api.getPlayers(id).then((res) => {         
             dispatch(savePlayers(res.data.data));
         });
     };
@@ -585,7 +609,7 @@ export const addCustomTwitterAccount = (type, name) => {
     return (dispatch) => {
         api.addCustomTwitterAccount(type, name)
             .then((res) => {                
-                // dispatch(addCustomTwitterAccountSuccess());
+                dispatch(addCustomTwitterAccountSuccess(res.data.source));
             })
             .catch(error => {  
                 if (error.response) {                                        
@@ -664,16 +688,12 @@ export const updateDashboard = (id, params) => {
 
     return (dispatch) => {
         api.updateDashboard(id, params)
-            .then((res) => {    
-                console.log('res', res);
-                
-                // dispatch(addDashboardSuccess());            
-                // dispatch(getDashboards());
+            .then((res) => {                    
+                dispatch(addDashboardSuccess(res.data.dashboard));            
             })
             .catch(error => {  
                 if (error.response) {                                        
-                    // dispatch(addDashboardFailure(error.response.data.errors));
-                console.log('error', error);
+                    dispatch(addDashboardFailure(error.response.data.errors));
                 }
             });
     };
@@ -694,8 +714,45 @@ export const getDashboards = () => {
 
     return (dispatch) => {
         api.getDashboards()
+            .then((res) => {
+                dispatch(getDashboardsUpdate(res.data.dashboards));                 
+            });
+    };
+};
+
+export const searchForTeams = (text) => {
+
+    return (dispatch) => {
+        api.searchTeams(text)
             .then((res) => {                   
-                dispatch(getDashboardsUpdate(res.data.dashboards));
+                dispatch(searchForTeamsSuccess(res.data.data));
+            });
+    };
+};
+export const searchForCompetitions = (text) => {
+
+    return (dispatch) => {
+        api.searchCompetitions(text)
+            .then((res) => {                   
+                dispatch(searchForCompetitionsSuccess(res.data.data));
+            });
+    };
+};
+export const searchForPlayers = (text) => {
+
+    return (dispatch) => {
+        api.searchPlayers(text)
+            .then((res) => {                   
+                dispatch(searchForPlayersSuccess(res.data.data));
+            });
+    };
+};
+export const searchForSources = (text) => {
+
+    return (dispatch) => {
+        api.searchSources(text)
+            .then((res) => {                   
+                dispatch(searchForSourcesSuccess(res.data.data));
             });
     };
 };

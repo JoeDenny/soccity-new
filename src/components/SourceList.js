@@ -24,10 +24,17 @@ class SourceList extends Component {
         if(this.props.sources) {
 
             sources = this.props.sources.map(source => {
+
+                let isActive;
+
+                if(this.props.filterResults) {
+                    isActive = this.props.filterResults.includes(source);
+                }
                 
                 return (
                     <FilterCard
                         key={source.id}
+                        isActive={isActive}
                         data={source}
                         setActiveId={this.setActiveId}
                         addToFilter={this.addSource}

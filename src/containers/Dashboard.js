@@ -6,7 +6,7 @@ import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
 import NewsFeed from '../components/NewsFeed';
-import { getNews, getCustomNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, setPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
+import { getNews, getCustomNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
 import './styles/dashboard.css';
 
@@ -22,15 +22,24 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        this.getNews();
-        this.props.getPopularNews();
+        
         this.props.getDashboards();
+        
+        if(this.props.activeDashboard) {
+            console.log('active');
+            
+            this.setActiveDashboard(this.props.activeDashboard);
+        } else {
+            console.log('news');
+            
+            this.getNews();
+        }
         this.props.getCompetitions();
         this.props.getTeams();
         this.props.getPlayers();
         this.props.getSources();
 
-        this.startAutoRefreshTimer(this.state.autoRefreshRate)
+        this.startAutoRefreshTimer(this.state.autoRefreshRate);
     }
 
     componentWillReceiveProps(newProps) {
@@ -56,6 +65,13 @@ class Dashboard extends Component {
         }; 
         
         this.props.getNews(params);        
+    }
+
+    dashboardUpdate = () => {
+        console.log('update d');
+        
+        this.closeMenu();
+        this.setActiveDashboard(this.props.activeDashboard);
     }
 
     updateNews = (pageNumber) => {
@@ -99,20 +115,6 @@ class Dashboard extends Component {
         }
     }
 
-    openFilter = () => {
-        this.setState({
-            ...this.state,        
-            isFilterOpen: !this.state.isFilterOpen
-        })
-    }
-
-    closeFilter = () => {
-        this.setState({
-            ...this.state,
-            isFilterOpen: false
-        });
-    }
-
     loadNextPage = () => {
         const page = this.props.current_page + 1;
         
@@ -139,13 +141,44 @@ class Dashboard extends Component {
             time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: 1,
             source_type: dashboard.source_type,
-            sources: dashboard.sources,
-            teams: dashboard.teams,
-            players: dashboard.players,
-            competitions: dashboard.competitions
+            sources: dashboard.sources
         }        
-
+                
         this.props.getNews(params);
+
+        if(dashboard.competitions.length) {
+            const params = {
+                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+                page: 1,
+                source_type: dashboard.source_type,
+                sources: dashboard.sources,
+                competitions: dashboard.competitions
+            }  
+            
+            this.props.updateNews(params)
+        }
+        if(dashboard.teams.length) {
+            const params = {
+                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+                page: 1,
+                source_type: dashboard.source_type,
+                sources: dashboard.sources,
+                teams: dashboard.teams
+            }  
+
+            this.props.updateNews(params)
+        }
+        if(dashboard.players.length) {
+            const params = {
+                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+                page: 1,
+                source_type: dashboard.source_type,
+                sources: dashboard.sources,
+                players: dashboard.players
+            }  
+
+            this.props.updateNews(params)
+        }
         this.props.setActiveDashboard(dashboard);
     }
 
@@ -154,8 +187,8 @@ class Dashboard extends Component {
 
         const news = this.props.isPopularNews ? this.props.popularNews : this.props.news;        
 
-        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';            
-    
+        const menuClass = isMenuOpen ? 'menu-open' : 'menu-closed';      
+            
         return (
             <AuthWrapper>
                 <section className="app-dashboard">
@@ -170,17 +203,17 @@ class Dashboard extends Component {
                         sources={this.props.sources} />
                     
                     <DashboardSettings
-                        setPopularNews={this.props.setPopularNews}
+                        setPopularNews={this.props.getPopularNews}
                         setSearchTerm={this.setSearchTerm}
                         isPopularNews={this.props.isPopularNews}
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
-                        changeTemplate={this.changeTemplate}
-                        openFilter={this.openFilter}/>
+                        changeTemplate={this.changeTemplate}/>
 
                     <Sidebar
                         dashboards={this.props.dashboards}
+                        activeDashboard={this.props.activeDashboard}                        
                         setActiveDashboard={this.setActiveDashboard}
                         refreshNews={this.getNews}/>
 
@@ -201,6 +234,7 @@ class Dashboard extends Component {
 
                         <Menu
                             isOpen={isMenuOpen}
+                            dashboardUpdate={this.dashboardUpdate}
                             news={news}
                             activeNews={activeNews}
                             activeDashboard={this.props.activeDashboard}
@@ -244,7 +278,6 @@ const mapDispatchToProps = (dispatch) => ({
     getSources: () => dispatch(getSources()),
     updateNews: (params) => dispatch(updateNews(params)),
     getPopularNews: () => dispatch(getPopularNews()),
-    setPopularNews: () => dispatch(setPopularNews()),
     getDashboards: () => dispatch(getDashboards()),
     setAutoRefresh: (time) => dispatch(setAutoRefresh(time)),
     openMenu: () => dispatch(openMenu()),   

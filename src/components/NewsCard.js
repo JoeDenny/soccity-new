@@ -57,7 +57,7 @@ class NewsCard extends Component {
 
             if(this.props.newsItem.description) {
 
-                descriptionContent = this.props.keywordsConfig ?
+                descriptionContent = this.props.keywordsConfig && this.props.keywordsConfig.styles ?
                     <Highlighter
                         highlightClassName={"highlight-text " + this.props.keywordsConfig.styles.join(" ")}
                         className="description text-secondary"

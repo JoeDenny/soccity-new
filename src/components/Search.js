@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { searchForTeams, searchForCompetitions, searchForPlayers, searchForSources } from '../actions';
+import { connect } from 'react-redux';
 import './styles/searchbar.css';
 
 class Searchbar extends Component {
@@ -7,15 +9,15 @@ class Searchbar extends Component {
 
         this.state = {
             isOpen: false,
-            searchTerm: ''
+            searchTerm: '',
+            typing: false,
+            typingTimeOut: 0
         }
     }
 
     onChange = (event) => {
 
         let searchTerm = event.target.value;
-
-        this.setState({searchTerm});
         
         if(searchTerm.length) {
             this.setState({
@@ -27,6 +29,21 @@ class Searchbar extends Component {
                 isOpen: false
             });
         }
+
+        if (this.state.typingTimeout) {
+            clearTimeout(this.state.typingTimeout);
+        }
+
+        this.setState({
+            searchTerm: searchTerm,
+            typing: false,
+            typingTimeout: setTimeout(() => {
+                this.props.searchForTeams(searchTerm);
+                this.props.searchForCompetitions(searchTerm);
+                this.props.searchForPlayers(searchTerm);
+                this.props.searchForSources(searchTerm);
+              }, 1000)
+         });
     }
 
     handleClick = (type, item) => {
@@ -34,6 +51,7 @@ class Searchbar extends Component {
         this.setState({
             isOpen: false
         });
+
         this.props.getCustomNews(type, item.id);
     }
 
@@ -41,11 +59,12 @@ class Searchbar extends Component {
         let isOpenClass = this.state.isOpen ? 'open' : '',
             searchList = [];
 
-        if(this.props.teams) {
+
+        if(this.props.searchResultsTeams) {
 
             let filteredList;
 
-            filteredList = this.props.teams.reduce((result, item, index) => {
+            filteredList = this.props.searchResultsTeams.reduce((result, item, index) => {
                 if (item.name.toLowerCase().includes(this.state.searchTerm)) {
 
                     result.push(
@@ -59,11 +78,11 @@ class Searchbar extends Component {
             searchList = searchList.concat(filteredList)
         }
         
-        if(this.props.sources) {
+        if(this.props.searchResultsSources) {
 
             let filteredList;
 
-            filteredList = this.props.sources.reduce((result, item, index) => {
+            filteredList = this.props.searchResultsSources.reduce((result, item, index) => {
                 if (item.title.toLowerCase().includes(this.state.searchTerm)) {
 
                     result.push(
@@ -77,11 +96,11 @@ class Searchbar extends Component {
             searchList = searchList.concat(filteredList)
         }        
 
-        if(this.props.players) {
+        if(this.props.searchResultsPlayers) {
 
             let filteredList;
 
-            filteredList = this.props.players.reduce((result, item, index) => {
+            filteredList = this.props.searchResultsPlayers.reduce((result, item, index) => {
                 if (item.name.toLowerCase().includes(this.state.searchTerm)) {
 
                     result.push(
@@ -95,11 +114,11 @@ class Searchbar extends Component {
             searchList = searchList.concat(filteredList)
         }        
 
-        if(this.props.competitions) {
+        if(this.props.searchResultsCompetitions) {
 
             let filteredList;
 
-            filteredList = this.props.competitions.reduce((result, item, index) => {
+            filteredList = this.props.searchResultsCompetitions.reduce((result, item, index) => {
                 if (item.name.toLowerCase().includes(this.state.searchTerm)) {
 
                     result.push(
@@ -111,7 +130,12 @@ class Searchbar extends Component {
             }, []);   
                         
             searchList = searchList.concat(filteredList)
-        }        
+        }       
+        
+        if(!searchList.length) {
+            searchList = <li className="no-results">No results!</li>;
+        }
+        
 
         return (
             <div className={"searchbar"}>
@@ -137,4 +161,18 @@ class Searchbar extends Component {
     }
 }
 
-export default Searchbar;
+const mapStateToProps = (state) => ({
+    searchResultsTeams: state.searchResultsTeams,
+    searchResultsCompetitions: state.searchResultsCompetitions,
+    searchResultsPlayers: state.searchResultsPlayers,
+    searchResultsSources: state.searchResultsSources
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    searchForTeams: (text) => dispatch(searchForTeams(text)),
+    searchForCompetitions: (text) => dispatch(searchForCompetitions(text)),
+    searchForPlayers: (text) => dispatch(searchForPlayers(text)),
+    searchForSources: (text) => dispatch(searchForSources(text))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);

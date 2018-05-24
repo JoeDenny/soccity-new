@@ -30,7 +30,6 @@ class NewsFeed extends Component {
             noResultsClass;
 
         if(this.props.news) {
-
             newsItems = this.props.news.reduce((result, newsItem, index) => {
 
                 // if(index === 6 || index === 13 || index === 20 || index === 27) {
@@ -48,14 +47,14 @@ class NewsFeed extends Component {
                             // <li key={newsItem.id} className="tweet-container col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                             //     <Tweet tweetId={newsItem.title} onLoad={ () => {this.setState({update: 'true'})}}/>
                             // </li>
-                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <li key={index} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                 <NewsCard newsItem={newsItem}  searchTerm={searchTerm} type="tweet" updateGrid={ () => {this.setState({update: 'true'})}}/>
                             </li>
                         )
                     } else {
 
                         result.push(    
-                            <li key={newsItem.id} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <li key={index} className="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                 <NewsCard newsItem={newsItem}  searchTerm={searchTerm} keywordsConfig={this.props.keywordsConfig}/>
                             </li>
                         );

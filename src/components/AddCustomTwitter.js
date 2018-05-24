@@ -9,7 +9,8 @@ class AddCustomTwitter extends Component {
 
         this.state = {
             type: '',
-            name: ''
+            name: '',
+            hideSource: false
         }
     }
 
@@ -24,14 +25,36 @@ class AddCustomTwitter extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        
-        const {type, name} = this.state;
+    
+        let type, name;
+
+        if(this.state.type === '#') {
+            type = 'hashtag';
+        } else {
+            type = 'screen_name'
+        }
+
+        name = this.state.name;
         
         this.props.addCustomTwitterAccount(type, name);
     }
 
-    render() {
+    removeSource = () => {
+        this.setState({
+            hideSource: true
+        })
+    }
 
+    render() {
+        let twitterSources;
+
+        if(this.props.twitterSources) {
+            let className = this.state.hideSource ? 'hide': ''
+            twitterSources = (
+                <p className={"twitter-source " + className}>{this.props.twitterSources.link} <span onClick={this.removeSource}>x</span></p>
+            )
+        }
+    
         return (
             <div className="custom-twitter">
                 
@@ -41,19 +64,22 @@ class AddCustomTwitter extends Component {
 
                     <div className="input-wrapper inline-input">
                         <label className="form-label"></label>
-                        <input className="text-input square" placeholder="# or @" type="text" value={this.state.type} name="type" onChange={this.handleChange} />
-                        <input className="text-input" placeholder="twitter feed or user name" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
+                        <input className="text-input square" placeholder="@ or #" type="text" value={this.state.type} name="type" onChange={this.handleChange} />
+                        <input className="text-input" placeholder="user name or twitter feed" type="text" value={this.state.name} name="name" onChange={this.handleChange} />
                     </div>
 
                     <input className="btn btn-primary" type="submit" value="Add" />
                 </form>
+
+                {twitterSources}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    errors: state.errors
+    errors: state.errors,
+    twitterSources: state.twitterSources
 });
 
 const mapDispatchToProps = (dispatch) => ({

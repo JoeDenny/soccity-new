@@ -2,6 +2,8 @@
   height: 60px;
   padding: 0 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  .filter-card.true {
+    background-color: #86C232; }
   .filter-card .clickable {
     cursor: pointer;
     width: 90%;
@@ -21,7 +23,10 @@
     float: left;
     margin: 15px;
     margin-left: 10px;
-    cursor: pointer; }
+    max-width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   .filter-card input {
     float: right;
     margin: 1px;

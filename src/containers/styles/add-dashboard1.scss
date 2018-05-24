@@ -77,12 +77,29 @@
         border-radius: .25rem;
         padding-left: 5px;
 
+        &.disabled {
+            background-color: $borderGrey;
+            cursor: not-allowed;
+            pointer-events: none;
+
+            .form-label,
+            input {
+                pointer-events: none;
+                cursor: not-allowed;
+            }
+        }
+
         .form-label {
             margin-left: 5px;
             cursor: pointer;
             
             input {
                 margin-right: 10px;
+
+                &:disabled {
+                    cursor: not-allowed;
+                    background-color: $borderGrey;
+                }
             }
         }
 
@@ -196,6 +213,12 @@
     .source-type {
         border-bottom: 1px solid $borderGrey;
         padding: 1rem 0;
+    }
+
+    .list.player-list {
+        .clickable {
+            cursor: default;
+        }
     }
 
     @media (min-width: 544px) {

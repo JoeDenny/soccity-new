@@ -5,6 +5,10 @@
     padding: 0 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
+    &.true {
+        background-color: $primary;
+    }
+
     .clickable {
         cursor: pointer;
         width: 90%;
@@ -32,7 +36,10 @@
         float: left;
         margin: 15px;
         margin-left: 10px;
-        cursor: pointer;
+        max-width: 135px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     input {

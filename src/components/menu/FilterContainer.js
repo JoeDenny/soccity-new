@@ -23,7 +23,7 @@ class FilterContainer extends Component {
             <div className="dashboard-filter">
                 <div className="scrollable">
                         
-                    <AddDashboard activeDashboard={this.props.activeDashboard}/>
+                    <AddDashboard activeDashboard={this.props.activeDashboard} dashboardUpdate={this.props.dashboardUpdate}/>
                 </div>
             </div>
         )
