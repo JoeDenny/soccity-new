@@ -5,8 +5,7 @@ import { register } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { routes, authIds } from '../constants';
-import SocialButton from './SocialButton';
+import { routes } from '../constants';
 import {FacebookLoginButton, GoogleLoginButton} from 'react-social-login-buttons';
 
 class Register extends Component {
@@ -76,26 +75,14 @@ class Register extends Component {
                 <ErrorMessages errors={this.props.errors}/>     
 
                 <div className="social-login">
-                    <SocialButton
-                        provider='google'
-                        appId={authIds.GOOGLE_CLIENT_ID}
-                        onLoginSuccess={this.handleSocialRegister}
-                        onLoginFailure={this.handleSocialRegisterFailure}
-                        >
 
-                        <GoogleLoginButton />      
+                    <a href="https://c.sourcebuffet.net/auth/google">
+                        <GoogleLoginButton  />   
+                    </a>  
 
-                    </SocialButton>
-                    <SocialButton
-                        provider='facebook'
-                        appId={authIds.FACEBOOK_CLIENT_ID}
-                        onLoginSuccess={this.handleSocialRegister}
-                        onLoginFailure={this.handleSocialRegisterFailure}
-                        >
-
+                    <a href="https://c.sourcebuffet.net/auth/facebook">
                         <FacebookLoginButton  />   
-
-                    </SocialButton>
+                    </a>  
                 </div>
 
                 <div className="divide"><span>Or</span></div>

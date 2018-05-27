@@ -76,26 +76,6 @@ class Login extends Component {
                     <a href="https://c.sourcebuffet.net/auth/facebook">
                         <FacebookLoginButton  />   
                     </a>  
-                    {/* <SocialButton
-                        provider='google'
-                        appId={authIds.GOOGLE_CLIENT_ID}
-                        onLoginSuccess={this.handleSocialLogin}
-                        onLoginFailure={this.handleSocialLoginFailure}
-                        >
-
-                        <GoogleLoginButton />      
-
-                    </SocialButton>
-                    <SocialButton
-                        provider='facebook'
-                        appId={authIds.FACEBOOK_CLIENT_ID}
-                        onLoginSuccess={this.handleSocialLogin}
-                        onLoginFailure={this.handleSocialLoginFailure}
-                        >
-
-                        <FacebookLoginButton  />   
-
-                    </SocialButton> */}
                 </div>
 
                 <div className="divide"><span>Or</span></div>            
