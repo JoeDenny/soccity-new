@@ -56,12 +56,14 @@ class Api {
     getCustomNews(type, id, params) {
         const url = `time=${params.time}&page=${params.page}&${type}[]=${id}`
 
-        return this.fetchNews(url).then((res) => res);        
+        return axios.post(`${this.API_URL}/news?${url}`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });        
     }
 
     getNews = (params) => {
-
-        params.keywords = ['chelsea', 'guardian', 'champions league'];
 
         return axios.post(`${this.API_URL}/news`, params, {
             headers: {

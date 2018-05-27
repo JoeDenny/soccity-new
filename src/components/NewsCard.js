@@ -143,14 +143,15 @@ class NewsCard extends Component {
                 </div>
             )
         } else {
-
+            
+            let sourceName = this.props.newsItem.source.title.replace("-", " ");
 
             return (
                 <div className={newsCardClass}>
                     <header>
                         <div className="source">
                             <img className="source-logo" src={sourceLogoSrc} alt=""/>
-                            <h5><span style={{display: this.props.newsItem.source.type === 'twitter' ? 'inline' : 'none' }}>@</span>{this.props.newsItem.source.title}</h5>
+                            <h5>{sourceName}</h5>
     
                             <TierIcon tier={this.props.newsItem.source.groups[0].id - 1} />
                         </div>

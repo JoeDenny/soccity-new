@@ -25,12 +25,9 @@ class Dashboard extends Component {
     componentWillMount() {
         
         this.props.getDashboards();
-        
-        if(this.props.activeDashboard) {                        
-            this.setActiveDashboard(this.props.activeDashboard);
-        } else {                        
-            this.getNews();
-        }
+                            
+        this.getNews();
+
         this.props.getCompetitions();
         this.props.getTeams();
         this.props.getPlayers();
@@ -39,24 +36,13 @@ class Dashboard extends Component {
         window.scrollTo(0,0);
     }
 
-    componentWillReceiveProps(newProps) {
-
-        if(newProps.autoRefreshRate) {
-            // this.startAutoRefreshTimer(3000);
-        }
-    }
-
     startAutoRefreshTimer = (refreshRate = 300000) => {
 
         this.props.setAutoRefresh(refreshRate);
         
         this.interval = setInterval(function () {
             
-            if(this.props.activeDashboard) {                            
-                this.setActiveDashboard(this.props.activeDashboard);
-            } else {            
-                this.getNews();
-            }
+            this.getNews();
             
         }.bind(this), refreshRate); 
     }
@@ -66,12 +52,35 @@ class Dashboard extends Component {
        clearInterval(this.interval);
     }
 
-    getNews = (pageNumber) => {
-    
+    getNews = (pageNumber = 1, activeDashboard = this.props.activeDashboard) => {
+        
         const params = {
-            time: moment().subtract(1440, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            time: moment().subtract(7, 'days').utc().format('Y-MM-DD HH:mm:ss'),
             page: pageNumber || 1
         }; 
+
+        if(this.props.user.stripe_id) {
+            params.time = moment().subtract(30, 'days').utc().format('Y-MM-DD HH:mm:ss')
+        }
+
+        if(activeDashboard) {            
+
+            if(activeDashboard.keywords) {
+                params.keywords = [];
+                for(let i = 0; i < activeDashboard.keywords.length; i++) {
+                    params.keywords.push(activeDashboard.keywords[i].keyword);
+                }
+            }
+
+            if(activeDashboard.sources && activeDashboard.sources.length) {
+                params.sources = [];
+                for(let i = 0; i < activeDashboard.sources.length; i++) {
+                    params.sources.push(activeDashboard.sources[i].id);
+                }
+            }
+        }
+        console.log('activeDashboard', activeDashboard);
+        
         
         this.props.getNews(params);        
     }
@@ -94,11 +103,13 @@ class Dashboard extends Component {
     getCustomNews = (type, id) => {
     
         const params = {
-            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            time: moment().subtract(7, 'days').utc().format('Y-MM-DD HH:mm:ss'),
             page: 1
         }; 
+
+        params[type] = [id];
         
-        this.props.getCustomNews(type, id, params);        
+        this.props.getNews(params);        
     }
 
     openMenu = () => {        
@@ -144,21 +155,8 @@ class Dashboard extends Component {
 
     setActiveDashboard = (dashboard) => {
 
-        const params = {
-            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
-            page: 1,
-            sources: [],
-            keywords: dashboard.keywords
-        }        
-        if(dashboard.sources) {
-            for(let i = 0; i < dashboard.sources.length; i++) {
-                params.sources.push(dashboard.sources[i].id);
-            }
-        }
-        
-        this.props.getNews(params);
-        
-        this.props.setActiveDashboard(dashboard);
+        this.props.setActiveDashboard(dashboard);  
+        this.getNews(1, dashboard);      
     }
 
     render() {

@@ -14,7 +14,7 @@ class FilterCard extends Component {
 
     render() {
         const data = this.props.data,
-              logo = data.logo_path ? data.logo_path : data.image_path;
+              logo = data.logo_path ? data.logo_path : data.image_path;              
               
         return (
             <li className={"filter-card text-secondary " + this.props.isActive}> 

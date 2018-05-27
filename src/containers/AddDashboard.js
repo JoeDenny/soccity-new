@@ -222,16 +222,20 @@ class AddDashboard extends Component {
         }        
 
         if(this.state.choices.competitions) {
+            params.competitions = [this.state.choices.competitions[0].id];
             params.keywords.push(this.state.choices.competitions[0].name);
         }
         if(this.state.choices.teams) {
+            params.teams = [this.state.choices.teams[0].id];
             params.keywords.push(this.state.choices.teams[0].name);
         }
         if(this.state.choices.players) {
+            params.players = [this.state.choices.players[0].id];            
             params.keywords.push(this.state.choices.players[0].name);
         }
 
         if(this.state.choices.sources) {
+            params.sources = [this.state.choices.sources[0].id];            
             for(let i = 0; i < this.state.choices.sources.length; i++) {
                 params.sources.push(this.state.choices.sources[i].id);
             }
@@ -276,6 +280,21 @@ class AddDashboard extends Component {
             isDisabled = this.props.user.stripe_id ? true : false;
 
         let activeFilterList;
+
+        let submitButton; 
+
+        if(this.props.dashboardUpdate && this.props.activeDashboard) {
+
+            submitButton = (
+                <button className="btn btn-primary update-dashboard-btn"
+                    onClick={this.updateDashboard}>Update</button>
+            )
+        } else {
+            submitButton = (
+                <button className="btn btn-primary add-dashboard-btn"
+                onClick={this.addDashboard}>Create</button>
+            )
+        }
 
         switch(this.state.activeFilterList) {
             case 'competitions':
@@ -468,11 +487,7 @@ class AddDashboard extends Component {
                             <ErrorMessages errors={this.props.errors} />
 
                             <div className="text-center">
-                                <button className="btn btn-primary add-dashboard-btn"
-                                        onClick={this.addDashboard}>Create</button>
-
-                                <button className="btn btn-primary update-dashboard-btn"
-                                        onClick={this.updateDashboard}>Update</button>
+                                {submitButton}
                             </div>
                         </div>
                         <div className="instructions-panel">

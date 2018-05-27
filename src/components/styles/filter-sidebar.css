@@ -20,10 +20,6 @@
     .dashboard-filter .add-dashboard .content .breadcrumbs {
       margin-top: 5px;
       margin-bottom: 30px; }
-  .dashboard-filter .add-dashboard .add-dashboard-btn {
-    display: none; }
-  .dashboard-filter .add-dashboard .update-dashboard-btn {
-    display: inline-block; }
   .dashboard-filter .add-dashboard .custom-twitter form {
     display: block; }
     .dashboard-filter .add-dashboard .custom-twitter form .btn {

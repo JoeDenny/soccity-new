@@ -231,11 +231,9 @@ const rootReducer = (state = initialState, action) => {
                 errors: action.payload.errors
             };
         case SAVE_DASHBOARDS: 
-            const activeDashboard = state.activeDashboard || action.payload.dashboards[0];           
             return {
                 ...state,
-                dashboards: action.payload.dashboards,
-                activeDashboard: activeDashboard
+                dashboards: action.payload.dashboards
             };
         case ADD_DASHBOARD_SUCCESS:            
             return {

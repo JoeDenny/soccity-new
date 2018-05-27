@@ -6,7 +6,7 @@ class DashboardList extends Component {
 
     setActiveDashboard = (dashboard) => {
         
-        this.props.setActiveDashboard(dashboard)
+        this.props.setActiveDashboard(dashboard);
     }
 
     render() {
@@ -17,7 +17,10 @@ class DashboardList extends Component {
         if(this.props.dashboards) {
             dashboards = this.props.dashboards.map((dashboard, i) => {    
                 
-                isActive = dashboard.id === this.props.activeDashboard.id ? 'active' : '';
+                if(this.props.activeDashboard) {
+
+                    isActive = dashboard.id === this.props.activeDashboard.id ? 'active' : '';
+                }                
                 
                 if(dashboard.teams[0]) {
                     logoPath = dashboard.teams[0].logo_path;
