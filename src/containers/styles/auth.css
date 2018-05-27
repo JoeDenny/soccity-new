@@ -46,3 +46,27 @@
   box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.4);
   transition: box-shadow .25s;
   width: 100%; }
+
+.social-login {
+  display: flex;
+  flex-direction: column; }
+  .social-login div {
+    font-size: 1rem !important;
+    box-shadow: none !important; }
+
+.divide {
+  border-bottom: 1px solid white;
+  width: 150px;
+  margin: 15px 0 35px;
+  position: relative;
+  text-align: center; }
+  .divide span {
+    position: relative;
+    top: 13px;
+    background: #474b4f;
+    padding: 5px;
+    color: white; }
+
+@media (min-width: 768px) {
+  .social-login {
+    flex-direction: row; } }

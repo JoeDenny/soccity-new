@@ -7,7 +7,7 @@ let initialState = undefined;
 const localStorageState = localStorage.getItem('store');
 
 if (localStorageState) {
-    initialState = JSON.parse(localStorageState);
+    initialState = JSON.parse(localStorageState);    
     
     if (initialState.token) {
         

@@ -362,10 +362,15 @@ export const highlightKeywords = (keywordsConfig) => ({
     }
 });
 
-export const login = (email, password) => {
+export const ENABLE_NOTIFICATIONS = 'ENABLE_NOTIFICATIONS';
+export const enableNotifications = () => ({
+    type: ENABLE_NOTIFICATIONS
+});
+
+export const login = (formData) => {
     return (dispatch) => {    
         dispatch(fetchingData());    
-        api.login(email, password).then((res) => {
+        api.login(formData).then((res) => {
             dispatch(loginSuccess(
                 res.data.token,
                 res.data.user          
@@ -458,7 +463,7 @@ export const getNews = (params) => {
     return (dispatch) => {
         dispatch(fetchingData());
         api.getNews(params)
-            .then((res) => {                                
+            .then((res) => {                                                
                 dispatch(getNewsSuccess(res.data.allNews));
             })
             .catch(error => {

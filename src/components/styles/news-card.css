@@ -11,7 +11,6 @@
   .news-card.twitter header {
     border: 0; }
   .news-card.twitter .source {
-    font-size: 1rem;
     top: 0; }
   .news-card.twitter .description {
     font-family: 'Domine', serif;
@@ -46,10 +45,8 @@
     object-fit: contain;
     margin-right: 5px; }
   .news-card .source {
-    color: #6bac0f;
     display: flex;
-    align-items: center;
-    font-size: .8rem; }
+    align-items: center; }
     .news-card .source h5 {
       margin: 0;
       margin-right: 5px; }
@@ -78,6 +75,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center; }
+  .news-card .dropdown {
+    top: -5px;
+    right: -5px; }
+    .news-card .dropdown .menu {
+      padding: .5rem; }
+      .news-card .dropdown .menu .btn {
+        font-size: .8rem;
+        width: 100%; }
 
 .comments-icon {
   position: relative;
@@ -161,3 +166,10 @@
     font-weight: 700; }
   .highlight-text.underline {
     text-decoration: underline; }
+
+.ellipsis-icon {
+  width: 7px;
+  height: 20px;
+  background-image: radial-gradient(circle at center, #484848 2px, transparent 2px);
+  background-size: 7px 7px;
+  cursor: pointer; }

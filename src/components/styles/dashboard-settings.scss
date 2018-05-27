@@ -13,6 +13,12 @@
     left: 0;
     right: 0;
     box-shadow: 0 1px 3px 0 $boxShadow, 0 0 0 1px $boxShadow;
+    transition: opacity .3s;
+
+    &.true {
+        opacity: 0;
+        pointer-events: none;
+    }
 
     .btn-popular {
         background-color: #000000;
@@ -23,8 +29,20 @@
             background-color: #000000;
             border-color: #000000;
         }
-    }
 
+    }
+    
+    .btn-livefeed {
+        background-color: #D11E23;
+        border-color: #D11E23;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #D11E23;
+            border-color: #D11E23;
+        }
+    }
     .left-icons {
         display: flex;
     }
@@ -115,7 +133,7 @@
     .dashboard-settings-container {
         top: 80px;
         margin: auto;
-        width: 650px;
+        width: 750px;
         border-radius: .25rem;
 
         .left-icons {

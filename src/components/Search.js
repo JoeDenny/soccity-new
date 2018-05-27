@@ -135,7 +135,6 @@ class Searchbar extends Component {
         if(!searchList.length && this.state.typingTimeOut) {
             searchList = <li className="no-results">No results!</li>;
         }
-        
 
         return (
             <div className={"searchbar"}>

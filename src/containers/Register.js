@@ -5,7 +5,9 @@ import { register } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { routes } from '../constants';
+import { routes, authIds } from '../constants';
+import SocialButton from './SocialButton';
+import {FacebookLoginButton, GoogleLoginButton} from 'react-social-login-buttons';
 
 class Register extends Component {
     constructor(props) {
@@ -13,9 +15,7 @@ class Register extends Component {
         this.state = {
             default_avatar: 'http://35.176.191.198/images/default_avatars/profile1.png',
             name: '',
-            email: '',
-            password: '',
-            password_confirmation: ''
+            email: ''
         };
     }
 
@@ -48,13 +48,57 @@ class Register extends Component {
         this.props.register(formData);
     }
 
+    handleSocialRegister = (user) => {
+
+        const formData = {
+            default_avatar: user._profile.profilePicURL || 'http://35.176.191.198/images/default_avatars/profile1.png',
+            name: user._profile.firstName,
+            email: user._profile.email,
+            provider: user._provider,
+            provider_id: user._profile.id,
+            password: undefined
+        };
+
+        this.props.register(formData);     
+    }
+       
+    handleSocialRegisterFailure = (err) => {
+        console.error(err)
+    }
+
     render() {
+        
         return (
             <div className="auth-layout">
-                
+
                 <h1>Create Account</h1>
 
-                <ErrorMessages errors={this.props.errors}/>                
+                <ErrorMessages errors={this.props.errors}/>     
+
+                <div className="social-login">
+                    <SocialButton
+                        provider='google'
+                        appId={authIds.GOOGLE_CLIENT_ID}
+                        onLoginSuccess={this.handleSocialRegister}
+                        onLoginFailure={this.handleSocialRegisterFailure}
+                        >
+
+                        <GoogleLoginButton />      
+
+                    </SocialButton>
+                    <SocialButton
+                        provider='facebook'
+                        appId={authIds.FACEBOOK_CLIENT_ID}
+                        onLoginSuccess={this.handleSocialRegister}
+                        onLoginFailure={this.handleSocialRegisterFailure}
+                        >
+
+                        <FacebookLoginButton  />   
+
+                    </SocialButton>
+                </div>
+
+                <div className="divide"><span>Or</span></div>
 
                 <form onSubmit={this.handleSubmit}>
 

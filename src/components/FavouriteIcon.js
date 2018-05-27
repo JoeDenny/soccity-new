@@ -18,7 +18,7 @@ const FavouriteIcon = (props) => {
             className={className}
             onClick={favourite}
         >
-            <img src={icon} alt=""/>
+            <img src={icon} alt="" />
             {/* <span className="text-secondary">{props.likes}</span> */}
             <span className="text-secondary">Like</span>
         </button>

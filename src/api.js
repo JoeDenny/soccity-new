@@ -4,11 +4,8 @@ class Api {
     token = undefined;
     API_URL = 'https://c.sourcebuffet.net/api';
 
-    login = (email, password) => {        
-        return axios.post(`${this.API_URL}/login`, {
-            email,
-            password
-        });
+    login = (formData) => {        
+        return axios.post(`${this.API_URL}/login`, formData);
     }
 
     anonymousLogin = () => {        
@@ -21,6 +18,14 @@ class Api {
 
     getStripeConfig = () => {
         return axios.get(`${this.API_URL}/config`, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
+    getUser = () => {
+        return axios.get(`${this.API_URL}/user`, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }
@@ -54,62 +59,64 @@ class Api {
         return this.fetchNews(url).then((res) => res);        
     }
 
-    getNews(params) {
-        let url;
+    // getNews(params) {
+    //     let url;
 
-        // let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
+    //     // let sourceTypeUrl = params.source_type ? `&source_type=${params.source_type}` : '';
         
-        let baseUrl = `time=${params.time}&page=${params.page}`
+    //     let baseUrl = `time=${params.time}`
 
-        if(params.sources) {
-            let sourceUrl = '';
+    //     if(params.sources) {
+    //         let sourceUrl = '';
 
-            for(let i=0; i < params.sources.length; i++) {
-                sourceUrl += `&sources[]=${params.sources[i].id}`;
-            }
+    //         for(let i=0; i < params.sources.length; i++) {
+    //             sourceUrl += `&sources[]=${params.sources[i].id}`;
+    //         }
 
-            baseUrl += `${sourceUrl}`;
-        }        
+    //         baseUrl += `${sourceUrl}`;
+    //     }        
          
-        if(params.teams) {
-            let teamsUrl = '';
+    //     if(params.teams) {
+    //         let teamsUrl = '';
 
-            for(let i=0; i < params.teams.length; i++) {
-                teamsUrl += `&teams[]=${params.teams[i].id}`;
-            }
+    //         for(let i=0; i < params.teams.length; i++) {
+    //             teamsUrl += `&team_id=${params.teams[i].id}`;
+    //         }
 
-            url = baseUrl + teamsUrl;
+    //         url = baseUrl + teamsUrl;
             
-            return this.fetchNews(url).then((res) => res);
-        } else if(params.players) {
-            let playersUrl = '';
+    //         return this.fetchNews(url).then((res) => res);
+    //     } else if(params.players) {
+    //         let playersUrl = '';
 
-            for(let i=0; i < params.players.length; i++) {
-                playersUrl += `&players[]=${params.players[i].id}`;
-            }
-            url = baseUrl + playersUrl;
+    //         for(let i=0; i < params.players.length; i++) {
+    //             playersUrl += `&players[]=${params.players[i].id}`;
+    //         }
+    //         url = baseUrl + playersUrl;
 
-            return this.fetchNews(url).then((res) => res);
-        } else if(params.competitions) {
-            let competitionsUrl = '';
+    //         return this.fetchNews(url).then((res) => res);
+    //     } else if(params.competitions) {
+    //         let competitionsUrl = '';
 
-            for(let i=0; i < params.competitions.length; i++) {
-                competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
-            }
-            url = baseUrl + competitionsUrl;
+    //         for(let i=0; i < params.competitions.length; i++) {
+    //             competitionsUrl += `&competitions[]=${params.competitions[i].id}`;
+    //         }
+    //         url = baseUrl + competitionsUrl;
 
-            return this.fetchNews(url).then((res) => res);
-        } else {
+    //         return this.fetchNews(url).then((res) => res);
+    //     } else {
 
-            url = baseUrl;
-        }
+    //         url = baseUrl;
+    //     }
         
-        return this.fetchNews(url).then((res) => res);
-    }
+    //     return this.fetchNews(url).then((res) => res);
+    // }
 
-    fetchNews = (url) => {
+    getNews = (params) => {
 
-        return axios.get(`${this.API_URL}/news?${url}`, {
+        params.teams = [25];
+
+        return axios.post(`${this.API_URL}/news`, params, {
             headers: {
                 'Authorization': `Bearer ${this.token}`
             }

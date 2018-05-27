@@ -13,6 +13,13 @@ import icon from '../images/latest-comments.svg';
 import Highlighter from "react-highlight-words";
 
 class NewsCard extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            dropdownOpen: false
+        }
+    }
 
     updateGrid = () => {
 
@@ -29,6 +36,18 @@ class NewsCard extends Component {
         this.props.openArticle(this.props.newsItem.id);
     }
 
+    toggleDropdown = () => {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        })
+    }
+
+    closeDropdown = () => {
+        this.setState({
+            dropdownOpen: false
+        })
+    }
+
     render() {
 
         let thumbnail,
@@ -37,6 +56,9 @@ class NewsCard extends Component {
             title,
             description,
             descriptionContent;
+
+
+        let isOpen = this.state.dropdownOpen ? 'open' : ''
         
         if(this.props.newsItem) {
 
@@ -108,7 +130,14 @@ class NewsCard extends Component {
                         </div>
                         
                         <ul>
-                            <ShareSection id={this.props.newsItem.id}/>        
+                            <div className="ellipsis-icon" onClick={this.toggleDropdown}></div>
+                            <div className={"dropdown " + isOpen + " " + this.props.type}
+                                id="dropdown">
+                                <div className="menu card">
+                                    <ShareSection id={this.props.newsItem.id}/>  
+                                    <button className="btn btn-secondary">Remove Source</button> 
+                                </div>
+                            </div>     
                         </ul>
                     </footer>
                 </div>
@@ -172,7 +201,14 @@ class NewsCard extends Component {
                         </div>
                         
                         <ul>
-                            <ShareSection id={this.props.newsItem.id}/>        
+                            <div className="ellipsis-icon" onClick={this.toggleDropdown}></div>
+                            <div className={"dropdown " + isOpen + " " + this.props.type}
+                                id="dropdown">
+                                <div className="menu card">
+                                    <ShareSection id={this.props.newsItem.id}/>  
+                                    <button className="btn btn-secondary">Remove Source</button> 
+                                </div>
+                            </div>     
                         </ul>
                     </footer>
                 </div>

@@ -12,8 +12,7 @@ class LatestCommentsButton extends Component {
                 onClick={this.onClick}
                 isActive={this.props.isActive}
             >
-                <img src={icon} alt=""/>
-                
+                <img src={icon} alt="" data-tip="Latest Comments"/>
             </SettingsButton>
         );
     }

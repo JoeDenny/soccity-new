@@ -27,23 +27,19 @@ class BillingPreferences extends Component {
                     <div className="col-xs-12 col-md-8">
                     
                         <div className="box">
-                            <li className="filter-card text-secondary">
+                            <li className="option text-secondary">
                                 <p className="name">Current Plan</p>
                                 <span style={{display: premiumUser ? 'none' : 'inline'}} className="pull-right">FREE subscription</span>
                                 <span style={{display: premiumUser ? 'inline' : 'none'}} className="pull-right">PREMIUM subscription</span>
                             </li>
-                            {/* <li className="filter-card text-secondary">
-                                <p className="name">Billing History</p>
-                                <span className="pull-right"></span>
-                            </li> */}
-                            <li className="filter-card text-secondary" style={{display: premiumUser ? 'inline' : 'none'}} >
+                            <li className="option text-secondary" style={{display: premiumUser ? 'inline' : 'none'}} >
                                 <p className="name">Plan</p>
                                 <span className="pull-right">{subscription}</span>
                             </li>
 
-                            <li className="filter-card text-secondary" style={{display: premiumUser ? 'none' : 'inline'}} >
+                            <li className="option text-secondary" style={{display: premiumUser ? 'none' : 'flex'}}>
                                 <p className="name">Upgrade Subscription</p>
-                                <span className="pull-right">
+                                <span>
                                     <Link to={routes.BILLING_PATH}>
                                         <span className="upgrade">Upgrade Now</span>
                                     </Link>

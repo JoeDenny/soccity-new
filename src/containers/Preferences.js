@@ -5,11 +5,12 @@ import AvatarInput from '../components/AvatarInput';
 import ErrorMessages from '../components/ErrorMessages';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
+import Notification from '../components/Notification';
 // import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
-import { logout, updateUserDetails, getDashboards, deleteDashboard, getStripeConfig } from '../actions';
+import { logout, updateUserDetails, getDashboards, deleteDashboard, getStripeConfig, enableNotifications } from '../actions';
 import api from '../api';
 import './styles/preferences.css';
 
@@ -190,7 +191,8 @@ class Preferences extends Component {
                         </div>
                     </div>
                     <div className="container">                
-                        <NotificationsPreferences />
+                        <NotificationsPreferences enableNotifications={this.props.enableNotifications}/>
+                        <Notification notificationsEnabled={this.props.notificationsEnabled} user={this.props.user}/>
                     </div>
                     
                     <div className="container">                
@@ -219,7 +221,8 @@ const mapStateToProps = (state) => ({
     loading: state.loading,
     dashboards: state.dashboards,
     errors: state.errors,
-    updateUserSuccess: state.updateUserSuccess
+    updateUserSuccess: state.updateUserSuccess,
+    notificationsEnabled: state.notificationsEnabled
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -227,7 +230,8 @@ const mapDispatchToProps = (dispatch) => ({
     getStripeConfig: () => dispatch(getStripeConfig()),      
     getDashboards: () => dispatch(getDashboards()), 
     deleteDashboard: (id) => dispatch(deleteDashboard(id)),
-    updateUserDetails: (formData) => dispatch(updateUserDetails(formData))  
+    updateUserDetails: (formData) => dispatch(updateUserDetails(formData)),
+    enableNotifications: () => dispatch(enableNotifications())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);

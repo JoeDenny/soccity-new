@@ -25,6 +25,8 @@ class ShareSection extends Component {
                 copied: false
             })
         }, 2500);
+
+        // this.props.toggleDropdown();
     }
 
     render() {

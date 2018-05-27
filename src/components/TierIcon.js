@@ -6,7 +6,7 @@ class TierIcon extends Component {
         const className = `tier-icon tier-${this.props.tier}`;
 
         return (
-            <h5 className={className}>tier {this.props.tier}</h5>
+            <h5 className={className}>reputation level {this.props.tier}</h5>
         );
     }
 }

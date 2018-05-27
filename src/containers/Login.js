@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-// import SocialButton from './SocialButton';
+import {FacebookLoginButton, GoogleLoginButton} from 'react-social-login-buttons';
+
 
 class Login extends Component {
     constructor(props) {
         super(props);        
         this.state = {
-            email: '',
-            password: ''
+            email: ''
         };
     }
 
@@ -36,13 +36,22 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         
-        const { email, password } = this.state;
-        
-        this.props.login(email, password);
+        const formData = this.state;
+
+        this.props.login(formData);
     }
 
     handleSocialLogin = (user) => {
-        console.log(user)
+
+        // const formData = {
+        //     email: undefined,
+        //     password: undefined,
+        //     provider: user._provider,
+        //     provider_id: user._profile.id
+        // };
+        // this.props.login(formData);  
+        console.log('user', user);
+        
     }
        
     handleSocialLoginFailure = (err) => {
@@ -53,20 +62,43 @@ class Login extends Component {
         return (
             <div className="auth-layout">
 
-                {/* <div>
-                    <SocialButton
-                    provider='google'
-                    appId={authIds.GOOGLE_CLIENT_ID}
-                    onLoginSuccess={this.handleSocialLogin}
-                    onLoginFailure={this.handleSocialLoginFailure}
-                    >
-                    Login with google
-                    </SocialButton>
-                </div>
-                 */}
                 <h1>Login</h1>
 
-                <ErrorMessages errors={this.props.errors}/>                
+                <ErrorMessages errors={this.props.errors}/>  
+
+
+                <div className="social-login">
+
+                    <a href="https://c.sourcebuffet.net/auth/google">
+                        <GoogleLoginButton  />   
+                    </a>  
+                    
+                    <a href="https://c.sourcebuffet.net/auth/facebook">
+                        <FacebookLoginButton  />   
+                    </a>  
+                    {/* <SocialButton
+                        provider='google'
+                        appId={authIds.GOOGLE_CLIENT_ID}
+                        onLoginSuccess={this.handleSocialLogin}
+                        onLoginFailure={this.handleSocialLoginFailure}
+                        >
+
+                        <GoogleLoginButton />      
+
+                    </SocialButton>
+                    <SocialButton
+                        provider='facebook'
+                        appId={authIds.FACEBOOK_CLIENT_ID}
+                        onLoginSuccess={this.handleSocialLogin}
+                        onLoginFailure={this.handleSocialLoginFailure}
+                        >
+
+                        <FacebookLoginButton  />   
+
+                    </SocialButton> */}
+                </div>
+
+                <div className="divide"><span>Or</span></div>            
                 
                 <form onSubmit={this.handleSubmit}>
 
@@ -96,7 +128,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (email, password) => dispatch(login(email, password))
+    login: (formData) => dispatch(login(formData))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

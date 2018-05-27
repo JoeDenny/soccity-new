@@ -31,6 +31,37 @@
   background: #fff;
   padding: 2rem 1rem;
   border-bottom: 1px solid #ebebeb; }
+  .preferences-page .profile-section .option,
+  .preferences-page .notifications-section .option,
+  .preferences-page .billing-section .option,
+  .preferences-page .dashboards-section .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .preferences-page .profile-section .option:last-child,
+    .preferences-page .notifications-section .option:last-child,
+    .preferences-page .billing-section .option:last-child,
+    .preferences-page .dashboards-section .option:last-child {
+      border-bottom: none; }
+    .preferences-page .profile-section .option .name,
+    .preferences-page .notifications-section .option .name,
+    .preferences-page .billing-section .option .name,
+    .preferences-page .dashboards-section .option .name {
+      margin: 15px;
+      margin-left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .preferences-page .profile-section .option input,
+    .preferences-page .notifications-section .option input,
+    .preferences-page .billing-section .option input,
+    .preferences-page .dashboards-section .option input {
+      margin: 1px;
+      margin: 13px 5px;
+      margin-right: 15px; }
   .preferences-page .profile-section .new-dashboard-link,
   .preferences-page .notifications-section .new-dashboard-link,
   .preferences-page .billing-section .new-dashboard-link,

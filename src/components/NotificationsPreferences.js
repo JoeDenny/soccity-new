@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 
 class NotificationsPreferences extends Component {
 
+    enableNotifications = () => {
+        
+        this.props.enableNotifications();
+    }
+
     render() {
     
         return (
@@ -15,23 +20,23 @@ class NotificationsPreferences extends Component {
                     
                         <div className="box">
                             <ul>
-                                <li className="filter-card text-secondary">
+                                <li className="option text-secondary">
                                     <p className="name">Enable desktop notifications</p>
-                                    <input type="checkbox" />
+                                    <button className="btn btn-primary" onClick={this.enableNotifications}>Enable</button>
                                 </li>
-                                <li className="filter-card text-secondary">
+                                <li className="option text-secondary">
                                     <p className="name">Include preview of messages in each notification</p>
                                     <input type="checkbox" />
                                 </li>
-                                <li className="filter-card text-secondary">
+                                <li className="option text-secondary">
                                     <p className="name">Notify me about replies</p>
                                     <input type="checkbox" />
                                 </li>
-                                <li className="filter-card text-secondary">
+                                <li className="option text-secondary">
                                     <p className="name">Notify me about replies to threads I've commented on</p>
                                     <input type="checkbox" />
                                 </li>
-                                <li className="filter-card text-secondary">
+                                <li className="option text-secondary">
                                     <p className="name">Mute all sounds</p>
                                     <input type="checkbox" />
                                 </li>

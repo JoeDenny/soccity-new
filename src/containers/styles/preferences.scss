@@ -47,7 +47,33 @@
         background: #fff;
         padding: 2rem 1rem;
         border-bottom: 1px solid $borderGrey;     
-        
+    
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            padding: 0 5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .name {
+                margin: 15px;
+                margin-left: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            input {
+                margin: 1px;
+                margin: 13px 5px;
+                margin-right: 15px;
+            }
+        }
         .new-dashboard-link {
             margin-top: 2rem;
         }

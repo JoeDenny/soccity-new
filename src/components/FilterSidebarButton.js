@@ -13,7 +13,7 @@ class FilterSidebarButton extends Component {
                 onClick={this.onClick}
                 isActive={this.props.isActive}
             >
-                <img src={icon} alt=""/>
+                <img src={icon} alt="" data-tip="Dashboard Filter"/>
                 
             </SettingsButton>
         );

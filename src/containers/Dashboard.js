@@ -5,6 +5,7 @@ import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
+import Notification from '../components/Notification';
 import NewsFeed from '../components/NewsFeed';
 import { getNews, getCustomNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
@@ -25,9 +26,9 @@ class Dashboard extends Component {
         
         this.props.getDashboards();
         
-        if(this.props.activeDashboard) {            
+        if(this.props.activeDashboard) {                        
             this.setActiveDashboard(this.props.activeDashboard);
-        } else {            
+        } else {                        
             this.getNews();
         }
         this.props.getCompetitions();
@@ -35,7 +36,7 @@ class Dashboard extends Component {
         this.props.getPlayers();
         this.props.getSources();
 
-        this.startAutoRefreshTimer(this.state.autoRefreshRate);
+        window.scrollTo(0,0);
     }
 
     componentWillReceiveProps(newProps) {
@@ -45,27 +46,37 @@ class Dashboard extends Component {
         }
     }
 
-    startAutoRefreshTimer(refreshRate = 120000) {
+    startAutoRefreshTimer = (refreshRate = 300000) => {
+
+        this.props.setAutoRefresh(refreshRate);
         
-        setInterval(function () {
+        this.interval = setInterval(function () {
             
-            this.getNews(1);
+            if(this.props.activeDashboard) {                            
+                this.setActiveDashboard(this.props.activeDashboard);
+            } else {            
+                this.getNews();
+            }
+            
         }.bind(this), refreshRate); 
+    }
+
+    stopAutoRefreshTimer = () => {
+
+       clearInterval(this.interval);
     }
 
     getNews = (pageNumber) => {
     
         const params = {
-            time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
+            time: moment().subtract(1440, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: pageNumber || 1
         }; 
         
         this.props.getNews(params);        
     }
 
-    dashboardUpdate = () => {
-        console.log('update d');
-        
+    dashboardUpdate = () => {        
         this.closeMenu();
         this.setActiveDashboard(this.props.activeDashboard);
     }
@@ -175,6 +186,8 @@ class Dashboard extends Component {
 
             this.props.updateNews(params)
         }
+        console.log('active');
+        
         this.props.setActiveDashboard(dashboard);
     }
 
@@ -205,6 +218,8 @@ class Dashboard extends Component {
                         setActiveMenuItem={this.setActiveMenuItem}
                         activeMenuItem={activeMenuItem}
                         refreshNews={this.getNews}
+                        startAutoRefresh={this.startAutoRefreshTimer}
+                        stopAutoRefresh={this.stopAutoRefreshTimer}
                         changeTemplate={this.changeTemplate}/>
 
                     <Sidebar
@@ -214,6 +229,10 @@ class Dashboard extends Component {
                         refreshNews={this.getNews}/>
 
                     <div className={menuClass}>
+
+                        <Notification user={this.props.user} notificationsEnabled={this.props.notificationsEnabled} />
+                    
+
                         <NewsFeed
                             className={menuClass}
                             news={news}
@@ -238,6 +257,7 @@ class Dashboard extends Component {
                             activeMenuItem={activeMenuItem} />
                     </div>
                 </section>
+
             </AuthWrapper>
         )
     }
@@ -262,7 +282,8 @@ const mapStateToProps = (state) => ({
     last_page: state.last_page,
     loading: state.loading,
     isMenuOpen: state.isMenuOpen,
-    keywordsConfig: state.keywordsConfig
+    keywordsConfig: state.keywordsConfig,
+    notificationsEnabled: state.notificationsEnabled
 });
 
 const mapDispatchToProps = (dispatch) => ({
