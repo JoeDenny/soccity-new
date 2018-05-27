@@ -147,46 +147,16 @@ class Dashboard extends Component {
         const params = {
             time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
             page: 1,
-            source_type: dashboard.source_type,
-            sources: dashboard.sources
+            sources: [],
+            keywords: dashboard.keywords
         }        
-                
+        if(dashboard.sources) {
+            for(let i = 0; i < dashboard.sources.length; i++) {
+                params.sources.push(dashboard.sources[i].id);
+            }
+        }
+        
         this.props.getNews(params);
-
-        if(dashboard.competitions.length) {
-            const params = {
-                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
-                page: 1,
-                source_type: dashboard.source_type,
-                sources: dashboard.sources,
-                competitions: dashboard.competitions
-            }  
-            
-            this.props.updateNews(params)
-        }
-        if(dashboard.teams.length) {
-            const params = {
-                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
-                page: 1,
-                source_type: dashboard.source_type,
-                sources: dashboard.sources,
-                teams: dashboard.teams
-            }  
-
-            this.props.updateNews(params)
-        }
-        if(dashboard.players.length) {
-            const params = {
-                time: moment().subtract(60, 'minutes').utc().format('Y-MM-DD HH:mm:ss'),
-                page: 1,
-                source_type: dashboard.source_type,
-                sources: dashboard.sources,
-                players: dashboard.players
-            }  
-
-            this.props.updateNews(params)
-        }
-        console.log('active');
         
         this.props.setActiveDashboard(dashboard);
     }

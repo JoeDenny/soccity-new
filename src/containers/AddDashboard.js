@@ -73,9 +73,6 @@ class AddDashboard extends Component {
 
     componentWillReceiveProps(newProps) {
 
-        console.log('newprops', newProps);
-        
-        
         if (newProps.updateDashboardSuccess) {
             if(this.props.history) {
                 this.props.history.push(routes.DASHBOARD_PATH);
@@ -83,27 +80,6 @@ class AddDashboard extends Component {
                 this.props.dashboardUpdate();
             }
         }
-
-        // if(newProps.activeDashboard) {
-        //     let activeDashboard = newProps.activeDashboard;
-
-        //     this.setState({
-        //         choices: {
-        //             teams: activeDashboard.teams,
-        //             players: activeDashboard.players,
-        //             competitions: activeDashboard.competitions,
-        //             sources: activeDashboard.sources,
-        //             keywords: activeDashboard.keywords
-        //         },
-        //         name: activeDashboard.name,
-        //         refreshRate: '300',
-        //         source_type: '',
-        //         preferences: [],
-        //         activeFilterList: 'competitions',
-        //         competitionId: '',
-        //         teamId: '',
-        //     })
-        // }
     }
 
 
@@ -144,6 +120,38 @@ class AddDashboard extends Component {
         }
     }
 
+    addSource = (item) => {
+
+        let sourceList = this.state.choices.sources || [];
+
+        sourceList.push(item);
+        
+        this.setState({
+            ...this.state,
+            choices: {
+                ...this.state.choices,
+                sources: sourceList
+            }
+        })
+    }
+
+    removeSource = (item) => {
+        let index = this.state.choices.sources.indexOf(item);
+        let sourceList = this.state.choices.sources || [];
+        
+        if (index > -1) {
+            sourceList.splice(index, 1);
+        }
+        
+          this.setState({
+            ...this.state,
+            choices: {
+                ...this.state.choices,
+                sources: sourceList
+            }
+        })
+    }
+
     addCustomFilter = (keyword) => {
 
         keyword = keyword.toLowerCase();
@@ -163,7 +171,7 @@ class AddDashboard extends Component {
         })
     }
 
-    removeFilter = (type) => {
+    removeFromFilter = (type) => {
         this.setState({
             ...this.state,
             choices: {
@@ -208,38 +216,33 @@ class AddDashboard extends Component {
         
         const params = {
             name: this.state.name || 'default dashboard',
-            source_type: this.state.source_type
+            source_type: this.state.source_type,
+            keywords: [],
+            sources: []
         }        
 
         if(this.state.choices.competitions) {
-            params.competitions = [this.state.choices.competitions[0].id];
+            params.keywords.push(this.state.choices.competitions[0].name);
         }
-
         if(this.state.choices.teams) {
-            params.teams = [this.state.choices.teams[0].id];
+            params.keywords.push(this.state.choices.teams[0].name);
         }
-
         if(this.state.choices.players) {
-            params.players = [this.state.choices.players[0].id];
+            params.keywords.push(this.state.choices.players[0].name);
         }
 
         if(this.state.choices.sources) {
-            params.sources = [this.state.choices.sources[0].id];
+            for(let i = 0; i < this.state.choices.sources.length; i++) {
+                params.sources.push(this.state.choices.sources[i].id);
+            }
         }
-
-        if(this.state.choices.keywords) {
-            params.keywords = this.state.choices.keywords;
-        }
-                
+ 
         this.props.addDashboard(params);        
     }
 
     setActiveCompetitionId = (id) => {
 
-        this.props.getTeams(id);
-
-        console.log('id', id);
-        
+        this.props.getTeams(id);        
         
         this.setState({
             ...this.state,
@@ -309,9 +312,9 @@ class AddDashboard extends Component {
                 activeFilterList = <SourceList
                                         sources={this.props.sources} 
                                         isActive={this.state.activeFilterList === 'sources'}
-                                        addToFilter={this.addToFilter}
-                                        removeFromFilter={this.removeFromFilter}
-                                        filterResults={this.state.sources} />;
+                                        addToFilter={this.addSource}
+                                        removeFromFilter={this.removeSource}
+                                        filterResults={this.state.choices.sources} />;
                 break;
             default:
                 activeFilterList = <CompetitionList
@@ -435,7 +438,7 @@ class AddDashboard extends Component {
                                     <label className="label-title">Pick a competition, team or player to add to your feed:</label>
 
                                     <div className="relative">
-                                        <FilterResults choices={this.state.choices} removeFilter={this.removeFilter} />
+                                        <FilterResults choices={this.state.choices} removeFromFilter={this.removeFromFilter} removeSource={this.removeSource}/>
                                         <CustomFilters addCustomFilter={this.addCustomFilter}/>
                                     </div>          
                                     <div className="input-wrapper inline-input">

@@ -6,12 +6,12 @@ class SourceList extends Component {
 
     addSource = (source) => {
 
-        this.props.addToFilter('sources', source);        
+        this.props.addToFilter(source);        
     }
 
     removeSource = (source) => {
 
-        this.props.removeFromFilter('sources', source);        
+        this.props.removeFromFilter(source);        
     }
 
     setActiveId() {
@@ -22,8 +22,10 @@ class SourceList extends Component {
         let sources;
 
         if(this.props.sources) {
-
+            
             sources = this.props.sources.map(source => {
+
+                
 
                 let isActive;
 

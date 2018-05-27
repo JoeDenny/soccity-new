@@ -3,29 +3,39 @@ import ResultCard from './ResultCard';
 import './styles/filter-results.css';
 
 class FilterResults extends Component {
-    removeFilter = (type) => {
+    removeFromFilter = (type) => {
 
-        this.props.removeFilter(type);
+        this.props.removeFromFilter(type);
+    }
+
+    removeSource = (item) => {
+
+        this.props.removeSource(item);
     }
 
     render() {
         let results = [];        
           
         if(this.props.choices.competitions) {
-            results.push(<ResultCard key={1} result={this.props.choices.competitions} removeFilter={() => this.removeFilter('competitions')}/>);
+            results.push(<ResultCard key={1} result={this.props.choices.competitions} removeFromFilter={() => this.removeFromFilter('competitions')}/>);
         }
         if(this.props.choices.teams) {
-            results.push(<ResultCard key={2} result={this.props.choices.teams} removeFilter={() => this.removeFilter('teams')}/>);
+            results.push(<ResultCard key={2} result={this.props.choices.teams} removeFromFilter={() => this.removeFromFilter('teams')}/>);
         }
         if(this.props.choices.players) {
-            results.push(<ResultCard key={3} result={this.props.choices.players}  removeFilter={() => this.removeFilter('players')}/>);
+            results.push(<ResultCard key={3} result={this.props.choices.players}  removeFromFilter={() => this.removeFromFilter('players')}/>);
         }
         if(this.props.choices.keywords) {
-            results.push(<ResultCard key={4} result={this.props.choices.keywords} removeFilter={() => this.removeFilter('keywords')} />);            
+            results.push(<ResultCard key={4} result={this.props.choices.keywords} removeFromFilter={() => this.removeFromFilter('keywords')} />);            
         }
 
         if(this.props.choices.sources) {
-            results.push(<ResultCard key={5} result={this.props.choices.sources} removeFilter={() => this.removeFilter('sources')} />);            
+            for(let i = 0; i < this.props.choices.sources.length; i++) {
+
+                let result = this.props.choices.sources[i];                
+                
+                results.push(<ResultCard key={i+5} result={result} removeFromFilter={() => this.removeSource(result)} />);            
+            }
         }
             
         return (

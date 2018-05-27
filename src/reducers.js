@@ -35,8 +35,7 @@ const rootReducer = (state = initialState, action) => {
     
     switch (action.type) {
         case LOGIN_SUCCESS:
-        case REGISTER_SUCCESS:
-            
+        case REGISTER_SUCCESS:            
             api.saveToken(action.payload.token);
             return {
                 ...state,

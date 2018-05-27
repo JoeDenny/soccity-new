@@ -7,7 +7,8 @@ export const routes =  {
     PROFILE_PATH: 'profile',
     PREFERENCES_PATH: 'preferences',
     ADD_DASHBOARD_PATH: 'create-dashboard',
-    NEWS_ARTICLE_PATH: 'news/article'
+    NEWS_ARTICLE_PATH: 'news/article',
+    SOCIAL_LOGIN_PATH: 'social'
 };
 
 export const authIds = {

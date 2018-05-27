@@ -5,6 +5,7 @@ import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Register from './containers/Register';
 import Login from './containers/Login';
+import SocialLogin from './containers/SocialLogin';
 import MyStoreCheckout from './containers/checkout/MyStoreCheckout';
 import Profile from './containers/Profile';
 import Preferences from './containers/Preferences';
@@ -41,6 +42,7 @@ export const App = () => (
                     <Route exact={true} path={getPath(routes.PROFILE_PATH)} component={Profile} />
                     <Route exact={true} path={getPath(routes.PREFERENCES_PATH)} component={Preferences} />
                     <Route exact={true} path={getPath(routes.ADD_DASHBOARD_PATH)} component={AddDashboard} />
+                    <Route path={getPath(routes.SOCIAL_LOGIN_PATH)} component={SocialLogin} />
                     {/* <Route exact={true} path="/linktoarticle/:url" component={NewsArticle} /> */}
 
                     <Route component={Home}/>

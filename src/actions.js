@@ -662,6 +662,17 @@ export const getFollowings = () => {
     };
 };
 
+export const getUser = (accessToken) => {
+    return (dispatch) => {
+        api.getUser(accessToken).then((res) => {
+            dispatch(loginSuccess(
+                accessToken,
+                res.data.user          
+            ));
+        });
+    };
+};
+
 export const getUserActivity = () => {
     return (dispatch) => {
         api.getUserActivity().then((res) => {
