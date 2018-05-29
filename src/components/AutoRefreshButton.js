@@ -37,7 +37,7 @@ class AutoRefreshButton extends Component {
                  onMouseEnter={this.openDropdown}
                  onMouseLeave={this.closeDropdown} >
 
-                <img src={icon} alt=""/>
+                <img src={icon} alt="" />
                    
                 <Dropdown  
                     isOpen={this.state.dropdownOpen}

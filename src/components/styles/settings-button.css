@@ -1,3 +1,6 @@
+.settings-button img {
+  cursor: pointer; }
+
 .settings-button svg {
   width: 22px;
   transition: fill .25s ease-in-out; }
@@ -6,3 +9,7 @@
 
 .settings-button.active svg {
   fill: #6bac0f; }
+
+.settings-button .dropdown .menu {
+  top: 20px;
+  right: -45px; }

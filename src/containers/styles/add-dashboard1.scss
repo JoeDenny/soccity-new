@@ -2,6 +2,12 @@
 .add-dashboard {
     background-color: #f9f9f9;
 
+    .loading-icon {
+        position: relative;
+        top: 4rem;
+
+    }
+
     .main-form {
         margin: 0 auto;
     }
@@ -9,7 +15,7 @@
     .content {
         padding: 2rem 0;
         width: 95vw;
-        max-width: 1000px;
+        max-width: 1200px;
         margin: auto;
         display: flex;
     }
@@ -22,11 +28,22 @@
         padding-left: 2rem;
         border-left: 1px solid $borderGrey;
 
+        .upgrade {
+            text-decoration: underline;
+            a {
+                color: $primary;
+            }
+        }
+
         .step {
             margin-bottom: 2rem;
 
+            &.step-upgrade {
+                margin-top: 20rem;
+            }
+
             &.step4 {
-                margin-top: 27rem;
+                margin-top: 9rem;
             }
         }
 
@@ -57,7 +74,7 @@
 
         .sub-title {
             border-bottom: 1px solid $borderGrey;
-            font-size: 1.8rem;
+            font-size: 1.25rem;
         }
     }
 
@@ -148,22 +165,9 @@
         border: 1px solid rgba(0,0,0,0.1);
         border-radius: .28571429rem;    
 
-        .plus-icon {
+        .add-icon {
             cursor: pointer;
-            width: 20px;
             height: 20px;
-            min-height: 0;
-            top: 20px;
-            right: 5px;
-            background-color: grey;
-            border-color: transparent;
-            box-shadow: none;
-
-            &:before,
-            &:after {
-                width: 2px;
-                height: 11px;
-            }
         }
 
         header {
@@ -201,6 +205,8 @@
 
         .arrow {
             margin: 7px 5px;
+            position: relative;
+            top: -3px;
         }
     }
 
@@ -224,19 +230,20 @@
     @media (min-width: 544px) {
         .list {
             height: 400px;
-            overflow-y: scroll;   
+            overflow-y: scroll; 
+            margin: 0 25px;  
             
-            &.competition-list {
-                margin-right: 25px;
-            }
+            // &.competition-list {
+            //     margin-right: 25px;
+            // }
 
-            &.team-list {
-                margin: 0 25px;
-            }
+            // &.team-list {
+            //     margin: 0 25px;
+            // }
 
-            &.player-list {
-                margin-left: 25px;
-            }
+            // &.player-list {
+            //     margin-left: 25px;
+            // }
         }
     }
 
@@ -296,17 +303,24 @@
 }
 
 .arrow-icon {
-    border: 1px solid $navy;
-    background-color: $navy;
     width: 25px;
     height: 25px;
-    border-radius: 50%;
     position: absolute;
     cursor: pointer;
+
+    img {
+        width: 25px;
+    }
+
+    &.disabled {
+        cursor: initial;
+        opacity: .5;
+    }
 
     .arrow {
         padding: 4px;
         border-color: $white;
+        width: 25px;
     }
     
     &.left {

@@ -5,21 +5,21 @@ class SourceTypeList extends Component {
         super();
 
         this.state = {
-            tier1: false,
-            tier2: false,
-            tier3: false,
-            tier4: false,
-            tier5: false
+            tier1: true,
+            tier2: true,
+            tier3: true,
+            tier4: true,
+            tier5: true
         }
     }
 
     handleChange = (event) => {
 
-        // const tier = event.target.name;
+        const tier = event.target.name;
 
-        // this.setState({
-        //     [tier]: event.target.checked
-        // })
+        this.setState({
+            [tier]: event.target.checked
+        })
         
         // if(event.target.checked) {
         //     this.props.addToFilter('sources', source);        
@@ -38,7 +38,7 @@ class SourceTypeList extends Component {
                     <div className="flex-container">
                         <div className="input-wrapper inline-input checkbox">
                             <label className="form-label">
-                                <input type="checkbox" name="tier1" value={this.state.tier1} />
+                                <input type="checkbox" name="tier1" />
                                 Tier 1
                             </label>
                         </div>

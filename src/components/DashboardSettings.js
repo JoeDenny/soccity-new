@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './styles/dashboard-settings.css';
 import BookmarkButton from './BookmarkButton';
 import RecentlyViewedButton from './RecentlyViewedButton';
-import FilterSidebarButton from './FilterSidebarButton';
+// import FilterSidebarButton from './FilterSidebarButton';
 import KeywordHighlightButton from './KeywordHighlightButton';
 import AutoRefreshButton from './AutoRefreshButton';
-import LatestCommentsButton from './LatestCommentsButton';
+// import LatestCommentsButton from './LatestCommentsButton';
 import Filter from './Filter';
 
 class DashboardSettings extends Component {
@@ -33,7 +33,7 @@ class DashboardSettings extends Component {
             clearTimeout(this.state.scrollingTimeOut);
         }
 
-        if(window.scrollY > 200) {
+        if(window.scrollY > 100) {
             this.setState({
                 scrolling: true
             });
@@ -44,7 +44,7 @@ class DashboardSettings extends Component {
                 this.setState({
                     scrolling: false
                 })                
-            }, 1000)
+            }, 200)
         });
 
 
@@ -90,7 +90,7 @@ class DashboardSettings extends Component {
                 <div className="left-icons">
                     {/* <TemplateTab onChangeTemplate={this.changeTemplate}/> */}
 
-                    <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-popular btn-primary" onClick={this.props.setPopularNews} data-tip="Show the most popular news right now.">Popular News</button>
+                    {/* <button style={{display : this.props.isPopularNews ? 'none' : 'inline-block' }} className="btn btn-popular btn-primary" onClick={this.props.setPopularNews} data-tip="Show the most popular news right now.">Popular News</button> */}
 
                     <button style={{display : this.props.isPopularNews ? 'inline-block' : 'none' }} className="btn btn-primary" onClick={this.refreshNews} data-tip="Return to your personalised feed.">All News</button>
                     
@@ -98,7 +98,7 @@ class DashboardSettings extends Component {
 
                     <button style={{display : this.state.liveFeed ? 'inline-block' : 'none' }} className="btn btn-primary btn-livefeed" onClick={() => this.stopAutoRefresh()} data-tip="Turn off Live Feed.">Passive Feed</button>
 
-                    <button className="btn btn-secondary" onClick={() => this.setActiveMenuItem('filter')} data-tip="Edit the settings for your active dashboard.">Edit Filters</button>
+                    {/* <button className="btn btn-secondary" onClick={() => this.setActiveMenuItem('filter')} data-tip="Edit the settings for your active dashboard.">Edit Filters</button> */}
 
                     
                     <span className="small-search">
@@ -126,18 +126,18 @@ class DashboardSettings extends Component {
                                 isActive={this.props.activeMenuItem === 'bookmarks'}
                             />
                         </li>
-                        <li className="item">
+                        {/* <li className="item">
                             <LatestCommentsButton
                                 setActiveMenuItem={this.setActiveMenuItem}
                                 isActive={this.props.activeMenuItem === 'latestComments'}
                             />
-                        </li>
-                        <li className="item">
+                        </li> */}
+                        {/* <li className="item">
                             <FilterSidebarButton
                                 setActiveMenuItem={this.setActiveMenuItem}
                                 isActive={this.props.activeMenuItem === 'filter'}
                             />
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

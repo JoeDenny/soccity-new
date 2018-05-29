@@ -44,8 +44,8 @@ class AddDashboard extends Component {
     componentWillMount() {
 
         this.props.getCompetitions();
-        this.props.getTeams();
-        this.props.getPlayers();
+        // this.props.getTeams();
+        // this.props.getPlayers();
         this.props.getSources();
 
         if(this.props.activeDashboard) {
@@ -315,6 +315,7 @@ class AddDashboard extends Component {
                                         setActiveCategory={this.setActiveCategory}
                                         addToFilter={this.addToFilter}
                                         removeFromFilter={this.removeFromFilter}
+                                        loading={this.props.loading}
                                         filterResults={this.state.choices.teams} />;
                 break;
             case 'players':
@@ -324,6 +325,7 @@ class AddDashboard extends Component {
                                         teamId={this.state.teamId}
                                         setActiveCategory={this.setActiveCategory}
                                         addToFilter={this.addToFilter}
+                                        loading={this.props.loading}
                                         removeFromFilter={this.removeFromFilter}
                                         filterResults={this.state.choices.players} />;
                 break;
@@ -504,8 +506,12 @@ class AddDashboard extends Component {
                                 <p>Search for competitions, teams, players, or publication sources.</p>
                                 <p>Publication tiers represent the reliability of the articles, with Tier 1 being the most reliable and Tier 5 the least.</p>
                                 <p>Including Default Tweets will add our default list of Twitter accounts to your feed. You can add your own accounts in Step 4.</p>
-                                <p>PRO users can add up to 5 competitions, 5 teams, 5 players, and unlimited custom keywords.  <Link to={routes.BILLING_PATH}>Upgrade now?</Link></p>
                             </div>
+
+                            <div className="step step-upgrade">
+                                <p>PRO users can add up to 5 competitions, 5 teams, 5 players, and unlimited custom keywords.  <span className="upgrade"><Link to={routes.BILLING_PATH}>Upgrade now?</Link></span></p>
+                            </div>
+                            
                             <div className="step step4">
                                 <h3>Step 4</h3>
                                 <p>Add Twitter accounts to your custom Twitter feed.</p>
@@ -528,7 +534,8 @@ const mapStateToProps = (state) => ({
     sources: state.sources,
     errors: state.errors,
     commonKeywords: state.commonKeywords,
-    updateDashboardSuccess: state.updateDashboardSuccess
+    updateDashboardSuccess: state.updateDashboardSuccess,
+    loading: state.loading
 });
 
 const mapDispatchToProps = (dispatch) => ({

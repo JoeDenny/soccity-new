@@ -207,16 +207,19 @@ const rootReducer = (state = initialState, action) => {
         case SAVE_TEAMS:
             return {
                 ...state,
+                loading: false,                
                 teams: action.payload.teams
             };
         case SAVE_PLAYERS:
             return {
                 ...state,
+                loading: false,                                
                 players: action.payload.players
             };
         case SAVE_SOURCES:
             return {
                 ...state,
+                loading: false,                                
                 sources: action.payload.sources
             };
         case ADD_CUSTOM_TWITTER_SUCCESS:                    

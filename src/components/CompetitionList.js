@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FilterCard from './FilterCard';
 import '../containers/styles/add-dashboard.css';
+import rightArrow from '../images/right-arrow.png';
+import leftArrow from '../images/left-arrow.png';
 
 class CompetitionList extends Component {
 
@@ -52,8 +54,12 @@ class CompetitionList extends Component {
                         {competitions}
                     </ul>
                 </div>
+                <div className="arrow-icon left disabled">
+                    <img src={leftArrow} alt="" />
+                </div>
                 <div className="arrow-icon right" onClick={() => this.setActiveCompetitionId(undefined)}>
-                    <div className="arrow"></div>
+                    {/* <div className="arrow"></div> */}
+                    <img src={rightArrow} alt="" />
                 </div>
                 <p className="breadcrumbs">Competitions</p>
             </div>

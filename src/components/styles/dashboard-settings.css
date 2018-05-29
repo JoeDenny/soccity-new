@@ -16,7 +16,7 @@
   left: 0;
   right: 0;
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-  transition: opacity .3s; }
+  transition: opacity .2s; }
   .dashboard-settings-container.true {
     opacity: 0;
     pointer-events: none; }
@@ -46,7 +46,7 @@
     transition: width .2s;
     overflow: hidden; }
     .dashboard-settings-container .small-search .searchbar.open {
-      width: 115px; }
+      width: 140px; }
     .dashboard-settings-container .small-search .searchbar .search-icon {
       width: 20px;
       height: 20px;

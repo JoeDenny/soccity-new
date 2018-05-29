@@ -590,6 +590,7 @@ export const getCompetitions = () => {
 
 export const getTeams = (id) => {
     return (dispatch) => {
+        dispatch(fetchingData());        
         api.getTeams(id).then((res) => {            
             dispatch(saveTeams(res.data.data));
         });
@@ -598,6 +599,7 @@ export const getTeams = (id) => {
 
 export const getPlayers = (id) => {
     return (dispatch) => {
+        dispatch(fetchingData());                
         api.getPlayers(id).then((res) => {         
             dispatch(savePlayers(res.data.data));
         });
@@ -606,6 +608,7 @@ export const getPlayers = (id) => {
 
 export const getSources = () => {    
     return (dispatch) => {
+        dispatch(fetchingData());                
         api.getSources().then((res) => {                             
             dispatch(saveSources(res.data.data));
         });

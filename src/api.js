@@ -56,8 +56,9 @@ class Api {
     saveSubscription = (subscription) => {     
         
         let params = {};
-        params.preferences = [];
-        params.preferences.push(subscription);
+        params.preferences = {};
+        params.preferences.subscriptions = [];
+        params.preferences.subscriptions.push(subscription);        
         
         return axios.post(`${this.API_URL}/user/update`, params, {
             headers: {

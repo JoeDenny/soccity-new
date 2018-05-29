@@ -1,11 +1,14 @@
 .add-dashboard {
   background-color: #f9f9f9; }
+  .add-dashboard .loading-icon {
+    position: relative;
+    top: 4rem; }
   .add-dashboard .main-form {
     margin: 0 auto; }
   .add-dashboard .content {
     padding: 2rem 0;
     width: 95vw;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: auto;
     display: flex; }
   .add-dashboard .instructions-panel {
@@ -15,10 +18,16 @@
     padding: 1rem 0;
     padding-left: 2rem;
     border-left: 1px solid #ebebeb; }
+    .add-dashboard .instructions-panel .upgrade {
+      text-decoration: underline; }
+      .add-dashboard .instructions-panel .upgrade a {
+        color: #86C232; }
     .add-dashboard .instructions-panel .step {
       margin-bottom: 2rem; }
+      .add-dashboard .instructions-panel .step.step-upgrade {
+        margin-top: 20rem; }
       .add-dashboard .instructions-panel .step.step4 {
-        margin-top: 27rem; }
+        margin-top: 9rem; }
     .add-dashboard .instructions-panel h3 {
       margin-bottom: 0; }
     .add-dashboard .instructions-panel p {
@@ -36,7 +45,7 @@
       align-items: center; }
     .add-dashboard .add-dashboard-section .sub-title {
       border-bottom: 1px solid #ebebeb;
-      font-size: 1.8rem; }
+      font-size: 1.25rem; }
   .add-dashboard .add-dashboard-instructions {
     display: none; }
   .add-dashboard .flex-container {
@@ -95,19 +104,9 @@
     padding: .1rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: .28571429rem; }
-    .add-dashboard .list .plus-icon {
+    .add-dashboard .list .add-icon {
       cursor: pointer;
-      width: 20px;
-      height: 20px;
-      min-height: 0;
-      top: 20px;
-      right: 5px;
-      background-color: grey;
-      border-color: transparent;
-      box-shadow: none; }
-      .add-dashboard .list .plus-icon:before, .add-dashboard .list .plus-icon:after {
-        width: 2px;
-        height: 11px; }
+      height: 20px; }
     .add-dashboard .list header {
       display: none; }
   .add-dashboard .preset-filter-dropdown {
@@ -129,7 +128,9 @@
       .add-dashboard .preset-filter-dropdown .form-label input {
         margin: 0; }
     .add-dashboard .preset-filter-dropdown .arrow {
-      margin: 7px 5px; }
+      margin: 7px 5px;
+      position: relative;
+      top: -3px; }
   .add-dashboard .errors-container li span {
     color: #222629; }
   .add-dashboard .source-type {
@@ -140,13 +141,8 @@
   @media (min-width: 544px) {
     .add-dashboard .list {
       height: 400px;
-      overflow-y: scroll; }
-      .add-dashboard .list.competition-list {
-        margin-right: 25px; }
-      .add-dashboard .list.team-list {
-        margin: 0 25px; }
-      .add-dashboard .list.player-list {
-        margin-left: 25px; } }
+      overflow-y: scroll;
+      margin: 0 25px; } }
   @media (min-width: 768px) {
     .add-dashboard .title {
       font-size: 2.5rem; }
@@ -186,16 +182,19 @@
       border-right: 1px solid #ebebeb; }
 
 .arrow-icon {
-  border: 1px solid #323648;
-  background-color: #323648;
   width: 25px;
   height: 25px;
-  border-radius: 50%;
   position: absolute;
   cursor: pointer; }
+  .arrow-icon img {
+    width: 25px; }
+  .arrow-icon.disabled {
+    cursor: initial;
+    opacity: .5; }
   .arrow-icon .arrow {
     padding: 4px;
-    border-color: #fff; }
+    border-color: #fff;
+    width: 25px; }
   .arrow-icon.left {
     left: -6px;
     top: 170px; }
