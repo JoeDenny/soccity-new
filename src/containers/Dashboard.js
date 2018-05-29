@@ -5,7 +5,6 @@ import DashboardHeader from '../components/DashboardHeader';
 import AuthWrapper from '../components/AuthWrapper';
 import Sidebar from '../components/Sidebar';
 import Menu from '../components/Menu';
-import Notification from '../components/Notification';
 import NewsFeed from '../components/NewsFeed';
 import { getNews, getCustomNews, getCompetitions, getTeams, getPlayers, getSources, updateNews, getPopularNews, getDashboards, setActiveDashboard, openMenu, closeMenu, setActiveMenuItem, setAutoRefresh } from '../actions';
 import DashboardSettings from '../components/DashboardSettings';
@@ -196,10 +195,7 @@ class Dashboard extends Component {
                         setActiveDashboard={this.setActiveDashboard}
                         refreshNews={this.getNews}/>
 
-                    <div className={menuClass}>
-
-                        <Notification user={this.props.user} notificationsEnabled={this.props.notificationsEnabled} />
-                    
+                    <div className={menuClass}>                    
 
                         <NewsFeed
                             className={menuClass}

@@ -14,7 +14,8 @@ class Login extends Component {
     constructor(props) {
         super(props);        
         this.state = {
-            email: ''
+            email: '',
+            password: ''
         };
     }
 
@@ -41,23 +42,6 @@ class Login extends Component {
         this.props.login(formData);
     }
 
-    handleSocialLogin = (user) => {
-
-        // const formData = {
-        //     email: undefined,
-        //     password: undefined,
-        //     provider: user._provider,
-        //     provider_id: user._profile.id
-        // };
-        // this.props.login(formData);  
-        console.log('user', user);
-        
-    }
-       
-    handleSocialLoginFailure = (err) => {
-        console.error(err)
-    }
-
     render() {
         return (
             <div className="auth-layout">
@@ -65,7 +49,6 @@ class Login extends Component {
                 <h1>Login</h1>
 
                 <ErrorMessages errors={this.props.errors}/>  
-
 
                 <div className="social-login">
 

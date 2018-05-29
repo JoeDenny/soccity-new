@@ -5,12 +5,11 @@ import AvatarInput from '../components/AvatarInput';
 import ErrorMessages from '../components/ErrorMessages';
 import { Link } from 'react-router-dom';
 import { routes } from '../constants';
-import Notification from '../components/Notification';
 // import UserPhoto from '../components/UserPhoto';
 import NotificationsPreferences from '../components/NotificationsPreferences';
 import BillingPreferences from '../components/BillingPreferences';
 import ManageDashboards from '../components/ManageDashboards';
-import { logout, updateUserDetails, getDashboards, deleteDashboard, getStripeConfig, enableNotifications } from '../actions';
+import { logout, updateUserDetails, getDashboards, deleteDashboard, getStripeConfig, enableNotifications, saveSubscription} from '../actions';
 import api from '../api';
 import './styles/preferences.css';
 
@@ -191,8 +190,7 @@ class Preferences extends Component {
                         </div>
                     </div>
                     <div className="container">                
-                        <NotificationsPreferences enableNotifications={this.props.enableNotifications}/>
-                        <Notification notificationsEnabled={this.props.notificationsEnabled} user={this.props.user}/>
+                        <NotificationsPreferences saveSubscription={this.props.saveSubscription}/>
                     </div>
                     
                     <div className="container">                
@@ -231,7 +229,8 @@ const mapDispatchToProps = (dispatch) => ({
     getDashboards: () => dispatch(getDashboards()), 
     deleteDashboard: (id) => dispatch(deleteDashboard(id)),
     updateUserDetails: (formData) => dispatch(updateUserDetails(formData)),
-    enableNotifications: () => dispatch(enableNotifications())
+    enableNotifications: () => dispatch(enableNotifications()),
+    saveSubscription: (subscription) => dispatch(saveSubscription(subscription))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preferences);

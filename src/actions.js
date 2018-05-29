@@ -427,6 +427,17 @@ export const getStripeConfig = () => {
     };
 };
 
+export const saveSubscription = (subscription) => {    
+    return (dispatch) => {
+        api.saveSubscription(subscription).then(
+            (res) => {
+                // dispatch(getStripeConfigSuccess(res.data));
+                console.log('res', res);
+                
+            })
+    };
+};
+
 export const subscribe = (token, email, plan) => {
     return (dispatch) => {
         api.subscribe(token, email, plan).then(

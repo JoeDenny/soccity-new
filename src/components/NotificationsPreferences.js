@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Notification from './Notification';
 
 
 class NotificationsPreferences extends Component {
@@ -22,7 +23,7 @@ class NotificationsPreferences extends Component {
                             <ul>
                                 <li className="option text-secondary">
                                     <p className="name">Enable desktop notifications</p>
-                                    <button className="btn btn-primary" onClick={this.enableNotifications}>Enable</button>
+                                    <Notification user={this.props.user} saveSubscription={this.props.saveSubscription}/>
                                 </li>
                                 <li className="option text-secondary">
                                     <p className="name">Include preview of messages in each notification</p>

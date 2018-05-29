@@ -1,111 +1,64 @@
-import React from 'react';
-import Notification from 'react-web-notification';
-import Logo from './logo_black.png';
+import React, { Component } from 'react';
 
-//allow react dev tools work
-window.React = React;
+import Toggle from 'material-ui/Toggle';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-class NotificationWrapper extends React.Component {
-  constructor() {
-    super();
+import WebPush from './WebPush'
+import {payloadFromSubscription} from './Utility'
+
+const applicationServerPublicKey = "BHFaW1mDZI3OnRsW6a90NcN4exrmM1RlDDwFl99CKwbWcST-BdKBPqckh-MoZ8Xh9QUqtVjiL3cCMy_uN77JNfY"
+
+class Notification extends Component {
+  constructor(props) {
+    super(props)
+
     this.state = {
-      ignore: true,
-      title: ''
-    };
-  }
-
-  componentWillReceiveProps = (newProps) => {
-
-      
-      if(newProps.notificationsEnabled) {
-          console.log('if');
-          
-          this.handleButtonClick();
-      }
-  }
-
-  handlePermissionGranted(){
-    console.log('Permission Granted');
-    this.setState({
-      ignore: false
-    });
-  }
-  handlePermissionDenied(){
-    console.log('Permission Denied');
-    this.setState({
-      ignore: true
-    });
-  }
-  handleNotSupported(){
-    console.log('Web Notification not Supported');
-    this.setState({
-      ignore: true
-    });
-  }
-
-  handleNotificationOnClick(e, tag){
-    console.log(e, 'Notification clicked tag:' + tag);
-  }
-
-  handleNotificationOnError(e, tag){
-    console.log(e, 'Notification error tag:' + tag);
-  }
-
-  handleNotificationOnClose(e, tag){
-    console.log(e, 'Notification closed tag:' + tag);
-  }
-
-  handleNotificationOnShow(e, tag){
-    console.log(e, 'Notification shown tag:' + tag);
-  }
-
-  handleButtonClick() {
-
-    if(this.state.ignore) {
-      return;
+      subscriveUserEnabled: false,
+      subscription: {endpoint: ''},
     }
 
-    const now = Date.now();
+    this.onWebPushToggle = this.onWebPushToggle.bind(this)
+    this.onUpdateSubscriptionOnServer = this.onUpdateSubscriptionOnServer.bind(this)
+    this.onSubscriptionFailed = this.onSubscriptionFailed.bind(this)
+  }
 
-    const title = 'Desktop Notifications Enabled!';
-    const body = 'Hello ' + this.props.user.name;
-    const tag = now;
-    const icon = Logo;
-
-    const options = {
-      tag: tag,
-      body: body,
-      icon: icon,
-      lang: 'en',
-      dir: 'ltr'
-    }
+  onWebPushToggle() {
     this.setState({
-      title: title,
-      options: options
-    });
+      subscriveUserEnabled: !this.state.subscriveUserEnabled,
+    })
+  }
+
+  onUpdateSubscriptionOnServer(subscription) {
+    console.log("onUpdateSubscriptionOnServer:", subscription)
+    var payload = JSON.stringify(payloadFromSubscription(subscription));
+    this.setState({subscription: subscription})
+
+    this.props.saveSubscription(payload);   
+  }
+
+  onSubscriptionFailed(error) {
+    console.log("onSubscriptionFailed:", error)
   }
 
   render() {
-
     return (
-      <div>
-        {/* <button onClick={this.handleButtonClick.bind(this)}>Notif!</button> */}
-        <Notification
-          ignore={this.state.ignore && this.state.title !== ''}
-          notSupported={this.handleNotSupported.bind(this)}
-          onPermissionGranted={this.handlePermissionGranted.bind(this)}
-          onPermissionDenied={this.handlePermissionDenied.bind(this)}
-          onShow={this.handleNotificationOnShow.bind(this)}
-          onClick={this.handleNotificationOnClick.bind(this)}
-          onClose={this.handleNotificationOnClose.bind(this)}
-          onError={this.handleNotificationOnError.bind(this)}
-          timeout={5000}
-          title={this.state.title}
-          options={this.state.options}
-        />
-      </div>
-    )
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div >
+          <Toggle
+            style={{marginRight: 5}}
+            onToggle={()=> {this.onWebPushToggle()}}
+          />
+          <WebPush
+            subscriveUserEnabled={this.state.subscriveUserEnabled}
+            applicationServerPublicKey={applicationServerPublicKey}
+            onSubscriptionFailed={this.onSubscriptionFailed}
+            onUpdateSubscriptionOnServer={this.onUpdateSubscriptionOnServer}
+          />
+        </div>
+      </MuiThemeProvider>
+    );
   }
-};
+}
 
-export default NotificationWrapper;
+export default Notification;

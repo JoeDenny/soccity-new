@@ -53,6 +53,19 @@ class Api {
         });
     }
 
+    saveSubscription = (subscription) => {     
+        
+        let params = {};
+        params.preferences = [];
+        params.preferences.push(subscription);
+        
+        return axios.post(`${this.API_URL}/user/update`, params, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`
+            }
+        });
+    }
+
     getCustomNews(type, id, params) {
         const url = `time=${params.time}&page=${params.page}&${type}[]=${id}`
 
