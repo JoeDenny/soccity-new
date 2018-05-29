@@ -57,8 +57,7 @@ class Api {
         
         let params = {};
         params.preferences = {};
-        params.preferences.subscriptions = [];
-        params.preferences.subscriptions.push(subscription);        
+        params.preferences.notification_subscription = subscription;    
         
         return axios.post(`${this.API_URL}/user/update`, params, {
             headers: {
